@@ -655,8 +655,7 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <li><a href="#_logische_expressies">4.3. Logische Expressies</a>
 <ul class="sectlevel3">
 <li><a href="#_vergelijkingsoperatoren">4.3.1. Vergelijkingsoperatoren</a></li>
-<li><a href="#_logische_operatoren_and_or_en_not">4.3.2. Logische Operatoren: <code>and</code>, <code>or</code> en <code>not</code></a></li>
-<li><a href="#_wiskundige_en_logische_expressies_combineren">4.3.3. Wiskundige en Logische Expressies Combineren</a></li>
+<li><a href="#_wiskundige_en_logische_expressies_combineren">4.3.2. Wiskundige en Logische Expressies Combineren</a></li>
 </ul>
 </li>
 <li><a href="#_overzicht_welk_type_levert_een_expressie_op">4.4. Overzicht: Welk Type Levert een Expressie Op?</a></li>
@@ -1374,93 +1373,9 @@ Verwar <code>=</code> niet met <code>==</code>! Eén <code>=</code> is een <stro
 </div>
 </div>
 <div class="sect3">
-<h4 id="_logische_operatoren_and_or_en_not">4.3.2. Logische Operatoren: <code>and</code>, <code>or</code> en <code>not</code></h4>
+<h4 id="_wiskundige_en_logische_expressies_combineren">4.3.2. Wiskundige en Logische Expressies Combineren</h4>
 <div class="paragraph">
-<p>Met logische operatoren combineer je booleaanse waarden tot één nieuwe booleaanse waarde:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>and</code>: is <code>True</code> als <strong>beide</strong> kanten <code>True</code> zijn.</p>
-</li>
-<li>
-<p><code>or</code>: is <code>True</code> als <strong>minstens één</strong> kant <code>True</code> is.</p>
-</li>
-<li>
-<p><code>not</code>: keert de waarde <strong>om</strong>: <code>not True</code> wordt <code>False</code> en omgekeerd.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Dit kun je samenvatten in een <strong>waarheidstabel</strong>:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><code>a</code></th>
-<th class="tableblock halign-left valign-top"><code>b</code></th>
-<th class="tableblock halign-left valign-top"><code>a and b</code></th>
-<th class="tableblock halign-left valign-top"><code>a or b</code></th>
-<th class="tableblock halign-left valign-top"><code>not a</code></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
-</tr>
-</tbody>
-</table>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">player_health</span> <span class="o">=</span> <span class="mi">75</span>
-<span class="n">ammo</span> <span class="o">=</span> <span class="mi">12</span>
-<span class="n">has_key</span> <span class="o">=</span> <span class="bp">False</span>
-
-<span class="n">can_fight</span> <span class="o">=</span> <span class="n">player_health</span> <span class="o">&gt;</span> <span class="mi">50</span> <span class="ow">and</span> <span class="n">ammo</span> <span class="o">&gt;</span> <span class="mi">0</span>   <span class="c1"># True and True  -&gt; True
-</span><span class="n">can_open_door</span> <span class="o">=</span> <span class="n">has_key</span> <span class="ow">or</span> <span class="n">ammo</span> <span class="o">&gt;</span> <span class="mi">20</span>          <span class="c1"># False or False -&gt; False
-</span><span class="n">is_locked</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">has_key</span>                        <span class="c1"># not False      -&gt; True</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>In hoofdstuk 4 gaan we dieper in op het combineren van voorwaarden met <code>and</code>, <code>or</code> en <code>not</code>.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_wiskundige_en_logische_expressies_combineren">4.3.3. Wiskundige en Logische Expressies Combineren</h4>
-<div class="paragraph">
-<p>Wiskundige en logische expressies kun je samen gebruiken. Python rekent eerst de wiskundige delen uit, daarna de vergelijkingen, en pas dan <code>not</code>, <code>and</code> en <code>or</code>:</p>
+<p>Wiskundige en logische expressies kun je samen gebruiken. Python rekent eerst de wiskundige delen uit en maakt daarna de vergelijking:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1537,13 +1452,13 @@ De expressie <code>getal % 2 == 0</code> is een klassieker: ze controleert of ee
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>bool</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>8 == 2 or 8 &gt; 2</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>8 == 2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>bool</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>not 8 &gt; 2</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>8 % 2 == 0</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>bool</code></p></td>
 </tr>
 </tbody>
@@ -1555,7 +1470,7 @@ De expressie <code>getal % 2 == 0</code> is een klassieker: ze controleert of ee
 <h2 id="_conclusie">5. Conclusie</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>De vier basisdatatypes in Python, <code>int</code>, <code>float</code>, <code>str</code> en <code>bool</code>, vormen de bouwstenen van elk programma. Met <strong>wiskundige expressies</strong> reken je met getallen, met <strong>logische expressies</strong> vergelijk en combineer je waarden tot <code>True</code> of <code>False</code>. Deze expressies heb je nodig in elk volgend hoofdstuk: als voorwaarde in beslissingsstructuren en lussen, en om berekeningen te maken in je programma&#8217;s.</p>
+<p>De vier basisdatatypes in Python, <code>int</code>, <code>float</code>, <code>str</code> en <code>bool</code>, vormen de bouwstenen van elk programma. Met <strong>wiskundige expressies</strong> reken je met getallen, met <strong>logische expressies</strong> vergelijk je waarden en krijg je <code>True</code> of <code>False</code>. Hoe je meerdere voorwaarden combineert met <code>and</code>, <code>or</code> en <code>not</code>, zie je in hoofdstuk 4. Deze expressies heb je nodig in elk volgend hoofdstuk: als voorwaarde in beslissingsstructuren en lussen, en om berekeningen te maken in je programma&#8217;s.</p>
 </div>
 <div class="paragraph">
 <p>Meer complexe datatypes zoals lijsten (<code>list</code>), tupels (<code>tuple</code>) en woordenboeken (<code>dict</code>) komen aan bod in hoofdstuk 7.</p>
