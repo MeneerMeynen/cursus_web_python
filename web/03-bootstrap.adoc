@@ -26,7 +26,7 @@ Waarom Bootstrap?
 
 Het nadeel: veel websites met Bootstrap lijken op elkaar. Met je eigen CSS kan je dat oplossen.
 
-NOTE: Om Bootstrap goed te begrijpen, moet je de hoofdstukken HTML basis en CSS kennen. Bootstrap gebruikt zelf flexbox, media queries en het boxmodel.
+NOTE: Om Bootstrap goed te begrijpen, moet je de hoofdstukken HTML basis en CSS kennen.
 
 In dit hoofdstuk leer je:
 
@@ -141,7 +141,7 @@ Daarvoor zet je een *breakpoint* in de class:
 * Op een tablet: blok 1 en 2 naast elkaar, blok 3 eronder over de volledige breedte.
 * Op een laptop: drie blokken naast elkaar.
 
-Dit is precies wat je in het hoofdstuk CSS met media queries deed, maar zonder zelf CSS te schrijven.
+Zonder Bootstrap zou je hiervoor zelf CSS moeten schrijven die per schermbreedte een andere opmaak kiest (met zogenaamde _media queries_). Bootstrap doet dat voor jou.
 
 === Ruimte tussen kolommen
 
@@ -160,7 +160,9 @@ Bootstrap heeft honderden kleine classes die elk één ding doen. Zo hoef je voo
 
 === Afstanden: margin en padding
 
-De naam is opgebouwd als `{eigenschap}{kant}-{grootte}`:
+*Padding* is de ruimte *binnen* de rand van een tag, tussen de rand en de inhoud. *Margin* is de ruimte *buiten* de rand, tussen de tag en de andere tags.
+
+De naam van de class is opgebouwd als `{eigenschap}{kant}-{grootte}`:
 
 |===
 | Deel | Waarden
@@ -229,7 +231,7 @@ Bootstrap werkt met een vaste set kleurnamen:
 
 === Flex en display
 
-De flexbox-eigenschappen uit het hoofdstuk CSS bestaan ook als classes:
+Met `d-flex` zet je de tags die in een tag zitten naast elkaar. Deze techniek heet _flexbox_. Met extra classes bepaal je hoe ze verdeeld en uitgelijnd worden:
 
 [source,html]
 ----
@@ -240,6 +242,12 @@ De flexbox-eigenschappen uit het hoofdstuk CSS bestaan ook als classes:
 
 <p class="d-none d-md-block">Alleen zichtbaar vanaf een tablet.</p>
 ----
+
+* `d-flex`: zet de tags erin naast elkaar.
+* `justify-content-between`: verdeelt ze over de volledige breedte. Andere waarden: `-start`, `-center`, `-end`.
+* `align-items-center`: lijnt ze verticaal in het midden uit.
+* `gap-3`: zet ruimte tussen de tags.
+* `d-none`: verbergt een tag. `d-md-block` toont hem weer vanaf een medium scherm.
 
 == Componenten
 
@@ -404,7 +412,7 @@ Gebruik daarna een icoon met een `i`-tag:
 
 == Bootstrap en je eigen CSS
 
-Bootstrap en eigen CSS gaan perfect samen. Omdat je stylesheet *na* Bootstrap gekoppeld is, winnen je eigen regels bij gelijke specificiteit (zie de cascade in het hoofdstuk CSS).
+Bootstrap en eigen CSS gaan perfect samen. Omdat je stylesheet *na* Bootstrap gekoppeld is, winnen je eigen regels: als twee regels even specifiek zijn en dezelfde tag opmaken, wint de regel die de browser het laatst leest.
 
 .style.css
 [source,css]

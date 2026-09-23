@@ -21,10 +21,8 @@ In dit hoofdstuk leer je:
 * hoe je CSS aan een HTML-pagina koppelt;
 * hoe een CSS-regel opgebouwd is;
 * hoe je met selectoren de juiste tags kiest;
-* kleuren, tekst, het boxmodel en achtergronden opmaken;
-* tags positioneren met `position`, en effecten zoals cirkels, doorzichtigheid, schaduwen en kleurverlopen gebruiken;
-* tags naast elkaar plaatsen met flexbox en grid;
-* een pagina laten werken op een smartphone (responsive design).
+* kleuren en tekst opmaken;
+* tags positioneren met `position`.
 
 == CSS koppelen aan HTML
 
@@ -548,10 +546,10 @@ Stel jezelf de twee vragen van het begin:
 | De tag tegen een rand van de pagina zetten | `absolute` zonder gepositioneerde bovenliggende tag
 | De tag op het scherm laten staan terwijl je scrolt | `fixed`
 | De tag laten meescrollen tot hij bovenaan blijft plakken | `sticky`
-| Tags gewoon onder of naast elkaar zetten | geen `position`: gebruik de normale flow, flexbox of grid
+| Tags gewoon onder of naast elkaar zetten | geen `position`: laat ze in de normale flow staan
 |===
 
-TIP: Gebruik `position` niet om een volledige pagina op te bouwen. Voor kolommen en rijen zijn flexbox en grid veel geschikter. `position` gebruik je voor tags die *bovenop* of *buiten* de normale indeling moeten staan.
+TIP: Gebruik `position` niet om een volledige pagina op te bouwen: laat tags zoveel mogelijk in de normale flow staan. `position` gebruik je voor tags die *bovenop* of *buiten* de normale indeling moeten staan.
 
 
 == Fouten opsporen
@@ -559,7 +557,7 @@ TIP: Gebruik `position` niet om een volledige pagina op te bouwen. Voor kolommen
 Open de ontwikkelaarstools (kbd:[F12]) en selecteer een tag. Rechts zie je:
 
 * welke CSS-regels van toepassing zijn, en welke doorstreept zijn omdat een andere regel wint;
-* het boxmodel met de exacte marges en paddings.
+* hoeveel ruimte er binnen de rand (`padding`) en buiten de rand (`margin`) van de tag is.
 
 Je kan er waarden aanpassen en meteen het resultaat zien. Let op: die aanpassingen worden niet opgeslagen. Neem ze daarna over in je CSS-bestand.
 
@@ -586,5 +584,5 @@ Maak een extern stylesheet `style.css` voor 1 van de opgaves uit de lessen 'soft
 Maak een pagina met drie "kaartjes" (bijvoorbeeld drie producten, drie sporten of drie games).
 
 * Elk kaartje is een `article` met een afbeelding, een titel, een korte tekst en een link.
-* Geef de kaartjes padding, een rand of schaduw en afgeronde hoeken.
+* Geef de kaartjes padding, een rand of schaduw en afgeronde hoeken (tip: zoek de eigenschappen `padding`, `border`, `box-shadow` en `border-radius` op via https://www.w3schools.com/css/[w3schools]).
 
