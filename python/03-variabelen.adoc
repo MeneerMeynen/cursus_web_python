@@ -151,7 +151,7 @@ Laten we de belangrijkste gegevenstypes eens overlopen:
 
 === Integer (int)
 
-Het gegevenstype `int` staat voor gehele getallen, zoals 5, -10 en 100. Integer-waarden worden gebruikt voor wiskundige bewerkingen en numerieke berekeningen. Python staat toe om positieve en negatieve gehele getallen te gebruiken, evenals getallen met en zonder decimale punten.
+Het gegevenstype `int` staat voor gehele getallen, zoals 5, -10 en 100. Integer-waarden worden gebruikt voor wiskundige bewerkingen en numerieke berekeningen. Een `int` kan positief, negatief of nul zijn, maar heeft nooit een decimaal deel: zodra een getal een komma (in Python een punt) bevat, zoals `5.0`, is het een `float`.
 
 Bijvoorbeeld:
 
@@ -228,64 +228,71 @@ In dit voorbeeld vergelijken we de gezondheid van de speler (player_health) met 
 
 Booleaanse waarden zijn krachtige hulpmiddelen in games omdat ze de besluitvorming en logica binnen je code mogelijk maken. Je kunt ze gebruiken om te bepalen of een speler een bepaald level heeft bereikt, of een missie is voltooid, of dat bepaalde acties kunnen worden uitgevoerd op basis van bepaalde voorwaarden.
 
-== Lijst Gegevenstype
 
-list: Een geordende verzameling van waarden, zoals de inventaris van een speler.
+=== Type Opvragen met `type()`
 
-[source,python]
-----
-inventory = ["sword", "shield", "potion"]
-----
-
-image::images/Python-Lists.png[]
-
-== Tuple Gegevenstype
-
-tuple: Een onveranderlijke verzameling van waarden, zoals de positie van een speler.
+Met de functie `type()` kun je op elk moment opvragen welk datatype een waarde of variabele heeft. Dat is handig om te controleren of Python een waarde begrijpt zoals jij verwacht:
 
 [source,python]
 ----
-player_position = (10, 5)
+print(type(100))      # <class 'int'>
+print(type(3.14))     # <class 'float'>
+print(type("Alice"))  # <class 'str'>
+print(type(True))     # <class 'bool'>
 ----
-
-== Dictionary Gegevenstype
-
-dict: Een verzameling van sleutel-waardeparen, zoals attributen van een speler.
-
-[source,python]
-----
-player_attributes = {"name": "John", "health": 100, "armor": "plate"}
-----
-
 
 === Type Conversie
 
-Soms is het nodig om gegevens van het ene type naar het andere te converteren. Python biedt functies om dit te doen. Bijvoorbeeld, om een getal om te zetten naar een string, kun je de functie `str()` gebruiken:
+Soms is het nodig om gegevens van het ene type naar het andere te converteren. Python biedt hiervoor functies met dezelfde naam als het datatype: `int()`, `float()`, `str()` en `bool()`.
 
 [source,python]
 ----
 leeftijd = 16
-leeftijd_als_string = str(leeftijd)
+leeftijd_als_string = str(leeftijd)   # "16"
+
+score_tekst = "250"
+score = int(score_tekst)              # 250
+
+prijs = float("4.99")                 # 4.99
+afgerond = int(7.9)                   # 7 (het deel na de komma wordt weggeknipt)
 ----
+
+TIP: Type conversie heb je vaak nodig in expressies. Je kunt bijvoorbeeld geen tekst en een getal optellen: `"Score: " + 250` geeft een fout. Met `"Score: " + str(250)` werkt het wel.
 
 === Dynamische Typing
 
-Python staat ook bekend om 'dynamic typed' te zijn, wat betekent dat ##het datatype van een variabele kan veranderen terwijl het programma wordt uitgevoerd##. Dit in tegenstelling tot sterk getypeerde talen waar het datatype strikt moet worden gedefinieerd en behouden.
+Python staat ook bekend om 'dynamic typed' te zijn, wat betekent dat ##het datatype van een variabele kan veranderen terwijl het programma wordt uitgevoerd##. Dit in tegenstelling tot statisch getypeerde talen zoals Java, waar het datatype vastligt.
 
 Bijvoorbeeld:
 
 [source,python]
 ----
-a = 5
-a = "Hallo"
-a = True
+a = 5        # a is een int
+a = "Hallo"  # a is nu een str
+a = True     # a is nu een bool
 ----
 
 Dit houdt een groot risico voor __bugs__ in.
 
-=== Variabelen vs Expressies
+== Expressies
 
-**Een expressie** is een combinatie van waarden, operatoren en/of functies die een resultaat oplevert wanneer deze wordt geëvalueerd. Expressies kunnen variëren van eenvoudige wiskundige bewerkingen tot complexere berekeningen. Ze kunnen ook variabelen bevatten.
+Nu je de vier basisdatatypes kent, wil je er ook mee kunnen rekenen en vergelijken. Daarvoor gebruik je **expressies**.
+
+=== Wat is een Expressie?
+
+**Een expressie** is een stukje code dat Python kan ##uitrekenen (evalueren) tot één waarde##. Een expressie bestaat uit waarden, variabelen en operatoren (zoals `+`, `*` of `>`).
+
+Enkele voorbeelden van expressies:
+
+[source,python]
+----
+100                  # een waarde op zich is al een expressie
+player_health        # een variabele is ook een expressie
+player_health - 25   # een berekening
+player_health > 50   # een vergelijking
+----
+
+Een expressie staat meestal **rechts** van het `=`-teken. Bij een toewijzing gebeuren er twee stappen:
 
 [source,python]
 ----
@@ -294,23 +301,209 @@ health = 100
 remaining_health = health - damage
 ----
 
-In dit voorbeeld is health - damage een expressie die wordt geëvalueerd tot het resterende gezondheidsniveau van een speler na het oplopen van schade.
+. Python evalueert eerst de expressie rechts: `health - damage` wordt `100 - 25`, en dat wordt `75`.
+. Daarna wordt het resultaat `75` opgeslagen in de variabele `remaining_health`.
 
+Het onderscheid is dus: ##een variabele is een naam voor een opgeslagen waarde##, ##een expressie is iets wat uitgerekend wordt tot een waarde##. Variabelen kunnen gebruikt worden _in_ expressies, en het resultaat van een expressie kan je opslaan _in_ een variabele.
 
-**Een variabele** is een naam die wordt gebruikt om een geheugenlocatie aan te duiden waarin gegevens kunnen worden opgeslagen. Variabelen worden gebruikt om waarden op te slaan en te bewaren, zodat ze later kunnen worden gebruikt in berekeningen, operaties en expressies.
+Elke expressie levert een waarde op van een bepaald datatype. We onderscheiden twee grote soorten:
+
+* **Wiskundige expressies** leveren een getal op (`int` of `float`).
+* **Logische expressies** leveren een booleaanse waarde op (`True` of `False`).
+
+=== Wiskundige Expressies
+
+Wiskundige (of rekenkundige) expressies gebruiken **rekenkundige operatoren**:
+
+[cols="1,2,2,1", options="header"]
+|===
+| Operator | Betekenis | Voorbeeld | Resultaat
+| `+` | optellen | `7 + 2` | `9`
+| `-` | aftrekken | `7 - 2` | `5`
+| `*` | vermenigvuldigen | `7 * 2` | `14`
+| `/` | delen | `7 / 2` | `3.5`
+| `//` | gehele deling (quotiënt) | `7 // 2` | `3`
+| `%` | rest na deling (modulo) | `7 % 2` | `1`
+| `**` | machtsverheffing | `7 ** 2` | `49`
+|===
+
+Een voorbeeld in een game:
 
 [source,python]
 ----
-player_health = 100
-player_name = "Alice"
+kills = 18
+deaths = 8
+rounds = 24
+damage_total = 2150
+
+kd_ratio = kills / deaths             # 2.25
+avg_damage = damage_total / rounds    # 89.58333333333333
+full_minutes = 250 // 60              # 4 (volledige minuten in 250 seconden)
+rest_seconds = 250 % 60               # 10 (overblijvende seconden)
 ----
 
-Hier worden player_health en player_name als variabelen gebruikt om respectievelijk de gezondheid van een speler en de naam van een speler op te slaan.
+==== Het Datatype van het Resultaat
 
-Het onderscheid tussen expressies en variabelen is dat ##expressies berekeningen uitvoeren en resultaten opleveren##, terwijl ##variabelen dienen als namen voor opgeslagen gegevens##. Variabelen kunnen in expressies worden gebruikt om bewerkingen uit te voeren en nieuwe waarden te genereren.
+Let goed op welk datatype je terugkrijgt:
 
+* `int` met `int` geeft een `int`: `5 + 3` wordt `8`.
+* Zodra er een `float` bij betrokken is, is het resultaat een `float`: `5 + 3.0` wordt `8.0`.
+* De deling `/` geeft **altijd** een `float`, ook als de deling "opgaat": `10 / 2` wordt `5.0`.
+* Wil je een geheel getal, gebruik dan `//`: `10 // 2` wordt `5`.
+
+==== Volgorde van Bewerkingen
+
+Python volgt dezelfde voorrangsregels als in de wiskunde:
+
+. haakjes `( )`
+. machtsverheffing `**`
+. vermenigvuldigen en delen: `*`, `/`, `//`, `%`
+. optellen en aftrekken: `+`, `-`
+
+[source,python]
+----
+print(2 + 3 * 4)     # 14, want eerst 3 * 4
+print((2 + 3) * 4)   # 20, want eerst de haakjes
+----
+
+TIP: Twijfel je over de volgorde? Zet haakjes. Dat maakt je code ook leesbaarder.
+
+==== Verkorte Toewijzing
+
+Vaak wil je een variabele aanpassen op basis van haar eigen waarde. Daarvoor bestaan verkorte schrijfwijzen:
+
+[source,python]
+----
+score = 100
+score = score + 10   # score wordt 110
+score += 10          # hetzelfde, korter: score wordt 120
+score -= 5           # score wordt 115
+score *= 2           # score wordt 230
+----
+
+==== Operatoren op Strings
+
+Ook met tekst kun je enkele operatoren gebruiken:
+
+[source,python]
+----
+voornaam = "John"
+achternaam = "Doe"
+print(voornaam + " " + achternaam)   # John Doe  (samenvoegen)
+print("ha" * 3)                      # hahaha    (herhalen)
+----
+
+Tekst en een getal combineren met `+` lukt niet zonder type conversie:
+
+[source,python]
+----
+kills = 18
+print("Kills: " + kills)        # TypeError!
+print("Kills: " + str(kills))   # Kills: 18
+----
+
+=== Logische Expressies
+
+Een logische expressie levert altijd een `bool` op: `True` of `False`. Je vindt ze terug bij het vergelijken van waarden, en later gebruik je ze als voorwaarde in beslissingsstructuren (hoofdstuk 4) en lussen (hoofdstuk 5).
+
+==== Vergelijkingsoperatoren
+
+[cols="1,2,2,1", options="header"]
+|===
+| Operator | Betekenis | Voorbeeld | Resultaat
+| `==` | is gelijk aan | `5 == 5` | `True`
+| `!=` | is niet gelijk aan | `5 != 5` | `False`
+| `<` | kleiner dan | `3 < 5` | `True`
+| `>` | groter dan | `3 > 5` | `False`
+| `\<=` | kleiner dan of gelijk aan | `5 \<= 5` | `True`
+| `>=` | groter dan of gelijk aan | `3 >= 5` | `False`
+|===
+
+[source,python]
+----
+player_health = 75
+ammo = 0
+
+print(player_health > 50)    # True
+print(ammo == 0)             # True
+print(player_health != 100)  # True
+----
+
+WARNING: Verwar `=` niet met `==`! Eén `=` is een **toewijzing** (sla een waarde op), twee `==` is een **vergelijking** (zijn deze waarden gelijk?).
+
+Je kunt ook strings vergelijken. Let op: Python is hoofdlettergevoelig.
+
+[source,python]
+----
+print("Alice" == "Alice")   # True
+print("Alice" == "alice")   # False
+----
+
+==== Logische Operatoren: `and`, `or` en `not`
+
+Met logische operatoren combineer je booleaanse waarden tot één nieuwe booleaanse waarde:
+
+* `and`: is `True` als **beide** kanten `True` zijn.
+* `or`: is `True` als **minstens één** kant `True` is.
+* `not`: keert de waarde **om**: `not True` wordt `False` en omgekeerd.
+
+Dit kun je samenvatten in een **waarheidstabel**:
+
+[cols="1,1,1,1,1", options="header"]
+|===
+| `a` | `b` | `a and b` | `a or b` | `not a`
+| `True` | `True` | `True` | `True` | `False`
+| `True` | `False` | `False` | `True` | `False`
+| `False` | `True` | `False` | `True` | `True`
+| `False` | `False` | `False` | `False` | `True`
+|===
+
+[source,python]
+----
+player_health = 75
+ammo = 12
+has_key = False
+
+can_fight = player_health > 50 and ammo > 0   # True and True  -> True
+can_open_door = has_key or ammo > 20          # False or False -> False
+is_locked = not has_key                        # not False      -> True
+----
+
+In hoofdstuk 4 gaan we dieper in op het combineren van voorwaarden met `and`, `or` en `not`.
+
+==== Wiskundige en Logische Expressies Combineren
+
+Wiskundige en logische expressies kun je samen gebruiken. Python rekent eerst de wiskundige delen uit, daarna de vergelijkingen, en pas dan `not`, `and` en `or`:
+
+[source,python]
+----
+player_health = 60
+damage = 25
+
+survives = player_health - damage > 0   # 35 > 0 -> True
+is_even = player_health % 2 == 0        # 0 == 0 -> True
+----
+
+TIP: De expressie `getal % 2 == 0` is een klassieker: ze controleert of een getal even is.
+
+=== Overzicht: Welk Type Levert een Expressie Op?
+
+[cols="2,1,1", options="header"]
+|===
+| Expressie | Resultaat | Type
+| `8 + 2` | `10` | `int`
+| `8 / 2` | `4.0` | `float`
+| `8 // 3` | `2` | `int`
+| `8 % 3` | `2` | `int`
+| `2.5 * 2` | `5.0` | `float`
+| `"8" + "2"` | `"82"` | `str`
+| `8 > 2` | `True` | `bool`
+| `8 == 2 or 8 > 2` | `True` | `bool`
+| `not 8 > 2` | `False` | `bool`
+|===
 
 == Conclusie
 
-De verscheidenheid aan gegevenstypes in Python, waaronder integer, float, string en boolean, biedt ontwikkelaars flexibiliteit bij het manipuleren van verschillende soorten gegevens. Het begrijpen van deze gegevenstypes en hun toepassingen is essentieel voor het schrijven van effectieve en veelzijdige Python-programma's.
+De vier basisdatatypes in Python, `int`, `float`, `str` en `bool`, vormen de bouwstenen van elk programma. Met **wiskundige expressies** reken je met getallen, met **logische expressies** vergelijk en combineer je waarden tot `True` of `False`. Deze expressies heb je nodig in elk volgend hoofdstuk: als voorwaarde in beslissingsstructuren en lussen, en om berekeningen te maken in je programma's.
 
+Meer complexe datatypes zoals lijsten (`list`), tupels (`tuple`) en woordenboeken (`dict`) komen aan bod in hoofdstuk 7.
