@@ -696,37 +696,11 @@ pre.rouge {
 <li><a href="#_samengevat_welke_position_kies_ik">6.6. Samengevat: welke position kies ik?</a></li>
 </ul>
 </li>
-<li><a href="#_visuele_effecten">7. Visuele effecten</a>
+<li><a href="#_fouten_opsporen">7. Fouten opsporen</a></li>
+<li><a href="#_oefeningen">8. Oefeningen</a>
 <ul class="sectlevel2">
-<li><a href="#_afgeronde_hoeken_en_cirkels">7.1. Afgeronde hoeken en cirkels</a></li>
-<li><a href="#_doorzichtigheid">7.2. Doorzichtigheid</a></li>
-<li><a href="#_schaduw_op_tekst">7.3. Schaduw op tekst</a></li>
-<li><a href="#_kleurverloop_gradient">7.4. Kleurverloop (gradient)</a></li>
-<li><a href="#_randen_en_outline">7.5. Randen en outline</a></li>
-</ul>
-</li>
-<li><a href="#_eenheden">8. Eenheden</a></li>
-<li><a href="#_het_boxmodel">9. Het boxmodel</a>
-<ul class="sectlevel2">
-<li><a href="#_box_sizing">9.1. box-sizing</a></li>
-</ul>
-</li>
-<li><a href="#_achtergronden_en_schaduwen">10. Achtergronden en schaduwen</a></li>
-<li><a href="#_display_blok_en_inline">11. Display: blok en inline</a></li>
-<li><a href="#_lay_out_met_flexbox">12. Lay-out met flexbox</a></li>
-<li><a href="#_lay_out_met_grid">13. Lay-out met grid</a></li>
-<li><a href="#_responsive_design">14. Responsive design</a></li>
-<li><a href="#_de_cascade_en_specificiteit">15. De cascade en specificiteit</a>
-<ul class="sectlevel2">
-<li><a href="#_overerving">15.1. Overerving</a></li>
-</ul>
-</li>
-<li><a href="#_fouten_opsporen">16. Fouten opsporen</a></li>
-<li><a href="#_oefeningen">17. Oefeningen</a>
-<ul class="sectlevel2">
-<li><a href="#_oefening_1_stijl_je_over_mij_pagina">17.1. Oefening 1: Stijl je Over mij-pagina</a></li>
-<li><a href="#_oefening_2_kaartjes">17.2. Oefening 2: Kaartjes</a></li>
-<li><a href="#_oefening_3_mini_website">17.3. Oefening 3: Mini-website</a></li>
+<li><a href="#_oefening_1_stijl_je_over_mij_pagina">8.1. Oefening 1: Stijl je Over mij-pagina</a></li>
+<li><a href="#_oefening_2_kaartjes">8.2. Oefening 2: Kaartjes</a></li>
 </ul>
 </li>
 </ul>
@@ -770,16 +744,10 @@ Waar HTML de <strong>inhoud en structuur</strong> van een pagina bepaalt, bepaal
 <p>hoe je met selectoren de juiste tags kiest;</p>
 </li>
 <li>
-<p>kleuren, tekst, het boxmodel en achtergronden opmaken;</p>
+<p>kleuren en tekst opmaken;</p>
 </li>
 <li>
-<p>tags positioneren met <code>position</code>, en effecten zoals cirkels, doorzichtigheid, schaduwen en kleurverlopen gebruiken;</p>
-</li>
-<li>
-<p>tags naast elkaar plaatsen met flexbox en grid;</p>
-</li>
-<li>
-<p>een pagina laten werken op een smartphone (responsive design).</p>
+<p>tags positioneren met <code>position</code>.</p>
 </li>
 </ul>
 </div>
@@ -1218,7 +1186,7 @@ Als je begrijpt hoe dat werkt, kan je elke positie-opdracht oplossen.</p>
 <h3 id="_de_normale_flow">6.1. De normale flow</h3>
 <div class="paragraph">
 <p>Zonder <code>position</code> plaatst de browser alle tags in de <strong>normale flow</strong>.
-Hij leest de HTML van boven naar onder en zet elke tag na de vorige:</p>
+Hij leest de HTML van boven naar onder en zet alle tags volgens deze twee regels:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1604,7 +1572,7 @@ Zo maak je bijvoorbeeld een menu dat altijd zichtbaar blijft of een knop "Terug 
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Tags gewoon onder of naast elkaar zetten</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">geen <code>position</code>: gebruik de normale flow, flexbox of grid</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">geen <code>position</code>: laat ze in de normale flow staan</p></td>
 </tr>
 </tbody>
 </table>
@@ -1615,7 +1583,7 @@ Zo maak je bijvoorbeeld een menu dat altijd zichtbaar blijft of een knop "Terug 
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Gebruik <code>position</code> niet om een volledige pagina op te bouwen. Voor kolommen en rijen zijn flexbox en grid veel geschikter. <code>position</code> gebruik je voor tags die <strong>bovenop</strong> of <strong>buiten</strong> de normale indeling moeten staan.
+Gebruik <code>position</code> niet om een volledige pagina op te bouwen: laat tags zoveel mogelijk in de normale flow staan. <code>position</code> gebruik je voor tags die <strong>bovenop</strong> of <strong>buiten</strong> de normale indeling moeten staan.
 </td>
 </tr>
 </table>
@@ -1624,600 +1592,7 @@ Gebruik <code>position</code> niet om een volledige pagina op te bouwen. Voor ko
 </div>
 </div>
 <div class="sect1">
-<h2 id="_visuele_effecten">7. Visuele effecten</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_afgeronde_hoeken_en_cirkels">7.1. Afgeronde hoeken en cirkels</h3>
-<div class="paragraph">
-<p>Met <code>border-radius</code> rond je de hoeken af. Geef je een <strong>vierkant</strong> <code>border-radius: 50%</code>, dan wordt het een <strong>cirkel</strong>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.knop</span> <span class="p">{</span>
-  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">8px</span><span class="p">;</span>      <span class="c">/* licht afgeronde hoeken */</span>
-<span class="p">}</span>
-
-<span class="nf">#vak</span> <span class="p">{</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">150px</span><span class="p">;</span>
-  <span class="nl">height</span><span class="p">:</span> <span class="m">150px</span><span class="p">;</span>           <span class="c">/* breedte = hoogte: een vierkant */</span>
-  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>      <span class="c">/* wordt een cirkel */</span>
-<span class="p">}</span></code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_doorzichtigheid">7.2. Doorzichtigheid</h3>
-<div class="paragraph">
-<p><code>opacity</code> maakt een tag doorzichtig, met een waarde van <code>0</code> (onzichtbaar) tot <code>1</code> (volledig zichtbaar).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nf">#vak</span> <span class="nt">p</span> <span class="p">{</span>
-  <span class="nl">opacity</span><span class="p">:</span> <span class="m">0.5</span><span class="p">;</span>    <span class="c">/* half doorzichtig */</span>
-<span class="p">}</span></code></pre>
-</div>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<code>opacity</code> geldt voor de tag <strong>en alles wat erin zit</strong>. Wil je alleen een doorzichtige achtergrond, gebruik dan een kleur met transparantie: <code>background-color: rgba(0, 0, 0, 0.5);</code>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_schaduw_op_tekst">7.3. Schaduw op tekst</h3>
-<div class="paragraph">
-<p><code>text-shadow</code> geeft tekst een schaduw. De waarden zijn: horizontale verschuiving, verticale verschuiving, vervaging en kleur.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">h1</span> <span class="p">{</span>
-  <span class="nl">text-shadow</span><span class="p">:</span> <span class="m">2px</span> <span class="m">2px</span> <span class="m">4px</span> <span class="no">gray</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Voor een schaduw rond een volledige tag gebruik je <code>box-shadow</code> (zie <a href="#_achtergronden_en_schaduwen">Achtergronden en schaduwen</a>).</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_kleurverloop_gradient">7.4. Kleurverloop (gradient)</h3>
-<div class="paragraph">
-<p>Een <em>gradient</em> is een vloeiende overgang tussen kleuren. Je gebruikt hem als <code>background-image</code>, niet als <code>background-color</code>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.banner</span> <span class="p">{</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
-  <span class="nl">background-image</span><span class="p">:</span> <span class="n">linear-gradient</span><span class="p">(</span><span class="n">to</span> <span class="nb">right</span><span class="p">,</span> <span class="no">orange</span><span class="p">,</span> <span class="no">crimson</span><span class="p">);</span> <i class="conum" data-value="1"></i><b>(1)</b>
-<span class="p">}</span>
-
-<span class="nc">.banner</span><span class="nd">:hover</span> <span class="p">{</span>
-  <span class="nl">background-image</span><span class="p">:</span> <span class="n">linear-gradient</span><span class="p">(</span><span class="n">to</span> <span class="nb">right</span><span class="p">,</span> <span class="no">teal</span><span class="p">,</span> <span class="no">navy</span><span class="p">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
-<span class="p">}</span>
-
-<span class="nc">.bol</span> <span class="p">{</span>
-  <span class="nl">background-image</span><span class="p">:</span> <span class="n">radial-gradient</span><span class="p">(</span><span class="no">yellow</span><span class="p">,</span> <span class="no">orange</span><span class="p">);</span> <i class="conum" data-value="3"></i><b>(3)</b>
-<span class="p">}</span></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Van links (oranje) naar rechts (karmijnrood). Andere richtingen: <code>to bottom</code>, <code>to top right</code>, <code>45deg</code>, &#8230;&#8203;</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Met de pseudo-class <code>:hover</code> krijgt de banner een ander kleurverloop zolang de muis erover gaat.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Een cirkelvormig verloop vanuit het midden.</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_randen_en_outline">7.5. Randen en outline</h3>
-<div class="paragraph">
-<p>Met <code>border-style</code> kies je het soort rand: <code>solid</code>, <code>dashed</code> (streepjes), <code>dotted</code> (puntjes) of <code>double</code>.
-Een rand kan je combineren met <code>border-radius</code>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">th</span> <span class="p">{</span>
-  <span class="nl">border</span><span class="p">:</span> <span class="m">3px</span> <span class="nb">dashed</span> <span class="no">purple</span><span class="p">;</span>
-  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Een <strong>outline</strong> is een lijn <strong>buiten</strong> de border. Het verschil met een border: een outline neemt geen plaats in, en schuift de andere tags dus niet op.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">table</span> <span class="p">{</span>
-  <span class="nl">outline</span><span class="p">:</span> <span class="m">4px</span> <span class="nb">solid</span> <span class="no">gold</span><span class="p">;</span>
-  <span class="nl">outline-color</span><span class="p">:</span> <span class="no">crimson</span><span class="p">;</span>   <span class="c">/* alleen de kleur aanpassen */</span>
-<span class="p">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_eenheden">8. Eenheden</h2>
-<div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Eenheid</th>
-<th class="tableblock halign-left valign-top">Betekenis</th>
-<th class="tableblock halign-left valign-top">Gebruik</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>px</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">pixels</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">randen, kleine vaste afstanden</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>%</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">percentage van de bovenliggende tag</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">breedtes</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>rem</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">veelvoud van de lettergrootte van de pagina (meestal 16px)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">lettergroottes, marges</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>em</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">veelvoud van de lettergrootte van de tag zelf</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">afstanden die meeschalen met de tekst</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>vw</code> / <code>vh</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1% van de breedte / hoogte van het venster</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">schermvullende secties</p></td>
-</tr>
-</tbody>
-</table>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">h1</span> <span class="p">{</span>
-  <span class="nl">font-size</span><span class="p">:</span> <span class="m">2rem</span><span class="p">;</span>   <span class="c">/* 2 x 16px = 32px */</span>
-<span class="p">}</span>
-
-<span class="nc">.hero</span> <span class="p">{</span>
-  <span class="nl">height</span><span class="p">:</span> <span class="m">100vh</span><span class="p">;</span>     <span class="c">/* even hoog als het venster */</span>
-<span class="p">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_het_boxmodel">9. Het boxmodel</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Elke tag op een webpagina is een <strong>rechthoek</strong> (een <em>box</em>). Die box bestaat uit vier lagen:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>+----------------------- margin -----------------------+
-|  +-------------------- border --------------------+  |
-|  |  +----------------- padding ----------------+  |  |
-|  |  |                                          |  |  |
-|  |  |                 content                  |  |  |
-|  |  |                                          |  |  |
-|  |  +------------------------------------------+  |  |
-|  +------------------------------------------------+  |
-+------------------------------------------------------+</pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>content</strong>: de inhoud zelf (tekst, afbeelding). De grootte bepaal je met <code>width</code> en <code>height</code>.</p>
-</li>
-<li>
-<p><strong>padding</strong>: ruimte <strong>binnen</strong> de rand, tussen de inhoud en de rand. Heeft de achtergrondkleur van de tag.</p>
-</li>
-<li>
-<p><strong>border</strong>: de rand.</p>
-</li>
-<li>
-<p><strong>margin</strong>: ruimte <strong>buiten</strong> de rand, tussen deze tag en de andere tags. Is altijd doorzichtig.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.kaart</span> <span class="p">{</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>                 <span class="c">/* aan alle kanten */</span>
-  <span class="nl">border</span><span class="p">:</span> <span class="m">2px</span> <span class="nb">solid</span> <span class="m">#cccccc</span><span class="p">;</span>     <span class="c">/* dikte, stijl, kleur */</span>
-  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>           <span class="c">/* afgeronde hoeken */</span>
-  <span class="nl">margin</span><span class="p">:</span> <span class="m">20px</span> <span class="nb">auto</span><span class="p">;</span>             <span class="c">/* 20px boven en onder, horizontaal gecentreerd */</span>
-<span class="p">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Je kan elke kant apart instellen:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.blok</span> <span class="p">{</span>
-  <span class="nl">margin-top</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
-  <span class="nl">margin-right</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
-  <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
-  <span class="nl">margin-left</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
-
-  <span class="c">/* of korter, in de volgorde boven, rechts, onder, links (met de klok mee) */</span>
-  <span class="nl">margin</span><span class="p">:</span> <span class="m">10px</span> <span class="m">20px</span> <span class="m">10px</span> <span class="m">20px</span><span class="p">;</span>
-
-  <span class="c">/* of nog korter: boven/onder en links/rechts */</span>
-  <span class="nl">margin</span><span class="p">:</span> <span class="m">10px</span> <span class="m">20px</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_box_sizing">9.1. box-sizing</h3>
-<div class="paragraph">
-<p>Standaard telt de browser padding en border <strong>bij</strong> de <code>width</code> op. Een tag met <code>width: 300px</code> en <code>padding: 20px</code> is dus in werkelijkheid 340px breed.
-Dat is verwarrend. Zet daarom bovenaan elk stylesheet:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="o">*</span> <span class="p">{</span>
-  <span class="nl">box-sizing</span><span class="p">:</span> <span class="n">border-box</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Nu is <code>width</code> de breedte <strong>inclusief</strong> padding en border.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_achtergronden_en_schaduwen">10. Achtergronden en schaduwen</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.hero</span> <span class="p">{</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#1e3a5f</span><span class="p">;</span>
-  <span class="nl">background-image</span><span class="p">:</span> <span class="sx">url("afbeeldingen/bergen.jpg")</span><span class="p">;</span>
-  <span class="nl">background-size</span><span class="p">:</span> <span class="n">cover</span><span class="p">;</span>          <span class="c">/* de afbeelding vult de volledige tag */</span>
-  <span class="nl">background-position</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nc">.kaart</span> <span class="p">{</span>
-  <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">0</span> <span class="m">4px</span> <span class="m">10px</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0.2</span><span class="p">);</span>  <span class="c">/* x, y, vervaging, kleur */</span>
-<span class="p">}</span></code></pre>
-</div>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-Een pad in een CSS-bestand is relatief ten opzichte van het <strong>CSS-bestand</strong>, niet ten opzichte van de HTML-pagina.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_display_blok_en_inline">11. Display: blok en inline</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Elke tag heeft een <code>display</code>-waarde die bepaalt hoe het zich gedraagt.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Waarde</th>
-<th class="tableblock halign-left valign-top">Gedrag</th>
-<th class="tableblock halign-left valign-top">Voorbeelden</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>block</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">begint op een nieuwe regel en neemt de volledige breedte</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>div</code>, <code>p</code>, <code>h1</code>, <code>ul</code>, <code>section</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>inline</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">blijft in de tekst staan; <code>width</code> en <code>height</code> werken niet</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>span</code>, <code>a</code>, <code>strong</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>inline-block</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">blijft in de tekst staan, maar <code>width</code>, <code>height</code> en <code>padding</code> werken wel</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">knoppen</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>none</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">de tag wordt niet getoond</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">nav</span> <span class="nt">a</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="n">inline-block</span><span class="p">;</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span> <span class="m">15px</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_lay_out_met_flexbox">12. Lay-out met flexbox</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Met <strong>flexbox</strong> plaats je tags naast of onder elkaar, en verdeel je de ruimte ertussen.
-Je zet <code>display: flex</code> op de <strong>bovenliggende</strong> tag (de <em>container</em>). De tags erin (de <em>items</em>) worden dan op een rij gezet.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">"menu"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;</span>
-  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Over ons<span class="nt">&lt;/a&gt;</span>
-  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Contact<span class="nt">&lt;/a&gt;</span>
-<span class="nt">&lt;/nav&gt;</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.menu</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
-  <span class="nl">justify-content</span><span class="p">:</span> <span class="n">space-between</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-  <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-  <span class="py">gap</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
-<span class="p">}</span></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Verdeling op de <strong>hoofdas</strong> (horizontaal): <code>flex-start</code>, <code>center</code>, <code>flex-end</code>, <code>space-between</code> of <code>space-around</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Uitlijning op de <strong>dwarsas</strong> (verticaal): <code>flex-start</code>, <code>center</code>, <code>flex-end</code> of <code>stretch</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>De ruimte tussen de items.</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Nog enkele nuttige eigenschappen:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.container</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
-  <span class="nl">flex-direction</span><span class="p">:</span> <span class="n">column</span><span class="p">;</span>   <span class="c">/* items onder elkaar in plaats van naast elkaar */</span>
-  <span class="nl">flex-wrap</span><span class="p">:</span> <span class="n">wrap</span><span class="p">;</span>          <span class="c">/* items naar de volgende regel als er geen plaats meer is */</span>
-<span class="p">}</span>
-
-<span class="nc">.item</span> <span class="p">{</span>
-  <span class="nl">flex</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>                  <span class="c">/* elk item neemt een even groot deel van de ruimte */</span>
-<span class="p">}</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Een tag in het midden van het scherm plaatsen</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.midden</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
-  <span class="nl">justify-content</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
-  <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
-  <span class="nl">height</span><span class="p">:</span> <span class="m">100vh</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Oefen flexbox spelenderwijs met <a href="https://flexboxfroggy.com/#nl">Flexbox Froggy</a>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_lay_out_met_grid">13. Lay-out met grid</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Met <strong>grid</strong> verdeel je een container in rijen en kolommen. Handig voor fotogalerijen en de indeling van een volledige pagina.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.galerij</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="n">grid</span><span class="p">;</span>
-  <span class="py">grid-template-columns</span><span class="p">:</span> <span class="m">1</span><span class="n">fr</span> <span class="m">1</span><span class="n">fr</span> <span class="m">1</span><span class="n">fr</span><span class="p">;</span>   <span class="c">/* drie even brede kolommen */</span>
-  <span class="py">gap</span><span class="p">:</span> <span class="m">15px</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>fr</code> staat voor <em>fraction</em>: een deel van de beschikbare ruimte. <code>1fr 2fr</code> maakt de tweede kolom dubbel zo breed als de eerste.</p>
-</div>
-<div class="paragraph">
-<p>Een korte schrijfwijze voor veel gelijke kolommen:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.galerij</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="n">grid</span><span class="p">;</span>
-  <span class="py">grid-template-columns</span><span class="p">:</span> <span class="nb">repeat</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">1</span><span class="n">fr</span><span class="p">);</span>
-<span class="p">}</span></code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Oefen grid met <a href="https://cssgridgarden.com/#nl">Grid Garden</a>.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_responsive_design">14. Responsive design</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Een <em>responsive</em> website past zich aan de schermgrootte aan: op een smartphone staan de kolommen bijvoorbeeld onder elkaar in plaats van naast elkaar.</p>
-</div>
-<div class="paragraph">
-<p>Twee dingen zijn nodig:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>de <code>viewport</code>-meta-tag in de <code>head</code> (zie hoofdstuk HTML basis);</p>
-</li>
-<li>
-<p><strong>media queries</strong> in je CSS.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Een media query is een blok CSS dat enkel geldt als aan een voorwaarde voldaan is.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="c">/* Standaard (smartphone): één kolom */</span>
-<span class="nc">.galerij</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="n">grid</span><span class="p">;</span>
-  <span class="py">grid-template-columns</span><span class="p">:</span> <span class="m">1</span><span class="n">fr</span><span class="p">;</span>
-  <span class="py">gap</span><span class="p">:</span> <span class="m">15px</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c">/* Vanaf 600px breed (tablet): twee kolommen */</span>
-<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">600px</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nc">.galerij</span> <span class="p">{</span>
-    <span class="py">grid-template-columns</span><span class="p">:</span> <span class="nb">repeat</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="n">fr</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c">/* Vanaf 1000px breed (computer): vier kolommen */</span>
-<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">1000px</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nc">.galerij</span> <span class="p">{</span>
-    <span class="py">grid-template-columns</span><span class="p">:</span> <span class="nb">repeat</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">1</span><span class="n">fr</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>We schrijven eerst de CSS voor kleine schermen, en voegen daarna regels toe voor grotere schermen. Dit heet <strong>mobile first</strong>.</p>
-</div>
-<div class="paragraph">
-<p>Laat afbeeldingen nooit breder worden dan hun container:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">img</span> <span class="p">{</span>
-  <span class="nl">max-width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
-  <span class="nl">height</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-In de ontwikkelaarstools (<kbd>F12</kbd>) klik je op het icoontje met de telefoon en tablet om je pagina op verschillende schermgroottes te bekijken.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_de_cascade_en_specificiteit">15. De cascade en specificiteit</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Wat als twee regels dezelfde tag opmaken?</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">p</span>          <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">black</span><span class="p">;</span> <span class="p">}</span>
-<span class="nc">.intro</span>     <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span> <span class="p">}</span>
-<span class="nf">#welkom</span>    <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span> <span class="p">}</span>
-<span class="nt">p</span>          <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">gray</span><span class="p">;</span> <span class="p">}</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>De browser beslist met deze regels (daarom heet het <em>cascading</em>):</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Specificiteit</strong>: een specifiekere selector wint. Van zwak naar sterk: tag &#8594; class &#8594; id &#8594; inline style.</p>
-</li>
-<li>
-<p><strong>Volgorde</strong>: bij gelijke specificiteit wint de regel die het <strong>laatst</strong> staat.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Een paragraaf <code>&lt;p class="intro" id="welkom"&gt;</code> wordt dus groen. Een gewone <code>p</code> wordt grijs.</p>
-</div>
-<div class="sect2">
-<h3 id="_overerving">15.1. Overerving</h3>
-<div class="paragraph">
-<p>Sommige eigenschappen, zoals <code>color</code> en <code>font-family</code>, worden <strong>overgeërfd</strong> door de tags die erin zitten. Daarom zet je het lettertype op <code>body</code>: dan geldt het voor de hele pagina.
-Eigenschappen van het boxmodel (<code>margin</code>, <code>padding</code>, <code>border</code>) worden niet overgeërfd.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_fouten_opsporen">16. Fouten opsporen</h2>
+<h2 id="_fouten_opsporen">7. Fouten opsporen</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Open de ontwikkelaarstools (<kbd>F12</kbd>) en selecteer een tag. Rechts zie je:</p>
@@ -2228,7 +1603,7 @@ Eigenschappen van het boxmodel (<code>margin</code>, <code>padding</code>, <code
 <p>welke CSS-regels van toepassing zijn, en welke doorstreept zijn omdat een andere regel wint;</p>
 </li>
 <li>
-<p>het boxmodel met de exacte marges en paddings.</p>
+<p>hoeveel ruimte er binnen de rand (<code>padding</code>) en buiten de rand (<code>margin</code>) van de tag is.</p>
 </li>
 </ul>
 </div>
@@ -2257,12 +1632,12 @@ Eigenschappen van het boxmodel (<code>margin</code>, <code>padding</code>, <code
 </div>
 </div>
 <div class="sect1">
-<h2 id="_oefeningen">17. Oefeningen</h2>
+<h2 id="_oefeningen">8. Oefeningen</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_oefening_1_stijl_je_over_mij_pagina">17.1. Oefening 1: Stijl je Over mij-pagina</h3>
+<h3 id="_oefening_1_stijl_je_over_mij_pagina">8.1. Oefening 1: Stijl je Over mij-pagina</h3>
 <div class="paragraph">
-<p>Maak een extern stylesheet <code>style.css</code> voor je pagina <code>over-mij.html</code> uit het hoofdstuk HTML basis.</p>
+<p>Maak een extern stylesheet <code>style.css</code> voor 1 van de opgaves uit de lessen 'software' deze opgaves zijn geschreven in 'kale' html.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2282,7 +1657,7 @@ Eigenschappen van het boxmodel (<code>margin</code>, <code>padding</code>, <code
 </div>
 </div>
 <div class="sect2">
-<h3 id="_oefening_2_kaartjes">17.2. Oefening 2: Kaartjes</h3>
+<h3 id="_oefening_2_kaartjes">8.2. Oefening 2: Kaartjes</h3>
 <div class="paragraph">
 <p>Maak een pagina met drie "kaartjes" (bijvoorbeeld drie producten, drie sporten of drie games).</p>
 </div>
@@ -2292,35 +1667,7 @@ Eigenschappen van het boxmodel (<code>margin</code>, <code>padding</code>, <code
 <p>Elk kaartje is een <code>article</code> met een afbeelding, een titel, een korte tekst en een link.</p>
 </li>
 <li>
-<p>Geef de kaartjes padding, een rand of schaduw en afgeronde hoeken.</p>
-</li>
-<li>
-<p>Zet de kaartjes naast elkaar met flexbox, met ruimte ertussen.</p>
-</li>
-<li>
-<p>Op een smartphone (smaller dan 600px) staan de kaartjes onder elkaar.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_oefening_3_mini_website">17.3. Oefening 3: Mini-website</h3>
-<div class="paragraph">
-<p>Geef je mini-website (drie pagina&#8217;s) uit het hoofdstuk HTML basis één gezamenlijk stylesheet.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Het navigatiemenu staat horizontaal met flexbox en heeft een achtergrondkleur.</p>
-</li>
-<li>
-<p>De pagina die open staat, is in het menu anders gekleurd (tip: een class <code>actief</code>).</p>
-</li>
-<li>
-<p>De <code>footer</code> staat altijd onderaan de pagina, gecentreerd, met een andere achtergrondkleur.</p>
-</li>
-<li>
-<p>Op <code>index.html</code> staat een fotogalerij met grid: één kolom op een smartphone, drie kolommen op een computer.</p>
+<p>Geef de kaartjes padding, een rand of schaduw en afgeronde hoeken (tip: zoek de eigenschappen <code>padding</code>, <code>border</code>, <code>box-shadow</code> en <code>border-radius</code> op via <a href="https://www.w3schools.com/css/">w3schools</a>).</p>
 </li>
 </ul>
 </div>
