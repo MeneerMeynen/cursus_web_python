@@ -1,0 +1,595 @@
+:icons: font
+:source-highlighter: rouge
+:toc: left
+:toclevels: 5
+:sectnums:
+
+= CSS
+
+CSS staat voor ##Cascading Style Sheets##.
+Waar HTML de *inhoud en structuur* van een pagina bepaalt, bepaalt CSS de *vormgeving*: kleuren, lettertypes, afstanden, randen, de plaats van elementen op het scherm, ...
+
+Door inhoud (HTML) en vormgeving (CSS) te scheiden:
+
+* kan je met één CSS-bestand de opmaak van een volledige website bepalen;
+* pas je de stijl van alle pagina's in één keer aan;
+* blijft je HTML kort en overzichtelijk.
+
+In dit hoofdstuk leer je:
+
+* hoe je CSS aan een HTML-pagina koppelt;
+* hoe een CSS-regel opgebouwd is;
+* hoe je met selectoren de juiste elementen kiest;
+* kleuren, tekst, het boxmodel en achtergronden opmaken;
+* elementen naast elkaar plaatsen met flexbox en grid;
+* een pagina laten werken op een smartphone (responsive design).
+
+== CSS koppelen aan HTML
+
+Er zijn drie manieren om CSS toe te voegen.
+
+=== Inline
+
+Met het `style`-attribuut op één element:
+
+[source,html]
+----
+<p style="color: red;">Deze tekst is rood.</p>
+----
+
+Dit werkt, maar is moeilijk te onderhouden: je moet elk element apart aanpassen.
+
+=== Intern
+
+In een `style`-element in de `head`:
+
+[source,html]
+----
+<head>
+  <style>
+    p {
+      color: red;
+    }
+  </style>
+</head>
+----
+
+Dit geldt voor één pagina.
+
+=== Extern (aanbevolen)
+
+In een apart bestand, bijvoorbeeld `style.css`, dat je koppelt met een `link`-element in de `head`:
+
+[source,html]
+----
+<head>
+  <meta charset="UTF-8">
+  <title>Mijn website</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+----
+
+.style.css
+[source,css]
+----
+p {
+  color: red;
+}
+----
+
+Alle pagina's die naar `style.css` verwijzen, krijgen dezelfde opmaak. Dit is de manier die je in de rest van de cursus gebruikt.
+
+== De opbouw van een CSS-regel
+
+[source,css]
+----
+h1 { <1>
+  color: navy; <2>
+  font-size: 32px; <3>
+} <4>
+----
+<1> De *selector* bepaalt op welke elementen de regel van toepassing is: hier alle `h1`-elementen.
+<2> Een *declaratie* bestaat uit een *eigenschap* (_property_), een dubbelpunt en een *waarde*, afgesloten met een puntkomma.
+<3> Je kan zoveel declaraties onder elkaar zetten als je wil.
+<4> De accolades omsluiten alle declaraties van de regel.
+
+Commentaar in CSS schrijf je zo:
+
+[source,css]
+----
+/* Dit is commentaar in CSS */
+----
+
+== Selectoren
+
+=== Element-selector
+
+Selecteert alle elementen van een bepaald type.
+
+[source,css]
+----
+p {
+  line-height: 1.5;
+}
+----
+
+=== Class-selector
+
+Een _class_ geef je in HTML met het `class`-attribuut. In CSS schrijf je een punt voor de naam.
+Dezelfde class mag op veel elementen staan, en één element mag meerdere classes hebben.
+
+[source,html]
+----
+<p class="waarschuwing">Opgelet: de winkel is gesloten op maandag.</p>
+<p class="waarschuwing groot">Uitverkoop!</p>
+----
+
+[source,css]
+----
+.waarschuwing {
+  color: darkred;
+}
+
+.groot {
+  font-size: 24px;
+}
+----
+
+=== ID-selector
+
+Een `id` is *uniek*: hij mag maar één keer voorkomen op een pagina. In CSS schrijf je een hekje voor de naam.
+
+[source,html]
+----
+<header id="hoofding">...</header>
+----
+
+[source,css]
+----
+#hoofding {
+  background-color: black;
+}
+----
+
+TIP: Gebruik voor opmaak bijna altijd classes. Een `id` gebruik je vooral voor links naar een plaats op de pagina en in JavaScript.
+
+=== Combinaties
+
+[source,css]
+----
+/* Meerdere selectoren tegelijk (groeperen) */
+h1, h2, h3 {
+  font-family: Georgia, serif;
+}
+
+/* Alle a-elementen die ergens in een nav staan */
+nav a {
+  text-decoration: none;
+}
+
+/* Alle p-elementen met class intro */
+p.intro {
+  font-weight: bold;
+}
+----
+
+=== Pseudo-classes
+
+Een pseudo-class selecteert een element in een bepaalde *toestand*.
+
+[source,css]
+----
+a:hover {            /* als de muis over de link gaat */
+  color: orange;
+}
+
+input:focus {        /* als het invoerveld geselecteerd is */
+  border-color: blue;
+}
+
+li:first-child {     /* het eerste li-element */
+  font-weight: bold;
+}
+
+tr:nth-child(even) { /* elke even rij van een tabel */
+  background-color: #f2f2f2;
+}
+----
+
+== Kleuren
+
+Je kan een kleur op verschillende manieren schrijven:
+
+[source,css]
+----
+h1 {
+  color: tomato;                        /* een kleurnaam */
+  color: #ff6347;                       /* hexadecimaal: rood, groen, blauw */
+  color: rgb(255, 99, 71);              /* rgb: elk kanaal van 0 tot 255 */
+  color: rgba(255, 99, 71, 0.5);        /* met transparantie van 0 tot 1 */
+  color: hsl(9, 100%, 64%);             /* tint, verzadiging, lichtheid */
+}
+----
+
+* `color` bepaalt de kleur van de tekst.
+* `background-color` bepaalt de achtergrondkleur.
+
+Een hexadecimale kleur bestaat uit drie paren: `#RRGGBB`. Elk paar gaat van `00` (niets) tot `ff` (maximaal). Dus `#ff0000` is rood, `#000000` is zwart en `#ffffff` is wit.
+
+TIP: In VS Code klik je op het gekleurde vierkantje naast een kleur om een kleurkiezer te openen.
+
+== Tekst
+
+[source,css]
+----
+body {
+  font-family: "Segoe UI", Arial, sans-serif; <1>
+  font-size: 16px;
+  line-height: 1.6; <2>
+  color: #333333;
+}
+
+h1 {
+  font-weight: bold; <3>
+  text-align: center; <4>
+  text-transform: uppercase; <5>
+  letter-spacing: 2px;
+}
+
+a {
+  text-decoration: none; <6>
+}
+----
+<1> Een lijst van lettertypes. Is het eerste niet beschikbaar op de computer van de bezoeker, dan wordt het volgende gebruikt. Eindig altijd met een algemene familie: `serif`, `sans-serif` of `monospace`.
+<2> De regelafstand: 1.6 keer de lettergrootte.
+<3> `normal` of `bold`, of een getal van 100 tot 900.
+<4> `left`, `center`, `right` of `justify`.
+<5> `uppercase`, `lowercase` of `capitalize`.
+<6> Verwijdert de lijn onder links.
+
+=== Google Fonts
+
+Op https://fonts.google.com[fonts.google.com] vind je honderden gratis lettertypes.
+Kies een lettertype, klik op _Get font -> Get embed code_ en kopieer de `link`-elementen naar je `head`, *voor* je eigen stylesheet:
+
+[source,html]
+----
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+----
+
+[source,css]
+----
+body {
+  font-family: "Poppins", sans-serif;
+}
+----
+
+== Eenheden
+
+|===
+| Eenheid | Betekenis | Gebruik
+
+| `px` | pixels | randen, kleine vaste afstanden
+| `%` | percentage van het bovenliggende element | breedtes
+| `rem` | veelvoud van de lettergrootte van de pagina (meestal 16px) | lettergroottes, marges
+| `em` | veelvoud van de lettergrootte van het element zelf | afstanden die meeschalen met de tekst
+| `vw` / `vh` | 1% van de breedte / hoogte van het venster | schermvullende secties
+|===
+
+[source,css]
+----
+h1 {
+  font-size: 2rem;   /* 2 x 16px = 32px */
+}
+
+.hero {
+  height: 100vh;     /* even hoog als het venster */
+}
+----
+
+== Het boxmodel
+
+Elk element op een webpagina is een *rechthoek* (een _box_). Die box bestaat uit vier lagen:
+
+----
++----------------------- margin -----------------------+
+|  +-------------------- border --------------------+  |
+|  |  +----------------- padding ----------------+  |  |
+|  |  |                                          |  |  |
+|  |  |                 content                  |  |  |
+|  |  |                                          |  |  |
+|  |  +------------------------------------------+  |  |
+|  +------------------------------------------------+  |
++------------------------------------------------------+
+----
+
+* *content*: de inhoud zelf (tekst, afbeelding). De grootte bepaal je met `width` en `height`.
+* *padding*: ruimte *binnen* de rand, tussen de inhoud en de rand. Heeft de achtergrondkleur van het element.
+* *border*: de rand.
+* *margin*: ruimte *buiten* de rand, tussen dit element en de andere elementen. Is altijd doorzichtig.
+
+[source,css]
+----
+.kaart {
+  width: 300px;
+  padding: 20px;                 /* aan alle kanten */
+  border: 2px solid #cccccc;     /* dikte, stijl, kleur */
+  border-radius: 10px;           /* afgeronde hoeken */
+  margin: 20px auto;             /* 20px boven en onder, horizontaal gecentreerd */
+}
+----
+
+Je kan elke kant apart instellen:
+
+[source,css]
+----
+.blok {
+  margin-top: 10px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+
+  /* of korter, in de volgorde boven, rechts, onder, links (met de klok mee) */
+  margin: 10px 20px 10px 20px;
+
+  /* of nog korter: boven/onder en links/rechts */
+  margin: 10px 20px;
+}
+----
+
+=== box-sizing
+
+Standaard telt de browser padding en border *bij* de `width` op. Een element met `width: 300px` en `padding: 20px` is dus in werkelijkheid 340px breed.
+Dat is verwarrend. Zet daarom bovenaan elk stylesheet:
+
+[source,css]
+----
+* {
+  box-sizing: border-box;
+}
+----
+
+Nu is `width` de breedte *inclusief* padding en border.
+
+== Achtergronden en schaduwen
+
+[source,css]
+----
+.hero {
+  background-color: #1e3a5f;
+  background-image: url("afbeeldingen/bergen.jpg");
+  background-size: cover;          /* de afbeelding vult het volledige element */
+  background-position: center;
+  color: white;
+}
+
+.kaart {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  /* x, y, vervaging, kleur */
+}
+----
+
+WARNING: Een pad in een CSS-bestand is relatief ten opzichte van het *CSS-bestand*, niet ten opzichte van de HTML-pagina.
+
+== Display: blok en inline
+
+Elk element heeft een `display`-waarde die bepaalt hoe het zich gedraagt.
+
+|===
+| Waarde | Gedrag | Voorbeelden
+
+| `block` | begint op een nieuwe regel en neemt de volledige breedte | `div`, `p`, `h1`, `ul`, `section`
+| `inline` | blijft in de tekst staan; `width` en `height` werken niet | `span`, `a`, `strong`
+| `inline-block` | blijft in de tekst staan, maar `width`, `height` en `padding` werken wel | knoppen
+| `none` | het element wordt niet getoond |
+|===
+
+[source,css]
+----
+nav a {
+  display: inline-block;
+  padding: 10px 15px;
+}
+----
+
+== Lay-out met flexbox
+
+Met *flexbox* plaats je elementen naast of onder elkaar, en verdeel je de ruimte ertussen.
+Je zet `display: flex` op het *bovenliggende* element (de _container_). De elementen erin (de _items_) worden dan op een rij gezet.
+
+[source,html]
+----
+<nav class="menu">
+  <a href="#">Home</a>
+  <a href="#">Over ons</a>
+  <a href="#">Contact</a>
+</nav>
+----
+
+[source,css]
+----
+.menu {
+  display: flex;
+  justify-content: space-between; <1>
+  align-items: center; <2>
+  gap: 20px; <3>
+}
+----
+<1> Verdeling op de *hoofdas* (horizontaal): `flex-start`, `center`, `flex-end`, `space-between` of `space-around`.
+<2> Uitlijning op de *dwarsas* (verticaal): `flex-start`, `center`, `flex-end` of `stretch`.
+<3> De ruimte tussen de items.
+
+Nog enkele nuttige eigenschappen:
+
+[source,css]
+----
+.container {
+  display: flex;
+  flex-direction: column;   /* items onder elkaar in plaats van naast elkaar */
+  flex-wrap: wrap;          /* items naar de volgende regel als er geen plaats meer is */
+}
+
+.item {
+  flex: 1;                  /* elk item neemt een even groot deel van de ruimte */
+}
+----
+
+.Een element in het midden van het scherm plaatsen
+[source,css]
+----
+.midden {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+----
+
+TIP: Oefen flexbox spelenderwijs met https://flexboxfroggy.com/#nl[Flexbox Froggy].
+
+== Lay-out met grid
+
+Met *grid* verdeel je een container in rijen en kolommen. Handig voor fotogalerijen en de indeling van een volledige pagina.
+
+[source,css]
+----
+.galerij {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;   /* drie even brede kolommen */
+  gap: 15px;
+}
+----
+
+`fr` staat voor _fraction_: een deel van de beschikbare ruimte. `1fr 2fr` maakt de tweede kolom dubbel zo breed als de eerste.
+
+Een korte schrijfwijze voor veel gelijke kolommen:
+
+[source,css]
+----
+.galerij {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+----
+
+TIP: Oefen grid met https://cssgridgarden.com/#nl[Grid Garden].
+
+== Responsive design
+
+Een _responsive_ website past zich aan de schermgrootte aan: op een smartphone staan de kolommen bijvoorbeeld onder elkaar in plaats van naast elkaar.
+
+Twee dingen zijn nodig:
+
+. de `viewport`-meta-tag in de `head` (zie hoofdstuk HTML basis);
+. *media queries* in je CSS.
+
+Een media query is een blok CSS dat enkel geldt als aan een voorwaarde voldaan is.
+
+[source,css]
+----
+/* Standaard (smartphone): één kolom */
+.galerij {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+/* Vanaf 600px breed (tablet): twee kolommen */
+@media (min-width: 600px) {
+  .galerij {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Vanaf 1000px breed (computer): vier kolommen */
+@media (min-width: 1000px) {
+  .galerij {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+----
+
+We schrijven eerst de CSS voor kleine schermen, en voegen daarna regels toe voor grotere schermen. Dit heet *mobile first*.
+
+Laat afbeeldingen nooit breder worden dan hun container:
+
+[source,css]
+----
+img {
+  max-width: 100%;
+  height: auto;
+}
+----
+
+TIP: In de ontwikkelaarstools (kbd:[F12]) klik je op het icoontje met de telefoon en tablet om je pagina op verschillende schermgroottes te bekijken.
+
+== De cascade en specificiteit
+
+Wat als twee regels hetzelfde element opmaken?
+
+[source,css]
+----
+p          { color: black; }
+.intro     { color: blue; }
+#welkom    { color: green; }
+p          { color: gray; }
+----
+
+De browser beslist met deze regels (daarom heet het _cascading_):
+
+. *Specificiteit*: een specifiekere selector wint. Van zwak naar sterk: element -> class -> id -> inline style.
+. *Volgorde*: bij gelijke specificiteit wint de regel die het *laatst* staat.
+
+Een paragraaf `<p class="intro" id="welkom">` wordt dus groen. Een gewone `p` wordt grijs.
+
+=== Overerving
+
+Sommige eigenschappen, zoals `color` en `font-family`, worden *overgeërfd* door de elementen die erin zitten. Daarom zet je het lettertype op `body`: dan geldt het voor de hele pagina.
+Eigenschappen van het boxmodel (`margin`, `padding`, `border`) worden niet overgeërfd.
+
+== Fouten opsporen
+
+Open de ontwikkelaarstools (kbd:[F12]) en selecteer een element. Rechts zie je:
+
+* welke CSS-regels van toepassing zijn, en welke doorstreept zijn omdat een andere regel wint;
+* het boxmodel met de exacte marges en paddings.
+
+Je kan er waarden aanpassen en meteen het resultaat zien. Let op: die aanpassingen worden niet opgeslagen. Neem ze daarna over in je CSS-bestand.
+
+Veelgemaakte fouten:
+
+* een puntkomma of accolade vergeten;
+* het punt (`.`) vergeten voor een class-selector;
+* een verkeerd pad in het `link`-element;
+* een spatie tussen getal en eenheid: `20 px` werkt niet, `20px` wel.
+
+== Oefeningen
+
+=== Oefening 1: Stijl je Over mij-pagina
+
+Maak een extern stylesheet `style.css` voor je pagina `over-mij.html` uit het hoofdstuk HTML basis.
+
+* Kies een lettertype van Google Fonts voor de hele pagina.
+* Geef de `h1` een eigen kleur en centreer hem.
+* Beperk de breedte van de inhoud tot 800px en centreer ze op de pagina (tip: `max-width` en `margin: 0 auto`).
+* Laat links van kleur veranderen als je er met de muis over gaat.
+
+=== Oefening 2: Kaartjes
+
+Maak een pagina met drie "kaartjes" (bijvoorbeeld drie producten, drie sporten of drie games).
+
+* Elk kaartje is een `article` met een afbeelding, een titel, een korte tekst en een link.
+* Geef de kaartjes padding, een rand of schaduw en afgeronde hoeken.
+* Zet de kaartjes naast elkaar met flexbox, met ruimte ertussen.
+* Op een smartphone (smaller dan 600px) staan de kaartjes onder elkaar.
+
+=== Oefening 3: Mini-website
+
+Geef je mini-website (drie pagina's) uit het hoofdstuk HTML basis één gezamenlijk stylesheet.
+
+* Het navigatiemenu staat horizontaal met flexbox en heeft een achtergrondkleur.
+* De pagina die open staat, is in het menu anders gekleurd (tip: een class `actief`).
+* De `footer` staat altijd onderaan de pagina, gecentreerd, met een andere achtergrondkleur.
+* Op `index.html` staat een fotogalerij met grid: één kolom op een smartphone, drie kolommen op een computer.

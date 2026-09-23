@@ -1,0 +1,546 @@
+:icons: font
+:source-highlighter: rouge
+:toc: left
+:toclevels: 5
+:sectnums:
+:bs-versie: 5.3.8
+
+= Bootstrap
+
+##Bootstrap## is een gratis CSS-_framework_: een verzameling kant-en-klare CSS-classes (en een beetje JavaScript) waarmee je snel een nette, responsive website bouwt.
+In plaats van zelf alle CSS te schrijven, geef je je HTML-elementen classes van Bootstrap.
+
+[source,html]
+----
+<button class="btn btn-primary">Klik hier</button>
+----
+
+Met die twee classes krijgt de knop meteen een kleur, afgeronde hoeken, padding en een hover-effect.
+
+Waarom Bootstrap?
+
+* *Snel*: je hoeft niet alles zelf te schrijven.
+* *Responsive*: het grid-systeem werkt automatisch op smartphones, tablets en computers.
+* *Consistent*: alle knoppen, formulieren en menu's zien er hetzelfde uit.
+* *Veel gebruikt*: je vindt online heel veel voorbeelden en hulp.
+
+Het nadeel: veel websites met Bootstrap lijken op elkaar. Met je eigen CSS kan je dat oplossen.
+
+NOTE: Om Bootstrap goed te begrijpen, moet je de hoofdstukken HTML basis en CSS kennen. Bootstrap gebruikt zelf flexbox, media queries en het boxmodel.
+
+In dit hoofdstuk leer je:
+
+* hoe je Bootstrap aan je pagina koppelt;
+* hoe het grid-systeem werkt;
+* de belangrijkste _utility classes_ voor afstanden, kleuren en tekst;
+* de meest gebruikte componenten: knoppen, navbar, cards, formulieren, tabellen en alerts;
+* hoe je Bootstrap combineert met je eigen CSS.
+
+We gebruiken Bootstrap versie {bs-versie}. De volledige documentatie vind je op https://getbootstrap.com/docs/5.3/[getbootstrap.com].
+
+== Bootstrap koppelen
+
+De eenvoudigste manier is via een _CDN_ (_Content Delivery Network_): je laadt de bestanden rechtstreeks van het internet, je hoeft niets te downloaden.
+
+.Starttemplate
+[source,html,subs="attributes+"]
+----
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <1>
+  <title>Mijn Bootstrap-pagina</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@{bs-versie}/dist/css/bootstrap.min.css"> <2>
+  <link rel="stylesheet" href="style.css"> <3>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Hallo, Bootstrap!</h1>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@{bs-versie}/dist/js/bootstrap.bundle.min.js"></script> <4>
+</body>
+</html>
+----
+<1> De viewport-tag is nodig om de pagina responsive te maken.
+<2> Het CSS-bestand van Bootstrap.
+<3> Je eigen stylesheet komt *na* Bootstrap. Zo kan je de stijl van Bootstrap overschrijven.
+<4> Het JavaScript-bestand van Bootstrap, onderaan de `body`. Dat is nodig voor interactieve onderdelen zoals een uitklapmenu.
+
+WARNING: Een CDN werkt alleen met een internetverbinding.
+
+== Containers
+
+Alle inhoud zet je in een *container*. Die zorgt voor marges aan de zijkant en centreert de inhoud.
+
+[source,html]
+----
+<div class="container">...</div>        <!-- vaste maximale breedte, gecentreerd -->
+<div class="container-fluid">...</div>  <!-- altijd de volledige breedte -->
+----
+
+== Het grid-systeem
+
+Het belangrijkste onderdeel van Bootstrap is het *grid*: een raster van *12 kolommen*.
+Je verdeelt een rij in kolommen door aan te geven hoeveel van die 12 kolommen elk blok inneemt.
+
+[source,html]
+----
+<div class="container">
+  <div class="row"> <1>
+    <div class="col-8">Hoofdinhoud</div> <2>
+    <div class="col-4">Zijbalk</div> <3>
+  </div>
+</div>
+----
+<1> Een `row` is een rij. Kolommen staan altijd in een rij.
+<2> Dit blok neemt 8 van de 12 kolommen in (twee derde).
+<3> Dit blok neemt 4 van de 12 kolommen in (een derde). Samen maakt dat 12.
+
+Voorbeelden van verdelingen:
+
+|===
+| Classes | Resultaat
+
+| `col-6` + `col-6` | twee even brede kolommen
+| `col-4` + `col-4` + `col-4` | drie even brede kolommen
+| `col-3` + `col-9` | smalle en brede kolom
+| `col` + `col` + `col` | Bootstrap verdeelt zelf gelijk
+|===
+
+=== Breakpoints: responsive kolommen
+
+Op een smartphone wil je de kolommen meestal *onder* elkaar, op een computer *naast* elkaar.
+Daarvoor zet je een *breakpoint* in de class:
+
+|===
+| Breakpoint | Class | Vanaf schermbreedte | Typisch toestel
+
+| (geen) | `col-` | 0px | smartphone staand
+| small | `col-sm-` | 576px | smartphone liggend
+| medium | `col-md-` | 768px | tablet
+| large | `col-lg-` | 992px | laptop
+| extra large | `col-xl-` | 1200px | computer
+| extra extra large | `col-xxl-` | 1400px | groot scherm
+|===
+
+`col-md-4` betekent: *vanaf* een medium scherm neemt dit blok 4 kolommen in. Op kleinere schermen neemt het de volledige breedte (12 kolommen).
+
+[source,html]
+----
+<div class="row">
+  <div class="col-12 col-md-6 col-lg-4">Blok 1</div>
+  <div class="col-12 col-md-6 col-lg-4">Blok 2</div>
+  <div class="col-12 col-md-12 col-lg-4">Blok 3</div>
+</div>
+----
+
+* Op een smartphone: drie blokken onder elkaar.
+* Op een tablet: blok 1 en 2 naast elkaar, blok 3 eronder over de volledige breedte.
+* Op een laptop: drie blokken naast elkaar.
+
+Dit is precies wat je in het hoofdstuk CSS met media queries deed, maar zonder zelf CSS te schrijven.
+
+=== Ruimte tussen kolommen
+
+Met `g-` (_gutter_) bepaal je de ruimte tussen de kolommen, van `g-0` (geen) tot `g-5` (veel):
+
+[source,html]
+----
+<div class="row g-4">
+  ...
+</div>
+----
+
+== Utility classes
+
+Bootstrap heeft honderden kleine classes die elk één ding doen. Zo hoef je voor veel kleine aanpassingen geen eigen CSS te schrijven.
+
+=== Afstanden: margin en padding
+
+De naam is opgebouwd als `{eigenschap}{kant}-{grootte}`:
+
+|===
+| Deel | Waarden
+
+| eigenschap | `m` = margin, `p` = padding
+| kant | `t` = top (boven), `b` = bottom (onder), `s` = start (links), `e` = end (rechts), `x` = links en rechts, `y` = boven en onder, niets = alle kanten
+| grootte | `0` tot `5`, of `auto`
+|===
+
+[source,html]
+----
+<div class="p-3">Padding aan alle kanten</div>
+<div class="mt-5">Veel marge bovenaan</div>
+<div class="px-4 py-2">Padding links/rechts 4, boven/onder 2</div>
+<div class="mx-auto" style="width: 200px;">Horizontaal gecentreerd</div>
+----
+
+=== Kleuren
+
+Bootstrap werkt met een vaste set kleurnamen:
+
+|===
+| Naam | Gebruik
+
+| `primary` | hoofdkleur (blauw)
+| `secondary` | minder belangrijk (grijs)
+| `success` | gelukt (groen)
+| `danger` | fout of gevaar (rood)
+| `warning` | waarschuwing (geel)
+| `info` | informatie (lichtblauw)
+| `light` / `dark` | licht / donker
+|===
+
+[source,html]
+----
+<p class="text-danger">Rode tekst</p>
+<div class="bg-dark text-white p-3">Witte tekst op een donkere achtergrond</div>
+<div class="bg-success-subtle p-3">Zachte groene achtergrond</div>
+----
+
+=== Tekst
+
+[source,html]
+----
+<p class="text-center">Gecentreerd</p>
+<p class="text-end">Rechts uitgelijnd</p>
+<p class="fw-bold">Vet</p>
+<p class="fst-italic">Cursief</p>
+<p class="text-uppercase">Hoofdletters</p>
+<p class="fs-4">Lettergrootte 4 (van 1 = groot tot 6 = klein)</p>
+<p class="lead">Een grotere inleidende paragraaf.</p>
+<h1 class="display-4">Heel grote titel</h1>
+----
+
+=== Randen, schaduw en afbeeldingen
+
+[source,html]
+----
+<div class="border rounded p-3">Rand met afgeronde hoeken</div>
+<div class="shadow p-3">Met schaduw</div>
+<img src="foto.jpg" class="img-fluid rounded" alt="..."> <1>
+<img src="profiel.jpg" class="rounded-circle" width="120" alt="..."> <2>
+----
+<1> `img-fluid` zorgt ervoor dat de afbeelding nooit breder wordt dan haar container.
+<2> Een ronde afbeelding.
+
+=== Flex en display
+
+De flexbox-eigenschappen uit het hoofdstuk CSS bestaan ook als classes:
+
+[source,html]
+----
+<div class="d-flex justify-content-between align-items-center gap-3">
+  <span>Links</span>
+  <span>Rechts</span>
+</div>
+
+<p class="d-none d-md-block">Alleen zichtbaar vanaf een tablet.</p>
+----
+
+== Componenten
+
+Componenten zijn kant-en-klare onderdelen van een webpagina. Je kopieert de HTML meestal uit de documentatie en past de inhoud aan.
+
+=== Knoppen
+
+[source,html]
+----
+<button class="btn btn-primary">Primair</button>
+<button class="btn btn-outline-secondary">Alleen rand</button>
+<button class="btn btn-danger btn-lg">Groot en rood</button>
+<a href="contact.html" class="btn btn-success">Ook een link kan een knop zijn</a>
+----
+
+=== Navbar
+
+Een navigatiebalk die op kleine schermen inklapt tot een "hamburgermenu".
+
+[source,html]
+----
+<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark"> <1>
+  <div class="container">
+    <a class="navbar-brand" href="index.html">Mijn site</a>
+
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#hoofdmenu"> <2>
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="hoofdmenu"> <3>
+      <ul class="navbar-nav ms-auto"> <4>
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="info.html">Info</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+----
+<1> `navbar-expand-lg`: vanaf een groot scherm staat het menu uitgeklapt. `data-bs-theme="dark"` zorgt voor lichte tekst op de donkere achtergrond.
+<2> De hamburgerknop. `data-bs-target` verwijst naar de `id` van het menu dat moet openklappen.
+<3> Het menu dat in- en uitklapt. Dit werkt alleen als het JavaScript-bestand van Bootstrap gekoppeld is.
+<4> `ms-auto` (_margin start auto_) duwt het menu naar rechts.
+
+=== Cards
+
+Een _card_ is een kader met bijvoorbeeld een afbeelding, een titel, tekst en een knop.
+
+[source,html]
+----
+<div class="card" style="width: 18rem;">
+  <img src="pizza.jpg" class="card-img-top" alt="Een pizza margherita">
+  <div class="card-body">
+    <h5 class="card-title">Pizza margherita</h5>
+    <p class="card-text">Tomaat, mozzarella en verse basilicum.</p>
+    <a href="#" class="btn btn-primary">Bestel</a>
+  </div>
+</div>
+----
+
+Cards combineer je vaak met het grid:
+
+[source,html]
+----
+<div class="row g-4">
+  <div class="col-12 col-md-4">
+    <div class="card h-100">...</div> <1>
+  </div>
+  <div class="col-12 col-md-4">
+    <div class="card h-100">...</div>
+  </div>
+  <div class="col-12 col-md-4">
+    <div class="card h-100">...</div>
+  </div>
+</div>
+----
+<1> `h-100` (_height 100%_) maakt alle cards in een rij even hoog.
+
+=== Alerts
+
+[source,html]
+----
+<div class="alert alert-success">Je bericht is verzonden!</div>
+<div class="alert alert-warning">Let op: dit veld is verplicht.</div>
+----
+
+=== Formulieren
+
+[source,html]
+----
+<form>
+  <div class="mb-3"> <1>
+    <label for="email" class="form-label">E-mail</label> <2>
+    <input type="email" class="form-control" id="email" placeholder="naam@voorbeeld.be"> <3>
+  </div>
+
+  <div class="mb-3">
+    <label for="klas" class="form-label">Klas</label>
+    <select class="form-select" id="klas"> <4>
+      <option>5A</option>
+      <option>5B</option>
+    </select>
+  </div>
+
+  <div class="mb-3 form-check"> <5>
+    <input type="checkbox" class="form-check-input" id="akkoord">
+    <label class="form-check-label" for="akkoord">Ik ga akkoord</label>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Verzenden</button>
+</form>
+----
+<1> `mb-3` zet ruimte onder elk veld.
+<2> `form-label` voor labels.
+<3> `form-control` voor tekstvelden en `textarea`.
+<4> `form-select` voor keuzelijsten.
+<5> `form-check` voor checkboxes en radioknoppen.
+
+=== Tabellen
+
+[source,html]
+----
+<table class="table table-striped table-hover"> <1>
+  <thead class="table-dark">
+    <tr><th>Naam</th><th>Punten</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Emma</td><td>17</td></tr>
+    <tr><td>Noah</td><td>15</td></tr>
+  </tbody>
+</table>
+----
+<1> `table-striped` geeft om de andere rij een achtergrondkleur, `table-hover` kleurt de rij waar de muis over gaat.
+
+=== Andere componenten
+
+In de documentatie vind je nog veel meer componenten, bijvoorbeeld:
+
+* https://getbootstrap.com/docs/5.3/components/carousel/[Carousel]: een diavoorstelling;
+* https://getbootstrap.com/docs/5.3/components/modal/[Modal]: een venster dat over de pagina verschijnt;
+* https://getbootstrap.com/docs/5.3/components/accordion/[Accordion]: onderdelen die open- en dichtklappen;
+* https://getbootstrap.com/docs/5.3/components/badge/[Badge]: een klein label, bijvoorbeeld "Nieuw".
+
+== Iconen
+
+Bootstrap heeft een aparte, gratis set iconen: https://icons.getbootstrap.com[Bootstrap Icons].
+Koppel het stylesheet in de `head`:
+
+[source,html]
+----
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+----
+
+Gebruik daarna een icoon met een `i`-element:
+
+[source,html]
+----
+<i class="bi bi-envelope"></i> info@school.be
+<button class="btn btn-danger"><i class="bi bi-trash"></i> Verwijderen</button>
+----
+
+== Bootstrap en je eigen CSS
+
+Bootstrap en eigen CSS gaan perfect samen. Omdat je stylesheet *na* Bootstrap gekoppeld is, winnen je eigen regels bij gelijke specificiteit (zie de cascade in het hoofdstuk CSS).
+
+.style.css
+[source,css]
+----
+/* Een eigen lettertype voor de hele pagina */
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Een eigen class naast de Bootstrap-classes */
+.hero {
+  background-image: url("afbeeldingen/bergen.jpg");
+  background-size: cover;
+  min-height: 60vh;
+}
+----
+
+[source,html]
+----
+<section class="hero d-flex align-items-center text-white">
+  <div class="container">
+    <h1 class="display-3 fw-bold">Welkom</h1>
+  </div>
+</section>
+----
+
+TIP: Pas bestaande Bootstrap-classes zoals `.btn-primary` niet aan in je eigen CSS. Maak liever een eigen class, bijvoorbeeld `.btn-merk`. Zo blijft duidelijk wat van Bootstrap komt en wat van jou.
+
+== Een volledig voorbeeld
+
+Een eenvoudige startpagina met een navbar, een hero, drie cards en een footer:
+
+[source,html,subs="attributes+"]
+----
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fietsclub De Trappers</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@{bs-versie}/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-md bg-success" data-bs-theme="dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">De Trappers</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#ritten">Ritten</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-light py-5 text-center">
+    <div class="container">
+      <h1 class="display-4">Samen fietsen, elke zondag</h1>
+      <p class="lead">Voor beginners en gevorderden, van 30 tot 100 km.</p>
+      <a href="#contact" class="btn btn-success btn-lg">Word lid</a>
+    </div>
+  </header>
+
+  <main class="container py-5" id="ritten">
+    <h2 class="mb-4">Onze ritten</h2>
+    <div class="row g-4">
+      <div class="col-12 col-md-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Rustige rit</h5>
+            <p class="card-text">30 km aan 20 km/u. Ideaal om te beginnen.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Middenrit</h5>
+            <p class="card-text">60 km aan 25 km/u, met een koffiestop.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="card h-100 border-success">
+          <div class="card-body">
+            <h5 class="card-title">Sportieve rit <span class="badge bg-success">Populair</span></h5>
+            <p class="card-text">100 km aan 30 km/u. Alleen voor getrainde fietsers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-dark text-white text-center py-3" id="contact">
+    <p class="mb-0">info@detrappers.be &middot; Kerkstraat 1, Geel</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@{bs-versie}/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+----
+
+Maak je het browservenster smaller, dan zie je dat de cards onder elkaar gaan staan en het menu inklapt tot een hamburgermenu.
+
+== Oefeningen
+
+=== Oefening 1: Grid
+
+Maak een pagina met een container en de volgende rijen. Geef elke kolom een achtergrondkleur en een rand, zodat je de verdeling ziet.
+
+. Twee even brede kolommen.
+. Drie kolommen: 3, 6 en 3 van de 12.
+. Vier blokken: onder elkaar op een smartphone, twee per rij op een tablet en vier naast elkaar op een laptop.
+
+Controleer het resultaat met de ontwikkelaarstools op verschillende schermgroottes.
+
+=== Oefening 2: Productpagina
+
+Maak een pagina voor een (verzonnen) webwinkel.
+
+* Bovenaan een navbar die inklapt op een smartphone.
+* Een `header` met een grote titel, een inleidende tekst en een knop.
+* Minstens zes producten als cards, met een afbeelding, naam, prijs en knop. Op een laptop drie per rij, op een tablet twee per rij, op een smartphone één per rij.
+* Een `footer` met contactgegevens en iconen van Bootstrap Icons.
+
+=== Oefening 3: Mini-website met Bootstrap
+
+Bouw je mini-website uit de vorige hoofdstukken opnieuw op met Bootstrap.
+
+* Vervang je eigen navigatie door een Bootstrap-navbar.
+* Maak de fotogalerij met het grid-systeem in plaats van met eigen CSS.
+* Geef het contactformulier de Bootstrap-opmaak.
+* Toon na het formulier een `alert` met een uitleg (bijvoorbeeld: "Velden met een * zijn verplicht").
+* Gebruik je eigen stylesheet voor minstens drie aanpassingen die Bootstrap niet heeft (bijvoorbeeld een eigen lettertype, een eigen kleur of een achtergrondafbeelding).

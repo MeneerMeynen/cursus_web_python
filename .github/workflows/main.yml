@@ -27,15 +27,11 @@ jobs:
 
     - name: Copy web images folder
       run: |
-        cp -r web/* build/web/
+        cp -rn web/* build/web/
 
     - name: Copy custom index.html
       run: |
         cp python/index.html build/python/
-        
-    - name: Copy web custom index.html
-      run: |
-        cp web/index.html build/web/
         
     - name: Copy images folder
       run: |
