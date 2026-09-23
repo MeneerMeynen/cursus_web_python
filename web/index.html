@@ -663,7 +663,7 @@ pre.rouge {
 <li><a href="#_je_werkomgeving">1.1.1. Je werkomgeving</a></li>
 </ul>
 </li>
-<li><a href="#_tags_elementen_en_attributen">1.2. Tags, elementen en attributen</a>
+<li><a href="#_tags_en_attributen">1.2. Tags en attributen</a>
 <ul class="sectlevel3">
 <li><a href="#_tags">1.2.1. Tags</a></li>
 <li><a href="#_nesten">1.2.2. Nesten</a></li>
@@ -697,7 +697,7 @@ pre.rouge {
 <li><a href="#_een_pagina_indelen">1.10. Een pagina indelen</a>
 <ul class="sectlevel3">
 <li><a href="#_div_en_span">1.10.1. div en span</a></li>
-<li><a href="#_semantische_elementen">1.10.2. Semantische elementen</a></li>
+<li><a href="#_semantische_tags">1.10.2. Semantische tags</a></li>
 <li><a href="#_speciale_tekens">1.10.3. Speciale tekens</a></li>
 </ul>
 </li>
@@ -723,7 +723,7 @@ pre.rouge {
 <li><a href="#_de_opbouw_van_een_css_regel">2.2. De opbouw van een CSS-regel</a></li>
 <li><a href="#_selectoren">2.3. Selectoren</a>
 <ul class="sectlevel3">
-<li><a href="#_element_selector">2.3.1. Element-selector</a></li>
+<li><a href="#_tag_selector">2.3.1. Tag-selector</a></li>
 <li><a href="#_class_selector">2.3.2. Class-selector</a></li>
 <li><a href="#_id_selector">2.3.3. ID-selector</a></li>
 <li><a href="#_combinaties">2.3.4. Combinaties</a></li>
@@ -736,28 +736,54 @@ pre.rouge {
 <li><a href="#_google_fonts">2.5.1. Google Fonts</a></li>
 </ul>
 </li>
-<li><a href="#_eenheden">2.6. Eenheden</a></li>
-<li><a href="#_het_boxmodel">2.7. Het boxmodel</a>
+<li><a href="#_positioneren">2.6. Positioneren</a>
 <ul class="sectlevel3">
-<li><a href="#_box_sizing">2.7.1. box-sizing</a></li>
+<li><a href="#_de_normale_flow">2.6.1. De normale flow</a></li>
+<li><a href="#_het_coördinatensysteem">2.6.2. Het coördinatensysteem</a></li>
+<li><a href="#_de_vijf_waarden_van_position">2.6.3. De vijf waarden van position</a>
+<ul class="sectlevel4">
+<li><a href="#_relative_verschuiven_vanaf_de_eigen_plaats">relative: verschuiven vanaf de eigen plaats</a></li>
+<li><a href="#_absolute_uit_de_flow_geplaatst_in_een_referentiepunt">absolute: uit de flow, geplaatst in een referentiepunt</a></li>
+<li><a href="#_fixed_vast_in_het_venster">fixed: vast in het venster</a></li>
+<li><a href="#_sticky_eerst_normaal_dan_vastgeplakt">sticky: eerst normaal, dan vastgeplakt</a></li>
 </ul>
 </li>
-<li><a href="#_achtergronden_en_schaduwen">2.8. Achtergronden en schaduwen</a></li>
-<li><a href="#_display_blok_en_inline">2.9. Display: blok en inline</a></li>
-<li><a href="#_lay_out_met_flexbox">2.10. Lay-out met flexbox</a></li>
-<li><a href="#_lay_out_met_grid">2.11. Lay-out met grid</a></li>
-<li><a href="#_responsive_design">2.12. Responsive design</a></li>
-<li><a href="#_de_cascade_en_specificiteit">2.13. De cascade en specificiteit</a>
-<ul class="sectlevel3">
-<li><a href="#_overerving">2.13.1. Overerving</a></li>
+<li><a href="#_een_tag_centreren_met_positie">2.6.4. Een tag centreren met positie</a></li>
+<li><a href="#_lagen_z_index">2.6.5. Lagen: z-index</a></li>
+<li><a href="#_samengevat_welke_position_kies_ik">2.6.6. Samengevat: welke position kies ik?</a></li>
 </ul>
 </li>
-<li><a href="#_fouten_opsporen_2">2.14. Fouten opsporen</a></li>
-<li><a href="#_oefeningen_2">2.15. Oefeningen</a>
+<li><a href="#_visuele_effecten">2.7. Visuele effecten</a>
 <ul class="sectlevel3">
-<li><a href="#_oefening_1_stijl_je_over_mij_pagina">2.15.1. Oefening 1: Stijl je Over mij-pagina</a></li>
-<li><a href="#_oefening_2_kaartjes">2.15.2. Oefening 2: Kaartjes</a></li>
-<li><a href="#_oefening_3_mini_website_2">2.15.3. Oefening 3: Mini-website</a></li>
+<li><a href="#_afgeronde_hoeken_en_cirkels">2.7.1. Afgeronde hoeken en cirkels</a></li>
+<li><a href="#_doorzichtigheid">2.7.2. Doorzichtigheid</a></li>
+<li><a href="#_schaduw_op_tekst">2.7.3. Schaduw op tekst</a></li>
+<li><a href="#_kleurverloop_gradient">2.7.4. Kleurverloop (gradient)</a></li>
+<li><a href="#_randen_en_outline">2.7.5. Randen en outline</a></li>
+</ul>
+</li>
+<li><a href="#_eenheden">2.8. Eenheden</a></li>
+<li><a href="#_het_boxmodel">2.9. Het boxmodel</a>
+<ul class="sectlevel3">
+<li><a href="#_box_sizing">2.9.1. box-sizing</a></li>
+</ul>
+</li>
+<li><a href="#_achtergronden_en_schaduwen">2.10. Achtergronden en schaduwen</a></li>
+<li><a href="#_display_blok_en_inline">2.11. Display: blok en inline</a></li>
+<li><a href="#_lay_out_met_flexbox">2.12. Lay-out met flexbox</a></li>
+<li><a href="#_lay_out_met_grid">2.13. Lay-out met grid</a></li>
+<li><a href="#_responsive_design">2.14. Responsive design</a></li>
+<li><a href="#_de_cascade_en_specificiteit">2.15. De cascade en specificiteit</a>
+<ul class="sectlevel3">
+<li><a href="#_overerving">2.15.1. Overerving</a></li>
+</ul>
+</li>
+<li><a href="#_fouten_opsporen_2">2.16. Fouten opsporen</a></li>
+<li><a href="#_oefeningen_2">2.17. Oefeningen</a>
+<ul class="sectlevel3">
+<li><a href="#_oefening_1_stijl_je_over_mij_pagina">2.17.1. Oefening 1: Stijl je Over mij-pagina</a></li>
+<li><a href="#_oefening_2_kaartjes">2.17.2. Oefening 2: Kaartjes</a></li>
+<li><a href="#_oefening_3_mini_website_2">2.17.3. Oefening 3: Mini-website</a></li>
 </ul>
 </li>
 </ul>
@@ -917,16 +943,16 @@ Het is een <em>markup language</em>: je markeert stukken tekst zodat de browser 
 <p>hoe een browser een HTML-bestand omzet naar een webpagina;</p>
 </li>
 <li>
-<p>wat tags, elementen en attributen zijn;</p>
+<p>wat tags en attributen zijn;</p>
 </li>
 <li>
 <p>hoe een HTML-document opgebouwd is;</p>
 </li>
 <li>
-<p>de belangrijkste elementen: titels, tekst, links, afbeeldingen, lijsten, tabellen en formulieren;</p>
+<p>de belangrijkste tags: titels, tekst, links, afbeeldingen, lijsten, tabellen en formulieren;</p>
 </li>
 <li>
-<p>hoe je een pagina opdeelt met semantische elementen.</p>
+<p>hoe je een pagina opdeelt met semantische tags.</p>
 </li>
 </ul>
 </div>
@@ -974,7 +1000,7 @@ In deze cursus gebruiken we <strong>Visual Studio Code</strong>.</p>
 <p>Maak een nieuw bestand <code>index.html</code>.</p>
 </li>
 <li>
-<p>Typ <code>!</code> en druk op kbd:[Tab]: VS Code vult de standaardstructuur voor je in.</p>
+<p>Typ <code>!</code> en druk op <kbd>Tab</kbd>: VS Code vult de standaardstructuur voor je in.</p>
 </li>
 <li>
 <p>Open het bestand in je browser (dubbelklik in de verkenner), of installeer de extensie <strong>Live Server</strong> zodat de pagina automatisch vernieuwt wanneer je opslaat.</p>
@@ -996,7 +1022,7 @@ De startpagina van een website heet bijna altijd <code>index.html</code>. Een we
 </div>
 </div>
 <div class="sect2">
-<h3 id="_tags_elementen_en_attributen">1.2. Tags, elementen en attributen</h3>
+<h3 id="_tags_en_attributen">1.2. Tags en attributen</h3>
 <div class="sect3">
 <h4 id="_tags">1.2.1. Tags</h4>
 <div class="paragraph">
@@ -1008,8 +1034,17 @@ De meeste tags komen in paren: een <strong>openingstag</strong> en een <strong>s
 <pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;p&gt;</span>Dit is een paragraaf.<span class="nt">&lt;/p&gt;</span></code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>De openingstag, de inhoud en de sluitingstag samen noemen we een <strong>element</strong>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Op andere websites, zoals <a href="https://developer.mozilla.org/nl/">MDN</a>, lees je vaak het woord <em>element</em>. Daarmee bedoelt men een tag samen met zijn inhoud. In deze cursus spreken we gewoon van een <em>tag</em>.
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1026,7 +1061,7 @@ De meeste tags komen in paren: een <strong>openingstag</strong> en een <strong>s
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>De inhoud van het element.</td>
+<td>De inhoud van de tag.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -1035,7 +1070,7 @@ De meeste tags komen in paren: een <strong>openingstag</strong> en een <strong>s
 </table>
 </div>
 <div class="paragraph">
-<p>Sommige elementen hebben geen inhoud en dus ook geen sluitingstag. Dit zijn <em>lege elementen</em> (<em>void elements</em>), bijvoorbeeld:</p>
+<p>Sommige tags hebben geen inhoud en dus ook geen sluitingstag. Dit zijn <em>lege tags</em>, bijvoorbeeld:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1048,8 +1083,8 @@ De meeste tags komen in paren: een <strong>openingstag</strong> en een <strong>s
 <div class="sect3">
 <h4 id="_nesten">1.2.2. Nesten</h4>
 <div class="paragraph">
-<p>Elementen kunnen in andere elementen zitten. We zeggen dan dat ze <em>genest</em> zijn.
-Het binnenste element moet altijd eerst gesloten worden.</p>
+<p>Tags kunnen in andere tags zitten. We zeggen dan dat ze <em>genest</em> zijn.
+De binnenste tag moet altijd eerst gesloten worden.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1058,13 +1093,13 @@ Het binnenste element moet altijd eerst gesloten worden.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Spring genest HTML altijd in met een tab of twee spaties. Zo zie je in één oogopslag welk element in welk ander element zit.</p>
+<p>Spring genest HTML altijd in met een tab of twee spaties. Zo zie je in één oogopslag welke tag in welke andere tag zit.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_attributen">1.2.3. Attributen</h4>
 <div class="paragraph">
-<p>Een <strong>attribuut</strong> geeft extra informatie aan een element. Attributen staan altijd in de <strong>openingstag</strong>, in de vorm <code>naam="waarde"</code>.</p>
+<p>Een <strong>attribuut</strong> geeft extra informatie aan een tag. Attributen staan altijd in de <strong>openingstag</strong>, in de vorm <code>naam="waarde"</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1089,7 +1124,7 @@ Het binnenste element moet altijd eerst gesloten worden.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Een attribuut mag maar één keer voorkomen per element.</p>
+<p>Een attribuut mag maar één keer voorkomen per tag.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1133,7 +1168,7 @@ Het binnenste element moet altijd eerst gesloten worden.</p>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Het <code>html</code>-element omvat de hele pagina. Met <code>lang="nl"</code> geef je aan dat de pagina in het Nederlands is.</td>
+<td>De <code>html</code>-tag omvat de hele pagina. Met <code>lang="nl"</code> geef je aan dat de pagina in het Nederlands is.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -1216,7 +1251,7 @@ Extra spaties en enters in je HTML-code worden door de browser genegeerd. Tien s
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Element</th>
+<th class="tableblock halign-left valign-top">Tag</th>
 <th class="tableblock halign-left valign-top">Betekenis</th>
 <th class="tableblock halign-left valign-top">Standaard weergave</th>
 </tr>
@@ -1249,7 +1284,7 @@ Extra spaties en enters in je HTML-code worden door de browser genegeerd. Tien s
 <div class="sect2">
 <h3 id="_links">1.5. Links</h3>
 <div class="paragraph">
-<p>Een link maak je met het <code>a</code>-element (van <em>anchor</em>). Het <code>href</code>-attribuut bepaalt het doel.</p>
+<p>Een link maak je met de <code>a</code>-tag (van <em>anchor</em>). Het <code>href</code>-attribuut bepaalt het doel.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1413,7 +1448,7 @@ Gebruik in bestandsnamen geen spaties en geen hoofdletters. Schrijf <code>mijn-f
 <div class="sect3">
 <h4 id="_geneste_lijst">1.7.3. Geneste lijst</h4>
 <div class="paragraph">
-<p>Een lijst kan in een ander <code>li</code>-element zitten:</p>
+<p>Een lijst kan in een <code>li</code>-tag van een andere lijst zitten:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1617,10 +1652,10 @@ Gebruik tabellen enkel voor <strong>gegevens</strong>, niet om je pagina in kolo
 <div class="ulist">
 <ul>
 <li>
-<p><code>div</code> is een <strong>blokelement</strong>: het begint op een nieuwe regel en neemt de volledige breedte in.</p>
+<p><code>div</code> is een <strong>blok-tag</strong>: het begint op een nieuwe regel en neemt de volledige breedte in.</p>
 </li>
 <li>
-<p><code>span</code> is een <strong>inline element</strong>: het blijft in de lopende tekst staan.</p>
+<p><code>span</code> is een <strong>inline tag</strong>: het blijft in de lopende tekst staan.</p>
 </li>
 </ul>
 </div>
@@ -1633,9 +1668,9 @@ Gebruik tabellen enkel voor <strong>gegevens</strong>, niet om je pagina in kolo
 </div>
 </div>
 <div class="sect3">
-<h4 id="_semantische_elementen">1.10.2. Semantische elementen</h4>
+<h4 id="_semantische_tags">1.10.2. Semantische tags</h4>
 <div class="paragraph">
-<p>HTML5 heeft elementen die wél een betekenis hebben. Ze vertellen de browser, zoekmachines en schermlezers welke rol een stuk van de pagina speelt.</p>
+<p>HTML5 heeft tags die wél een betekenis hebben. Ze vertellen de browser, zoekmachines en schermlezers welke rol een stuk van de pagina speelt.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1672,7 +1707,7 @@ Gebruik tabellen enkel voor <strong>gegevens</strong>, niet om je pagina in kolo
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Element</th>
+<th class="tableblock halign-left valign-top">Tag</th>
 <th class="tableblock halign-left valign-top">Betekenis</th>
 </tr>
 </thead>
@@ -1708,7 +1743,7 @@ Gebruik tabellen enkel voor <strong>gegevens</strong>, niet om je pagina in kolo
 </tbody>
 </table>
 <div class="paragraph">
-<p>Gebruik een semantisch element als er een past, en een <code>div</code> enkel als er geen past.</p>
+<p>Gebruik een semantische tag als er een past, en een <code>div</code> enkel als er geen past.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1757,7 +1792,7 @@ Gebruik tabellen enkel voor <strong>gegevens</strong>, niet om je pagina in kolo
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Ontwikkelaarstools</strong>: klik met de rechtermuisknop op een element in de browser en kies <em>Inspecteren</em> (of druk kbd:[F12]). Je ziet hoe de browser jouw HTML gelezen heeft.</p>
+<p><strong>Ontwikkelaarstools</strong>: klik met de rechtermuisknop op een stuk van de pagina in de browser en kies <em>Inspecteren</em> (of druk <kbd>F12</kbd>). Je ziet hoe de browser jouw HTML gelezen heeft.</p>
 </li>
 <li>
 <p><strong>Validator</strong>: plak je code op <a href="https://validator.w3.org/#validate_by_input">validator.w3.org</a>. Die toont alle fouten tegen de HTML-standaard.</p>
@@ -1866,7 +1901,7 @@ Gebruik tabellen enkel voor <strong>gegevens</strong>, niet om je pagina in kolo
 <div class="sectionbody">
 <div class="paragraph">
 <p>CSS staat voor <mark>Cascading Style Sheets</mark>.
-Waar HTML de <strong>inhoud en structuur</strong> van een pagina bepaalt, bepaalt CSS de <strong>vormgeving</strong>: kleuren, lettertypes, afstanden, randen, de plaats van elementen op het scherm, &#8230;&#8203;</p>
+Waar HTML de <strong>inhoud en structuur</strong> van een pagina bepaalt, bepaalt CSS de <strong>vormgeving</strong>: kleuren, lettertypes, afstanden, randen, de plaats van tags op het scherm, &#8230;&#8203;</p>
 </div>
 <div class="paragraph">
 <p>Door inhoud (HTML) en vormgeving (CSS) te scheiden:</p>
@@ -1896,13 +1931,16 @@ Waar HTML de <strong>inhoud en structuur</strong> van een pagina bepaalt, bepaal
 <p>hoe een CSS-regel opgebouwd is;</p>
 </li>
 <li>
-<p>hoe je met selectoren de juiste elementen kiest;</p>
+<p>hoe je met selectoren de juiste tags kiest;</p>
 </li>
 <li>
 <p>kleuren, tekst, het boxmodel en achtergronden opmaken;</p>
 </li>
 <li>
-<p>elementen naast elkaar plaatsen met flexbox en grid;</p>
+<p>tags positioneren met <code>position</code>, en effecten zoals cirkels, doorzichtigheid, schaduwen en kleurverlopen gebruiken;</p>
+</li>
+<li>
+<p>tags naast elkaar plaatsen met flexbox en grid;</p>
 </li>
 <li>
 <p>een pagina laten werken op een smartphone (responsive design).</p>
@@ -1917,7 +1955,7 @@ Waar HTML de <strong>inhoud en structuur</strong> van een pagina bepaalt, bepaal
 <div class="sect3">
 <h4 id="_inline">2.1.1. Inline</h4>
 <div class="paragraph">
-<p>Met het <code>style</code>-attribuut op één element:</p>
+<p>Met het <code>style</code>-attribuut op één tag:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1925,13 +1963,13 @@ Waar HTML de <strong>inhoud en structuur</strong> van een pagina bepaalt, bepaal
 </div>
 </div>
 <div class="paragraph">
-<p>Dit werkt, maar is moeilijk te onderhouden: je moet elk element apart aanpassen.</p>
+<p>Dit werkt, maar is moeilijk te onderhouden: je moet elke tag apart aanpassen.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_intern">2.1.2. Intern</h4>
 <div class="paragraph">
-<p>In een <code>style</code>-element in de <code>head</code>:</p>
+<p>In een <code>style</code>-tag in de <code>head</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1951,7 +1989,7 @@ Waar HTML de <strong>inhoud en structuur</strong> van een pagina bepaalt, bepaal
 <div class="sect3">
 <h4 id="_extern_aanbevolen">2.1.3. Extern (aanbevolen)</h4>
 <div class="paragraph">
-<p>In een apart bestand, bijvoorbeeld <code>style.css</code>, dat je koppelt met een <code>link</code>-element in de <code>head</code>:</p>
+<p>In een apart bestand, bijvoorbeeld <code>style.css</code>, dat je koppelt met een <code>link</code>-tag in de <code>head</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1989,7 +2027,7 @@ Waar HTML de <strong>inhoud en structuur</strong> van een pagina bepaalt, bepaal
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>De <strong>selector</strong> bepaalt op welke elementen de regel van toepassing is: hier alle <code>h1</code>-elementen.</td>
+<td>De <strong>selector</strong> bepaalt op welke tags de regel van toepassing is: hier alle <code>h1</code>-tags.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -2017,9 +2055,9 @@ Waar HTML de <strong>inhoud en structuur</strong> van een pagina bepaalt, bepaal
 <div class="sect2">
 <h3 id="_selectoren">2.3. Selectoren</h3>
 <div class="sect3">
-<h4 id="_element_selector">2.3.1. Element-selector</h4>
+<h4 id="_tag_selector">2.3.1. Tag-selector</h4>
 <div class="paragraph">
-<p>Selecteert alle elementen van een bepaald type.</p>
+<p>Selecteert alle tags van een bepaald type.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2033,7 +2071,7 @@ Waar HTML de <strong>inhoud en structuur</strong> van een pagina bepaalt, bepaal
 <h4 id="_class_selector">2.3.2. Class-selector</h4>
 <div class="paragraph">
 <p>Een <em>class</em> geef je in HTML met het <code>class</code>-attribuut. In CSS schrijf je een punt voor de naam.
-Dezelfde class mag op veel elementen staan, en één element mag meerdere classes hebben.</p>
+Dezelfde class mag op veel tags staan, en één tag mag meerdere classes hebben.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2092,14 +2130,76 @@ Gebruik voor opmaak bijna altijd classes. Een <code>id</code> gebruik je vooral 
   <span class="nl">font-family</span><span class="p">:</span> <span class="n">Georgia</span><span class="p">,</span> <span class="nb">serif</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="c">/* Alle a-elementen die ergens in een nav staan */</span>
+<span class="c">/* Alle a-tags die ergens in een nav staan */</span>
 <span class="nt">nav</span> <span class="nt">a</span> <span class="p">{</span>
   <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="c">/* Alle p-elementen met class intro */</span>
+<span class="c">/* Alle p-tags met class intro */</span>
 <span class="nt">p</span><span class="nc">.intro</span> <span class="p">{</span>
   <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wanneer je twee selectoren combineert om een tag te vinden via zijn plaats ten opzichte van een andere tag, spreken we van een <strong>combinator</strong>:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Combinator</th>
+<th class="tableblock halign-left valign-top">Voorbeeld</th>
+<th class="tableblock halign-left valign-top">Selecteert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">spatie (<em>descendant</em>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>nav a</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">alle <code>a</code>-tags <strong>ergens</strong> in een <code>nav</code>, ook dieper genest</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&gt;</code> (<em>child</em>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ul &gt; li</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">alleen de <code>li</code>-tags <strong>rechtstreeks</strong> in een <code>ul</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>+</code> (<em>adjacent sibling</em>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>h2 + p</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">de <code>p</code>-tag die <strong>direct na</strong> een <code>h2</code> komt</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>~</code> (<em>general sibling</em>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>h2 ~ p</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">alle <code>p</code>-tags die <strong>ergens na</strong> een <code>h2</code> komen, met dezelfde bovenliggende tag</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Zo kan je tags opmaken zonder dat ze zelf een <code>id</code> of <code>class</code> nodig hebben:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"scores"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;tr&gt;&lt;th&gt;</span>Naam<span class="nt">&lt;/th&gt;&lt;th&gt;</span>Punten<span class="nt">&lt;/th&gt;&lt;/tr&gt;</span>
+  <span class="nt">&lt;tr&gt;&lt;td&gt;</span>Emma<span class="nt">&lt;/td&gt;&lt;td&gt;</span>17<span class="nt">&lt;/td&gt;&lt;/tr&gt;</span>
+<span class="nt">&lt;/table&gt;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="nc">.scores</span> <span class="nt">th</span> <span class="p">{</span>            <span class="c">/* alle th-tags in de tabel met class scores */</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="no">navy</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.scores</span> <span class="nt">td</span> <span class="p">{</span>            <span class="c">/* alle td-tags in die tabel */</span>
+  <span class="nl">text-shadow</span><span class="p">:</span> <span class="m">1px</span> <span class="m">1px</span> <span class="m">2px</span> <span class="no">gray</span><span class="p">;</span>
 <span class="p">}</span></code></pre>
 </div>
 </div>
@@ -2107,7 +2207,7 @@ Gebruik voor opmaak bijna altijd classes. Een <code>id</code> gebruik je vooral 
 <div class="sect3">
 <h4 id="_pseudo_classes">2.3.5. Pseudo-classes</h4>
 <div class="paragraph">
-<p>Een pseudo-class selecteert een element in een bepaalde <strong>toestand</strong>.</p>
+<p>Een pseudo-class selecteert een tag in een bepaalde <strong>toestand</strong>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2119,7 +2219,7 @@ Gebruik voor opmaak bijna altijd classes. Een <code>id</code> gebruik je vooral 
   <span class="nl">border-color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="nt">li</span><span class="nd">:first-child</span> <span class="p">{</span>     <span class="c">/* het eerste li-element */</span>
+<span class="nt">li</span><span class="nd">:first-child</span> <span class="p">{</span>     <span class="c">/* de eerste li-tag */</span>
   <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -2227,7 +2327,7 @@ In VS Code klik je op het gekleurde vierkantje naast een kleur om een kleurkieze
 <h4 id="_google_fonts">2.5.1. Google Fonts</h4>
 <div class="paragraph">
 <p>Op <a href="https://fonts.google.com">fonts.google.com</a> vind je honderden gratis lettertypes.
-Kies een lettertype, klik op <em>Get font &#8594; Get embed code</em> en kopieer de <code>link</code>-elementen naar je <code>head</code>, <strong>voor</strong> je eigen stylesheet:</p>
+Kies een lettertype, klik op <em>Get font &#8594; Get embed code</em> en kopieer de <code>link</code>-tags naar je <code>head</code>, <strong>voor</strong> je eigen stylesheet:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2247,7 +2347,561 @@ Kies een lettertype, klik op <em>Get font &#8594; Get embed code</em> en kopieer
 </div>
 </div>
 <div class="sect2">
-<h3 id="_eenheden">2.6. Eenheden</h3>
+<h3 id="_positioneren">2.6. Positioneren</h3>
+<div class="paragraph">
+<p>Voor elke tag op de pagina beantwoordt de browser twee vragen:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Neemt de tag plaats in?</strong> Schuiven de andere tags opzij om plaats voor hem te maken, of gedragen ze zich alsof hij er niet is?</p>
+</li>
+<li>
+<p><strong>Wat is het referentiepunt?</strong> Ten opzichte van wat wordt de tag geplaatst: zijn eigen plaats, een andere tag, of het browservenster?</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Met de eigenschap <code>position</code> bepaal je het antwoord op die twee vragen.
+Als je begrijpt hoe dat werkt, kan je elke positie-opdracht oplossen.</p>
+</div>
+<div class="sect3">
+<h4 id="_de_normale_flow">2.6.1. De normale flow</h4>
+<div class="paragraph">
+<p>Zonder <code>position</code> plaatst de browser alle tags in de <strong>normale flow</strong>.
+Hij leest de HTML van boven naar onder en zet elke tag na de vorige:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>blok-tags (<code>div</code>, <code>p</code>, <code>h1</code>, &#8230;&#8203;) komen <strong>onder</strong> elkaar en nemen de volledige breedte;</p>
+</li>
+<li>
+<p>inline tags (<code>span</code>, <code>a</code>, <code>strong</code>, &#8230;&#8203;) komen <strong>naast</strong> elkaar, in de lopende tekst.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>+----------------------------------------------+  &lt;- bovenkant van de pagina
+| h1                                           |
++----------------------------------------------+
+| p  tekst tekst &lt;a&gt;link&lt;/a&gt; tekst tekst       |
++----------------------------------------------+
+| div                                          |
++----------------------------------------------+
+| p                                            |
++----------------------------------------------+</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Elke tag <strong>neemt plaats in</strong>: de volgende tag begint pas waar de vorige eindigt.
+Is de inhoud langer dan het venster, dan kan je scrollen, en schuift alles in de flow mee.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_het_coördinatensysteem">2.6.2. Het coördinatensysteem</h4>
+<div class="paragraph">
+<p>Als je een tag verplaatst, gebruik je vier eigenschappen: <code>top</code>, <code>right</code>, <code>bottom</code> en <code>left</code>.
+Elke eigenschap is een <strong>afstand tussen een rand van het referentiepunt en dezelfde rand van de tag</strong>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>       referentiepunt
++-------------------------------------+
+|           ^                         |
+|           | top: 30px               |
+|           v                         |
+|&lt;---------&gt;+----------+              |
+| left:     |   tag    |              |
+|  60px     |          |&lt;------------&gt;|
+|           +----------+  right       |
+|                ^                    |
+|                | bottom             |
+|                v                    |
++-------------------------------------+</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>top: 30px</code>: de bovenkant van de tag staat 30px <strong>onder</strong> de bovenkant van het referentiepunt.</p>
+</li>
+<li>
+<p><code>left: 60px</code>: de linkerkant van de tag staat 60px <strong>rechts van</strong> de linkerkant van het referentiepunt.</p>
+</li>
+<li>
+<p><code>right: 0</code>: de rechterkant van de tag raakt de rechterkant van het referentiepunt.</p>
+</li>
+<li>
+<p>Een <strong>negatieve</strong> waarde verschuift in de andere richting: <code>top: -20px</code> gaat naar boven.</p>
+</li>
+<li>
+<p>Een <strong>percentage</strong> is een percentage van de grootte van het referentiepunt: <code>left: 50%</code> is halverwege de breedte.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Denk aan <code>top</code> en <code>left</code> als "afstand <strong>van</strong>" en niet als "richting <strong>naar</strong>". <code>left: 60px</code> schuift de tag dus naar <strong>rechts</strong>, weg van de linkerkant.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Gebruik meestal één verticale (<code>top</code> of <code>bottom</code>) en één horizontale eigenschap (<code>left</code> of <code>right</code>).</p>
+</div>
+<div class="paragraph">
+<p>In de normale flow (<code>position: static</code>) worden deze vier eigenschappen genegeerd.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_de_vijf_waarden_van_position">2.6.3. De vijf waarden van position</h4>
+<div class="paragraph">
+<p>Elke waarde van <code>position</code> is een ander antwoord op de twee vragen van hierboven:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><code>position</code></th>
+<th class="tableblock halign-left valign-top">Neemt plaats in?</th>
+<th class="tableblock halign-left valign-top">Referentiepunt</th>
+<th class="tableblock halign-left valign-top">Scrolt mee met de pagina?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>static</code> (standaard)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ja</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">geen: de tag staat in de normale flow</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ja</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>relative</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ja, op zijn <strong>oorspronkelijke</strong> plaats</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zijn eigen oorspronkelijke plaats</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ja</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>absolute</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nee</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">de dichtstbijzijnde bovenliggende tag met een <code>position</code> (niet <code>static</code>); is die er niet, dan de pagina</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ja</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fixed</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nee</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">het browservenster</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nee</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sticky</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ja</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zijn plaats in de flow, tot hij de rand van het venster raakt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tot hij blijft plakken</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect4">
+<h5 id="_relative_verschuiven_vanaf_de_eigen_plaats">relative: verschuiven vanaf de eigen plaats</h5>
+<div class="paragraph">
+<p>De tag wordt eerst normaal in de flow geplaatst. Daarna wordt hij verschoven, vertrekkend van die plaats.
+De andere tags merken daar niets van: zijn <strong>oorspronkelijke plaats blijft bezet</strong>, alsof er een onzichtbare kopie achterblijft.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>  zonder position              met position: relative;
+                                   top: 20px; left: 40px;
+
++--------------+               +..............+
+| div          |               :              :   &lt;- lege plek: blijft bezet
++--------------+               +.....+--------------+
+| p            |               | p   | div          |   &lt;- de div ligt over de p
++--------------+               +-----+--------------+</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="nc">.vak</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>     <span class="c">/* 20px lager dan zijn normale plaats */</span>
+  <span class="nl">left</span><span class="p">:</span> <span class="m">40px</span><span class="p">;</span>    <span class="c">/* 40px meer naar rechts dan zijn normale plaats */</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>relative</code> heeft nog een tweede, heel belangrijke rol: de tag wordt het <strong>referentiepunt</strong> voor tags met <code>position: absolute</code> die erin zitten (zie hieronder).</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_absolute_uit_de_flow_geplaatst_in_een_referentiepunt">absolute: uit de flow, geplaatst in een referentiepunt</h5>
+<div class="paragraph">
+<p>De tag wordt <strong>uit de flow gehaald</strong>. De andere tags schuiven op alsof hij er niet is.
+Daarna wordt hij geplaatst ten opzichte van zijn referentiepunt. De browser zoekt dat zo:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Kijk naar de bovenliggende tag. Heeft die een <code>position</code> die niet <code>static</code> is? Dan is dat het referentiepunt.</p>
+</li>
+<li>
+<p>Zo niet, kijk naar de tag daarboven, enzovoort.</p>
+</li>
+<li>
+<p>Vind je er geen, dan is de <strong>pagina</strong> het referentiepunt.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>  &lt;div class="kaart"&gt;  (position: relative)
++-----------------------------------+
+|                        +-------+  |
+|                        | label |  |  &lt;- position: absolute;
+|                        +-------+  |     top: 10px; right: 10px;
+|  tekst van het kaartje            |
+|                                   |
++-----------------------------------+</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="nc">.kaart</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>   <span class="c">/* maakt van het kaartje het referentiepunt */</span>
+<span class="p">}</span>
+
+<span class="nc">.kaart</span> <span class="nc">.label</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+  <span class="nl">right</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>          <span class="c">/* rechtsboven in het kaartje */</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Laat je <code>position: relative</code> bij <code>.kaart</code> weg, dan staat het label rechtsboven in de <strong>pagina</strong>. Het patroon <em>bovenliggende tag <code>relative</code>, tag erin `absolute`</em> gebruik je heel vaak.</p>
+</div>
+<div class="paragraph">
+<p>Heeft een tag met <code>absolute</code> geen gepositioneerde bovenliggende tag, dan is de pagina het referentiepunt. Zo plaats je een tag tegen de rand van de pagina:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="nc">.zijbalk</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nl">right</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>       <span class="c">/* tegen de rechterrand van de pagina */</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_fixed_vast_in_het_venster">fixed: vast in het venster</h5>
+<div class="paragraph">
+<p>Een tag met <code>fixed</code> wordt ook uit de flow gehaald, maar zijn referentiepunt is altijd het <strong>browservenster</strong>.
+Omdat het venster niet meescrolt, blijft de tag <strong>op dezelfde plaats op het scherm</strong> staan terwijl de rest van de pagina eronder schuift.
+Zo maak je bijvoorbeeld een menu dat altijd zichtbaar blijft of een knop "Terug naar boven".</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="nc">.terug-knop</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">fixed</span><span class="p">;</span>
+  <span class="nl">bottom</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
+  <span class="nl">right</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>    <span class="c">/* altijd rechtsonder in het venster */</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_sticky_eerst_normaal_dan_vastgeplakt">sticky: eerst normaal, dan vastgeplakt</h5>
+<div class="paragraph">
+<p>Een <code>sticky</code> tag staat eerst gewoon in de flow en scrolt mee. Zodra hij de afstand bereikt die je opgeeft, blijft hij plakken.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="nt">nav</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="n">sticky</span><span class="p">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>    <span class="c">/* plakt vast zodra hij de bovenkant van het venster raakt */</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_een_tag_centreren_met_positie">2.6.4. Een tag centreren met positie</h4>
+<div class="paragraph">
+<p>Met wat je nu weet, kan je een tag precies in het midden van zijn referentiepunt zetten. Dat gaat in twee stappen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre> stap 1: top: 50%; left: 50%;         stap 2: transform: translate(-50%, -50%);
++---------------------------+         +---------------------------+
+|                           |         |                           |
+|                           |         |        +---------+        |
+|             +---------+   |         |        |   tag   |        |
+|             |   tag   |   |         |        +---------+        |
+|             +---------+   |         |                           |
++---------------------------+         +---------------------------+
+   de linkerbovenhoek staat               het midden van de tag staat
+   in het midden                          in het midden</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="nc">.midden</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">fixed</span><span class="p">;</span>                     <span class="c">/* of absolute */</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="nl">left</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+  <span class="nl">transform</span><span class="p">:</span> <span class="n">translate</span><span class="p">(</span><span class="m">-50%</span><span class="p">,</span> <span class="m">-50%</span><span class="p">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Een percentage bij <code>top</code> en <code>left</code> is een percentage van het <strong>referentiepunt</strong>. De linkerbovenhoek van de tag komt dus in het midden te staan.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Een percentage bij <code>translate</code> is een percentage van de <strong>tag zelf</strong>. De tag schuift de helft van zijn eigen breedte naar links en de helft van zijn eigen hoogte naar boven.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Met <code>fixed</code> blijft de tag in het midden van het scherm staan, ook als je scrolt. Met <code>absolute</code> staat hij in het midden van zijn referentiepunt.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_lagen_z_index">2.6.5. Lagen: z-index</h4>
+<div class="paragraph">
+<p>Tags die uit de flow gehaald zijn, kunnen over andere tags heen liggen. Je kan de pagina dus zien als een stapel lagen, met een derde as die naar jou toe wijst.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Een gepositioneerde tag (niet <code>static</code>) ligt boven tags in de normale flow.</p>
+</li>
+<li>
+<p>Liggen twee gepositioneerde tags over elkaar, dan ligt de tag die het <strong>laatst</strong> in de HTML staat bovenaan.</p>
+</li>
+<li>
+<p>Met <code>z-index</code> bepaal je het zelf: een <strong>hoger</strong> getal ligt <strong>bovenaan</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="nc">.popup</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">fixed</span><span class="p">;</span>
+  <span class="nl">z-index</span><span class="p">:</span> <span class="m">10</span><span class="p">;</span>     <span class="c">/* ligt boven .zijbalk */</span>
+<span class="p">}</span>
+
+<span class="nc">.zijbalk</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">z-index</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>z-index</code> werkt alleen op tags met een <code>position</code> die niet <code>static</code> is.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_samengevat_welke_position_kies_ik">2.6.6. Samengevat: welke position kies ik?</h4>
+<div class="paragraph">
+<p>Stel jezelf de twee vragen van het begin:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Wat wil je?</th>
+<th class="tableblock halign-left valign-top">Gebruik</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">De tag een beetje verschuiven, zonder dat de rest verandert</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>relative</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">De tag op een vaste plaats binnen een andere tag zetten</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>absolute</code>, en <code>relative</code> op de bovenliggende tag</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">De tag tegen een rand van de pagina zetten</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>absolute</code> zonder gepositioneerde bovenliggende tag</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">De tag op het scherm laten staan terwijl je scrolt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>fixed</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">De tag laten meescrollen tot hij bovenaan blijft plakken</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sticky</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tags gewoon onder of naast elkaar zetten</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">geen <code>position</code>: gebruik de normale flow, flexbox of grid</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Gebruik <code>position</code> niet om een volledige pagina op te bouwen. Voor kolommen en rijen zijn flexbox en grid veel geschikter. <code>position</code> gebruik je voor tags die <strong>bovenop</strong> of <strong>buiten</strong> de normale indeling moeten staan.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_visuele_effecten">2.7. Visuele effecten</h3>
+<div class="sect3">
+<h4 id="_afgeronde_hoeken_en_cirkels">2.7.1. Afgeronde hoeken en cirkels</h4>
+<div class="paragraph">
+<p>Met <code>border-radius</code> rond je de hoeken af. Geef je een <strong>vierkant</strong> <code>border-radius: 50%</code>, dan wordt het een <strong>cirkel</strong>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="nc">.knop</span> <span class="p">{</span>
+  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">8px</span><span class="p">;</span>      <span class="c">/* licht afgeronde hoeken */</span>
+<span class="p">}</span>
+
+<span class="nf">#vak</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">150px</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">150px</span><span class="p">;</span>           <span class="c">/* breedte = hoogte: een vierkant */</span>
+  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>      <span class="c">/* wordt een cirkel */</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_doorzichtigheid">2.7.2. Doorzichtigheid</h4>
+<div class="paragraph">
+<p><code>opacity</code> maakt een tag doorzichtig, met een waarde van <code>0</code> (onzichtbaar) tot <code>1</code> (volledig zichtbaar).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="nf">#vak</span> <span class="nt">p</span> <span class="p">{</span>
+  <span class="nl">opacity</span><span class="p">:</span> <span class="m">0.5</span><span class="p">;</span>    <span class="c">/* half doorzichtig */</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<code>opacity</code> geldt voor de tag <strong>en alles wat erin zit</strong>. Wil je alleen een doorzichtige achtergrond, gebruik dan een kleur met transparantie: <code>background-color: rgba(0, 0, 0, 0.5);</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_schaduw_op_tekst">2.7.3. Schaduw op tekst</h4>
+<div class="paragraph">
+<p><code>text-shadow</code> geeft tekst een schaduw. De waarden zijn: horizontale verschuiving, verticale verschuiving, vervaging en kleur.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="nt">h1</span> <span class="p">{</span>
+  <span class="nl">text-shadow</span><span class="p">:</span> <span class="m">2px</span> <span class="m">2px</span> <span class="m">4px</span> <span class="no">gray</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Voor een schaduw rond een volledige tag gebruik je <code>box-shadow</code> (zie <a href="#_achtergronden_en_schaduwen">Achtergronden en schaduwen</a>).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_kleurverloop_gradient">2.7.4. Kleurverloop (gradient)</h4>
+<div class="paragraph">
+<p>Een <em>gradient</em> is een vloeiende overgang tussen kleuren. Je gebruikt hem als <code>background-image</code>, niet als <code>background-color</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="nc">.banner</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+  <span class="nl">background-image</span><span class="p">:</span> <span class="n">linear-gradient</span><span class="p">(</span><span class="n">to</span> <span class="nb">right</span><span class="p">,</span> <span class="no">orange</span><span class="p">,</span> <span class="no">crimson</span><span class="p">);</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="p">}</span>
+
+<span class="nc">.banner</span><span class="nd">:hover</span> <span class="p">{</span>
+  <span class="nl">background-image</span><span class="p">:</span> <span class="n">linear-gradient</span><span class="p">(</span><span class="n">to</span> <span class="nb">right</span><span class="p">,</span> <span class="no">teal</span><span class="p">,</span> <span class="no">navy</span><span class="p">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="p">}</span>
+
+<span class="nc">.bol</span> <span class="p">{</span>
+  <span class="nl">background-image</span><span class="p">:</span> <span class="n">radial-gradient</span><span class="p">(</span><span class="no">yellow</span><span class="p">,</span> <span class="no">orange</span><span class="p">);</span> <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Van links (oranje) naar rechts (karmijnrood). Andere richtingen: <code>to bottom</code>, <code>to top right</code>, <code>45deg</code>, &#8230;&#8203;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Met de pseudo-class <code>:hover</code> krijgt de banner een ander kleurverloop zolang de muis erover gaat.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Een cirkelvormig verloop vanuit het midden.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_randen_en_outline">2.7.5. Randen en outline</h4>
+<div class="paragraph">
+<p>Met <code>border-style</code> kies je het soort rand: <code>solid</code>, <code>dashed</code> (streepjes), <code>dotted</code> (puntjes) of <code>double</code>.
+Een rand kan je combineren met <code>border-radius</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="nt">th</span> <span class="p">{</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">3px</span> <span class="nb">dashed</span> <span class="no">purple</span><span class="p">;</span>
+  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Een <strong>outline</strong> is een lijn <strong>buiten</strong> de border. Het verschil met een border: een outline neemt geen plaats in, en schuift de andere tags dus niet op.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="nt">table</span> <span class="p">{</span>
+  <span class="nl">outline</span><span class="p">:</span> <span class="m">4px</span> <span class="nb">solid</span> <span class="no">gold</span><span class="p">;</span>
+  <span class="nl">outline-color</span><span class="p">:</span> <span class="no">crimson</span><span class="p">;</span>   <span class="c">/* alleen de kleur aanpassen */</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_eenheden">2.8. Eenheden</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -2269,7 +2923,7 @@ Kies een lettertype, klik op <em>Get font &#8594; Get embed code</em> en kopieer
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>%</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">percentage van het bovenliggende element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">percentage van de bovenliggende tag</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">breedtes</p></td>
 </tr>
 <tr>
@@ -2279,7 +2933,7 @@ Kies een lettertype, klik op <em>Get font &#8594; Get embed code</em> en kopieer
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>em</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">veelvoud van de lettergrootte van het element zelf</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">veelvoud van de lettergrootte van de tag zelf</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">afstanden die meeschalen met de tekst</p></td>
 </tr>
 <tr>
@@ -2302,9 +2956,9 @@ Kies een lettertype, klik op <em>Get font &#8594; Get embed code</em> en kopieer
 </div>
 </div>
 <div class="sect2">
-<h3 id="_het_boxmodel">2.7. Het boxmodel</h3>
+<h3 id="_het_boxmodel">2.9. Het boxmodel</h3>
 <div class="paragraph">
-<p>Elk element op een webpagina is een <strong>rechthoek</strong> (een <em>box</em>). Die box bestaat uit vier lagen:</p>
+<p>Elke tag op een webpagina is een <strong>rechthoek</strong> (een <em>box</em>). Die box bestaat uit vier lagen:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2325,13 +2979,13 @@ Kies een lettertype, klik op <em>Get font &#8594; Get embed code</em> en kopieer
 <p><strong>content</strong>: de inhoud zelf (tekst, afbeelding). De grootte bepaal je met <code>width</code> en <code>height</code>.</p>
 </li>
 <li>
-<p><strong>padding</strong>: ruimte <strong>binnen</strong> de rand, tussen de inhoud en de rand. Heeft de achtergrondkleur van het element.</p>
+<p><strong>padding</strong>: ruimte <strong>binnen</strong> de rand, tussen de inhoud en de rand. Heeft de achtergrondkleur van de tag.</p>
 </li>
 <li>
 <p><strong>border</strong>: de rand.</p>
 </li>
 <li>
-<p><strong>margin</strong>: ruimte <strong>buiten</strong> de rand, tussen dit element en de andere elementen. Is altijd doorzichtig.</p>
+<p><strong>margin</strong>: ruimte <strong>buiten</strong> de rand, tussen deze tag en de andere tags. Is altijd doorzichtig.</p>
 </li>
 </ul>
 </div>
@@ -2366,9 +3020,9 @@ Kies een lettertype, klik op <em>Get font &#8594; Get embed code</em> en kopieer
 </div>
 </div>
 <div class="sect3">
-<h4 id="_box_sizing">2.7.1. box-sizing</h4>
+<h4 id="_box_sizing">2.9.1. box-sizing</h4>
 <div class="paragraph">
-<p>Standaard telt de browser padding en border <strong>bij</strong> de <code>width</code> op. Een element met <code>width: 300px</code> en <code>padding: 20px</code> is dus in werkelijkheid 340px breed.
+<p>Standaard telt de browser padding en border <strong>bij</strong> de <code>width</code> op. Een tag met <code>width: 300px</code> en <code>padding: 20px</code> is dus in werkelijkheid 340px breed.
 Dat is verwarrend. Zet daarom bovenaan elk stylesheet:</p>
 </div>
 <div class="listingblock">
@@ -2384,13 +3038,13 @@ Dat is verwarrend. Zet daarom bovenaan elk stylesheet:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_achtergronden_en_schaduwen">2.8. Achtergronden en schaduwen</h3>
+<h3 id="_achtergronden_en_schaduwen">2.10. Achtergronden en schaduwen</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="css"><span class="nc">.hero</span> <span class="p">{</span>
   <span class="nl">background-color</span><span class="p">:</span> <span class="m">#1e3a5f</span><span class="p">;</span>
   <span class="nl">background-image</span><span class="p">:</span> <span class="sx">url("afbeeldingen/bergen.jpg")</span><span class="p">;</span>
-  <span class="nl">background-size</span><span class="p">:</span> <span class="n">cover</span><span class="p">;</span>          <span class="c">/* de afbeelding vult het volledige element */</span>
+  <span class="nl">background-size</span><span class="p">:</span> <span class="n">cover</span><span class="p">;</span>          <span class="c">/* de afbeelding vult de volledige tag */</span>
   <span class="nl">background-position</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
   <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
 <span class="p">}</span>
@@ -2414,9 +3068,9 @@ Een pad in een CSS-bestand is relatief ten opzichte van het <strong>CSS-bestand<
 </div>
 </div>
 <div class="sect2">
-<h3 id="_display_blok_en_inline">2.9. Display: blok en inline</h3>
+<h3 id="_display_blok_en_inline">2.11. Display: blok en inline</h3>
 <div class="paragraph">
-<p>Elk element heeft een <code>display</code>-waarde die bepaalt hoe het zich gedraagt.</p>
+<p>Elke tag heeft een <code>display</code>-waarde die bepaalt hoe het zich gedraagt.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -2449,7 +3103,7 @@ Een pad in een CSS-bestand is relatief ten opzichte van het <strong>CSS-bestand<
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>none</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">het element wordt niet getoond</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">de tag wordt niet getoond</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -2464,10 +3118,10 @@ Een pad in een CSS-bestand is relatief ten opzichte van het <strong>CSS-bestand<
 </div>
 </div>
 <div class="sect2">
-<h3 id="_lay_out_met_flexbox">2.10. Lay-out met flexbox</h3>
+<h3 id="_lay_out_met_flexbox">2.12. Lay-out met flexbox</h3>
 <div class="paragraph">
-<p>Met <strong>flexbox</strong> plaats je elementen naast of onder elkaar, en verdeel je de ruimte ertussen.
-Je zet <code>display: flex</code> op het <strong>bovenliggende</strong> element (de <em>container</em>). De elementen erin (de <em>items</em>) worden dan op een rij gezet.</p>
+<p>Met <strong>flexbox</strong> plaats je tags naast of onder elkaar, en verdeel je de ruimte ertussen.
+Je zet <code>display: flex</code> op de <strong>bovenliggende</strong> tag (de <em>container</em>). De tags erin (de <em>items</em>) worden dan op een rij gezet.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2521,7 +3175,7 @@ Je zet <code>display: flex</code> op het <strong>bovenliggende</strong> element 
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Een element in het midden van het scherm plaatsen</div>
+<div class="title">Een tag in het midden van het scherm plaatsen</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="css"><span class="nc">.midden</span> <span class="p">{</span>
   <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
@@ -2545,7 +3199,7 @@ Oefen flexbox spelenderwijs met <a href="https://flexboxfroggy.com/#nl">Flexbox 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_lay_out_met_grid">2.11. Lay-out met grid</h3>
+<h3 id="_lay_out_met_grid">2.13. Lay-out met grid</h3>
 <div class="paragraph">
 <p>Met <strong>grid</strong> verdeel je een container in rijen en kolommen. Handig voor fotogalerijen en de indeling van een volledige pagina.</p>
 </div>
@@ -2586,7 +3240,7 @@ Oefen grid met <a href="https://cssgridgarden.com/#nl">Grid Garden</a>.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_responsive_design">2.12. Responsive design</h3>
+<h3 id="_responsive_design">2.14. Responsive design</h3>
 <div class="paragraph">
 <p>Een <em>responsive</em> website past zich aan de schermgrootte aan: op een smartphone staan de kolommen bijvoorbeeld onder elkaar in plaats van naast elkaar.</p>
 </div>
@@ -2651,16 +3305,16 @@ Oefen grid met <a href="https://cssgridgarden.com/#nl">Grid Garden</a>.
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-In de ontwikkelaarstools (kbd:[F12]) klik je op het icoontje met de telefoon en tablet om je pagina op verschillende schermgroottes te bekijken.
+In de ontwikkelaarstools (<kbd>F12</kbd>) klik je op het icoontje met de telefoon en tablet om je pagina op verschillende schermgroottes te bekijken.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_de_cascade_en_specificiteit">2.13. De cascade en specificiteit</h3>
+<h3 id="_de_cascade_en_specificiteit">2.15. De cascade en specificiteit</h3>
 <div class="paragraph">
-<p>Wat als twee regels hetzelfde element opmaken?</p>
+<p>Wat als twee regels dezelfde tag opmaken?</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2676,7 +3330,7 @@ In de ontwikkelaarstools (kbd:[F12]) klik je op het icoontje met de telefoon en 
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Specificiteit</strong>: een specifiekere selector wint. Van zwak naar sterk: element &#8594; class &#8594; id &#8594; inline style.</p>
+<p><strong>Specificiteit</strong>: een specifiekere selector wint. Van zwak naar sterk: tag &#8594; class &#8594; id &#8594; inline style.</p>
 </li>
 <li>
 <p><strong>Volgorde</strong>: bij gelijke specificiteit wint de regel die het <strong>laatst</strong> staat.</p>
@@ -2687,17 +3341,17 @@ In de ontwikkelaarstools (kbd:[F12]) klik je op het icoontje met de telefoon en 
 <p>Een paragraaf <code>&lt;p class="intro" id="welkom"&gt;</code> wordt dus groen. Een gewone <code>p</code> wordt grijs.</p>
 </div>
 <div class="sect3">
-<h4 id="_overerving">2.13.1. Overerving</h4>
+<h4 id="_overerving">2.15.1. Overerving</h4>
 <div class="paragraph">
-<p>Sommige eigenschappen, zoals <code>color</code> en <code>font-family</code>, worden <strong>overgeërfd</strong> door de elementen die erin zitten. Daarom zet je het lettertype op <code>body</code>: dan geldt het voor de hele pagina.
+<p>Sommige eigenschappen, zoals <code>color</code> en <code>font-family</code>, worden <strong>overgeërfd</strong> door de tags die erin zitten. Daarom zet je het lettertype op <code>body</code>: dan geldt het voor de hele pagina.
 Eigenschappen van het boxmodel (<code>margin</code>, <code>padding</code>, <code>border</code>) worden niet overgeërfd.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_fouten_opsporen_2">2.14. Fouten opsporen</h3>
+<h3 id="_fouten_opsporen_2">2.16. Fouten opsporen</h3>
 <div class="paragraph">
-<p>Open de ontwikkelaarstools (kbd:[F12]) en selecteer een element. Rechts zie je:</p>
+<p>Open de ontwikkelaarstools (<kbd>F12</kbd>) en selecteer een tag. Rechts zie je:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2724,7 +3378,7 @@ Eigenschappen van het boxmodel (<code>margin</code>, <code>padding</code>, <code
 <p>het punt (<code>.</code>) vergeten voor een class-selector;</p>
 </li>
 <li>
-<p>een verkeerd pad in het <code>link</code>-element;</p>
+<p>een verkeerd pad in de <code>link</code>-tag;</p>
 </li>
 <li>
 <p>een spatie tussen getal en eenheid: <code>20 px</code> werkt niet, <code>20px</code> wel.</p>
@@ -2733,9 +3387,9 @@ Eigenschappen van het boxmodel (<code>margin</code>, <code>padding</code>, <code
 </div>
 </div>
 <div class="sect2">
-<h3 id="_oefeningen_2">2.15. Oefeningen</h3>
+<h3 id="_oefeningen_2">2.17. Oefeningen</h3>
 <div class="sect3">
-<h4 id="_oefening_1_stijl_je_over_mij_pagina">2.15.1. Oefening 1: Stijl je Over mij-pagina</h4>
+<h4 id="_oefening_1_stijl_je_over_mij_pagina">2.17.1. Oefening 1: Stijl je Over mij-pagina</h4>
 <div class="paragraph">
 <p>Maak een extern stylesheet <code>style.css</code> voor je pagina <code>over-mij.html</code> uit het hoofdstuk HTML basis.</p>
 </div>
@@ -2757,7 +3411,7 @@ Eigenschappen van het boxmodel (<code>margin</code>, <code>padding</code>, <code
 </div>
 </div>
 <div class="sect3">
-<h4 id="_oefening_2_kaartjes">2.15.2. Oefening 2: Kaartjes</h4>
+<h4 id="_oefening_2_kaartjes">2.17.2. Oefening 2: Kaartjes</h4>
 <div class="paragraph">
 <p>Maak een pagina met drie "kaartjes" (bijvoorbeeld drie producten, drie sporten of drie games).</p>
 </div>
@@ -2779,7 +3433,7 @@ Eigenschappen van het boxmodel (<code>margin</code>, <code>padding</code>, <code
 </div>
 </div>
 <div class="sect3">
-<h4 id="_oefening_3_mini_website_2">2.15.3. Oefening 3: Mini-website</h4>
+<h4 id="_oefening_3_mini_website_2">2.17.3. Oefening 3: Mini-website</h4>
 <div class="paragraph">
 <p>Geef je mini-website (drie pagina&#8217;s) uit het hoofdstuk HTML basis één gezamenlijk stylesheet.</p>
 </div>
@@ -2808,7 +3462,7 @@ Eigenschappen van het boxmodel (<code>margin</code>, <code>padding</code>, <code
 <div class="sectionbody">
 <div class="paragraph">
 <p><mark>Bootstrap</mark> is een gratis CSS-<em>framework</em>: een verzameling kant-en-klare CSS-classes (en een beetje JavaScript) waarmee je snel een nette, responsive website bouwt.
-In plaats van zelf alle CSS te schrijven, geef je je HTML-elementen classes van Bootstrap.</p>
+In plaats van zelf alle CSS te schrijven, geef je je HTML-tags classes van Bootstrap.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3501,7 +4155,7 @@ Koppel het stylesheet in de <code>head</code>:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Gebruik daarna een icoon met een <code>i</code>-element:</p>
+<p>Gebruik daarna een icoon met een <code>i</code>-tag:</p>
 </div>
 <div class="listingblock">
 <div class="content">

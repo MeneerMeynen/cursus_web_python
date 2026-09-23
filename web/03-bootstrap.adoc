@@ -8,7 +8,7 @@
 = Bootstrap
 
 ##Bootstrap## is een gratis CSS-_framework_: een verzameling kant-en-klare CSS-classes (en een beetje JavaScript) waarmee je snel een nette, responsive website bouwt.
-In plaats van zelf alle CSS te schrijven, geef je je HTML-elementen classes van Bootstrap.
+In plaats van zelf alle CSS te schrijven, geef je je HTML-tags classes van Bootstrap.
 
 [source,html]
 ----
@@ -394,7 +394,7 @@ Koppel het stylesheet in de `head`:
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 ----
 
-Gebruik daarna een icoon met een `i`-element:
+Gebruik daarna een icoon met een `i`-tag:
 
 [source,html]
 ----

@@ -661,7 +661,7 @@ pre.rouge {
 <li><a href="#_je_werkomgeving">1.1. Je werkomgeving</a></li>
 </ul>
 </li>
-<li><a href="#_tags_elementen_en_attributen">2. Tags, elementen en attributen</a>
+<li><a href="#_tags_en_attributen">2. Tags en attributen</a>
 <ul class="sectlevel2">
 <li><a href="#_tags">2.1. Tags</a></li>
 <li><a href="#_nesten">2.2. Nesten</a></li>
@@ -695,7 +695,7 @@ pre.rouge {
 <li><a href="#_een_pagina_indelen">10. Een pagina indelen</a>
 <ul class="sectlevel2">
 <li><a href="#_div_en_span">10.1. div en span</a></li>
-<li><a href="#_semantische_elementen">10.2. Semantische elementen</a></li>
+<li><a href="#_semantische_tags">10.2. Semantische tags</a></li>
 <li><a href="#_speciale_tekens">10.3. Speciale tekens</a></li>
 </ul>
 </li>
@@ -730,16 +730,16 @@ Het is een <em>markup language</em>: je markeert stukken tekst zodat de browser 
 <p>hoe een browser een HTML-bestand omzet naar een webpagina;</p>
 </li>
 <li>
-<p>wat tags, elementen en attributen zijn;</p>
+<p>wat tags en attributen zijn;</p>
 </li>
 <li>
 <p>hoe een HTML-document opgebouwd is;</p>
 </li>
 <li>
-<p>de belangrijkste elementen: titels, tekst, links, afbeeldingen, lijsten, tabellen en formulieren;</p>
+<p>de belangrijkste tags: titels, tekst, links, afbeeldingen, lijsten, tabellen en formulieren;</p>
 </li>
 <li>
-<p>hoe je een pagina opdeelt met semantische elementen.</p>
+<p>hoe je een pagina opdeelt met semantische tags.</p>
 </li>
 </ul>
 </div>
@@ -790,7 +790,7 @@ In deze cursus gebruiken we <strong>Visual Studio Code</strong>.</p>
 <p>Maak een nieuw bestand <code>index.html</code>.</p>
 </li>
 <li>
-<p>Typ <code>!</code> en druk op kbd:[Tab]: VS Code vult de standaardstructuur voor je in.</p>
+<p>Typ <code>!</code> en druk op <kbd>Tab</kbd>: VS Code vult de standaardstructuur voor je in.</p>
 </li>
 <li>
 <p>Open het bestand in je browser (dubbelklik in de verkenner), of installeer de extensie <strong>Live Server</strong> zodat de pagina automatisch vernieuwt wanneer je opslaat.</p>
@@ -813,7 +813,7 @@ De startpagina van een website heet bijna altijd <code>index.html</code>. Een we
 </div>
 </div>
 <div class="sect1">
-<h2 id="_tags_elementen_en_attributen">2. Tags, elementen en attributen</h2>
+<h2 id="_tags_en_attributen">2. Tags en attributen</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_tags">2.1. Tags</h3>
@@ -826,8 +826,17 @@ De meeste tags komen in paren: een <strong>openingstag</strong> en een <strong>s
 <pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;p&gt;</span>Dit is een paragraaf.<span class="nt">&lt;/p&gt;</span></code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>De openingstag, de inhoud en de sluitingstag samen noemen we een <strong>element</strong>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Op andere websites, zoals <a href="https://developer.mozilla.org/nl/">MDN</a>, lees je vaak het woord <em>element</em>. Daarmee bedoelt men een tag samen met zijn inhoud. In deze cursus spreken we gewoon van een <em>tag</em>.
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -844,7 +853,7 @@ De meeste tags komen in paren: een <strong>openingstag</strong> en een <strong>s
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>De inhoud van het element.</td>
+<td>De inhoud van de tag.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -853,7 +862,7 @@ De meeste tags komen in paren: een <strong>openingstag</strong> en een <strong>s
 </table>
 </div>
 <div class="paragraph">
-<p>Sommige elementen hebben geen inhoud en dus ook geen sluitingstag. Dit zijn <em>lege elementen</em> (<em>void elements</em>), bijvoorbeeld:</p>
+<p>Sommige tags hebben geen inhoud en dus ook geen sluitingstag. Dit zijn <em>lege tags</em>, bijvoorbeeld:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -866,8 +875,8 @@ De meeste tags komen in paren: een <strong>openingstag</strong> en een <strong>s
 <div class="sect2">
 <h3 id="_nesten">2.2. Nesten</h3>
 <div class="paragraph">
-<p>Elementen kunnen in andere elementen zitten. We zeggen dan dat ze <em>genest</em> zijn.
-Het binnenste element moet altijd eerst gesloten worden.</p>
+<p>Tags kunnen in andere tags zitten. We zeggen dan dat ze <em>genest</em> zijn.
+De binnenste tag moet altijd eerst gesloten worden.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -876,13 +885,13 @@ Het binnenste element moet altijd eerst gesloten worden.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Spring genest HTML altijd in met een tab of twee spaties. Zo zie je in één oogopslag welk element in welk ander element zit.</p>
+<p>Spring genest HTML altijd in met een tab of twee spaties. Zo zie je in één oogopslag welke tag in welke andere tag zit.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_attributen">2.3. Attributen</h3>
 <div class="paragraph">
-<p>Een <strong>attribuut</strong> geeft extra informatie aan een element. Attributen staan altijd in de <strong>openingstag</strong>, in de vorm <code>naam="waarde"</code>.</p>
+<p>Een <strong>attribuut</strong> geeft extra informatie aan een tag. Attributen staan altijd in de <strong>openingstag</strong>, in de vorm <code>naam="waarde"</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -907,7 +916,7 @@ Het binnenste element moet altijd eerst gesloten worden.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Een attribuut mag maar één keer voorkomen per element.</p>
+<p>Een attribuut mag maar één keer voorkomen per tag.</p>
 </div>
 </div>
 <div class="sect2">
@@ -953,7 +962,7 @@ Het binnenste element moet altijd eerst gesloten worden.</p>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Het <code>html</code>-element omvat de hele pagina. Met <code>lang="nl"</code> geef je aan dat de pagina in het Nederlands is.</td>
+<td>De <code>html</code>-tag omvat de hele pagina. Met <code>lang="nl"</code> geef je aan dat de pagina in het Nederlands is.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -1038,7 +1047,7 @@ Extra spaties en enters in je HTML-code worden door de browser genegeerd. Tien s
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Element</th>
+<th class="tableblock halign-left valign-top">Tag</th>
 <th class="tableblock halign-left valign-top">Betekenis</th>
 <th class="tableblock halign-left valign-top">Standaard weergave</th>
 </tr>
@@ -1073,7 +1082,7 @@ Extra spaties en enters in je HTML-code worden door de browser genegeerd. Tien s
 <h2 id="_links">5. Links</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Een link maak je met het <code>a</code>-element (van <em>anchor</em>). Het <code>href</code>-attribuut bepaalt het doel.</p>
+<p>Een link maak je met de <code>a</code>-tag (van <em>anchor</em>). Het <code>href</code>-attribuut bepaalt het doel.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1241,7 +1250,7 @@ Gebruik in bestandsnamen geen spaties en geen hoofdletters. Schrijf <code>mijn-f
 <div class="sect2">
 <h3 id="_geneste_lijst">7.3. Geneste lijst</h3>
 <div class="paragraph">
-<p>Een lijst kan in een ander <code>li</code>-element zitten:</p>
+<p>Een lijst kan in een <code>li</code>-tag van een andere lijst zitten:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1451,10 +1460,10 @@ Gebruik tabellen enkel voor <strong>gegevens</strong>, niet om je pagina in kolo
 <div class="ulist">
 <ul>
 <li>
-<p><code>div</code> is een <strong>blokelement</strong>: het begint op een nieuwe regel en neemt de volledige breedte in.</p>
+<p><code>div</code> is een <strong>blok-tag</strong>: het begint op een nieuwe regel en neemt de volledige breedte in.</p>
 </li>
 <li>
-<p><code>span</code> is een <strong>inline element</strong>: het blijft in de lopende tekst staan.</p>
+<p><code>span</code> is een <strong>inline tag</strong>: het blijft in de lopende tekst staan.</p>
 </li>
 </ul>
 </div>
@@ -1467,9 +1476,9 @@ Gebruik tabellen enkel voor <strong>gegevens</strong>, niet om je pagina in kolo
 </div>
 </div>
 <div class="sect2">
-<h3 id="_semantische_elementen">10.2. Semantische elementen</h3>
+<h3 id="_semantische_tags">10.2. Semantische tags</h3>
 <div class="paragraph">
-<p>HTML5 heeft elementen die wél een betekenis hebben. Ze vertellen de browser, zoekmachines en schermlezers welke rol een stuk van de pagina speelt.</p>
+<p>HTML5 heeft tags die wél een betekenis hebben. Ze vertellen de browser, zoekmachines en schermlezers welke rol een stuk van de pagina speelt.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1506,7 +1515,7 @@ Gebruik tabellen enkel voor <strong>gegevens</strong>, niet om je pagina in kolo
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Element</th>
+<th class="tableblock halign-left valign-top">Tag</th>
 <th class="tableblock halign-left valign-top">Betekenis</th>
 </tr>
 </thead>
@@ -1542,7 +1551,7 @@ Gebruik tabellen enkel voor <strong>gegevens</strong>, niet om je pagina in kolo
 </tbody>
 </table>
 <div class="paragraph">
-<p>Gebruik een semantisch element als er een past, en een <code>div</code> enkel als er geen past.</p>
+<p>Gebruik een semantische tag als er een past, en een <code>div</code> enkel als er geen past.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1593,7 +1602,7 @@ Gebruik tabellen enkel voor <strong>gegevens</strong>, niet om je pagina in kolo
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Ontwikkelaarstools</strong>: klik met de rechtermuisknop op een element in de browser en kies <em>Inspecteren</em> (of druk kbd:[F12]). Je ziet hoe de browser jouw HTML gelezen heeft.</p>
+<p><strong>Ontwikkelaarstools</strong>: klik met de rechtermuisknop op een stuk van de pagina in de browser en kies <em>Inspecteren</em> (of druk <kbd>F12</kbd>). Je ziet hoe de browser jouw HTML gelezen heeft.</p>
 </li>
 <li>
 <p><strong>Validator</strong>: plak je code op <a href="https://validator.w3.org/#validate_by_input">validator.w3.org</a>. Die toont alle fouten tegen de HTML-standaard.</p>

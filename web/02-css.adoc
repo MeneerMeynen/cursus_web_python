@@ -1,3 +1,4 @@
+:experimental:
 :icons: font
 :source-highlighter: rouge
 :toc: left
@@ -7,7 +8,7 @@
 = CSS
 
 CSS staat voor ##Cascading Style Sheets##.
-Waar HTML de *inhoud en structuur* van een pagina bepaalt, bepaalt CSS de *vormgeving*: kleuren, lettertypes, afstanden, randen, de plaats van elementen op het scherm, ...
+Waar HTML de *inhoud en structuur* van een pagina bepaalt, bepaalt CSS de *vormgeving*: kleuren, lettertypes, afstanden, randen, de plaats van tags op het scherm, ...
 
 Door inhoud (HTML) en vormgeving (CSS) te scheiden:
 
@@ -19,9 +20,10 @@ In dit hoofdstuk leer je:
 
 * hoe je CSS aan een HTML-pagina koppelt;
 * hoe een CSS-regel opgebouwd is;
-* hoe je met selectoren de juiste elementen kiest;
+* hoe je met selectoren de juiste tags kiest;
 * kleuren, tekst, het boxmodel en achtergronden opmaken;
-* elementen naast elkaar plaatsen met flexbox en grid;
+* tags positioneren met `position`, en effecten zoals cirkels, doorzichtigheid, schaduwen en kleurverlopen gebruiken;
+* tags naast elkaar plaatsen met flexbox en grid;
 * een pagina laten werken op een smartphone (responsive design).
 
 == CSS koppelen aan HTML
@@ -30,18 +32,18 @@ Er zijn drie manieren om CSS toe te voegen.
 
 === Inline
 
-Met het `style`-attribuut op één element:
+Met het `style`-attribuut op één tag:
 
 [source,html]
 ----
 <p style="color: red;">Deze tekst is rood.</p>
 ----
 
-Dit werkt, maar is moeilijk te onderhouden: je moet elk element apart aanpassen.
+Dit werkt, maar is moeilijk te onderhouden: je moet elke tag apart aanpassen.
 
 === Intern
 
-In een `style`-element in de `head`:
+In een `style`-tag in de `head`:
 
 [source,html]
 ----
@@ -58,7 +60,7 @@ Dit geldt voor één pagina.
 
 === Extern (aanbevolen)
 
-In een apart bestand, bijvoorbeeld `style.css`, dat je koppelt met een `link`-element in de `head`:
+In een apart bestand, bijvoorbeeld `style.css`, dat je koppelt met een `link`-tag in de `head`:
 
 [source,html]
 ----
@@ -88,7 +90,7 @@ h1 { <1>
   font-size: 32px; <3>
 } <4>
 ----
-<1> De *selector* bepaalt op welke elementen de regel van toepassing is: hier alle `h1`-elementen.
+<1> De *selector* bepaalt op welke tags de regel van toepassing is: hier alle `h1`-tags.
 <2> Een *declaratie* bestaat uit een *eigenschap* (_property_), een dubbelpunt en een *waarde*, afgesloten met een puntkomma.
 <3> Je kan zoveel declaraties onder elkaar zetten als je wil.
 <4> De accolades omsluiten alle declaraties van de regel.
@@ -102,9 +104,9 @@ Commentaar in CSS schrijf je zo:
 
 == Selectoren
 
-=== Element-selector
+=== Tag-selector
 
-Selecteert alle elementen van een bepaald type.
+Selecteert alle tags van een bepaald type.
 
 [source,css]
 ----
@@ -116,7 +118,7 @@ p {
 === Class-selector
 
 Een _class_ geef je in HTML met het `class`-attribuut. In CSS schrijf je een punt voor de naam.
-Dezelfde class mag op veel elementen staan, en één element mag meerdere classes hebben.
+Dezelfde class mag op veel tags staan, en één tag mag meerdere classes hebben.
 
 [source,html]
 ----
@@ -162,20 +164,53 @@ h1, h2, h3 {
   font-family: Georgia, serif;
 }
 
-/* Alle a-elementen die ergens in een nav staan */
+/* Alle a-tags die ergens in een nav staan */
 nav a {
   text-decoration: none;
 }
 
-/* Alle p-elementen met class intro */
+/* Alle p-tags met class intro */
 p.intro {
   font-weight: bold;
 }
 ----
 
+Wanneer je twee selectoren combineert om een tag te vinden via zijn plaats ten opzichte van een andere tag, spreken we van een *combinator*:
+
+|===
+| Combinator | Voorbeeld | Selecteert
+
+| spatie (_descendant_) | `nav a` | alle `a`-tags *ergens* in een `nav`, ook dieper genest
+| `>` (_child_) | `ul > li` | alleen de `li`-tags *rechtstreeks* in een `ul`
+| `+` (_adjacent sibling_) | `h2 + p` | de `p`-tag die *direct na* een `h2` komt
+| `~` (_general sibling_) | `h2 ~ p` | alle `p`-tags die *ergens na* een `h2` komen, met dezelfde bovenliggende tag
+|===
+
+Zo kan je tags opmaken zonder dat ze zelf een `id` of `class` nodig hebben:
+
+[source,html]
+----
+<table class="scores">
+  <tr><th>Naam</th><th>Punten</th></tr>
+  <tr><td>Emma</td><td>17</td></tr>
+</table>
+----
+
+[source,css]
+----
+.scores th {            /* alle th-tags in de tabel met class scores */
+  background-color: navy;
+  color: white;
+}
+
+.scores td {            /* alle td-tags in die tabel */
+  text-shadow: 1px 1px 2px gray;
+}
+----
+
 === Pseudo-classes
 
-Een pseudo-class selecteert een element in een bepaalde *toestand*.
+Een pseudo-class selecteert een tag in een bepaalde *toestand*.
 
 [source,css]
 ----
@@ -187,7 +222,7 @@ input:focus {        /* als het invoerveld geselecteerd is */
   border-color: blue;
 }
 
-li:first-child {     /* het eerste li-element */
+li:first-child {     /* de eerste li-tag */
   font-weight: bold;
 }
 
@@ -250,7 +285,7 @@ a {
 === Google Fonts
 
 Op https://fonts.google.com[fonts.google.com] vind je honderden gratis lettertypes.
-Kies een lettertype, klik op _Get font -> Get embed code_ en kopieer de `link`-elementen naar je `head`, *voor* je eigen stylesheet:
+Kies een lettertype, klik op _Get font -> Get embed code_ en kopieer de `link`-tags naar je `head`, *voor* je eigen stylesheet:
 
 [source,html]
 ----
@@ -267,291 +302,261 @@ body {
 }
 ----
 
-== Eenheden
+== Positioneren
+
+Voor elke tag op de pagina beantwoordt de browser twee vragen:
+
+. *Neemt de tag plaats in?* Schuiven de andere tags opzij om plaats voor hem te maken, of gedragen ze zich alsof hij er niet is?
+. *Wat is het referentiepunt?* Ten opzichte van wat wordt de tag geplaatst: zijn eigen plaats, een andere tag, of het browservenster?
+
+Met de eigenschap `position` bepaal je het antwoord op die twee vragen.
+Als je begrijpt hoe dat werkt, kan je elke positie-opdracht oplossen.
+
+=== De normale flow
+
+Zonder `position` plaatst de browser alle tags in de *normale flow*.
+Hij leest de HTML van boven naar onder en zet alle tags volgens deze twee regels:
+
+* blok-tags (`div`, `p`, `h1`, ...) komen *onder* elkaar en nemen de volledige breedte;
+* inline tags (`span`, `a`, `strong`, ...) komen *naast* elkaar, in de lopende tekst.
+
+----
++----------------------------------------------+  <- bovenkant van de pagina
+| h1                                           |
++----------------------------------------------+
+| p  tekst tekst <a>link</a> tekst tekst       |
++----------------------------------------------+
+| div                                          |
++----------------------------------------------+
+| p                                            |
++----------------------------------------------+
+----
+
+Elke tag *neemt plaats in*: de volgende tag begint pas waar de vorige eindigt.
+Is de inhoud langer dan het venster, dan kan je scrollen, en schuift alles in de flow mee.
+
+=== Het coördinatensysteem
+
+Als je een tag verplaatst, gebruik je vier eigenschappen: `top`, `right`, `bottom` en `left`.
+Elke eigenschap is een *afstand tussen een rand van het referentiepunt en dezelfde rand van de tag*.
+
+----
+       referentiepunt
++-------------------------------------+
+|           ^                         |
+|           | top: 30px               |
+|           v                         |
+|<--------->+----------+              |
+| left:     |   tag    |              |
+|  60px     |          |<------------>|
+|           +----------+  right       |
+|                ^                    |
+|                | bottom             |
+|                v                    |
++-------------------------------------+
+----
+
+* `top: 30px`: de bovenkant van de tag staat 30px *onder* de bovenkant van het referentiepunt.
+* `left: 60px`: de linkerkant van de tag staat 60px *rechts van* de linkerkant van het referentiepunt.
+* `right: 0`: de rechterkant van de tag raakt de rechterkant van het referentiepunt.
+* Een *negatieve* waarde verschuift in de andere richting: `top: -20px` gaat naar boven.
+* Een *percentage* is een percentage van de grootte van het referentiepunt: `left: 50%` is halverwege de breedte.
+
+TIP: Denk aan `top` en `left` als "afstand *van*" en niet als "richting *naar*". `left: 60px` schuift de tag dus naar *rechts*, weg van de linkerkant.
+
+Gebruik meestal één verticale (`top` of `bottom`) en één horizontale eigenschap (`left` of `right`).
+
+In de normale flow (`position: static`) worden deze vier eigenschappen genegeerd.
+
+=== De vijf waarden van position
+
+Elke waarde van `position` is een ander antwoord op de twee vragen van hierboven:
 
 |===
-| Eenheid | Betekenis | Gebruik
+| `position` | Neemt plaats in? | Referentiepunt | Scrolt mee met de pagina?
 
-| `px` | pixels | randen, kleine vaste afstanden
-| `%` | percentage van het bovenliggende element | breedtes
-| `rem` | veelvoud van de lettergrootte van de pagina (meestal 16px) | lettergroottes, marges
-| `em` | veelvoud van de lettergrootte van het element zelf | afstanden die meeschalen met de tekst
-| `vw` / `vh` | 1% van de breedte / hoogte van het venster | schermvullende secties
+| `static` (standaard) | ja | geen: de tag staat in de normale flow | ja
+| `relative` | ja, op zijn *oorspronkelijke* plaats | zijn eigen oorspronkelijke plaats | ja
+| `absolute` | nee | de dichtstbijzijnde bovenliggende tag met een `position` (niet `static`); is die er niet, dan de pagina | ja
+| `fixed` | nee | het browservenster | nee
+| `sticky` | ja | zijn plaats in de flow, tot hij de rand van het venster raakt | tot hij blijft plakken
 |===
+
+==== relative: verschuiven vanaf de eigen plaats
+
+De tag wordt eerst normaal in de flow geplaatst. Daarna wordt hij verschoven, vertrekkend van die plaats.
+De andere tags merken daar niets van: zijn *oorspronkelijke plaats blijft bezet*, alsof er een onzichtbare kopie achterblijft.
+
+----
+  zonder position              met position: relative;
+                                   top: 20px; left: 40px;
+
++--------------+               +..............+
+| div          |               :              :   <- lege plek: blijft bezet
++--------------+               +.....+--------------+
+| p            |               | p   | div          |   <- de div ligt over de p
++--------------+               +-----+--------------+
+----
 
 [source,css]
 ----
-h1 {
-  font-size: 2rem;   /* 2 x 16px = 32px */
-}
-
-.hero {
-  height: 100vh;     /* even hoog als het venster */
+.vak {
+  position: relative;
+  top: 20px;     /* 20px lager dan zijn normale plaats */
+  left: 40px;    /* 40px meer naar rechts dan zijn normale plaats */
 }
 ----
 
-== Het boxmodel
+`relative` heeft nog een tweede, heel belangrijke rol: de tag wordt het *referentiepunt* voor tags met `position: absolute` die erin zitten (zie hieronder).
 
-Elk element op een webpagina is een *rechthoek* (een _box_). Die box bestaat uit vier lagen:
+==== absolute: uit de flow, geplaatst in een referentiepunt
+
+De tag wordt *uit de flow gehaald*. De andere tags schuiven op alsof hij er niet is.
+Daarna wordt hij geplaatst ten opzichte van zijn referentiepunt. De browser zoekt dat zo:
+
+. Kijk naar de bovenliggende tag. Heeft die een `position` die niet `static` is? Dan is dat het referentiepunt.
+. Zo niet, kijk naar de tag daarboven, enzovoort.
+. Vind je er geen, dan is de *pagina* het referentiepunt.
 
 ----
-+----------------------- margin -----------------------+
-|  +-------------------- border --------------------+  |
-|  |  +----------------- padding ----------------+  |  |
-|  |  |                                          |  |  |
-|  |  |                 content                  |  |  |
-|  |  |                                          |  |  |
-|  |  +------------------------------------------+  |  |
-|  +------------------------------------------------+  |
-+------------------------------------------------------+
+  <div class="kaart">  (position: relative)
++-----------------------------------+
+|                        +-------+  |
+|                        | label |  |  <- position: absolute;
+|                        +-------+  |     top: 10px; right: 10px;
+|  tekst van het kaartje            |
+|                                   |
++-----------------------------------+
 ----
-
-* *content*: de inhoud zelf (tekst, afbeelding). De grootte bepaal je met `width` en `height`.
-* *padding*: ruimte *binnen* de rand, tussen de inhoud en de rand. Heeft de achtergrondkleur van het element.
-* *border*: de rand.
-* *margin*: ruimte *buiten* de rand, tussen dit element en de andere elementen. Is altijd doorzichtig.
 
 [source,css]
 ----
 .kaart {
-  width: 300px;
-  padding: 20px;                 /* aan alle kanten */
-  border: 2px solid #cccccc;     /* dikte, stijl, kleur */
-  border-radius: 10px;           /* afgeronde hoeken */
-  margin: 20px auto;             /* 20px boven en onder, horizontaal gecentreerd */
+  position: relative;   /* maakt van het kaartje het referentiepunt */
+}
+
+.kaart .label {
+  position: absolute;
+  top: 10px;
+  right: 10px;          /* rechtsboven in het kaartje */
 }
 ----
 
-Je kan elke kant apart instellen:
+Laat je `position: relative` bij `.kaart` weg, dan staat het label rechtsboven in de *pagina*. Het patroon _bovenliggende tag `relative`, tag erin `absolute`_ gebruik je heel vaak.
+
+Heeft een tag met `absolute` geen gepositioneerde bovenliggende tag, dan is de pagina het referentiepunt. Zo plaats je een tag tegen de rand van de pagina:
 
 [source,css]
 ----
-.blok {
-  margin-top: 10px;
-  margin-right: 20px;
-  margin-bottom: 10px;
-  margin-left: 20px;
-
-  /* of korter, in de volgorde boven, rechts, onder, links (met de klok mee) */
-  margin: 10px 20px 10px 20px;
-
-  /* of nog korter: boven/onder en links/rechts */
-  margin: 10px 20px;
+.zijbalk {
+  position: absolute;
+  top: 0;
+  right: 0;       /* tegen de rechterrand van de pagina */
 }
 ----
 
-=== box-sizing
+==== fixed: vast in het venster
 
-Standaard telt de browser padding en border *bij* de `width` op. Een element met `width: 300px` en `padding: 20px` is dus in werkelijkheid 340px breed.
-Dat is verwarrend. Zet daarom bovenaan elk stylesheet:
+Een tag met `fixed` wordt ook uit de flow gehaald, maar zijn referentiepunt is altijd het *browservenster*.
+Omdat het venster niet meescrolt, blijft de tag *op dezelfde plaats op het scherm* staan terwijl de rest van de pagina eronder schuift.
+Zo maak je bijvoorbeeld een menu dat altijd zichtbaar blijft of een knop "Terug naar boven".
 
 [source,css]
 ----
-* {
-  box-sizing: border-box;
+.terug-knop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;    /* altijd rechtsonder in het venster */
 }
 ----
 
-Nu is `width` de breedte *inclusief* padding en border.
+==== sticky: eerst normaal, dan vastgeplakt
 
-== Achtergronden en schaduwen
+Een `sticky` tag staat eerst gewoon in de flow en scrolt mee. Zodra hij de afstand bereikt die je opgeeft, blijft hij plakken.
 
 [source,css]
 ----
-.hero {
-  background-color: #1e3a5f;
-  background-image: url("afbeeldingen/bergen.jpg");
-  background-size: cover;          /* de afbeelding vult het volledige element */
-  background-position: center;
-  color: white;
-}
-
-.kaart {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  /* x, y, vervaging, kleur */
+nav {
+  position: sticky;
+  top: 0;    /* plakt vast zodra hij de bovenkant van het venster raakt */
 }
 ----
 
-WARNING: Een pad in een CSS-bestand is relatief ten opzichte van het *CSS-bestand*, niet ten opzichte van de HTML-pagina.
+=== Een tag centreren met positie
 
-== Display: blok en inline
+Met wat je nu weet, kan je een tag precies in het midden van zijn referentiepunt zetten. Dat gaat in twee stappen:
 
-Elk element heeft een `display`-waarde die bepaalt hoe het zich gedraagt.
-
-|===
-| Waarde | Gedrag | Voorbeelden
-
-| `block` | begint op een nieuwe regel en neemt de volledige breedte | `div`, `p`, `h1`, `ul`, `section`
-| `inline` | blijft in de tekst staan; `width` en `height` werken niet | `span`, `a`, `strong`
-| `inline-block` | blijft in de tekst staan, maar `width`, `height` en `padding` werken wel | knoppen
-| `none` | het element wordt niet getoond |
-|===
-
-[source,css]
 ----
-nav a {
-  display: inline-block;
-  padding: 10px 15px;
-}
+ stap 1: top: 50%; left: 50%;         stap 2: transform: translate(-50%, -50%);
++---------------------------+         +---------------------------+
+|                           |         |                           |
+|                           |         |        +---------+        |
+|             +---------+   |         |        |   tag   |        |
+|             |   tag   |   |         |        +---------+        |
+|             +---------+   |         |                           |
++---------------------------+         +---------------------------+
+   de linkerbovenhoek staat               het midden van de tag staat
+   in het midden                          in het midden
 ----
 
-== Lay-out met flexbox
-
-Met *flexbox* plaats je elementen naast of onder elkaar, en verdeel je de ruimte ertussen.
-Je zet `display: flex` op het *bovenliggende* element (de _container_). De elementen erin (de _items_) worden dan op een rij gezet.
-
-[source,html]
-----
-<nav class="menu">
-  <a href="#">Home</a>
-  <a href="#">Over ons</a>
-  <a href="#">Contact</a>
-</nav>
-----
-
-[source,css]
-----
-.menu {
-  display: flex;
-  justify-content: space-between; <1>
-  align-items: center; <2>
-  gap: 20px; <3>
-}
-----
-<1> Verdeling op de *hoofdas* (horizontaal): `flex-start`, `center`, `flex-end`, `space-between` of `space-around`.
-<2> Uitlijning op de *dwarsas* (verticaal): `flex-start`, `center`, `flex-end` of `stretch`.
-<3> De ruimte tussen de items.
-
-Nog enkele nuttige eigenschappen:
-
-[source,css]
-----
-.container {
-  display: flex;
-  flex-direction: column;   /* items onder elkaar in plaats van naast elkaar */
-  flex-wrap: wrap;          /* items naar de volgende regel als er geen plaats meer is */
-}
-
-.item {
-  flex: 1;                  /* elk item neemt een even groot deel van de ruimte */
-}
-----
-
-.Een element in het midden van het scherm plaatsen
 [source,css]
 ----
 .midden {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  position: fixed;                     /* of absolute */
+  top: 50%; <1>
+  left: 50%;
+  transform: translate(-50%, -50%); <2>
 }
 ----
+<1> Een percentage bij `top` en `left` is een percentage van het *referentiepunt*. De linkerbovenhoek van de tag komt dus in het midden te staan.
+<2> Een percentage bij `translate` is een percentage van de *tag zelf*. De tag schuift de helft van zijn eigen breedte naar links en de helft van zijn eigen hoogte naar boven.
 
-TIP: Oefen flexbox spelenderwijs met https://flexboxfroggy.com/#nl[Flexbox Froggy].
+Met `fixed` blijft de tag in het midden van het scherm staan, ook als je scrolt. Met `absolute` staat hij in het midden van zijn referentiepunt.
 
-== Lay-out met grid
+=== Lagen: z-index
 
-Met *grid* verdeel je een container in rijen en kolommen. Handig voor fotogalerijen en de indeling van een volledige pagina.
+Tags die uit de flow gehaald zijn, kunnen over andere tags heen liggen. Je kan de pagina dus zien als een stapel lagen, met een derde as die naar jou toe wijst.
+
+* Een gepositioneerde tag (niet `static`) ligt boven tags in de normale flow.
+* Liggen twee gepositioneerde tags over elkaar, dan ligt de tag die het *laatst* in de HTML staat bovenaan.
+* Met `z-index` bepaal je het zelf: een *hoger* getal ligt *bovenaan*.
 
 [source,css]
 ----
-.galerij {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;   /* drie even brede kolommen */
-  gap: 15px;
+.popup {
+  position: fixed;
+  z-index: 10;     /* ligt boven .zijbalk */
+}
+
+.zijbalk {
+  position: absolute;
+  z-index: 1;
 }
 ----
 
-`fr` staat voor _fraction_: een deel van de beschikbare ruimte. `1fr 2fr` maakt de tweede kolom dubbel zo breed als de eerste.
+`z-index` werkt alleen op tags met een `position` die niet `static` is.
 
-Een korte schrijfwijze voor veel gelijke kolommen:
+=== Samengevat: welke position kies ik?
 
-[source,css]
-----
-.galerij {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-----
+Stel jezelf de twee vragen van het begin:
 
-TIP: Oefen grid met https://cssgridgarden.com/#nl[Grid Garden].
+|===
+| Wat wil je? | Gebruik
 
-== Responsive design
+| De tag een beetje verschuiven, zonder dat de rest verandert | `relative`
+| De tag op een vaste plaats binnen een andere tag zetten | `absolute`, en `relative` op de bovenliggende tag
+| De tag tegen een rand van de pagina zetten | `absolute` zonder gepositioneerde bovenliggende tag
+| De tag op het scherm laten staan terwijl je scrolt | `fixed`
+| De tag laten meescrollen tot hij bovenaan blijft plakken | `sticky`
+| Tags gewoon onder of naast elkaar zetten | geen `position`: gebruik de normale flow, flexbox of grid
+|===
 
-Een _responsive_ website past zich aan de schermgrootte aan: op een smartphone staan de kolommen bijvoorbeeld onder elkaar in plaats van naast elkaar.
+TIP: Gebruik `position` niet om een volledige pagina op te bouwen. Voor kolommen en rijen zijn flexbox en grid veel geschikter. `position` gebruik je voor tags die *bovenop* of *buiten* de normale indeling moeten staan.
 
-Twee dingen zijn nodig:
-
-. de `viewport`-meta-tag in de `head` (zie hoofdstuk HTML basis);
-. *media queries* in je CSS.
-
-Een media query is een blok CSS dat enkel geldt als aan een voorwaarde voldaan is.
-
-[source,css]
-----
-/* Standaard (smartphone): één kolom */
-.galerij {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 15px;
-}
-
-/* Vanaf 600px breed (tablet): twee kolommen */
-@media (min-width: 600px) {
-  .galerij {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Vanaf 1000px breed (computer): vier kolommen */
-@media (min-width: 1000px) {
-  .galerij {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-----
-
-We schrijven eerst de CSS voor kleine schermen, en voegen daarna regels toe voor grotere schermen. Dit heet *mobile first*.
-
-Laat afbeeldingen nooit breder worden dan hun container:
-
-[source,css]
-----
-img {
-  max-width: 100%;
-  height: auto;
-}
-----
-
-TIP: In de ontwikkelaarstools (kbd:[F12]) klik je op het icoontje met de telefoon en tablet om je pagina op verschillende schermgroottes te bekijken.
-
-== De cascade en specificiteit
-
-Wat als twee regels hetzelfde element opmaken?
-
-[source,css]
-----
-p          { color: black; }
-.intro     { color: blue; }
-#welkom    { color: green; }
-p          { color: gray; }
-----
-
-De browser beslist met deze regels (daarom heet het _cascading_):
-
-. *Specificiteit*: een specifiekere selector wint. Van zwak naar sterk: element -> class -> id -> inline style.
-. *Volgorde*: bij gelijke specificiteit wint de regel die het *laatst* staat.
-
-Een paragraaf `<p class="intro" id="welkom">` wordt dus groen. Een gewone `p` wordt grijs.
-
-=== Overerving
-
-Sommige eigenschappen, zoals `color` en `font-family`, worden *overgeërfd* door de elementen die erin zitten. Daarom zet je het lettertype op `body`: dan geldt het voor de hele pagina.
-Eigenschappen van het boxmodel (`margin`, `padding`, `border`) worden niet overgeërfd.
 
 == Fouten opsporen
 
-Open de ontwikkelaarstools (kbd:[F12]) en selecteer een element. Rechts zie je:
+Open de ontwikkelaarstools (kbd:[F12]) en selecteer een tag. Rechts zie je:
 
 * welke CSS-regels van toepassing zijn, en welke doorstreept zijn omdat een andere regel wint;
 * het boxmodel met de exacte marges en paddings.
@@ -562,14 +567,14 @@ Veelgemaakte fouten:
 
 * een puntkomma of accolade vergeten;
 * het punt (`.`) vergeten voor een class-selector;
-* een verkeerd pad in het `link`-element;
+* een verkeerd pad in de `link`-tag;
 * een spatie tussen getal en eenheid: `20 px` werkt niet, `20px` wel.
 
 == Oefeningen
 
 === Oefening 1: Stijl je Over mij-pagina
 
-Maak een extern stylesheet `style.css` voor je pagina `over-mij.html` uit het hoofdstuk HTML basis.
+Maak een extern stylesheet `style.css` voor 1 van de opgaves uit de lessen 'software' deze opgaves zijn geschreven in 'kale' html. 
 
 * Kies een lettertype van Google Fonts voor de hele pagina.
 * Geef de `h1` een eigen kleur en centreer hem.
@@ -582,14 +587,4 @@ Maak een pagina met drie "kaartjes" (bijvoorbeeld drie producten, drie sporten o
 
 * Elk kaartje is een `article` met een afbeelding, een titel, een korte tekst en een link.
 * Geef de kaartjes padding, een rand of schaduw en afgeronde hoeken.
-* Zet de kaartjes naast elkaar met flexbox, met ruimte ertussen.
-* Op een smartphone (smaller dan 600px) staan de kaartjes onder elkaar.
 
-=== Oefening 3: Mini-website
-
-Geef je mini-website (drie pagina's) uit het hoofdstuk HTML basis één gezamenlijk stylesheet.
-
-* Het navigatiemenu staat horizontaal met flexbox en heeft een achtergrondkleur.
-* De pagina die open staat, is in het menu anders gekleurd (tip: een class `actief`).
-* De `footer` staat altijd onderaan de pagina, gecentreerd, met een andere achtergrondkleur.
-* Op `index.html` staat een fotogalerij met grid: één kolom op een smartphone, drie kolommen op een computer.

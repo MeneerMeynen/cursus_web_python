@@ -1,3 +1,4 @@
+:experimental:
 :icons: font
 :source-highlighter: rouge
 :toc: left
@@ -15,10 +16,10 @@ Het is een _markup language_: je markeert stukken tekst zodat de browser weet wa
 In dit hoofdstuk leer je:
 
 * hoe een browser een HTML-bestand omzet naar een webpagina;
-* wat tags, elementen en attributen zijn;
+* wat tags en attributen zijn;
 * hoe een HTML-document opgebouwd is;
-* de belangrijkste elementen: titels, tekst, links, afbeeldingen, lijsten, tabellen en formulieren;
-* hoe je een pagina opdeelt met semantische elementen.
+* de belangrijkste tags: titels, tekst, links, afbeeldingen, lijsten, tabellen en formulieren;
+* hoe je een pagina opdeelt met semantische tags.
 
 == Hoe werkt een webpagina?
 
@@ -47,7 +48,7 @@ In deze cursus gebruiken we *Visual Studio Code*.
 
 TIP: De startpagina van een website heet bijna altijd `index.html`. Een webserver toont dat bestand automatisch als je een map opent.
 
-== Tags, elementen en attributen
+== Tags en attributen
 
 === Tags
 
@@ -59,7 +60,7 @@ De meeste tags komen in paren: een *openingstag* en een *sluitingstag*. De sluit
 <p>Dit is een paragraaf.</p>
 ----
 
-De openingstag, de inhoud en de sluitingstag samen noemen we een *element*.
+NOTE: Op andere websites, zoals https://developer.mozilla.org/nl/[MDN], lees je vaak het woord _element_. Daarmee bedoelt men een tag samen met zijn inhoud. In deze cursus spreken we gewoon van een _tag_.
 
 [source,html]
 ----
@@ -68,10 +69,10 @@ De openingstag, de inhoud en de sluitingstag samen noemen we een *element*.
 </h1> <3>
 ----
 <1> De openingstag.
-<2> De inhoud van het element.
+<2> De inhoud van de tag.
 <3> De sluitingstag.
 
-Sommige elementen hebben geen inhoud en dus ook geen sluitingstag. Dit zijn _lege elementen_ (_void elements_), bijvoorbeeld:
+Sommige tags hebben geen inhoud en dus ook geen sluitingstag. Dit zijn _lege tags_, bijvoorbeeld:
 
 [source,html]
 ----
@@ -82,8 +83,8 @@ Sommige elementen hebben geen inhoud en dus ook geen sluitingstag. Dit zijn _leg
 
 === Nesten
 
-Elementen kunnen in andere elementen zitten. We zeggen dan dat ze _genest_ zijn.
-Het binnenste element moet altijd eerst gesloten worden.
+Tags kunnen in andere tags zitten. We zeggen dan dat ze _genest_ zijn.
+De binnenste tag moet altijd eerst gesloten worden.
 
 [source,html]
 ----
@@ -91,11 +92,11 @@ Het binnenste element moet altijd eerst gesloten worden.
 <p>Dit is <strong>heel belangrijk</p>.</strong>     <!-- fout! -->
 ----
 
-Spring genest HTML altijd in met een tab of twee spaties. Zo zie je in één oogopslag welk element in welk ander element zit.
+Spring genest HTML altijd in met een tab of twee spaties. Zo zie je in één oogopslag welke tag in welke andere tag zit.
 
 === Attributen
 
-Een *attribuut* geeft extra informatie aan een element. Attributen staan altijd in de *openingstag*, in de vorm `naam="waarde"`.
+Een *attribuut* geeft extra informatie aan een tag. Attributen staan altijd in de *openingstag*, in de vorm `naam="waarde"`.
 
 [source,html]
 ----
@@ -108,7 +109,7 @@ Een *attribuut* geeft extra informatie aan een element. Attributen staan altijd 
 * `alt` geeft een beschrijving van de afbeelding.
 * `width` bepaalt de breedte in pixels.
 
-Een attribuut mag maar één keer voorkomen per element.
+Een attribuut mag maar één keer voorkomen per tag.
 
 === Commentaar
 
@@ -139,7 +140,7 @@ Elk HTML-document heeft dezelfde basisstructuur:
 </html>
 ----
 <1> Het _doctype_ vertelt de browser dat dit een HTML5-document is. Dit staat altijd op de eerste regel.
-<2> Het `html`-element omvat de hele pagina. Met `lang="nl"` geef je aan dat de pagina in het Nederlands is.
+<2> De `html`-tag omvat de hele pagina. Met `lang="nl"` geef je aan dat de pagina in het Nederlands is.
 <3> De `head` bevat informatie _over_ de pagina. Die wordt niet in de pagina zelf getoond.
 <4> `charset="UTF-8"` zorgt ervoor dat speciale tekens zoals é, ë en € juist getoond worden.
 <5> De `viewport` zorgt ervoor dat je pagina goed schaalt op een smartphone.
@@ -183,7 +184,7 @@ WARNING: Extra spaties en enters in je HTML-code worden door de browser genegeer
 ----
 
 |===
-| Element | Betekenis | Standaard weergave
+| Tag | Betekenis | Standaard weergave
 
 | `strong` | belangrijke tekst | *vet*
 | `em` | benadrukte tekst | _cursief_
@@ -193,7 +194,7 @@ WARNING: Extra spaties en enters in je HTML-code worden door de browser genegeer
 
 == Links
 
-Een link maak je met het `a`-element (van _anchor_). Het `href`-attribuut bepaalt het doel.
+Een link maak je met de `a`-tag (van _anchor_). Het `href`-attribuut bepaalt het doel.
 
 [source,html]
 ----
@@ -297,7 +298,7 @@ Een geordende lijst (_ordered list_) toont nummers.
 
 === Geneste lijst
 
-Een lijst kan in een ander `li`-element zitten:
+Een lijst kan in een `li`-tag van een andere lijst zitten:
 
 [source,html]
 ----
@@ -412,8 +413,8 @@ Enkele nuttige `type`-waarden voor `input`:
 
 `div` en `span` hebben *geen betekenis*. Je gebruikt ze om stukken inhoud te groeperen, zodat je ze later met CSS kan opmaken.
 
-* `div` is een *blokelement*: het begint op een nieuwe regel en neemt de volledige breedte in.
-* `span` is een *inline element*: het blijft in de lopende tekst staan.
+* `div` is een *blok-tag*: het begint op een nieuwe regel en neemt de volledige breedte in.
+* `span` is een *inline tag*: het blijft in de lopende tekst staan.
 
 [source,html]
 ----
@@ -422,9 +423,9 @@ Enkele nuttige `type`-waarden voor `input`:
 </div>
 ----
 
-=== Semantische elementen
+=== Semantische tags
 
-HTML5 heeft elementen die wél een betekenis hebben. Ze vertellen de browser, zoekmachines en schermlezers welke rol een stuk van de pagina speelt.
+HTML5 heeft tags die wél een betekenis hebben. Ze vertellen de browser, zoekmachines en schermlezers welke rol een stuk van de pagina speelt.
 
 [source,html]
 ----
@@ -455,7 +456,7 @@ HTML5 heeft elementen die wél een betekenis hebben. Ze vertellen de browser, zo
 ----
 
 |===
-| Element | Betekenis
+| Tag | Betekenis
 
 | `header` | kop van de pagina of van een onderdeel (logo, titel)
 | `nav` | navigatiemenu
@@ -466,7 +467,7 @@ HTML5 heeft elementen die wél een betekenis hebben. Ze vertellen de browser, zo
 | `footer` | voettekst (copyright, contactgegevens)
 |===
 
-Gebruik een semantisch element als er een past, en een `div` enkel als er geen past.
+Gebruik een semantische tag als er een past, en een `div` enkel als er geen past.
 
 === Speciale tekens
 
@@ -484,7 +485,7 @@ Sommige tekens hebben een speciale betekenis in HTML. Om ze te tonen, gebruik je
 
 == Fouten opsporen
 
-* *Ontwikkelaarstools*: klik met de rechtermuisknop op een element in de browser en kies _Inspecteren_ (of druk kbd:[F12]). Je ziet hoe de browser jouw HTML gelezen heeft.
+* *Ontwikkelaarstools*: klik met de rechtermuisknop op een stuk van de pagina in de browser en kies _Inspecteren_ (of druk kbd:[F12]). Je ziet hoe de browser jouw HTML gelezen heeft.
 * *Validator*: plak je code op https://validator.w3.org/#validate_by_input[validator.w3.org]. Die toont alle fouten tegen de HTML-standaard.
 
 Veelgemaakte fouten:
