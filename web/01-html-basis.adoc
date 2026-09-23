@@ -1,0 +1,527 @@
+:experimental:
+:icons: font
+:source-highlighter: rouge
+:toc: left
+:toclevels: 5
+:sectnums:
+
+= HTML basis
+
+HTML staat voor ##Hypertext Markup Language##.
+Met HTML bepaal je de *inhoud* en de *structuur* van een webpagina: titels, paragrafen, links, afbeeldingen, lijsten, tabellen, formulieren, ...
+
+HTML is *geen programmeertaal*. Je kan er niet mee rekenen, beslissingen nemen of herhalen.
+Het is een _markup language_: je markeert stukken tekst zodat de browser weet wat elk stuk betekent.
+
+In dit hoofdstuk leer je:
+
+* hoe een browser een HTML-bestand omzet naar een webpagina;
+* wat tags en attributen zijn;
+* hoe een HTML-document opgebouwd is;
+* de belangrijkste tags: titels, tekst, links, afbeeldingen, lijsten, tabellen en formulieren;
+* hoe je een pagina opdeelt met semantische tags.
+
+== Hoe werkt een webpagina?
+
+Wanneer je naar een website surft, gebeurt er het volgende:
+
+. Je browser (Chrome, Firefox, Edge, Safari, ...) vraagt een pagina op aan een *webserver*.
+. De webserver stuurt een tekstbestand terug met de extensie `.html`.
+. De browser leest dat bestand regel per regel en bouwt er een webpagina mee op.
+
+HTML wordt dus niet gecompileerd: de browser _interpreteert_ het bestand.
+Omdat HTML gewoon tekst is, kan je het schrijven in eender welke teksteditor.
+
+HTML volgt een standaard die afgesproken wordt tussen de makers van browsers.
+Vandaag gebruiken we *HTML5*.
+
+=== Je werkomgeving
+
+Je kan HTML schrijven in Kladblok, maar een code-editor maakt het veel makkelijker.
+In deze cursus gebruiken we *Visual Studio Code*.
+
+. Maak een map aan voor je project, bijvoorbeeld `mijn-website`.
+. Open die map in VS Code via _File -> Open Folder_.
+. Maak een nieuw bestand `index.html`.
+. Typ `!` en druk op kbd:[Tab]: VS Code vult de standaardstructuur voor je in.
+. Open het bestand in je browser (dubbelklik in de verkenner), of installeer de extensie *Live Server* zodat de pagina automatisch vernieuwt wanneer je opslaat.
+
+TIP: De startpagina van een website heet bijna altijd `index.html`. Een webserver toont dat bestand automatisch als je een map opent.
+
+== Tags en attributen
+
+=== Tags
+
+HTML werkt met _tags_. Een tag begint met `<` en eindigt met `>`.
+De meeste tags komen in paren: een *openingstag* en een *sluitingstag*. De sluitingstag heeft een `/`.
+
+[source,html]
+----
+<p>Dit is een paragraaf.</p>
+----
+
+NOTE: Op andere websites, zoals https://developer.mozilla.org/nl/[MDN], lees je vaak het woord _element_. Daarmee bedoelt men een tag samen met zijn inhoud. In deze cursus spreken we gewoon van een _tag_.
+
+[source,html]
+----
+<h1> <1>
+  Grote titel <2>
+</h1> <3>
+----
+<1> De openingstag.
+<2> De inhoud van de tag.
+<3> De sluitingstag.
+
+Sommige tags hebben geen inhoud en dus ook geen sluitingstag. Dit zijn _lege tags_, bijvoorbeeld:
+
+[source,html]
+----
+<br>
+<hr>
+<img src="kat.jpg" alt="Een slapende kat">
+----
+
+=== Nesten
+
+Tags kunnen in andere tags zitten. We zeggen dan dat ze _genest_ zijn.
+De binnenste tag moet altijd eerst gesloten worden.
+
+[source,html]
+----
+<p>Dit is <strong>heel belangrijk</strong>.</p>     <!-- juist -->
+<p>Dit is <strong>heel belangrijk</p>.</strong>     <!-- fout! -->
+----
+
+Spring genest HTML altijd in met een tab of twee spaties. Zo zie je in één oogopslag welke tag in welke andere tag zit.
+
+=== Attributen
+
+Een *attribuut* geeft extra informatie aan een tag. Attributen staan altijd in de *openingstag*, in de vorm `naam="waarde"`.
+
+[source,html]
+----
+<a href="https://www.wikipedia.org">Naar Wikipedia</a>
+<img src="f16.jpg" alt="Een F-16 in de lucht" width="300">
+----
+
+* `href` bij een link bepaalt waar de link naartoe gaat.
+* `src` bij een afbeelding bepaalt welk bestand getoond wordt.
+* `alt` geeft een beschrijving van de afbeelding.
+* `width` bepaalt de breedte in pixels.
+
+Een attribuut mag maar één keer voorkomen per tag.
+
+=== Commentaar
+
+Commentaar wordt niet getoond in de browser. Je gebruikt het om notities in je code te zetten.
+
+[source,html]
+----
+<!-- Dit is commentaar. De bezoeker ziet dit niet. -->
+----
+
+== De structuur van een HTML-document
+
+Elk HTML-document heeft dezelfde basisstructuur:
+
+[source,html]
+----
+<!DOCTYPE html> <1>
+<html lang="nl"> <2>
+  <head> <3>
+    <meta charset="UTF-8"> <4>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <5>
+    <title>Mijn eerste website</title> <6>
+  </head>
+  <body> <7>
+    <h1>Welkom!</h1>
+    <p>Dit is mijn eerste webpagina.</p>
+  </body>
+</html>
+----
+<1> Het _doctype_ vertelt de browser dat dit een HTML5-document is. Dit staat altijd op de eerste regel.
+<2> De `html`-tag omvat de hele pagina. Met `lang="nl"` geef je aan dat de pagina in het Nederlands is.
+<3> De `head` bevat informatie _over_ de pagina. Die wordt niet in de pagina zelf getoond.
+<4> `charset="UTF-8"` zorgt ervoor dat speciale tekens zoals é, ë en € juist getoond worden.
+<5> De `viewport` zorgt ervoor dat je pagina goed schaalt op een smartphone.
+<6> De `title` verschijnt in het tabblad van de browser en in de zoekresultaten van Google.
+<7> In de `body` staat alles wat de bezoeker te zien krijgt.
+
+== Tekst
+
+=== Titels
+
+Er zijn zes niveaus van titels: `h1` tot en met `h6`. `h1` is de belangrijkste (en grootste) titel.
+
+[source,html]
+----
+<h1>Titel van de pagina</h1>
+<h2>Hoofdstuk</h2>
+<h3>Onderdeel van een hoofdstuk</h3>
+----
+
+Gebruik per pagina één `h1`, en sla geen niveaus over (dus niet van `h2` meteen naar `h4`).
+Kies een titel op basis van zijn *betekenis*, niet op basis van zijn grootte: de grootte pas je later aan met CSS.
+
+=== Paragrafen en regeleinden
+
+[source,html]
+----
+<p>Dit is een paragraaf. Een paragraaf begint altijd op een nieuwe regel.</p>
+<p>Dit is een tweede paragraaf.<br>Na de br-tag begint een nieuwe regel.</p>
+<hr>
+<p>Boven deze paragraaf staat een horizontale lijn.</p>
+----
+
+WARNING: Extra spaties en enters in je HTML-code worden door de browser genegeerd. Tien spaties achter elkaar worden er één. Wil je een nieuwe paragraaf, gebruik dan een nieuwe `p`.
+
+=== Tekst benadrukken
+
+[source,html]
+----
+<p>Dit is <strong>belangrijk</strong> en dit is <em>benadrukt</em>.</p>
+<p>H<sub>2</sub>O en 10<sup>3</sup></p>
+----
+
+|===
+| Tag | Betekenis | Standaard weergave
+
+| `strong` | belangrijke tekst | *vet*
+| `em` | benadrukte tekst | _cursief_
+| `sub` | subscript | lager en kleiner
+| `sup` | superscript | hoger en kleiner
+|===
+
+== Links
+
+Een link maak je met de `a`-tag (van _anchor_). Het `href`-attribuut bepaalt het doel.
+
+[source,html]
+----
+<!-- Absolute link: een volledig webadres -->
+<a href="https://www.vrt.be">Naar de VRT</a>
+
+<!-- Relatieve link: een ander bestand in je eigen website -->
+<a href="contact.html">Contact</a>
+<a href="fotos/vakantie.html">Vakantiefoto's</a>
+
+<!-- Openen in een nieuw tabblad -->
+<a href="https://www.google.be" target="_blank">Google</a>
+
+<!-- Een e-mail versturen -->
+<a href="mailto:info@school.be">Mail ons</a>
+
+<!-- Naar een plaats op dezelfde pagina springen -->
+<a href="#contact">Ga naar contact</a>
+...
+<h2 id="contact">Contact</h2>
+----
+
+=== Absolute en relatieve paden
+
+Een *absoluut* pad bevat het volledige adres, inclusief `https://`.
+Een *relatief* pad vertrekt vanaf de map waarin je huidige bestand staat.
+
+Stel dat je website deze structuur heeft:
+
+----
+mijn-website/
+├── index.html
+├── contact.html
+└── fotos/
+    ├── vakantie.html
+    └── strand.jpg
+----
+
+|===
+| Vanuit | Naar | Relatief pad
+
+| `index.html` | `contact.html` | `contact.html`
+| `index.html` | `strand.jpg` | `fotos/strand.jpg`
+| `fotos/vakantie.html` | `strand.jpg` | `strand.jpg`
+| `fotos/vakantie.html` | `index.html` | `../index.html`
+|===
+
+`../` betekent: ga één map naar boven.
+
+TIP: Gebruik in bestandsnamen geen spaties en geen hoofdletters. Schrijf `mijn-fotos.html` in plaats van `Mijn Fotos.html`. Op een webserver is `Foto.jpg` niet hetzelfde als `foto.jpg`.
+
+== Afbeeldingen
+
+[source,html]
+----
+<img src="fotos/strand.jpg" alt="Een zonnig strand met parasols" width="400">
+----
+
+* `src` (_source_): het pad naar de afbeelding. Dit kan relatief of absoluut zijn.
+* `alt` (_alternative text_): een beschrijving van de afbeelding. Die wordt getoond als de afbeelding niet kan laden, en voorgelezen door schermlezers voor blinde en slechtziende bezoekers. Het `alt`-attribuut is *verplicht*.
+* `width` en `height`: de afmetingen in pixels. Geef er maar één op, dan blijven de verhoudingen juist.
+
+Gebruik voor foto's `.jpg`, voor logo's en afbeeldingen met transparantie `.png` of `.svg`, en voor moderne, kleine bestanden `.webp`.
+
+Een afbeelding kan ook een link zijn:
+
+[source,html]
+----
+<a href="index.html">
+  <img src="logo.png" alt="Logo - terug naar de startpagina">
+</a>
+----
+
+== Lijsten
+
+=== Ongeordende lijst
+
+Een ongeordende lijst (_unordered list_) toont bolletjes.
+
+[source,html]
+----
+<ul>
+  <li>Melk</li>
+  <li>Brood</li>
+  <li>Kaas</li>
+</ul>
+----
+
+=== Geordende lijst
+
+Een geordende lijst (_ordered list_) toont nummers.
+
+[source,html]
+----
+<ol>
+  <li>Verwarm de oven voor.</li>
+  <li>Meng de ingrediënten.</li>
+  <li>Bak 25 minuten.</li>
+</ol>
+----
+
+=== Geneste lijst
+
+Een lijst kan in een `li`-tag van een andere lijst zitten:
+
+[source,html]
+----
+<ul>
+  <li>Fruit
+    <ul>
+      <li>Appel</li>
+      <li>Peer</li>
+    </ul>
+  </li>
+  <li>Groenten</li>
+</ul>
+----
+
+== Tabellen
+
+Met een tabel toon je gegevens in rijen en kolommen.
+
+[source,html]
+----
+<table>
+  <thead> <1>
+    <tr> <2>
+      <th>Naam</th> <3>
+      <th>Klas</th>
+      <th>Punten</th>
+    </tr>
+  </thead>
+  <tbody> <4>
+    <tr>
+      <td>Emma</td> <5>
+      <td>5A</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <td>Noah</td>
+      <td>5B</td>
+      <td>15</td>
+    </tr>
+  </tbody>
+</table>
+----
+<1> `thead`: de hoofding van de tabel.
+<2> `tr` (_table row_): een rij.
+<3> `th` (_table header_): een hoofdingscel. Die wordt standaard vet en gecentreerd getoond.
+<4> `tbody`: de gegevens van de tabel.
+<5> `td` (_table data_): een gewone cel.
+
+NOTE: Gebruik tabellen enkel voor *gegevens*, niet om je pagina in kolommen te verdelen. Voor de lay-out gebruik je CSS (zie hoofdstuk CSS).
+
+== Formulieren
+
+Met een formulier kan de bezoeker gegevens invullen.
+
+[source,html]
+----
+<form action="verzenden.php" method="post"> <1>
+
+  <label for="naam">Naam</label> <2>
+  <input type="text" id="naam" name="naam" required> <3>
+
+  <label for="email">E-mail</label>
+  <input type="email" id="email" name="email">
+
+  <label for="leeftijd">Leeftijd</label>
+  <input type="number" id="leeftijd" name="leeftijd" min="12" max="99">
+
+  <p>Richting:</p>
+  <input type="radio" id="it" name="richting" value="it">
+  <label for="it">IT</label>
+  <input type="radio" id="wet" name="richting" value="wetenschappen">
+  <label for="wet">Wetenschappen</label>
+
+  <input type="checkbox" id="nieuwsbrief" name="nieuwsbrief">
+  <label for="nieuwsbrief">Ik wil de nieuwsbrief ontvangen</label>
+
+  <label for="klas">Klas</label>
+  <select id="klas" name="klas"> <4>
+    <option value="5a">5A</option>
+    <option value="5b">5B</option>
+  </select>
+
+  <label for="bericht">Bericht</label>
+  <textarea id="bericht" name="bericht" rows="4"></textarea>
+
+  <button type="submit">Verzenden</button>
+</form>
+----
+<1> `action` bepaalt naar waar de gegevens gestuurd worden, `method` hoe. Zonder server gebeurt er (nog) niets met de gegevens.
+<2> Een `label` beschrijft een invoerveld. Het `for`-attribuut verwijst naar de `id` van het veld. Klik je op het label, dan wordt het veld geselecteerd.
+<3> `required` maakt het veld verplicht: de browser verstuurt het formulier pas als het ingevuld is.
+<4> Een `select` toont een keuzelijst.
+
+Enkele nuttige `type`-waarden voor `input`:
+
+|===
+| Type | Gebruik
+
+| `text` | gewone tekst
+| `email` | e-mailadres (de browser controleert de vorm)
+| `password` | wachtwoord (tekens worden verborgen)
+| `number` | getal
+| `date` | datum (met een kalender)
+| `color` | kleurkiezer
+| `radio` | één keuze uit meerdere opties (zelfde `name`)
+| `checkbox` | aanvinken
+|===
+
+== Een pagina indelen
+
+=== div en span
+
+`div` en `span` hebben *geen betekenis*. Je gebruikt ze om stukken inhoud te groeperen, zodat je ze later met CSS kan opmaken.
+
+* `div` is een *blok-tag*: het begint op een nieuwe regel en neemt de volledige breedte in.
+* `span` is een *inline tag*: het blijft in de lopende tekst staan.
+
+[source,html]
+----
+<div>
+  <p>Een paragraaf met een <span>speciaal woord</span> erin.</p>
+</div>
+----
+
+=== Semantische tags
+
+HTML5 heeft tags die wél een betekenis hebben. Ze vertellen de browser, zoekmachines en schermlezers welke rol een stuk van de pagina speelt.
+
+[source,html]
+----
+<body>
+  <header>
+    <h1>Bakkerij De Gouden Korst</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="producten.html">Producten</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Ons aanbod</h2>
+      <article>
+        <h3>Desembrood</h3>
+        <p>Elke ochtend vers gebakken.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Bakkerij De Gouden Korst</p>
+  </footer>
+</body>
+----
+
+|===
+| Tag | Betekenis
+
+| `header` | kop van de pagina of van een onderdeel (logo, titel)
+| `nav` | navigatiemenu
+| `main` | de hoofdinhoud; maar één per pagina
+| `section` | een thematisch onderdeel, meestal met een eigen titel
+| `article` | een zelfstandig stuk inhoud (een blogbericht, een product, ...)
+| `aside` | bijkomende informatie naast de hoofdinhoud
+| `footer` | voettekst (copyright, contactgegevens)
+|===
+
+Gebruik een semantische tag als er een past, en een `div` enkel als er geen past.
+
+=== Speciale tekens
+
+Sommige tekens hebben een speciale betekenis in HTML. Om ze te tonen, gebruik je een _entity_:
+
+|===
+| Entity | Teken
+
+| `+&lt;+` | <
+| `+&gt;+` | >
+| `+&amp;+` | &
+| `+&copy;+` | (C)
+| `+&nbsp;+` | spatie waarop niet afgebroken wordt
+|===
+
+== Fouten opsporen
+
+* *Ontwikkelaarstools*: klik met de rechtermuisknop op een stuk van de pagina in de browser en kies _Inspecteren_ (of druk kbd:[F12]). Je ziet hoe de browser jouw HTML gelezen heeft.
+* *Validator*: plak je code op https://validator.w3.org/#validate_by_input[validator.w3.org]. Die toont alle fouten tegen de HTML-standaard.
+
+Veelgemaakte fouten:
+
+* een tag vergeten te sluiten;
+* tags in de verkeerde volgorde sluiten;
+* aanhalingstekens vergeten rond een attribuutwaarde;
+* een verkeerd pad naar een afbeelding (let op hoofdletters en de juiste map);
+* het `alt`-attribuut vergeten.
+
+== Oefeningen
+
+=== Oefening 1: Over mij
+
+Maak een pagina `over-mij.html` met:
+
+* een `h1` met je naam;
+* een paragraaf waarin je jezelf voorstelt, met minstens één woord in `strong` en één in `em`;
+* een ongeordende lijst met drie hobby's;
+* een afbeelding met een correct `alt`-attribuut;
+* een link naar je favoriete website die in een nieuw tabblad opent.
+
+=== Oefening 2: Recept
+
+Maak een pagina met je favoriete recept. Gebruik:
+
+* een `h2` "Ingrediënten" met een ongeordende lijst;
+* een `h2` "Bereiding" met een geordende lijst;
+* een tabel met de voedingswaarden (kolommen: _Voedingsstof_, _Per 100 g_).
+
+=== Oefening 3: Mini-website
+
+Maak een website van drie pagina's over een onderwerp naar keuze: `index.html`, `info.html` en `contact.html`.
+
+* Elke pagina heeft een `header` met hetzelfde navigatiemenu (`nav`) naar de drie pagina's.
+* Elke pagina heeft een `main` en een `footer`.
+* Zet je afbeeldingen in een aparte map `afbeeldingen` en gebruik relatieve paden.
+* `contact.html` bevat een formulier met naam, e-mail, een keuzelijst en een bericht. Naam en e-mail zijn verplicht.
+* Controleer alle pagina's met de validator: er mogen geen fouten meer zijn.

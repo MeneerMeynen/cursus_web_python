@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.23">
+<meta name="generator" content="Asciidoctor 2.0.20">
 <title>Inleiding tot JavaScript</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -140,7 +140,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #content::before{content:none}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
 #header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
-#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
@@ -162,7 +162,6 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
-body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
 #toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
@@ -328,7 +327,7 @@ a.image{text-decoration:none;display:inline-block}
 a.image object{pointer-events:none}
 sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
 sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
 #footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
 #footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
 #footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
@@ -696,7 +695,7 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
     <span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">"demo"</span><span class="nt">&gt;</span>Dit is een paragraaf.<span class="nt">&lt;/p&gt;</span>
 
     <span class="nt">&lt;script&gt;</span>
-        <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">demo</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">De paragraaf is gewijzigd met JavaScript!</span><span class="dl">"</span><span class="p">;</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">demo</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">De paragraaf is gewijzigd met JavaScript!</span><span class="dl">"</span><span class="p">;</span>
     <span class="nt">&lt;/script&gt;</span>
 <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span></code></pre>
@@ -735,9 +734,9 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <span class="kd">let</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
 <span class="kd">const</span> <span class="nx">z</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>  <span class="c1">// Output: 10</span>
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span>  <span class="c1">// Output: 20</span>
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">z</span><span class="p">);</span>  <span class="c1">// Output: 30</span></code></pre>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>  <span class="c1">// Output: 10</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span>  <span class="c1">// Output: 20</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">z</span><span class="p">);</span>  <span class="c1">// Output: 30</span></code></pre>
 </div>
 </div>
 </div>
@@ -753,11 +752,11 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nf">greet</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">greet</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="dl">"</span><span class="s2">Hallo, </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">!</span><span class="dl">"</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">greet</span><span class="p">(</span><span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">));</span>  <span class="c1">// Output: Hallo, Alice!</span></code></pre>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greet</span><span class="p">(</span><span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">));</span>  <span class="c1">// Output: Hallo, Alice!</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -769,7 +768,7 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
     <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
 <span class="p">};</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nf">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>  <span class="c1">// Output: 15</span></code></pre>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>  <span class="c1">// Output: 15</span></code></pre>
 </div>
 </div>
 </div>
@@ -791,10 +790,10 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <div class="content">
 <pre class="rouge highlight"><code data-lang="javascript"><span class="kd">let</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
 
-<span class="k">if </span><span class="p">(</span><span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Je bent een volwassene.</span><span class="dl">"</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Je bent een volwassene.</span><span class="dl">"</span><span class="p">);</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Je bent een minderjarige.</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Je bent een minderjarige.</span><span class="dl">"</span><span class="p">);</span>
 <span class="p">}</span></code></pre>
 </div>
 </div>
@@ -807,8 +806,8 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Dit is iteratie nummer </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">i</span><span class="p">);</span>
+<pre class="rouge highlight"><code data-lang="javascript"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Dit is iteratie nummer </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">i</span><span class="p">);</span>
 <span class="p">}</span></code></pre>
 </div>
 </div>
@@ -836,8 +835,8 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
     <span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"sayHello()"</span><span class="nt">&gt;</span>Klik mij<span class="nt">&lt;/button&gt;</span>
 
     <span class="nt">&lt;script&gt;</span>
-        <span class="kd">function</span> <span class="nf">sayHello</span><span class="p">()</span> <span class="p">{</span>
-            <span class="nf">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hallo, je hebt op de knop geklikt!</span><span class="dl">"</span><span class="p">);</span>
+        <span class="kd">function</span> <span class="nx">sayHello</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hallo, je hebt op de knop geklikt!</span><span class="dl">"</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="nt">&lt;/script&gt;</span>
 <span class="nt">&lt;/body&gt;</span>
@@ -865,20 +864,20 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">class</span> <span class="nc">Auto</span> <span class="p">{</span>
-    <span class="nf">constructor</span><span class="p">(</span><span class="nx">merk</span><span class="p">,</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">jaar</span><span class="p">)</span> <span class="p">{</span>
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">class</span> <span class="nx">Auto</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">merk</span><span class="p">,</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">jaar</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">merk</span> <span class="o">=</span> <span class="nx">merk</span><span class="p">;</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">model</span> <span class="o">=</span> <span class="nx">model</span><span class="p">;</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">jaar</span> <span class="o">=</span> <span class="nx">jaar</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="nf">beschrijving</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">beschrijving</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">merk</span><span class="p">}</span><span class="s2"> </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">}</span><span class="s2"> is gebouwd in </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">jaar</span><span class="p">}</span><span class="s2">.`</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">const</span> <span class="nx">mijnAuto</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Auto</span><span class="p">(</span><span class="dl">"</span><span class="s2">Toyota</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Corolla</span><span class="dl">"</span><span class="p">,</span> <span class="mi">2020</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mijnAuto</span><span class="p">.</span><span class="nf">beschrijving</span><span class="p">());</span></code></pre>
+<span class="kd">const</span> <span class="nx">mijnAuto</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Auto</span><span class="p">(</span><span class="dl">"</span><span class="s2">Toyota</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Corolla</span><span class="dl">"</span><span class="p">,</span> <span class="mi">2020</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mijnAuto</span><span class="p">.</span><span class="nx">beschrijving</span><span class="p">());</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -897,19 +896,19 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">class</span> <span class="nc">Persoon</span> <span class="p">{</span>
-    <span class="nf">constructor</span><span class="p">(</span><span class="nx">naam</span><span class="p">,</span> <span class="nx">leeftijd</span><span class="p">)</span> <span class="p">{</span>
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">class</span> <span class="nx">Persoon</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">naam</span><span class="p">,</span> <span class="nx">leeftijd</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">naam</span> <span class="o">=</span> <span class="nx">naam</span><span class="p">;</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">leeftijd</span> <span class="o">=</span> <span class="nx">leeftijd</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="nf">begroet</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`Hallo, mijn naam is </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">naam</span><span class="p">}</span><span class="s2"> en ik ben </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">leeftijd</span><span class="p">}</span><span class="s2"> jaar oud.`</span><span class="p">);</span>
+    <span class="nx">begroet</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Hallo, mijn naam is </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">naam</span><span class="p">}</span><span class="s2"> en ik ben </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">leeftijd</span><span class="p">}</span><span class="s2"> jaar oud.`</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">const</span> <span class="nx">persoon1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Persoon</span><span class="p">(</span><span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
-<span class="nx">persoon1</span><span class="p">.</span><span class="nf">begroet</span><span class="p">();</span></code></pre>
+<span class="kd">const</span> <span class="nx">persoon1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persoon</span><span class="p">(</span><span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+<span class="nx">persoon1</span><span class="p">.</span><span class="nx">begroet</span><span class="p">();</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -928,19 +927,19 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">class</span> <span class="nc">Hond</span> <span class="p">{</span>
-    <span class="nf">constructor</span><span class="p">(</span><span class="nx">naam</span><span class="p">,</span> <span class="nx">ras</span><span class="p">)</span> <span class="p">{</span>
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">class</span> <span class="nx">Hond</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">naam</span><span class="p">,</span> <span class="nx">ras</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">naam</span> <span class="o">=</span> <span class="nx">naam</span><span class="p">;</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">ras</span> <span class="o">=</span> <span class="nx">ras</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="nf">blaf</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">naam</span><span class="p">}</span><span class="s2"> de </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">ras</span><span class="p">}</span><span class="s2"> blaft!`</span><span class="p">);</span>
+    <span class="nx">blaf</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">naam</span><span class="p">}</span><span class="s2"> de </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">ras</span><span class="p">}</span><span class="s2"> blaft!`</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">const</span> <span class="nx">mijnHond</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Hond</span><span class="p">(</span><span class="dl">"</span><span class="s2">Max</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Labrador</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">mijnHond</span><span class="p">.</span><span class="nf">blaf</span><span class="p">();</span></code></pre>
+<span class="kd">const</span> <span class="nx">mijnHond</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Hond</span><span class="p">(</span><span class="dl">"</span><span class="s2">Max</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Labrador</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">mijnHond</span><span class="p">.</span><span class="nx">blaf</span><span class="p">();</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -962,25 +961,25 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">class</span> <span class="nc">Dier</span> <span class="p">{</span>
-    <span class="nf">constructor</span><span class="p">(</span><span class="nx">naam</span><span class="p">)</span> <span class="p">{</span>
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">class</span> <span class="nx">Dier</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">naam</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">naam</span> <span class="o">=</span> <span class="nx">naam</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="nf">eet</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">naam</span><span class="p">}</span><span class="s2"> is aan het eten.`</span><span class="p">);</span>
+    <span class="nx">eet</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">naam</span><span class="p">}</span><span class="s2"> is aan het eten.`</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">class</span> <span class="nc">Hond</span> <span class="kd">extends</span> <span class="nc">Dier</span> <span class="p">{</span>
-    <span class="nf">blaf</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">naam</span><span class="p">}</span><span class="s2"> blaft!`</span><span class="p">);</span>
+<span class="kd">class</span> <span class="nx">Hond</span> <span class="kd">extends</span> <span class="nx">Dier</span> <span class="p">{</span>
+    <span class="nx">blaf</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">naam</span><span class="p">}</span><span class="s2"> blaft!`</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">const</span> <span class="nx">mijnHond</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Hond</span><span class="p">(</span><span class="dl">"</span><span class="s2">Rex</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">mijnHond</span><span class="p">.</span><span class="nf">eet</span><span class="p">();</span>
-<span class="nx">mijnHond</span><span class="p">.</span><span class="nf">blaf</span><span class="p">();</span></code></pre>
+<span class="kd">const</span> <span class="nx">mijnHond</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Hond</span><span class="p">(</span><span class="dl">"</span><span class="s2">Rex</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">mijnHond</span><span class="p">.</span><span class="nx">eet</span><span class="p">();</span>
+<span class="nx">mijnHond</span><span class="p">.</span><span class="nx">blaf</span><span class="p">();</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1003,28 +1002,28 @@ Rex blaft!</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">class</span> <span class="nc">Cirkel</span> <span class="p">{</span>
-    <span class="nf">constructor</span><span class="p">(</span><span class="nx">straal</span><span class="p">)</span> <span class="p">{</span>
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">class</span> <span class="nx">Cirkel</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">straal</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">_straal</span> <span class="o">=</span> <span class="nx">straal</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="kd">get</span> <span class="nf">straal</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">get</span> <span class="nx">straal</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_straal</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="kd">set</span> <span class="nf">straal</span><span class="p">(</span><span class="nx">nieuweStraal</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if </span><span class="p">(</span><span class="nx">nieuweStraal</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Straal moet groter zijn dan 0.</span><span class="dl">"</span><span class="p">);</span>
+    <span class="kd">set</span> <span class="nx">straal</span><span class="p">(</span><span class="nx">nieuweStraal</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">nieuweStraal</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Straal moet groter zijn dan 0.</span><span class="dl">"</span><span class="p">);</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
             <span class="k">this</span><span class="p">.</span><span class="nx">_straal</span> <span class="o">=</span> <span class="nx">nieuweStraal</span><span class="p">;</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">const</span> <span class="nx">mijnCirkel</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Cirkel</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mijnCirkel</span><span class="p">.</span><span class="nx">straal</span><span class="p">);</span>  <span class="c1">// Output: 10</span>
+<span class="kd">const</span> <span class="nx">mijnCirkel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Cirkel</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mijnCirkel</span><span class="p">.</span><span class="nx">straal</span><span class="p">);</span>  <span class="c1">// Output: 10</span>
 <span class="nx">mijnCirkel</span><span class="p">.</span><span class="nx">straal</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>          <span class="c1">// Wijzig de straal naar 15</span>
-<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">mijnCirkel</span><span class="p">.</span><span class="nx">straal</span><span class="p">);</span>  <span class="c1">// Output: 15</span></code></pre>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mijnCirkel</span><span class="p">.</span><span class="nx">straal</span><span class="p">);</span>  <span class="c1">// Output: 15</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1043,11 +1042,6 @@ Rex blaft!</pre>
 <p>In dit hoofdstuk hebben we de basisprincipes van JavaScript besproken, zoals variabelen, functies, control flow, event handling en objecten. Door deze concepten goed te beheersen, kun je effectieve en dynamische webtoepassingen maken.</p>
 </div>
 </div>
-</div>
-</div>
-<div id="footer">
-<div id="footer-text">
-Last updated 2024-09-13 09:07:08 +0200
 </div>
 </div>
 </body>
