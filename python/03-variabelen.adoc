@@ -151,7 +151,7 @@ Laten we de belangrijkste gegevenstypes eens overlopen:
 
 === Integer (int)
 
-Het gegevenstype `int` staat voor gehele getallen, zoals 5, -10 en 100. Integer-waarden worden gebruikt voor wiskundige bewerkingen en numerieke berekeningen. Een `int` kan positief, negatief of nul zijn, maar heeft nooit een decimaal deel: zodra een getal een komma (in Python een punt) bevat, zoals `5.0`, is het een `float`.
+Het gegevenstype `int` staat voor gehele getallen, zoals 5, -10 en 100. Integer-waarden worden gebruikt voor wiskundige bewerkingen en numerieke berekeningen. Een `int` kan positief, negatief of nul zijn, maar heeft nooit een decimaal deel. Zodra een getal een decimaal punt bevat, zoals `5.0`, is het een `float`. Let op: Python gebruikt altijd een **punt** als decimaal scheidingsteken, nooit een komma. Voor grote getallen mag je wel een underscore gebruiken om ze leesbaarder te maken: `1_000_000`.
 
 Bijvoorbeeld:
 
