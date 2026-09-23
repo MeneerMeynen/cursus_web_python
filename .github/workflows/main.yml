@@ -18,6 +18,9 @@ jobs:
     - name: Install Asciidoctor
       run: sudo apt-get update && sudo apt-get install -y asciidoctor
 
+    - name: Build web overview page
+      run: ruby web/maak-index.rb
+
     - name: Build Python AsciiDoc files
       run: |
         mkdir -p build/python
@@ -27,7 +30,7 @@ jobs:
 
     - name: Copy web images folder
       run: |
-        cp -rn web/* build/web/
+        cp -r --update=none web/. build/web/
 
     - name: Copy custom index.html
       run: |
