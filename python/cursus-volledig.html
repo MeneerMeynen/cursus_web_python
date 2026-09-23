@@ -687,18 +687,33 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <li><a href="#_float_komma_getal">3.3.2. Float (Komma-getal)</a></li>
 <li><a href="#_string_str">3.3.3. String (str)</a></li>
 <li><a href="#_boolean_bool">3.3.4. Boolean (bool)</a></li>
+<li><a href="#_type_opvragen_met_type">3.3.5. Type Opvragen met <code>type()</code></a></li>
+<li><a href="#_type_conversie">3.3.6. Type Conversie</a></li>
+<li><a href="#_dynamische_typing">3.3.7. Dynamische Typing</a></li>
 </ul>
 </li>
-<li><a href="#_lijst_gegevenstype">3.4. Lijst Gegevenstype</a></li>
-<li><a href="#_tuple_gegevenstype">3.5. Tuple Gegevenstype</a></li>
-<li><a href="#_dictionary_gegevenstype">3.6. Dictionary Gegevenstype</a>
+<li><a href="#_expressies">3.4. Expressies</a>
 <ul class="sectlevel3">
-<li><a href="#_type_conversie">3.6.1. Type Conversie</a></li>
-<li><a href="#_dynamische_typing">3.6.2. Dynamische Typing</a></li>
-<li><a href="#_variabelen_vs_expressies">3.6.3. Variabelen vs Expressies</a></li>
+<li><a href="#_wat_is_een_expressie">3.4.1. Wat is een Expressie?</a></li>
+<li><a href="#_wiskundige_expressies">3.4.2. Wiskundige Expressies</a>
+<ul class="sectlevel4">
+<li><a href="#_het_datatype_van_het_resultaat">Het Datatype van het Resultaat</a></li>
+<li><a href="#_volgorde_van_bewerkingen">Volgorde van Bewerkingen</a></li>
+<li><a href="#_verkorte_toewijzing">Verkorte Toewijzing</a></li>
+<li><a href="#_operatoren_op_strings">Operatoren op Strings</a></li>
 </ul>
 </li>
-<li><a href="#_conclusie_2">3.7. Conclusie</a></li>
+<li><a href="#_logische_expressies">3.4.3. Logische Expressies</a>
+<ul class="sectlevel4">
+<li><a href="#_vergelijkingsoperatoren">Vergelijkingsoperatoren</a></li>
+<li><a href="#_logische_operatoren_and_or_en_not">Logische Operatoren: <code>and</code>, <code>or</code> en <code>not</code></a></li>
+<li><a href="#_wiskundige_en_logische_expressies_combineren">Wiskundige en Logische Expressies Combineren</a></li>
+</ul>
+</li>
+<li><a href="#_overzicht_welk_type_levert_een_expressie_op">3.4.4. Overzicht: Welk Type Levert een Expressie Op?</a></li>
+</ul>
+</li>
+<li><a href="#_conclusie_2">3.5. Conclusie</a></li>
 </ul>
 </li>
 <li><a href="#_hoofdstuk_4_beslissingsstructuren">4. Hoofdstuk 4: Beslissingsstructuren</a>
@@ -1983,7 +1998,7 @@ Dit zijn een reeks afspraken van de taal:</p>
 <div class="sect3">
 <h4 id="_integer_int">3.3.1. Integer (int)</h4>
 <div class="paragraph">
-<p>Het gegevenstype <code>int</code> staat voor gehele getallen, zoals 5, -10 en 100. Integer-waarden worden gebruikt voor wiskundige bewerkingen en numerieke berekeningen. Python staat toe om positieve en negatieve gehele getallen te gebruiken, evenals getallen met en zonder decimale punten.</p>
+<p>Het gegevenstype <code>int</code> staat voor gehele getallen, zoals 5, -10 en 100. Integer-waarden worden gebruikt voor wiskundige bewerkingen en numerieke berekeningen. Een <code>int</code> kan positief, negatief of nul zijn, maar heeft nooit een decimaal deel: zodra een getal een komma (in Python een punt) bevat, zoals <code>5.0</code>, is het een <code>float</code>.</p>
 </div>
 <div class="paragraph">
 <p>Bijvoorbeeld:</p>
@@ -2076,79 +2091,93 @@ Dit zijn een reeks afspraken van de taal:</p>
 <p>Booleaanse waarden zijn krachtige hulpmiddelen in games omdat ze de besluitvorming en logica binnen je code mogelijk maken. Je kunt ze gebruiken om te bepalen of een speler een bepaald level heeft bereikt, of een missie is voltooid, of dat bepaalde acties kunnen worden uitgevoerd op basis van bepaalde voorwaarden.</p>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_lijst_gegevenstype">3.4. Lijst Gegevenstype</h3>
+<div class="sect3">
+<h4 id="_type_opvragen_met_type">3.3.5. Type Opvragen met <code>type()</code></h4>
 <div class="paragraph">
-<p>list: Een geordende verzameling van waarden, zoals de inventaris van een speler.</p>
+<p>Met de functie <code>type()</code> kun je op elk moment opvragen welk datatype een waarde of variabele heeft. Dat is handig om te controleren of Python een waarde begrijpt zoals jij verwacht:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">inventory</span> <span class="o">=</span> <span class="p">[</span><span class="s">"sword"</span><span class="p">,</span> <span class="s">"shield"</span><span class="p">,</span> <span class="s">"potion"</span><span class="p">]</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>      <span class="c1"># &lt;class 'int'&gt;
+</span><span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mf">3.14</span><span class="p">))</span>     <span class="c1"># &lt;class 'float'&gt;
+</span><span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="s">"Alice"</span><span class="p">))</span>  <span class="c1"># &lt;class 'str'&gt;
+</span><span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">True</span><span class="p">))</span>     <span class="c1"># &lt;class 'bool'&gt;</span></code></pre>
 </div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/Python-Lists.png" alt="Python Lists">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_tuple_gegevenstype">3.5. Tuple Gegevenstype</h3>
-<div class="paragraph">
-<p>tuple: Een onveranderlijke verzameling van waarden, zoals de positie van een speler.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">player_position</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span></code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_dictionary_gegevenstype">3.6. Dictionary Gegevenstype</h3>
-<div class="paragraph">
-<p>dict: Een verzameling van sleutel-waardeparen, zoals attributen van een speler.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">player_attributes</span> <span class="o">=</span> <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"John"</span><span class="p">,</span> <span class="s">"health"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s">"armor"</span><span class="p">:</span> <span class="s">"plate"</span><span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_type_conversie">3.6.1. Type Conversie</h4>
+<h4 id="_type_conversie">3.3.6. Type Conversie</h4>
 <div class="paragraph">
-<p>Soms is het nodig om gegevens van het ene type naar het andere te converteren. Python biedt functies om dit te doen. Bijvoorbeeld, om een getal om te zetten naar een string, kun je de functie <code>str()</code> gebruiken:</p>
+<p>Soms is het nodig om gegevens van het ene type naar het andere te converteren. Python biedt hiervoor functies met dezelfde naam als het datatype: <code>int()</code>, <code>float()</code>, <code>str()</code> en <code>bool()</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python"><span class="n">leeftijd</span> <span class="o">=</span> <span class="mi">16</span>
-<span class="n">leeftijd_als_string</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">leeftijd</span><span class="p">)</span></code></pre>
+<span class="n">leeftijd_als_string</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">leeftijd</span><span class="p">)</span>   <span class="c1"># "16"
+</span>
+<span class="n">score_tekst</span> <span class="o">=</span> <span class="s">"250"</span>
+<span class="n">score</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">score_tekst</span><span class="p">)</span>              <span class="c1"># 250
+</span>
+<span class="n">prijs</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s">"4.99"</span><span class="p">)</span>                 <span class="c1"># 4.99
+</span><span class="n">afgerond</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">7.9</span><span class="p">)</span>                   <span class="c1"># 7 (het deel na de komma wordt weggeknipt)</span></code></pre>
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title=":bulb:"></i>
+</td>
+<td class="content">
+Type conversie heb je vaak nodig in expressies. Je kunt bijvoorbeeld geen tekst en een getal optellen: <code>"Score: " + 250</code> geeft een fout. Met <code>"Score: " + str(250)</code> werkt het wel.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_dynamische_typing">3.6.2. Dynamische Typing</h4>
+<h4 id="_dynamische_typing">3.3.7. Dynamische Typing</h4>
 <div class="paragraph">
-<p>Python staat ook bekend om 'dynamic typed' te zijn, wat betekent dat <mark>het datatype van een variabele kan veranderen terwijl het programma wordt uitgevoerd</mark>. Dit in tegenstelling tot sterk getypeerde talen waar het datatype strikt moet worden gedefinieerd en behouden.</p>
+<p>Python staat ook bekend om 'dynamic typed' te zijn, wat betekent dat <mark>het datatype van een variabele kan veranderen terwijl het programma wordt uitgevoerd</mark>. Dit in tegenstelling tot statisch getypeerde talen zoals Java, waar het datatype vastligt.</p>
 </div>
 <div class="paragraph">
 <p>Bijvoorbeeld:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">a</span> <span class="o">=</span> <span class="s">"Hallo"</span>
-<span class="n">a</span> <span class="o">=</span> <span class="bp">True</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>        <span class="c1"># a is een int
+</span><span class="n">a</span> <span class="o">=</span> <span class="s">"Hallo"</span>  <span class="c1"># a is nu een str
+</span><span class="n">a</span> <span class="o">=</span> <span class="bp">True</span>     <span class="c1"># a is nu een bool</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Dit houdt een groot risico voor <em>bugs</em> in.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_variabelen_vs_expressies">3.6.3. Variabelen vs Expressies</h4>
+</div>
+<div class="sect2">
+<h3 id="_expressies">3.4. Expressies</h3>
 <div class="paragraph">
-<p><strong>Een expressie</strong> is een combinatie van waarden, operatoren en/of functies die een resultaat oplevert wanneer deze wordt geëvalueerd. Expressies kunnen variëren van eenvoudige wiskundige bewerkingen tot complexere berekeningen. Ze kunnen ook variabelen bevatten.</p>
+<p>Nu je de vier basisdatatypes kent, wil je er ook mee kunnen rekenen en vergelijken. Daarvoor gebruik je <strong>expressies</strong>.</p>
+</div>
+<div class="sect3">
+<h4 id="_wat_is_een_expressie">3.4.1. Wat is een Expressie?</h4>
+<div class="paragraph">
+<p><strong>Een expressie</strong> is een stukje code dat Python kan <mark>uitrekenen (evalueren) tot één waarde</mark>. Een expressie bestaat uit waarden, variabelen en operatoren (zoals <code>+</code>, <code>*</code> of <code>&gt;</code>).</p>
+</div>
+<div class="paragraph">
+<p>Enkele voorbeelden van expressies:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="mi">100</span>                  <span class="c1"># een waarde op zich is al een expressie
+</span><span class="n">player_health</span>        <span class="c1"># een variabele is ook een expressie
+</span><span class="n">player_health</span> <span class="o">-</span> <span class="mi">25</span>   <span class="c1"># een berekening
+</span><span class="n">player_health</span> <span class="o">&gt;</span> <span class="mi">50</span>   <span class="c1"># een vergelijking</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Een expressie staat meestal <strong>rechts</strong> van het <code>=</code>-teken. Bij een toewijzing gebeuren er twee stappen:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2157,30 +2186,498 @@ Dit zijn een reeks afspraken van de taal:</p>
 <span class="n">remaining_health</span> <span class="o">=</span> <span class="n">health</span> <span class="o">-</span> <span class="n">damage</span></code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>In dit voorbeeld is health - damage een expressie die wordt geëvalueerd tot het resterende gezondheidsniveau van een speler na het oplopen van schade.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Python evalueert eerst de expressie rechts: <code>health - damage</code> wordt <code>100 - 25</code>, en dat wordt <code>75</code>.</p>
+</li>
+<li>
+<p>Daarna wordt het resultaat <code>75</code> opgeslagen in de variabele <code>remaining_health</code>.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p><strong>Een variabele</strong> is een naam die wordt gebruikt om een geheugenlocatie aan te duiden waarin gegevens kunnen worden opgeslagen. Variabelen worden gebruikt om waarden op te slaan en te bewaren, zodat ze later kunnen worden gebruikt in berekeningen, operaties en expressies.</p>
+<p>Het onderscheid is dus: <mark>een variabele is een naam voor een opgeslagen waarde</mark>, <mark>een expressie is iets wat uitgerekend wordt tot een waarde</mark>. Variabelen kunnen gebruikt worden <em>in</em> expressies, en het resultaat van een expressie kan je opslaan <em>in</em> een variabele.</p>
+</div>
+<div class="paragraph">
+<p>Elke expressie levert een waarde op van een bepaald datatype. We onderscheiden twee grote soorten:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Wiskundige expressies</strong> leveren een getal op (<code>int</code> of <code>float</code>).</p>
+</li>
+<li>
+<p><strong>Logische expressies</strong> leveren een booleaanse waarde op (<code>True</code> of <code>False</code>).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wiskundige_expressies">3.4.2. Wiskundige Expressies</h4>
+<div class="paragraph">
+<p>Wiskundige (of rekenkundige) expressies gebruiken <strong>rekenkundige operatoren</strong>:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 16.6668%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Operator</th>
+<th class="tableblock halign-left valign-top">Betekenis</th>
+<th class="tableblock halign-left valign-top">Voorbeeld</th>
+<th class="tableblock halign-left valign-top">Resultaat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>+</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">optellen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>7 + 2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>9</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">aftrekken</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>7 - 2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">vermenigvuldigen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>7 * 2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>14</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>/</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">delen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>7 / 2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3.5</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>//</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gehele deling (quotiënt)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>7 // 2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>%</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">rest na deling (modulo)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>7 % 2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>**</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">machtsverheffing</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>7 ** 2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>49</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Een voorbeeld in een game:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">player_health</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">player_name</span> <span class="o">=</span> <span class="s">"Alice"</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="n">kills</span> <span class="o">=</span> <span class="mi">18</span>
+<span class="n">deaths</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">rounds</span> <span class="o">=</span> <span class="mi">24</span>
+<span class="n">damage_total</span> <span class="o">=</span> <span class="mi">2150</span>
+
+<span class="n">kd_ratio</span> <span class="o">=</span> <span class="n">kills</span> <span class="o">/</span> <span class="n">deaths</span>             <span class="c1"># 2.25
+</span><span class="n">avg_damage</span> <span class="o">=</span> <span class="n">damage_total</span> <span class="o">/</span> <span class="n">rounds</span>    <span class="c1"># 89.58333333333333
+</span><span class="n">full_minutes</span> <span class="o">=</span> <span class="mi">250</span> <span class="o">//</span> <span class="mi">60</span>              <span class="c1"># 4 (volledige minuten in 250 seconden)
+</span><span class="n">rest_seconds</span> <span class="o">=</span> <span class="mi">250</span> <span class="o">%</span> <span class="mi">60</span>               <span class="c1"># 10 (overblijvende seconden)</span></code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_het_datatype_van_het_resultaat">Het Datatype van het Resultaat</h5>
+<div class="paragraph">
+<p>Let goed op welk datatype je terugkrijgt:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>int</code> met <code>int</code> geeft een <code>int</code>: <code>5 + 3</code> wordt <code>8</code>.</p>
+</li>
+<li>
+<p>Zodra er een <code>float</code> bij betrokken is, is het resultaat een <code>float</code>: <code>5 + 3.0</code> wordt <code>8.0</code>.</p>
+</li>
+<li>
+<p>De deling <code>/</code> geeft <strong>altijd</strong> een <code>float</code>, ook als de deling "opgaat": <code>10 / 2</code> wordt <code>5.0</code>.</p>
+</li>
+<li>
+<p>Wil je een geheel getal, gebruik dan <code>//</code>: <code>10 // 2</code> wordt <code>5</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_volgorde_van_bewerkingen">Volgorde van Bewerkingen</h5>
+<div class="paragraph">
+<p>Python volgt dezelfde voorrangsregels als in de wiskunde:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>haakjes <code>( )</code></p>
+</li>
+<li>
+<p>machtsverheffing <code>**</code></p>
+</li>
+<li>
+<p>vermenigvuldigen en delen: <code>*</code>, <code>/</code>, <code>//</code>, <code>%</code></p>
+</li>
+<li>
+<p>optellen en aftrekken: <code>+</code>, <code>-</code></p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="k">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>     <span class="c1"># 14, want eerst 3 * 4
+</span><span class="k">print</span><span class="p">((</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>   <span class="c1"># 20, want eerst de haakjes</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title=":bulb:"></i>
+</td>
+<td class="content">
+Twijfel je over de volgorde? Zet haakjes. Dat maakt je code ook leesbaarder.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_verkorte_toewijzing">Verkorte Toewijzing</h5>
+<div class="paragraph">
+<p>Vaak wil je een variabele aanpassen op basis van haar eigen waarde. Daarvoor bestaan verkorte schrijfwijzen:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="n">score</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">score</span> <span class="o">+</span> <span class="mi">10</span>   <span class="c1"># score wordt 110
+</span><span class="n">score</span> <span class="o">+=</span> <span class="mi">10</span>          <span class="c1"># hetzelfde, korter: score wordt 120
+</span><span class="n">score</span> <span class="o">-=</span> <span class="mi">5</span>           <span class="c1"># score wordt 115
+</span><span class="n">score</span> <span class="o">*=</span> <span class="mi">2</span>           <span class="c1"># score wordt 230</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_operatoren_op_strings">Operatoren op Strings</h5>
+<div class="paragraph">
+<p>Ook met tekst kun je enkele operatoren gebruiken:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="n">voornaam</span> <span class="o">=</span> <span class="s">"John"</span>
+<span class="n">achternaam</span> <span class="o">=</span> <span class="s">"Doe"</span>
+<span class="k">print</span><span class="p">(</span><span class="n">voornaam</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">achternaam</span><span class="p">)</span>   <span class="c1"># John Doe  (samenvoegen)
+</span><span class="k">print</span><span class="p">(</span><span class="s">"ha"</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>                      <span class="c1"># hahaha    (herhalen)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Hier worden player_health en player_name als variabelen gebruikt om respectievelijk de gezondheid van een speler en de naam van een speler op te slaan.</p>
+<p>Tekst en een getal combineren met <code>+</code> lukt niet zonder type conversie:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="n">kills</span> <span class="o">=</span> <span class="mi">18</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Kills: "</span> <span class="o">+</span> <span class="n">kills</span><span class="p">)</span>        <span class="c1"># TypeError!
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Kills: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">kills</span><span class="p">))</span>   <span class="c1"># Kills: 18</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_logische_expressies">3.4.3. Logische Expressies</h4>
+<div class="paragraph">
+<p>Een logische expressie levert altijd een <code>bool</code> op: <code>True</code> of <code>False</code>. Je vindt ze terug bij het vergelijken van waarden, en later gebruik je ze als voorwaarde in beslissingsstructuren (hoofdstuk 4) en lussen (hoofdstuk 5).</p>
+</div>
+<div class="sect4">
+<h5 id="_vergelijkingsoperatoren">Vergelijkingsoperatoren</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 16.6668%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Operator</th>
+<th class="tableblock halign-left valign-top">Betekenis</th>
+<th class="tableblock halign-left valign-top">Voorbeeld</th>
+<th class="tableblock halign-left valign-top">Resultaat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>==</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">is gelijk aan</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5 == 5</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>!=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">is niet gelijk aan</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5 != 5</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">kleiner dan</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3 &lt; 5</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">groter dan</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3 &gt; 5</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">kleiner dan of gelijk aan</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5 &lt;= 5</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&gt;=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">groter dan of gelijk aan</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3 &gt;= 5</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="n">player_health</span> <span class="o">=</span> <span class="mi">75</span>
+<span class="n">ammo</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">player_health</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">)</span>    <span class="c1"># True
+</span><span class="k">print</span><span class="p">(</span><span class="n">ammo</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>             <span class="c1"># True
+</span><span class="k">print</span><span class="p">(</span><span class="n">player_health</span> <span class="o">!=</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1"># True</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title=":warning:"></i>
+</td>
+<td class="content">
+Verwar <code>=</code> niet met <code>==</code>! Eén <code>=</code> is een <strong>toewijzing</strong> (sla een waarde op), twee <code>==</code> is een <strong>vergelijking</strong> (zijn deze waarden gelijk?).
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Het onderscheid tussen expressies en variabelen is dat <mark>expressies berekeningen uitvoeren en resultaten opleveren</mark>, terwijl <mark>variabelen dienen als namen voor opgeslagen gegevens</mark>. Variabelen kunnen in expressies worden gebruikt om bewerkingen uit te voeren en nieuwe waarden te genereren.</p>
+<p>Je kunt ook strings vergelijken. Let op: Python is hoofdlettergevoelig.</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s">"Alice"</span> <span class="o">==</span> <span class="s">"Alice"</span><span class="p">)</span>   <span class="c1"># True
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Alice"</span> <span class="o">==</span> <span class="s">"alice"</span><span class="p">)</span>   <span class="c1"># False</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_logische_operatoren_and_or_en_not">Logische Operatoren: <code>and</code>, <code>or</code> en <code>not</code></h5>
+<div class="paragraph">
+<p>Met logische operatoren combineer je booleaanse waarden tot één nieuwe booleaanse waarde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>and</code>: is <code>True</code> als <strong>beide</strong> kanten <code>True</code> zijn.</p>
+</li>
+<li>
+<p><code>or</code>: is <code>True</code> als <strong>minstens één</strong> kant <code>True</code> is.</p>
+</li>
+<li>
+<p><code>not</code>: keert de waarde <strong>om</strong>: <code>not True</code> wordt <code>False</code> en omgekeerd.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Dit kun je samenvatten in een <strong>waarheidstabel</strong>:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><code>a</code></th>
+<th class="tableblock halign-left valign-top"><code>b</code></th>
+<th class="tableblock halign-left valign-top"><code>a and b</code></th>
+<th class="tableblock halign-left valign-top"><code>a or b</code></th>
+<th class="tableblock halign-left valign-top"><code>not a</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="n">player_health</span> <span class="o">=</span> <span class="mi">75</span>
+<span class="n">ammo</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">has_key</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="n">can_fight</span> <span class="o">=</span> <span class="n">player_health</span> <span class="o">&gt;</span> <span class="mi">50</span> <span class="ow">and</span> <span class="n">ammo</span> <span class="o">&gt;</span> <span class="mi">0</span>   <span class="c1"># True and True  -&gt; True
+</span><span class="n">can_open_door</span> <span class="o">=</span> <span class="n">has_key</span> <span class="ow">or</span> <span class="n">ammo</span> <span class="o">&gt;</span> <span class="mi">20</span>          <span class="c1"># False or False -&gt; False
+</span><span class="n">is_locked</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">has_key</span>                        <span class="c1"># not False      -&gt; True</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In hoofdstuk 4 gaan we dieper in op het combineren van voorwaarden met <code>and</code>, <code>or</code> en <code>not</code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_wiskundige_en_logische_expressies_combineren">Wiskundige en Logische Expressies Combineren</h5>
+<div class="paragraph">
+<p>Wiskundige en logische expressies kun je samen gebruiken. Python rekent eerst de wiskundige delen uit, daarna de vergelijkingen, en pas dan <code>not</code>, <code>and</code> en <code>or</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="n">player_health</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">damage</span> <span class="o">=</span> <span class="mi">25</span>
+
+<span class="n">survives</span> <span class="o">=</span> <span class="n">player_health</span> <span class="o">-</span> <span class="n">damage</span> <span class="o">&gt;</span> <span class="mi">0</span>   <span class="c1"># 35 &gt; 0 -&gt; True
+</span><span class="n">is_even</span> <span class="o">=</span> <span class="n">player_health</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>        <span class="c1"># 0 == 0 -&gt; True</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title=":bulb:"></i>
+</td>
+<td class="content">
+De expressie <code>getal % 2 == 0</code> is een klassieker: ze controleert of een getal even is.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_overzicht_welk_type_levert_een_expressie_op">3.4.4. Overzicht: Welk Type Levert een Expressie Op?</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Expressie</th>
+<th class="tableblock halign-left valign-top">Resultaat</th>
+<th class="tableblock halign-left valign-top">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>8 + 2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>10</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>int</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>8 / 2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>4.0</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>float</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>8 // 3</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>int</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>8 % 3</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>int</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2.5 * 2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5.0</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>float</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"8" + "2"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"82"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>str</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>8 &gt; 2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bool</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>8 == 2 or 8 &gt; 2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bool</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>not 8 &gt; 2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>bool</code></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_conclusie_2">3.7. Conclusie</h3>
+<h3 id="_conclusie_2">3.5. Conclusie</h3>
 <div class="paragraph">
-<p>De verscheidenheid aan gegevenstypes in Python, waaronder integer, float, string en boolean, biedt ontwikkelaars flexibiliteit bij het manipuleren van verschillende soorten gegevens. Het begrijpen van deze gegevenstypes en hun toepassingen is essentieel voor het schrijven van effectieve en veelzijdige Python-programma&#8217;s.</p>
+<p>De vier basisdatatypes in Python, <code>int</code>, <code>float</code>, <code>str</code> en <code>bool</code>, vormen de bouwstenen van elk programma. Met <strong>wiskundige expressies</strong> reken je met getallen, met <strong>logische expressies</strong> vergelijk en combineer je waarden tot <code>True</code> of <code>False</code>. Deze expressies heb je nodig in elk volgend hoofdstuk: als voorwaarde in beslissingsstructuren en lussen, en om berekeningen te maken in je programma&#8217;s.</p>
+</div>
+<div class="paragraph">
+<p>Meer complexe datatypes zoals lijsten (<code>list</code>), tupels (<code>tuple</code>) en woordenboeken (<code>dict</code>) komen aan bod in hoofdstuk 7.
+:source-highlighter: rouge
+:rouge-style: thankful_eyes
+:toc: left
+:toclevels: 5
+:sectnums:</p>
 </div>
 </div>
 </div>
