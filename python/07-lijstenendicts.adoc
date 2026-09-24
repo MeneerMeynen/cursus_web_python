@@ -236,7 +236,7 @@ Lijsten bieden handige methoden voor het wijzigen, toevoegen en verwijderen van 
 - `insert(index, element)`: Voegt een element toe op een specifieke index.
 - `remove(element)`: Verwijdert het eerste voorkomen van een element.
 - `pop(index)`: Verwijdert en retourneert het element op de opgegeven index.
-- `len()`: Geeft het aantal elementen in de lijst terug.
+- `len(lijst)`: Geeft het aantal elementen in de lijst terug. Let op: dit is geen methode van de lijst, maar een ingebouwde functie. Je schrijft dus `len(getallen)` en niet `getallen.len()`.
 
 
 
@@ -295,11 +295,27 @@ In dit voorbeeld retourneert de functie een tuple met de nieuwe positie en een g
 
 === Tuples in Gaming
 
-Tupels worden vaak gebruikt in gaming om gegevens te beschermen tegen onopzettelijke wijzigingen. Bijvoorbeeld, als je de positie van een speler hebt opgeslagen in een tuple, kun je erop vertrouwen dat die positie niet per ongeluk wordt gewijzigd tijdens het spel.
+Tupels worden vaak gebruikt in gaming voor gegevens die als één geheel bij elkaar horen en niet stukje per stukje mogen veranderen, zoals een kleur of een vaste startpositie.
+
+[source, python]
+----
+ROOD = (255, 0, 0)
+start_positie = (100, 50)
+----
+
+Onveranderlijk betekent dat je ##de inhoud van een tuple niet kan aanpassen##:
+
+[source, python]
+----
+start_positie[0] = 120   # TypeError: 'tuple' object does not support item assignment
+----
+
+De variabele zelf kan je wel een nieuwe tuple geven. Beweegt een speler, dan maak je gewoon een nieuwe tuple voor de nieuwe positie:
 
 [source, python]
 ----
 speler_positie = (100, 50)
+speler_positie = (110, 50)   # dit mag: de variabele verwijst nu naar een nieuwe tuple
 ----
 
 === Tuples vs. Lijsten
@@ -321,10 +337,12 @@ Values (waarden) kunnen wel meermaals voorkomen.##
 Dictionaries bieden krachtige methoden om gegevens te beheren.
 
 - `get(key)`: Retourneert de waarde die overeenkomt met de opgegeven sleutel.
-- `keys()`: Geeft een lijst van alle sleutels terug.
-- `values()`: Geeft een lijst van alle waarden terug.
-- `items()`: Geeft een lijst van sleutel-waardeparen terug.
-- `len()`: Geeft het aantal sleutels terug.
+- `keys()`: Geeft alle sleutels terug.
+- `values()`: Geeft alle waarden terug.
+- `items()`: Geeft alle sleutel-waardeparen terug (als tuples).
+- `len(dictionary)`: Geeft het aantal sleutels terug. Dit is een ingebouwde functie, geen methode.
+
+`keys()`, `values()` en `items()` geven geen echte lijst terug, maar een _view_ (bijvoorbeeld `dict_keys`). Daar kan je met een `for`-lus over lopen. Heb je echt een lijst nodig, zet de view dan om met `list()`: `list(speler.keys())`.
 
 === Dictionary Aanmaken
 

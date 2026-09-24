@@ -72,9 +72,11 @@ Animatie van een Personage:
 ----
 frames = ["frame1.png", "frame2.png", "frame3.png"]
 for frame in frames:
-    display(frame)
-    wait(0.1)  # Wacht voor een vloeiende animatie
+    display(frame)  # verzonnen functie: toon het frame
+    wait(0.1)       # verzonnen functie: wacht 0.1 seconde voor een vloeiende animatie
 ----
+
+NOTE: `display()` en `wait()` bestaan niet in Python. Dit voorbeeld is _pseudocode_: het toont het idee, maar je kan het niet zomaar uitvoeren.
 
 Hier wordt een 'for'-lus gebruikt om door de lijst van frames van een animatie te itereren en elk frame op het scherm weer te geven met een kleine wachttijd voor vloeiende animatie.
 
@@ -87,6 +89,19 @@ for i in range(5):
 ----
 
 De range()-functie genereert een reeks getallen, die perfect is voor 'for'-lussen. In dit voorbeeld wordt de 'for'-lus vijf keer herhaald, waarbij i achtereenvolgens 0, 1, 2, 3 en 4 wordt.
+
+`range()` kan ook met twee of drie getallen worden opgeroepen:
+
+* `range(stop)`: van 0 tot (niet tot en met) `stop`. `range(5)` geeft 0, 1, 2, 3, 4.
+* `range(start, stop)`: van `start` tot (niet tot en met) `stop`. `range(2, 5)` geeft 2, 3, 4.
+* `range(start, stop, stap)`: met een eigen stapgrootte. `range(0, 10, 2)` geeft 0, 2, 4, 6, 8.
+
+[source,python]
+----
+for i in range(10, 0, -1):   # aftellen: 10, 9, ..., 1
+    print(i)
+print("Start!")
+----
 
 == Geavanceerd Gebruik van Lussen
 
@@ -125,7 +140,7 @@ while attempts < 3:
         attempts += 1
 ----
 
-In dit voorbeeld wordt de 'while'-lus beëindigd na drie mislukte pogingen.
+In dit voorbeeld wordt de 'while'-lus beëindigd na drie mislukte pogingen. Wordt het juiste wachtwoord ingegeven, dan stopt de lus meteen door het `break` statement (zie verder).
 
 Eeuwig lopende 'While'-lus (= vastlopend programma):
 
@@ -140,9 +155,40 @@ while player_position > 0:
 
 De lus zal nooit stoppen, er is immers ##geen code voorzien## om de player_position onder 0 te krijgen ##zodat de loop zou stoppen##. Probeer het maar eens uit te voeren op je computer.
 
+== Lusbeheersing: `break` en `continue`
+
+Met twee sleutelwoorden kan je het verloop van een lus (zowel `for` als `while`) bijsturen:
+
+* `break` stopt de lus ##onmiddellijk##. Het programma gaat verder met de code na de lus.
+* `continue` slaat ##de rest van de huidige iteratie## over en gaat meteen verder met de volgende iteratie.
+
+[source,python]
+----
+enemies = ["alien", "robot", "zombie", "boss", "alien"]
+
+for enemy in enemies:
+    if enemy == "robot":
+        continue          # robots negeren we, ga naar de volgende vijand
+    if enemy == "boss":
+        print("De eindbaas verschijnt! Het level stopt.")
+        break             # stop de lus volledig
+    print("Een", enemy, "verschijnt!")
+----
+
+Output:
+
+[source]
+----
+Een alien verschijnt!
+Een zombie verschijnt!
+De eindbaas verschijnt! Het level stopt.
+----
+
+De laatste "alien" wordt nooit afgedrukt: de lus werd al gestopt door `break`.
+
 == Geneste lussen of dubbele lussen
 
-##Een geneste 'for'-lus is een lus die zich binnenin een andere 'for'-lus bevindt##. Hiermee kun je complexe patronen en herhalingen in je code creëren. 
+##Een geneste lus is een lus die zich binnenin een andere lus bevindt##. Meestal zijn dit 'for'-lussen, maar het kan ook met 'while'-lussen. Hiermee kun je complexe patronen en herhalingen in je code creëren. 
 
 image::images/Nestedloop.png[]
 

@@ -9,11 +9,13 @@
 
 == Wat is een functie
 
-Functies (of methods) zijn ##stukken code die een naam hebben gekregen##.
+Functies zijn ##stukken code die een naam hebben gekregen##.
 Met de naam te gebruiken (en er () achter te voegen), kan het stuk code opgeroepen worden.
 De code van een functie wordt alleen maar uitgevoerd wanneer de functie wordt opgeroepen. 
 Als een programma veel dezelfde code bevat (herhaling),
 kan je de code die altijd hetzelfde is, apart zetten in een functie en die functie telkens opnieuw oproepen.
+
+NOTE: Een functie die binnen een klasse geschreven is, noemen we een _method_. Klassen en methods komen later in de cursus aan bod.
 
 === Functies Definiëren en Oproepen
 
@@ -167,12 +169,16 @@ begroeten()         # Output: Hallo, Vriend!
 begroeten("Alice")  # Output: Hallo, Alice!
 ----
 
+TIP: In dit voorbeeld gebruiken we een **f-string**: een string met een `f` voor de aanhalingstekens. Alles wat tussen accolades `{ }` staat, wordt vervangen door de waarde van die variabele of expressie. `f"Hallo, {naam}!"` geeft dus hetzelfde als `"Hallo, " + naam + "!"`, maar is korter en werkt ook met getallen zonder `str()`: `f"Score: {score}"`.
+
 === args en kwargs
 
-In sommige gevallen wil je een variabel aantal argumenten aan een functie doorgeven, zonder vooraf te weten hoeveel dat er zullen zijn. De notatie `args` en `kwargs` staan dit toe.
+In sommige gevallen wil je een variabel aantal argumenten aan een functie doorgeven, zonder vooraf te weten hoeveel dat er zullen zijn. De notatie `*args` en `**kwargs` staat dit toe.
 
-- `args` staat voor "arguments" en verzamelt positionele argumenten in een tuple.
-- `kwargs` staat voor "keyword arguments" en verzamelt genoemde argumenten in een dictionary.
+- `*args` staat voor "arguments" en verzamelt positionele argumenten in een tuple.
+- `**kwargs` staat voor "keyword arguments" en verzamelt genoemde argumenten in een dictionary.
+
+Het zijn ##de sterretjes `*` en `**` die het werk doen##. De namen `args` en `kwargs` zijn enkel een afspraak: `*getallen` werkt net zo goed.
 
 Bijvoorbeeld, laten we een functie definiëren die een variabel aantal getallen kan optellen:
 
@@ -242,6 +248,8 @@ Laten we de bovenstaande docstring uitleggen:
 * De `Args` sectie beschrijft de argumenten (parameters) die de functie accepteert. In dit geval accepteert de functie één argument genaamd `name`, dat een string (str) moet zijn.
 * De `Returns` sectie beschrijft wat de functie retourneert. Hier retourneert de functie een string (str).
 * Onder de docstring wordt vaak een voorbeeld gegeven van hoe de functie kan worden gebruikt. Dit is handig voor andere ontwikkelaars die de functie willen begrijpen en gebruiken.
+
+NOTE: In dit hoofdstuk zag je twee stijlen van docstrings: met `:param` en `:return:` (de _reStructuredText_-stijl) en met `Args:` en `Returns:` (de _Google_-stijl). Beide zijn gangbaar. Kies er één en gebruik die consequent in je project.
 
 Met deze docstring kunnen andere ontwikkelaars snel zien hoe de functie werkt, welke argumenten deze verwacht en wat deze retourneert. Bovendien kunnen hulpmiddelen zoals docstring-generatoren deze informatie automatisch extraheren om documentatie te genereren. Het gebruik van docstrings is dus een goede gewoonte om je code goed gedocumenteerd en onderhoudbaar te houden.
 

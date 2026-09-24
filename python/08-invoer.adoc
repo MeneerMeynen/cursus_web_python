@@ -5,9 +5,9 @@
 :sectnums:
 //:stylesheet: dark.css
 
-= Hoofdstuk 8: Gegevensinvoer, Expressies en Berekeningen
+= Hoofdstuk 8: Gegevensinvoer en Bestanden
 
-In dit hoofdstuk gaan we in op gegevensinvoer en het gebruik van expressies en berekeningen.
+In dit hoofdstuk gaan we in op gegevensinvoer: invoer van de gebruiker via het toetsenbord, en het lezen en schrijven van bestanden. We combineren de invoer met de expressies uit hoofdstuk 3.
 
 == Gegevensinvoer
 
@@ -33,7 +33,7 @@ print("Je hebt gekozen om naar " + choice + " te gaan.")
 
 Hiermee kunnen spelers eenvoudige keuzes maken binnen je game en wordt de uitvoer aangepast op basis van hun invoer.
 
-== Expressies en Berekeningen
+== Rekenen met Invoer
 
 Het vermogen om expressies en berekeningen te gebruiken, opent een wereld van mogelijkheden in game-ontwikkeling. Hiermee kun je wiskundige en logische bewerkingen uitvoeren op basis van variabele waarden, invoer van spelers of gamegebeurtenissen.
 
@@ -52,9 +52,7 @@ if remaining_health <= 0:
 else:
     print("De vijand heeft nog", remaining_health, "gezondheid over.")
 ----
-<1> De invoer wordt hier omgezet naar een integer. Zodoende kan hiermee gerekend worden, dit zou met het text datatype niet kunnen.
-
-Deze code gebruikt input() om de schade van de speler te vragen, en de berekening controleert of de vijand is verslagen of nog steeds in leven is.
+<1> `input()` geeft altijd een string (`str`) terug, ook als de gebruiker een getal intypt. Daarom zetten we de invoer hier om naar een integer met `int()`. Zo kan ermee gerekend worden, met een `str` zou dat niet kunnen.
 
 Deze code gebruikt de invoer van de speler om de resterende gezondheid van een vijand na het toebrengen van schade te berekenen.
 
@@ -112,6 +110,8 @@ bestand = open('voorbeeld.txt', 'w')
 ----
 
 In dit voorbeeld wordt het bestand 'voorbeeld.txt' geopend **om te schrijven ('w')**. De 'w'-modus betekent dat het ##bestand wordt gewist als het al bestaat##, en anders wordt het aangemaakt.
+
+TIP: Geef bij het openen van tekstbestanden best ook de codering mee: `open('voorbeeld.txt', 'w', encoding='utf-8')`. Zonder `encoding` gebruikt Python de standaardcodering van je besturingssysteem. Op Windows kunnen letters zoals é, ë of ç dan verkeerd worden gelezen of weggeschreven.
 
 === Schrijven naar een Bestand
 
@@ -177,12 +177,12 @@ Je kunt ook door een bestand itereren om het regel voor regel te lezen met een `
 bestand = open('voorbeeld.txt', 'r')
 
 for regel in bestand:
-    print(regel)
+    print(regel.strip())
 
 bestand.close()
 ----
 
-Hier wordt elke regel van het bestand afzonderlijk gelezen en afgedrukt.
+Hier wordt elke regel van het bestand afzonderlijk gelezen en afgedrukt. Elke gelezen regel eindigt met een `\n` (nieuwe regel), en `print()` voegt zelf ook een nieuwe regel toe. Zonder `.strip()` zou er dus telkens een lege regel tussen staan. `.strip()` verwijdert witruimte en `\n` aan het begin en einde van de regel.
 
 === Met een Bestand Werken via een 'with'-verklaring
 

@@ -21,12 +21,9 @@ image::images/pong.gif[Blank Window, width=600]
 In deze documentatie vind je een overzicht van de basisstructuur van de bestanden, evenals een gedetailleerde uitleg van de belangrijkste componenten van de code.
 
 == Wat is pygame?
-Pygame is een python library waarmee je eenvoudige games snel en efficiënt kunt bouwen.
-Populaire voorbeelden zijn:
-
-- Without a Voice
-- Highway Blossoms
-- Love in a Bottle
+Pygame is een python library waarmee je eenvoudige 2D-games snel en efficiënt kunt bouwen.
+Het wordt veel gebruikt om te leren programmeren en voor kleine (indie)games.
+Op de website https://www.pygame.org[pygame.org] vind je documentatie en heel wat voorbeeldprojecten.
 
 
 == Leeg scherm

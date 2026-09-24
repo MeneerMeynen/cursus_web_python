@@ -120,7 +120,7 @@ Of via bepaalde longitude en latitude:
 
 [source, python]
 ----
-# Bepaal de extent voor de hele wereldkaart
+# Bepaal de extent: enkel (West-)Europa
 extent = [-10, 20, 30, 60]
 ----
 
@@ -132,7 +132,7 @@ image::images/inzoom.png[]
 
 [source, python]
 ----
-# Bepaal de extent voor de hele wereldkaart
+# Bepaal de extent: enkel België
 extent = [1.8, 6.5, 49.4, 52]
 
 # Maak een nieuwe kaartfiguur
@@ -142,9 +142,11 @@ ax.set_extent(extent)
 
 # Voeg landen toe aan de kaart
 ax.add_feature(cartopy.feature.LAND)
-ax.add_feature(cartopy.feature.STATES, linestyle='--', edgecolor='blue')
+ax.add_feature(cartopy.feature.STATES.with_scale('10m'), linestyle='--', edgecolor='blue')
 ax.add_feature(cartopy.feature.BORDERS, linestyle=':', edgecolor='red')
 ----
+
+`STATES` tekent de provincies (of deelstaten). Standaard gebruikt Cartopy de grove schaal `110m`. Die bevat enkel voor enkele grote landen (zoals de VS) deelstaatgrenzen. Met `.with_scale('10m')` gebruik je de gedetailleerde kaartgegevens, waarin ook de Belgische provincies zitten. De eerste keer worden die gegevens gedownload.
 
 Resultaat:
 
