@@ -60,7 +60,7 @@ In bijvoorbeeld Java, moet je het gegevenstype wel expliciet meegegeven:
 
 [source,java]
 ----
-int bullet_damage = 16
+int bullet_damage = 16;
 ----
 
 

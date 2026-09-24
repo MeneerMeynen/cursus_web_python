@@ -37,8 +37,8 @@ import pygame
 
 pygame.init()
 ----
-=== Creeër leeg scherm
-Nu we pyGame hebben geinitialiseerd kunnen we een leeg scherm maken waar we onze game op gaan bouwen.
+=== Creëer leeg scherm
+Nu we pyGame hebben geïnitialiseerd kunnen we een leeg scherm maken waar we onze game op gaan bouwen.
 
 [source, python]
 ----
@@ -49,7 +49,7 @@ pygame.display.set_caption('Pong Game')
 ----
 === Game Manager
 
-Creeër een ´game_manager.py´ bestand waar we de basis op gaan bouwen.
+Creëer een ´game_manager.py´ bestand waar we de basis op gaan bouwen.
 Plaats deze code in de ´game_manager.py´.
 
 [source, python]
@@ -148,7 +148,7 @@ class GameManager:
             pygame.display.update()
             self.clock.tick(self.FPS)
 ----
-<1> Verkrijg de grote van het scherm.
+<1> Verkrijg de grootte van het scherm.
 <2> Teken een lijn in het midden van het scherm met als grootte het scherm en als breedte 5.
 
 == Paddle
@@ -157,7 +157,7 @@ Nu gaan we een nieuw bestand aanmaken waar we de klassen gaan opslaan.
 
  + `paddle.py`
 
-=== Creeëren van paddle klasse
+=== Creëeren van paddle klasse
 
 [source, python]
 
@@ -171,7 +171,7 @@ class Paddle:
         self.speed = speed
 ----
 
-Wanneer je de klasse heb geinitialiseerd dan kan je de paddles gaan tekenen.
+Wanneer je de klasse hebt geïnitialiseerd dan kan je de paddles gaan tekenen.
 
 Hier is de code om de 2 paddles te tekenen.
 
@@ -233,7 +233,7 @@ paddle1 = paddle.Paddle(
 paddle2 = paddle.Paddle(
     "Player 2", 10, pygame.Rect(10, 10, 10, 100), 10, True, screen) <2>
 
-# Add the 2 padles to the game manager
+# Add the 2 paddles to the game manager
 game_manager = game_manager.GameManager(
     0, screen, paddle1, paddle2, clock, colors=[(255, 255, 255), (0, 0, 0)]) <3>
 game_manager.main()
@@ -368,10 +368,10 @@ class GameManager:
             pygame.display.update()
             self.clock.tick(self.FPS)
 ----
-<1> Als het ´Pijltje naar beneden´ knop wordt ingedrukt dan beweeg paddle1 naar beneden.
-<2> Als het ´Pijltje naar boven´ knop wordt ingedrukt dan beweeg paddle1 naar boven.
-<3> Als het ´W´ knop wordt ingedrukt dan beweeg paddle2 naar boven.
-<4> Als het ´S´ knop wordt ingedrukt dan beweeg paddle2 naar beneden.
+<1> Als de ´Pijltje naar beneden´-toets wordt ingedrukt dan beweeg paddle1 naar beneden.
+<2> Als de ´Pijltje naar boven´-toets wordt ingedrukt dan beweeg paddle1 naar boven.
+<3> Als de ´W´-toets wordt ingedrukt dan beweeg paddle2 naar boven.
+<4> Als de ´S´-toets wordt ingedrukt dan beweeg paddle2 naar beneden.
 
 === Move paddle
 Om de paddle te laten bewegen moeten we deze code implementeren in de ´paddle.py´.
@@ -554,7 +554,7 @@ class GameManager:
             self.clock.tick(self.FPS)
 ----
 <1> Creëer een bal variabele.
-<2> Voeg de bal to aan de init.
+<2> Voeg de bal toe aan de init.
 <3> Teken de bal
 
 image::images/ball.png[Ball, width=600]
@@ -633,7 +633,7 @@ class GameManager:
 ----
 <1> Reset het scherm op de manier hoe het in het begin was.
 <2> Beweeg de bal en geef de 2 paddles mee zodat je die kan laten botsen
-<3> Reset het scherm wanneer de bal ´True´ retourneerd.
+<3> Reset het scherm wanneer de bal ´True´ retourneert.
 
 Nu pas de code aan in de game_ball.py:
 
@@ -676,8 +676,8 @@ class Ball:
 
 ----
 
-<1> Pak de breedte van de bal en zorg ervoor dat die botst tegen de rand met het uiteinde van de bal en kijk daarna ofdat het tegen de linkse rand botst met coordinaat 0. Daarna reset het scherm. Na de ´or´ zorgt die ervoor dat die rand aan de rechterkant pakt. In de eerste helft wordt de breedte gedeeld door 2 om de straal van de bal te verkrijgen, zodat de rand van de bal (en niet het middelpunt) de botsing bepaalt.
-<2> Doe hetzelfde bij ´1´ maar pak de y coordinaat om die te laten botsen met de y as beneden door de ´0´ coordinaat te gebruiken en de bovenste kant van de bal. Na de ´or´ pakt die de hoogte van het sherm zodat die de onderkant van het scherm pakt en die ook gebruikt als rand waar je kunt tegen botsen.
+<1> Pak de breedte van de bal en zorg ervoor dat die botst tegen de rand met het uiteinde van de bal en kijk daarna of het tegen de linkse rand botst met coordinaat 0. Daarna reset het scherm. Na de ´or´ zorgt die ervoor dat die rand aan de rechterkant pakt. In de eerste helft wordt de breedte gedeeld door 2 om de straal van de bal te verkrijgen, zodat de rand van de bal (en niet het middelpunt) de botsing bepaalt.
+<2> Doe hetzelfde bij ´1´ maar pak de y coordinaat om die te laten botsen met de y as beneden door de ´0´ coordinaat te gebruiken en de bovenste kant van de bal. Na de ´or´ pakt die de hoogte van het scherm zodat die de onderkant van het scherm pakt en die ook gebruikt als rand waar je kunt tegen botsen.
 
 === Sprite Animatie
 Maak een sprite animatie wanneer het scherm resets. Wanneer de andere speler een punt maakt laat de bal exploderen door de explosie animatie te tonen. Plaats de onderstaande afbeeldingen in ´assets/imgs/´
@@ -739,10 +739,10 @@ class Ball:
         if self.y - self.height // 2 <= 0 or self.y + self.height // 2 >= screen.get_height():
             self.dy = -self.dy
 ----
-<1> Verkrijg de explosie animatie gebasseerd op het nummer
-<2> Vergoot de afbeelding
-<3> Toon de animatie op het scherm 1 voor 1 gebasseerd op de locatie van de bal.
-<4> Doe dit elke 100 miliseconde
+<1> Verkrijg de explosie animatie gebaseerd op het nummer
+<2> Vergroot de afbeelding
+<3> Toon de animatie op het scherm 1 voor 1 gebaseerd op de locatie van de bal.
+<4> Doe dit elke 100 milliseconden
 
 == Bewegen via paddles
 Om ervoor te zorgen dat je de paddles kunt laten bewegen met paddles voeg je deze code toe aan de move_ball() function.

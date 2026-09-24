@@ -34,7 +34,7 @@ Importeer het vervolgens in je python script:
 import matplotlib.pyplot as plt
 ----
 
-Op de https://matplotlib.org/[website van maptplotlib] kan je uitleg en veel voorbeelden vinden.
+Op de https://matplotlib.org/[website van Matplotlib] kan je uitleg en veel voorbeelden vinden.
 In de rest van dit hoofdstuk overlopen we enkele voorbeelden.
 
 == Eenvoudige Lijnplot

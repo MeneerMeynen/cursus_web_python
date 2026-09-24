@@ -109,7 +109,7 @@ De machinetaal wordt bijgehouden in een uitvoerbaar bestand of __executable__ (i
 
 * C
 +
-[source]
+[source,c]
 ----
 #include <stdio.h>
   
@@ -122,7 +122,7 @@ int main()
 +
 * C plus plus
 +
-[source]
+[source,cpp]
 ----
 #include <iostream>
 using namespace std;
@@ -135,14 +135,14 @@ int main()
 +
 * Ruby
 +
-[source]
+[source,ruby]
 ----
 puts "Hello World!"
 ----
 +
 * Java
 +
-[source]
+[source,java]
 ----
     class MyClass{  
         public static void main(String args[]){  
@@ -153,14 +153,14 @@ puts "Hello World!"
 +
 * Python 3
 +
-[source]
+[source,python]
 ----
 print("Hello, World!")
 ----
 +
 * C#
 +
-[source]
+[source,csharp]
 ----
 using System;
 namespace HelloWorldApp {
@@ -175,7 +175,7 @@ namespace HelloWorldApp {
 +
 * Fortran
 +
-[source]
+[source,fortran]
 ----
 program hello
   print *, 'Hello, World!'
@@ -188,7 +188,7 @@ end program hello
 image::images/ComputerLanguagesChart.png[]
 
 Er zijn voortdurend nieuwe ontwikkelingen in programmeertalen. Nieuwe talen worden ontwikkeld. Ze kunnen populair worden, bijna niet gebruikt worden of andere talen beïnvloeden met hun nieuwe ideeën.
-Iedere bestaande taal, zoals Python, wordt ook verder doorontwikkeld. Het verschil tussen python versie 1 en versie 3.11 is enorm groot. Hoewel het om dezelfde programmeertaal gaat, zal een programma ontwikkeld voor pyhton 3, niet meer werken op python 1.
+Iedere bestaande taal, zoals Python, wordt ook verder doorontwikkeld. Het verschil tussen python versie 1 en versie 3.11 is enorm groot. Hoewel het om dezelfde programmeertaal gaat, zal een programma ontwikkeld voor python 3, niet meer werken op python 1.
 
 == De Geschiedenis van Programmeertalen
 
@@ -253,8 +253,11 @@ Python onderscheidt zich door zijn eenvoudige en leesbare syntaxis. Dit betekent
 ----
 # Python
 print("Hello, world!")
+----
 
-# Java
+[source,java]
+----
+// Java
 public class HelloWorld {
     public static void main(String[] args) {
         System.out.println("Hello, world!");
@@ -273,8 +276,11 @@ Python staat bekend om zijn snelle ontwikkelingsmogelijkheden. Het vereist minde
 # Python
 numbers = [1, 2, 3, 4, 5]
 squared = [num ** 2 for num in numbers]
+----
 
-# Java
+[source,java]
+----
+// Java
 import java.util.ArrayList;
 
 public class SquaredNumbers {

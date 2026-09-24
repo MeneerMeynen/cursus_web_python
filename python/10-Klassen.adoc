@@ -37,13 +37,13 @@ In de afbeelding hierboven (uit het computerspel __Age of Empires__) kunnen we v
 * Een kameel (ook deze komt meerdere keren voor -> meerdere instanties)
 * Een kasteel (komt 1x voor -> slechts 1 instantie)
 
-Een ruiter is als **klasse** in dit computerspel slechts **eenmaal gedefiniëerd**.
+Een ruiter is als **klasse** in dit computerspel slechts **eenmaal gedefinieerd**.
 Toch zien we meerdere ruiters.
 Dit komt omdat er van deze ruiter klasse **meerdere instanties** werden aangemaakt.
 
 == De _code_ om een klasse te definiëren
 
-De ruiter klasse uit bovenstaande _screenshot_ zou als volgt geprogrameerd kunnen zijn:
+De ruiter klasse uit bovenstaande _screenshot_ zou als volgt geprogrammeerd kunnen zijn:
 
 [source,python]
 ----
@@ -79,7 +79,7 @@ image::images/teslablauwdruk.jpg[Tesla blauwdruk]
 Dit ontwerp beschrijft hoe een auto eruit moet zien, wat het concept is:
 
 * De afmetingen
-* De buiging van de carosserie
+* De buiging van de carrosserie
 * Het aantal zetels
 * De maat van de velgen
 * Paardenkracht van de motor
@@ -278,7 +278,7 @@ for unit in selected:
 
 == Gebruik van bestaande klassen
 
-In de _standard library_ van Python (die wordt meegeinstalleerd bij het installeren van Python) zijn veel bestaande modules en klassen aanwezig.
+In de _standard library_ van Python (die wordt meegeïnstalleerd bij het installeren van Python) zijn veel bestaande modules en klassen aanwezig.
 Deze kan je gebruiken zonder ze zelf vanaf 0 te hoeven schrijven.
 
 Een voorbeeld hiervan is de _math_ module.

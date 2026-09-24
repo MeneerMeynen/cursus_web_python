@@ -217,7 +217,7 @@ Externe modules in Python zijn als gereedschapskisten die je aan je basisgereeds
 
 Om een Python-module te installeren met `pip`, open je een terminal of opdrachtprompt en voer je het volgende commando in:
 
-[source, python]
+[source, bash]
 ----
 pip install module_naam
 ----
@@ -228,7 +228,7 @@ Vervang `module_naam` door de naam van de module die je wilt installeren.
 
 Laten we bijvoorbeeld de populaire `matplotlib`-module installeren, die wordt gebruikt om grafieken te maken (zie het hoofdstuk over Matplotlib).
 
-[source, python]
+[source, bash]
 ----
 pip install matplotlib
 ----
@@ -239,14 +239,14 @@ Dit commando zal de `matplotlib`-module downloaden en installeren.
 
 Je kunt ook een specifieke versie van een module installeren door de versienummer toe te voegen.
 
-[source, python]
+[source, bash]
 ----
 pip install module_naam==versie_nummer
 ----
 
 Bijvoorbeeld:
 
-[source, python]
+[source, bash]
 ----
 pip install matplotlib==3.8.0
 ----
@@ -257,7 +257,7 @@ Hiermee wordt versie 3.8.0 van de `matplotlib`-module geïnstalleerd.
 
 Soms wil je mogelijk alle modules installeren die in een __requirements__ bestand zijn gespecificeerd. Maak een bestand met de naam `requirements.txt` met daarin de namen van de modules en hun versies, en gebruik dan het volgende commando:
 
-[source, python]
+[source, bash]
 ----
 pip install -r requirements.txt
 ----
@@ -266,7 +266,7 @@ pip install -r requirements.txt
 
 Het wordt sterk aanbevolen om modules binnen een virtuele omgeving te installeren om conflicten met andere projecten te voorkomen. Maak een virtuele omgeving met:
 
-[source, python]
+[source, bash]
 ----
 python -m venv venv
 ----
@@ -275,14 +275,14 @@ Activeer de virtuele omgeving:
 
 - Voor Windows:
 
-[source, python]
+[source, bash]
 ----
   .\venv\Scripts\activate
 ----
 
 - Voor MacOS/Linux:
 
-[source, python]
+[source, bash]
 ----
   source venv/bin/activate
 ----

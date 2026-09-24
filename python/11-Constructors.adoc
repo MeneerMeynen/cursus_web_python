@@ -12,8 +12,8 @@
 
 = Constructors
 
-In Python, net als in veel andere objectgeoriënteerde programmeertalen, worden constructors gebruikt om objecten initialiseren (instanties van klassen te maken). 
-Constructors worden aangeroepen wanneer een object (of instanitie) van een klasse wordt gemaakt, en ze bieden de mogelijkheid om de initiële toestand van dat object in te stellen. 
+In Python, net als in veel andere objectgeoriënteerde programmeertalen, worden constructors gebruikt om objecten te initialiseren (de beginwaarden van een nieuwe instantie in te stellen). 
+Constructors worden aangeroepen wanneer een object (of instantie) van een klasse wordt gemaakt, en ze bieden de mogelijkheid om de initiële toestand van dat object in te stellen. 
 
 == Wat is een Constructor?
 

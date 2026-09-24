@@ -105,7 +105,7 @@ Indentatie is een fundamenteel concept in Python-programmering en speelt een cru
 
 Indentatie helpt om de structuur van je code visueel te benadrukken. Het geeft aan welke regels bij elkaar horen en vormt de basis van codeblokken. Een consistent gebruik van indentatie maakt het voor zowel jou als andere ontwikkelaars gemakkelijker om te begrijpen hoe de code is gestructureerd en welke delen met elkaar zijn verbonden.
 
-**Duidelijke Identatie:**
+**Duidelijke Indentatie:**
 
 [source,python]
 ----
@@ -115,7 +115,7 @@ if score > 100:
     print("Je bent nu level", player_level)
 ----
 
-**Onjuiste Identatie:**
+**Onjuiste Indentatie:**
 
 [source,python]
 ----
@@ -132,7 +132,7 @@ De juiste indentatie zorgt ervoor dat je code correct wordt uitgevoerd volgens d
 
 NOTE: In tegenstelling tot sommige andere programmeertalen maakt een `if`- of `for`-blok in Python ##géén nieuwe scope## voor variabelen. Een variabele die je binnen een `if` aanmaakt, bestaat ook na de `if` nog. Enkel functies (en klassen) hebben een eigen scope.
 
-**Loop met Correcte Identatie:**
+**Loop met Correcte Indentatie:**
 
 [source,python]
 ----
@@ -142,7 +142,7 @@ for i in range(5):
 print("De loop is voltooid.")
 ----
 
-**Loop met Onjuiste Identatie:**
+**Loop met Onjuiste Indentatie:**
 
 [source,python]
 ----
@@ -276,7 +276,7 @@ In dit voorbeeld wordt de 'not' operator gebruikt in samenwerking met de 'and' o
 === Het Gebruik van Haakjes
 
 
-image::images/booleanlogic.png[width:400px]
+image::images/booleanlogic.png[width=400]
 
 Bij het combineren van 'and' en 'or' operatoren is het vaak handig om haakjes te gebruiken om de volgorde van evaluatie te bepalen.
 

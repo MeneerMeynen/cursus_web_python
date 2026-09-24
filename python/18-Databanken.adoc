@@ -162,7 +162,7 @@ Het correct gebruik van Primary en Foreign Keys waarborgt data-integriteit door:
 * **Consistente Relaties**: Foreign Keys zorgen ervoor dat alleen geldige verwijzingen naar bestaande Primary Key-waarden zijn toegestaan.
 * **Voorkomen van Dode Verwijzingen**: Het is niet toegestaan om een Foreign Key te hebben met een waarde die niet overeenkomt met een bestaande Primary Key.
 
-bij het verwijderen van gegevens uit de databank moet er dus steeds opgelet worden dat je niets verwijderd waar een FK naar verwijst. De referentie (FK naar PK) mag niet verstoord worden. Voor het verwijderen zal je de FK-PK verwijzing eerst moeten opheffen of verwijderen. Dit is de referentiële integriteit.
+Bij het verwijderen van gegevens uit de databank moet er dus steeds opgelet worden dat je niets verwijdert waarnaar een FK verwijst. De referentie (FK naar PK) mag niet verstoord worden. Voor het verwijderen zal je de FK-PK verwijzing eerst moeten opheffen of verwijderen. Dit is de referentiële integriteit.
 
 == Joins: Het Combineren van Tabellen
 
