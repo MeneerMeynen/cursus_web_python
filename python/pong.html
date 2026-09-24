@@ -622,14 +622,14 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <li><a href="#_leeg_scherm">3. Leeg scherm</a>
 <ul class="sectlevel2">
 <li><a href="#_pygame_importeren_en_initialiseren">3.1. pyGame importeren en initialiseren</a></li>
-<li><a href="#_creeër_leeg_scherm">3.2. Creeër leeg scherm</a></li>
+<li><a href="#_creëer_leeg_scherm">3.2. Creëer leeg scherm</a></li>
 <li><a href="#_game_manager">3.3. Game Manager</a></li>
 </ul>
 </li>
 <li><a href="#_lijn_tekenen_op_scherm">4. Lijn tekenen op scherm</a></li>
 <li><a href="#_paddle">5. Paddle</a>
 <ul class="sectlevel2">
-<li><a href="#_creeëren_van_paddle_klasse">5.1. Creeëren van paddle klasse</a></li>
+<li><a href="#_creëeren_van_paddle_klasse">5.1. Creëeren van paddle klasse</a></li>
 </ul>
 </li>
 <li><a href="#_paddle_bewegen">6. Paddle bewegen</a>
@@ -695,9 +695,9 @@ Op de website <a href="https://www.pygame.org">pygame.org</a> vind je documentat
 </div>
 </div>
 <div class="sect2">
-<h3 id="_creeër_leeg_scherm">3.2. Creeër leeg scherm</h3>
+<h3 id="_creëer_leeg_scherm">3.2. Creëer leeg scherm</h3>
 <div class="paragraph">
-<p>Nu we pyGame hebben geinitialiseerd kunnen we een leeg scherm maken waar we onze game op gaan bouwen.</p>
+<p>Nu we pyGame hebben geïnitialiseerd kunnen we een leeg scherm maken waar we onze game op gaan bouwen.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -711,7 +711,7 @@ Op de website <a href="https://www.pygame.org">pygame.org</a> vind je documentat
 <div class="sect2">
 <h3 id="_game_manager">3.3. Game Manager</h3>
 <div class="paragraph">
-<p>Creeër een ´game_manager.py´ bestand waar we de basis op gaan bouwen.
+<p>Creëer een ´game_manager.py´ bestand waar we de basis op gaan bouwen.
 Plaats deze code in de ´game_manager.py´.</p>
 </div>
 <div class="listingblock">
@@ -839,7 +839,7 @@ Om een lijn te maken doen we dat zo:</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Verkrijg de grote van het scherm.</td>
+<td>Verkrijg de grootte van het scherm.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -861,7 +861,7 @@ Om een lijn te maken doen we dat zo:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_creeëren_van_paddle_klasse">5.1. Creeëren van paddle klasse</h3>
+<h3 id="_creëeren_van_paddle_klasse">5.1. Creëeren van paddle klasse</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python"><span class="k">class</span> <span class="nc">Paddle</span><span class="p">:</span>
@@ -874,7 +874,7 @@ Om een lijn te maken doen we dat zo:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Wanneer je de klasse heb geinitialiseerd dan kan je de paddles gaan tekenen.</p>
+<p>Wanneer je de klasse hebt geïnitialiseerd dan kan je de paddles gaan tekenen.</p>
 </div>
 <div class="paragraph">
 <p>Hier is de code om de 2 paddles te tekenen.</p>
@@ -950,7 +950,7 @@ Om een lijn te maken doen we dat zo:</p>
 <span class="n">paddle2</span> <span class="o">=</span> <span class="n">paddle</span><span class="p">.</span><span class="n">Paddle</span><span class="p">(</span>
     <span class="s">"Player 2"</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">pygame</span><span class="p">.</span><span class="n">Rect</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="mi">10</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="n">screen</span><span class="p">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
 
-<span class="c1"># Add the 2 padles to the game manager
+<span class="c1"># Add the 2 paddles to the game manager
 </span><span class="n">game_manager</span> <span class="o">=</span> <span class="n">game_manager</span><span class="p">.</span><span class="n">GameManager</span><span class="p">(</span>
     <span class="mi">0</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">paddle1</span><span class="p">,</span> <span class="n">paddle2</span><span class="p">,</span> <span class="n">clock</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="p">[(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span> <i class="conum" data-value="3"></i><b>(3)</b>
 <span class="n">game_manager</span><span class="p">.</span><span class="n">main</span><span class="p">()</span></code></pre>
@@ -1124,19 +1124,19 @@ je toetsenbord.</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Als het ´Pijltje naar beneden´ knop wordt ingedrukt dan beweeg paddle1 naar beneden.</td>
+<td>Als de ´Pijltje naar beneden´-toets wordt ingedrukt dan beweeg paddle1 naar beneden.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Als het ´Pijltje naar boven´ knop wordt ingedrukt dan beweeg paddle1 naar boven.</td>
+<td>Als de ´Pijltje naar boven´-toets wordt ingedrukt dan beweeg paddle1 naar boven.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Als het ´W´ knop wordt ingedrukt dan beweeg paddle2 naar boven.</td>
+<td>Als de ´W´-toets wordt ingedrukt dan beweeg paddle2 naar boven.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Als het ´S´ knop wordt ingedrukt dan beweeg paddle2 naar beneden.</td>
+<td>Als de ´S´-toets wordt ingedrukt dan beweeg paddle2 naar beneden.</td>
 </tr>
 </table>
 </div>
@@ -1369,7 +1369,7 @@ Dat doe je zo:</p>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Voeg de bal to aan de init.</td>
+<td>Voeg de bal toe aan de init.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -1470,7 +1470,7 @@ Dat doe je zo:</p>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Reset het scherm wanneer de bal ´True´ retourneerd.</td>
+<td>Reset het scherm wanneer de bal ´True´ retourneert.</td>
 </tr>
 </table>
 </div>
@@ -1519,11 +1519,11 @@ Dat doe je zo:</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Pak de breedte van de bal en zorg ervoor dat die botst tegen de rand met het uiteinde van de bal en kijk daarna ofdat het tegen de linkse rand botst met coordinaat 0. Daarna reset het scherm. Na de ´or´ zorgt die ervoor dat die rand aan de rechterkant pakt. In de eerste helft wordt de breedte gedeeld door 2 om de straal van de bal te verkrijgen, zodat de rand van de bal (en niet het middelpunt) de botsing bepaalt.</td>
+<td>Pak de breedte van de bal en zorg ervoor dat die botst tegen de rand met het uiteinde van de bal en kijk daarna of het tegen de linkse rand botst met coordinaat 0. Daarna reset het scherm. Na de ´or´ zorgt die ervoor dat die rand aan de rechterkant pakt. In de eerste helft wordt de breedte gedeeld door 2 om de straal van de bal te verkrijgen, zodat de rand van de bal (en niet het middelpunt) de botsing bepaalt.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Doe hetzelfde bij ´1´ maar pak de y coordinaat om die te laten botsen met de y as beneden door de ´0´ coordinaat te gebruiken en de bovenste kant van de bal. Na de ´or´ pakt die de hoogte van het sherm zodat die de onderkant van het scherm pakt en die ook gebruikt als rand waar je kunt tegen botsen.</td>
+<td>Doe hetzelfde bij ´1´ maar pak de y coordinaat om die te laten botsen met de y as beneden door de ´0´ coordinaat te gebruiken en de bovenste kant van de bal. Na de ´or´ pakt die de hoogte van het scherm zodat die de onderkant van het scherm pakt en die ook gebruikt als rand waar je kunt tegen botsen.</td>
 </tr>
 </table>
 </div>
@@ -1600,19 +1600,19 @@ Dat doe je zo:</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Verkrijg de explosie animatie gebasseerd op het nummer</td>
+<td>Verkrijg de explosie animatie gebaseerd op het nummer</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Vergoot de afbeelding</td>
+<td>Vergroot de afbeelding</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Toon de animatie op het scherm 1 voor 1 gebasseerd op de locatie van de bal.</td>
+<td>Toon de animatie op het scherm 1 voor 1 gebaseerd op de locatie van de bal.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Doe dit elke 100 miliseconde</td>
+<td>Doe dit elke 100 milliseconden</td>
 </tr>
 </table>
 </div>

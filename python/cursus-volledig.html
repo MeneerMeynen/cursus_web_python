@@ -980,14 +980,14 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <li><a href="#_leeg_scherm">15.8. Leeg scherm</a>
 <ul class="sectlevel3">
 <li><a href="#_pygame_importeren_en_initialiseren">15.8.1. pyGame importeren en initialiseren</a></li>
-<li><a href="#_creeër_leeg_scherm">15.8.2. Creeër leeg scherm</a></li>
+<li><a href="#_creëer_leeg_scherm">15.8.2. Creëer leeg scherm</a></li>
 <li><a href="#_game_manager">15.8.3. Game Manager</a></li>
 </ul>
 </li>
 <li><a href="#_lijn_tekenen_op_scherm">15.9. Lijn tekenen op scherm</a></li>
 <li><a href="#_paddle">15.10. Paddle</a>
 <ul class="sectlevel3">
-<li><a href="#_creeëren_van_paddle_klasse">15.10.1. Creeëren van paddle klasse</a></li>
+<li><a href="#_creëeren_van_paddle_klasse">15.10.1. Creëeren van paddle klasse</a></li>
 </ul>
 </li>
 <li><a href="#_paddle_bewegen">15.11. Paddle bewegen</a>
@@ -1279,13 +1279,13 @@ Dit zijn afgesproken opdrachten op een laag niveau (vb. onthoud een getal, tel e
 <p>C</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>#include &lt;stdio.h&gt;
-
-int main()
-{
-    printf("Hello World");
-    return 0;
-}</code></pre>
+<pre class="rouge highlight"><code data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Hello World"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 </li>
@@ -1293,13 +1293,13 @@ int main()
 <p>C plus plus</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>#include &lt;iostream&gt;
-using namespace std;
-int main()
-{
-    cout &lt;&lt; "Hello World";
-    return 0;
-}</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Hello World"</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 </li>
@@ -1307,7 +1307,7 @@ int main()
 <p>Ruby</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>puts "Hello World!"</code></pre>
+<pre class="rouge highlight"><code data-lang="ruby"><span class="nb">puts</span> <span class="s2">"Hello World!"</span></code></pre>
 </div>
 </div>
 </li>
@@ -1315,11 +1315,11 @@ int main()
 <p>Java</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>    class MyClass{
-        public static void main(String args[]){
-         System.out.println("Hello Java");
-        }
-    }</code></pre>
+<pre class="rouge highlight"><code data-lang="java">    <span class="kd">class</span> <span class="nc">MyClass</span><span class="o">{</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[]){</span>
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hello Java"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre>
 </div>
 </div>
 </li>
@@ -1327,7 +1327,7 @@ int main()
 <p>Python 3</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>print("Hello, World!")</code></pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s">"Hello, World!"</span><span class="p">)</span></code></pre>
 </div>
 </div>
 </li>
@@ -1335,15 +1335,15 @@ int main()
 <p>C#</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>using System;
-namespace HelloWorldApp {
-    class MyClass {
-        static void Main(string[] args) {
-            Console.WriteLine("Hello World!");
-            Console.ReadKey();
-        }
-    }
-}</code></pre>
+<pre class="rouge highlight"><code data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">namespace</span> <span class="nn">HelloWorldApp</span> <span class="p">{</span>
+    <span class="k">class</span> <span class="nc">MyClass</span> <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Hello World!"</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">ReadKey</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 </li>
@@ -1351,9 +1351,9 @@ namespace HelloWorldApp {
 <p>Fortran</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>program hello
-  print *, 'Hello, World!'
-end program hello</code></pre>
+<pre class="rouge highlight"><code data-lang="fortran"><span class="k">program</span><span class="w"> </span><span class="n">hello</span><span class="w">
+  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">'Hello, World!'</span><span class="w">
+</span><span class="k">end</span><span class="w"> </span><span class="k">program</span><span class="w"> </span><span class="n">hello</span></code></pre>
 </div>
 </div>
 </li>
@@ -1370,7 +1370,7 @@ end program hello</code></pre>
 </div>
 <div class="paragraph">
 <p>Er zijn voortdurend nieuwe ontwikkelingen in programmeertalen. Nieuwe talen worden ontwikkeld. Ze kunnen populair worden, bijna niet gebruikt worden of andere talen beïnvloeden met hun nieuwe ideeën.
-Iedere bestaande taal, zoals Python, wordt ook verder doorontwikkeld. Het verschil tussen python versie 1 en versie 3.11 is enorm groot. Hoewel het om dezelfde programmeertaal gaat, zal een programma ontwikkeld voor pyhton 3, niet meer werken op python 1.</p>
+Iedere bestaande taal, zoals Python, wordt ook verder doorontwikkeld. Het verschil tussen python versie 1 en versie 3.11 is enorm groot. Hoewel het om dezelfde programmeertaal gaat, zal een programma ontwikkeld voor python 3, niet meer werken op python 1.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1490,14 +1490,17 @@ Dit zijn een reeks afspraken van de taal:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python"><span class="c1"># Python
-</span><span class="k">print</span><span class="p">(</span><span class="s">"Hello, world!"</span><span class="p">)</span>
-
-<span class="c1"># Java
-</span><span class="n">public</span> <span class="k">class</span> <span class="nc">HelloWorld</span> <span class="p">{</span>
-    <span class="n">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">System</span><span class="p">.</span><span class="n">out</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"Hello, world!"</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre>
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Hello, world!"</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="c1">// Java</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hello, world!"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1513,26 +1516,29 @@ Dit zijn een reeks afspraken van de taal:</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python"><span class="c1"># Python
 </span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-<span class="n">squared</span> <span class="o">=</span> <span class="p">[</span><span class="n">num</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">]</span>
+<span class="n">squared</span> <span class="o">=</span> <span class="p">[</span><span class="n">num</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">]</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="c1">// Java</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
 
-<span class="c1"># Java
-</span><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SquaredNumbers</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">numbers</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">numbers</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+        <span class="n">numbers</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+        <span class="n">numbers</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+        <span class="n">numbers</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">4</span><span class="o">);</span>
+        <span class="n">numbers</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
 
-<span class="n">public</span> <span class="k">class</span> <span class="nc">SquaredNumbers</span> <span class="p">{</span>
-    <span class="n">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">numbers</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="n">numbers</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-        <span class="n">numbers</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-        <span class="n">numbers</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
-        <span class="n">numbers</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
-        <span class="n">numbers</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
-
-        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">squared</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">Integer</span> <span class="n">num</span> <span class="p">:</span> <span class="n">numbers</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">squared</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">num</span> <span class="o">*</span> <span class="n">num</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre>
+        <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">squared</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Integer</span> <span class="n">num</span> <span class="o">:</span> <span class="n">numbers</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">squared</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">num</span> <span class="o">*</span> <span class="n">num</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1911,7 +1917,7 @@ SyntaxError: invalid syntax</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">bullet_damage</span> <span class="o">=</span> <span class="mi">16</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">bullet_damage</span> <span class="o">=</span> <span class="mi">16</span><span class="o">;</span></code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -2873,7 +2879,7 @@ De expressie <code>getal % 2 == 0</code> is een klassieker: ze controleert of ee
 <p>Indentatie helpt om de structuur van je code visueel te benadrukken. Het geeft aan welke regels bij elkaar horen en vormt de basis van codeblokken. Een consistent gebruik van indentatie maakt het voor zowel jou als andere ontwikkelaars gemakkelijker om te begrijpen hoe de code is gestructureerd en welke delen met elkaar zijn verbonden.</p>
 </div>
 <div class="paragraph">
-<p><strong>Duidelijke Identatie:</strong></p>
+<p><strong>Duidelijke Indentatie:</strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2884,7 +2890,7 @@ De expressie <code>getal % 2 == 0</code> is een klassieker: ze controleert of ee
 </div>
 </div>
 <div class="paragraph">
-<p><strong>Onjuiste Identatie:</strong></p>
+<p><strong>Onjuiste Indentatie:</strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2915,7 +2921,7 @@ In tegenstelling tot sommige andere programmeertalen maakt een <code>if</code>- 
 </table>
 </div>
 <div class="paragraph">
-<p><strong>Loop met Correcte Identatie:</strong></p>
+<p><strong>Loop met Correcte Indentatie:</strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2926,7 +2932,7 @@ In tegenstelling tot sommige andere programmeertalen maakt een <code>if</code>- 
 </div>
 </div>
 <div class="paragraph">
-<p><strong>Loop met Onjuiste Identatie:</strong></p>
+<p><strong>Loop met Onjuiste Indentatie:</strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3093,7 +3099,7 @@ In tegenstelling tot sommige andere programmeertalen maakt een <code>if</code>- 
 <h4 id="_het_gebruik_van_haakjes">4.6.6. Het Gebruik van Haakjes</h4>
 <div class="imageblock">
 <div class="content">
-<img src="images/booleanlogic.png" alt="width:400px">
+<img src="images/booleanlogic.png" alt="booleanlogic" width="400">
 </div>
 </div>
 <div class="paragraph">
@@ -5002,7 +5008,7 @@ In computerspellen wordt veel gebruik gemaakt van klassen.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Een ruiter is als <strong>klasse</strong> in dit computerspel slechts <strong>eenmaal gedefiniëerd</strong>.
+<p>Een ruiter is als <strong>klasse</strong> in dit computerspel slechts <strong>eenmaal gedefinieerd</strong>.
 Toch zien we meerdere ruiters.
 Dit komt omdat er van deze ruiter klasse <strong>meerdere instanties</strong> werden aangemaakt.</p>
 </div>
@@ -5010,7 +5016,7 @@ Dit komt omdat er van deze ruiter klasse <strong>meerdere instanties</strong> we
 <div class="sect2">
 <h3 id="_de_code_om_een_klasse_te_definiëren">10.2. De <em>code</em> om een klasse te definiëren</h3>
 <div class="paragraph">
-<p>De ruiter klasse uit bovenstaande <em>screenshot</em> zou als volgt geprogrameerd kunnen zijn:</p>
+<p>De ruiter klasse uit bovenstaande <em>screenshot</em> zou als volgt geprogrammeerd kunnen zijn:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5081,7 +5087,7 @@ Dit komt omdat er van deze ruiter klasse <strong>meerdere instanties</strong> we
 <p>De afmetingen</p>
 </li>
 <li>
-<p>De buiging van de carosserie</p>
+<p>De buiging van de carrosserie</p>
 </li>
 <li>
 <p>Het aantal zetels</p>
@@ -5355,7 +5361,7 @@ In het screenshot kan je zien dat enkele <em>units</em> meer schade hebben opgel
 <div class="sect2">
 <h3 id="_gebruik_van_bestaande_klassen">10.4. Gebruik van bestaande klassen</h3>
 <div class="paragraph">
-<p>In de <em>standard library</em> van Python (die wordt meegeinstalleerd bij het installeren van Python) zijn veel bestaande modules en klassen aanwezig.
+<p>In de <em>standard library</em> van Python (die wordt meegeïnstalleerd bij het installeren van Python) zijn veel bestaande modules en klassen aanwezig.
 Deze kan je gebruiken zonder ze zelf vanaf 0 te hoeven schrijven.</p>
 </div>
 <div class="paragraph">
@@ -5419,8 +5425,8 @@ Deze bevat enkele constanten (onveranderbare variabelen), zoals het getal PI.</p
 <h2 id="_constructors">11. Constructors</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In Python, net als in veel andere objectgeoriënteerde programmeertalen, worden constructors gebruikt om objecten initialiseren (instanties van klassen te maken).
-Constructors worden aangeroepen wanneer een object (of instanitie) van een klasse wordt gemaakt, en ze bieden de mogelijkheid om de initiële toestand van dat object in te stellen.</p>
+<p>In Python, net als in veel andere objectgeoriënteerde programmeertalen, worden constructors gebruikt om objecten te initialiseren (de beginwaarden van een nieuwe instantie in te stellen).
+Constructors worden aangeroepen wanneer een object (of instantie) van een klasse wordt gemaakt, en ze bieden de mogelijkheid om de initiële toestand van dat object in te stellen.</p>
 </div>
 <div class="sect2">
 <h3 id="_wat_is_een_constructor">11.1. Wat is een Constructor?</h3>
@@ -6198,7 +6204,7 @@ Trol (Gezondheid: 145)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">pip</span> <span class="n">install</span> <span class="n">module_naam</span></code></pre>
+<pre class="rouge highlight"><code data-lang="bash">pip <span class="nb">install </span>module_naam</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6211,7 +6217,7 @@ Trol (Gezondheid: 145)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">pip</span> <span class="n">install</span> <span class="n">matplotlib</span></code></pre>
+<pre class="rouge highlight"><code data-lang="bash">pip <span class="nb">install </span>matplotlib</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6226,7 +6232,7 @@ Trol (Gezondheid: 145)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">pip</span> <span class="n">install</span> <span class="n">module_naam</span><span class="o">==</span><span class="n">versie_nummer</span></code></pre>
+<pre class="rouge highlight"><code data-lang="bash">pip <span class="nb">install </span><span class="nv">module_naam</span><span class="o">==</span>versie_nummer</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6234,7 +6240,7 @@ Trol (Gezondheid: 145)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">pip</span> <span class="n">install</span> <span class="n">matplotlib</span><span class="o">==</span><span class="mf">3.8</span><span class="p">.</span><span class="mi">0</span></code></pre>
+<pre class="rouge highlight"><code data-lang="bash">pip <span class="nb">install </span><span class="nv">matplotlib</span><span class="o">==</span>3.8.0</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6248,7 +6254,7 @@ Trol (Gezondheid: 145)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="p">.</span><span class="n">txt</span></code></pre>
+<pre class="rouge highlight"><code data-lang="bash">pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt</code></pre>
 </div>
 </div>
 </div>
@@ -6259,7 +6265,7 @@ Trol (Gezondheid: 145)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">venv</span></code></pre>
+<pre class="rouge highlight"><code data-lang="bash">python <span class="nt">-m</span> venv venv</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6274,7 +6280,7 @@ Trol (Gezondheid: 145)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python">  <span class="p">.</span>\<span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">activate</span></code></pre>
+<pre class="rouge highlight"><code data-lang="bash">  .<span class="se">\v</span><span class="nb">env</span><span class="se">\S</span>cripts<span class="se">\a</span>ctivate</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -6286,7 +6292,7 @@ Trol (Gezondheid: 145)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python">  <span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span></code></pre>
+<pre class="rouge highlight"><code data-lang="bash">  <span class="nb">source </span>venv/bin/activate</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6390,7 +6396,7 @@ In dit hoofdstuk zullen we dieper ingaan op het gebruik van Matplotlib, beginnen
 </div>
 </div>
 <div class="paragraph">
-<p>Op de <a href="https://matplotlib.org/">website van maptplotlib</a> kan je uitleg en veel voorbeelden vinden.
+<p>Op de <a href="https://matplotlib.org/">website van Matplotlib</a> kan je uitleg en veel voorbeelden vinden.
 In de rest van dit hoofdstuk overlopen we enkele voorbeelden.</p>
 </div>
 </div>
@@ -6612,7 +6618,7 @@ We gaan in dit project gebruik maken van brondata.</p>
 <p>Het csv bestand kan je hier terugvinden: <a href="https://www.kaggle.com/datasets/sudalairajkumar/daily-temperature-of-major-cities" class="bare">https://www.kaggle.com/datasets/sudalairajkumar/daily-temperature-of-major-cities</a></p>
 </div>
 <div class="paragraph">
-<p>Een csv bestand bevat verschillende gegevens die met een komme gescheiden zijn (vandaar csv: <em>Comma Seperated Values</em>).</p>
+<p>Een csv bestand bevat verschillende gegevens die met een komma gescheiden zijn (vandaar csv: <em>Comma Separated Values</em>).</p>
 </div>
 <div class="paragraph">
 <p>Enkele voorbeeldlijnen uit het bestand:</p>
@@ -6675,7 +6681,7 @@ De dictreader maakt een lijst van rows (waar we over kunnen lussen).
 Elke row wordt voorgesteld als een dictionary (waarvan we een <em>key</em> kunnen opvragen).</p>
 </div>
 <div class="paragraph">
-<p>Filteren doen we door te aan de dictionary een bepaalde key te vragen voor elke row:</p>
+<p>Filteren doen we door voor elke row een bepaalde key aan de dictionary te vragen:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6693,12 +6699,12 @@ Elke row wordt voorgesteld als een dictionary (waarvan we een <em>key</em> kunne
 </div>
 </div>
 <div class="paragraph">
-<p>Deze temperatuur kunnen we omzetten in Celcius. Hiervoor maken we zelf een functie aan:</p>
+<p>Deze temperatuur kunnen we omzetten in Celsius. Hiervoor maken we zelf een functie aan:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python"><span class="k">def</span> <span class="nf">FtoC</span><span class="p">(</span><span class="n">F</span><span class="p">):</span>
-    <span class="s">'''Deze functie zet de temparatuur van Fahrenheit om naar Celcius'''</span>
+    <span class="s">'''Deze functie zet de temperatuur van Fahrenheit om naar Celsius'''</span>
     <span class="k">return</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">F</span><span class="p">)</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span><span class="o">/</span><span class="mi">9</span></code></pre>
 </div>
 </div>
@@ -6707,7 +6713,7 @@ Elke row wordt voorgesteld als een dictionary (waarvan we een <em>key</em> kunne
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">celcius</span> <span class="o">=</span> <span class="n">FtoC</span><span class="p">(</span><span class="n">fahrenheit</span><span class="p">)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="n">celsius</span> <span class="o">=</span> <span class="n">FtoC</span><span class="p">(</span><span class="n">fahrenheit</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6716,7 +6722,7 @@ Elke row wordt voorgesteld als een dictionary (waarvan we een <em>key</em> kunne
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python"><span class="n">temperatures</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># bovenaan in het programma
-</span><span class="n">temperatures</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">celcius</span><span class="p">)</span> <span class="c1"># telkens bij het uitlezen van de row</span></code></pre>
+</span><span class="n">temperatures</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">celsius</span><span class="p">)</span> <span class="c1"># telkens bij het uitlezen van de row</span></code></pre>
 </div>
 </div>
 </div>
@@ -6732,7 +6738,7 @@ En het maakt de code ook veel leesbaarder.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python"><span class="k">def</span> <span class="nf">FtoC</span><span class="p">(</span><span class="n">F</span><span class="p">):</span>
-    <span class="s">'''Deze functie zet de temparatuur van Fahrenheit om naar Celcius'''</span>
+    <span class="s">'''Deze functie zet de temperatuur van Fahrenheit om naar Celsius'''</span>
 
 <span class="k">def</span> <span class="nf">readcsv_from_file</span><span class="p">():</span>
     <span class="s">'''Deze functie leest het csv bestand in en filtert'''</span>
@@ -6760,7 +6766,7 @@ readcsv_from_file()</span></code></pre>
 </span><span class="n">temperatures</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">def</span> <span class="nf">FtoC</span><span class="p">(</span><span class="n">F</span><span class="p">):</span>
-    <span class="s">'''Deze functie zet de temparatuur van Fahrenheit om naar Celcius'''</span>
+    <span class="s">'''Deze functie zet de temperatuur van Fahrenheit om naar Celsius'''</span>
     <span class="k">return</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">F</span><span class="p">)</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span><span class="o">/</span><span class="mi">9</span>
 
 <span class="k">def</span> <span class="nf">readcsv_from_file</span><span class="p">():</span>
@@ -6773,14 +6779,14 @@ readcsv_from_file()</span></code></pre>
 </span>            <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s">"City"</span><span class="p">]</span> <span class="o">==</span> <span class="s">"Brussels"</span> <span class="ow">and</span> <span class="n">row</span><span class="p">[</span><span class="s">"Year"</span><span class="p">]</span> <span class="o">==</span> <span class="n">year</span><span class="p">:</span>
                 <span class="c1"># Haal voor iedere row de temperatuur op
 </span>                <span class="n">fahrenheit</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s">"AvgTemperature"</span><span class="p">]</span>
-                <span class="c1"># Zet de temperatuur om naar graden Celcius
-</span>                <span class="n">celcius</span> <span class="o">=</span> <span class="n">FtoC</span><span class="p">(</span><span class="n">fahrenheit</span><span class="p">)</span>
+                <span class="c1"># Zet de temperatuur om naar graden Celsius
+</span>                <span class="n">celsius</span> <span class="o">=</span> <span class="n">FtoC</span><span class="p">(</span><span class="n">fahrenheit</span><span class="p">)</span>
                 <span class="c1"># Meetfouten halen we uit de gegevens (ontbrekende metingen staan in het bronbestand als -99 °F)
-</span>                <span class="k">if</span> <span class="n">celcius</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">30</span><span class="p">:</span>
+</span>                <span class="k">if</span> <span class="n">celsius</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">30</span><span class="p">:</span>
                     <span class="c1"># Bij een meetfout slaan we deze rij over en gaan we naar de volgende iteratie van de lus
 </span>                    <span class="k">continue</span>
-                <span class="c1"># Voeg de gevonden tempertuur toe aan de lijst van temperaturen
-</span>                <span class="n">temperatures</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">celcius</span><span class="p">)</span> <span class="c1"># F° =&gt; C°
+                <span class="c1"># Voeg de gevonden temperatuur toe aan de lijst van temperaturen
+</span>                <span class="n">temperatures</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">celsius</span><span class="p">)</span> <span class="c1"># F° =&gt; C°
 </span>
         <span class="c1"># Na het uitvoeren van de lus, roepen we de toongrafiek functie op.
 </span>        <span class="n">toongrafiek</span><span class="p">()</span>
@@ -6848,9 +6854,9 @@ Op de website <a href="https://www.pygame.org">pygame.org</a> vind je documentat
 </div>
 </div>
 <div class="sect3">
-<h4 id="_creeër_leeg_scherm">15.8.2. Creeër leeg scherm</h4>
+<h4 id="_creëer_leeg_scherm">15.8.2. Creëer leeg scherm</h4>
 <div class="paragraph">
-<p>Nu we pyGame hebben geinitialiseerd kunnen we een leeg scherm maken waar we onze game op gaan bouwen.</p>
+<p>Nu we pyGame hebben geïnitialiseerd kunnen we een leeg scherm maken waar we onze game op gaan bouwen.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6864,7 +6870,7 @@ Op de website <a href="https://www.pygame.org">pygame.org</a> vind je documentat
 <div class="sect3">
 <h4 id="_game_manager">15.8.3. Game Manager</h4>
 <div class="paragraph">
-<p>Creeër een ´game_manager.py´ bestand waar we de basis op gaan bouwen.
+<p>Creëer een ´game_manager.py´ bestand waar we de basis op gaan bouwen.
 Plaats deze code in de ´game_manager.py´.</p>
 </div>
 <div class="listingblock">
@@ -6990,7 +6996,7 @@ Om een lijn te maken doen we dat zo:</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Verkrijg de grote van het scherm.</td>
+<td>Verkrijg de grootte van het scherm.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -7010,7 +7016,7 @@ Om een lijn te maken doen we dat zo:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_creeëren_van_paddle_klasse">15.10.1. Creeëren van paddle klasse</h4>
+<h4 id="_creëeren_van_paddle_klasse">15.10.1. Creëeren van paddle klasse</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python"><span class="k">class</span> <span class="nc">Paddle</span><span class="p">:</span>
@@ -7023,7 +7029,7 @@ Om een lijn te maken doen we dat zo:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Wanneer je de klasse heb geinitialiseerd dan kan je de paddles gaan tekenen.</p>
+<p>Wanneer je de klasse hebt geïnitialiseerd dan kan je de paddles gaan tekenen.</p>
 </div>
 <div class="paragraph">
 <p>Hier is de code om de 2 paddles te tekenen.</p>
@@ -7099,7 +7105,7 @@ Om een lijn te maken doen we dat zo:</p>
 <span class="n">paddle2</span> <span class="o">=</span> <span class="n">paddle</span><span class="p">.</span><span class="n">Paddle</span><span class="p">(</span>
     <span class="s">"Player 2"</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">pygame</span><span class="p">.</span><span class="n">Rect</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="mi">10</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="n">screen</span><span class="p">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
 
-<span class="c1"># Add the 2 padles to the game manager
+<span class="c1"># Add the 2 paddles to the game manager
 </span><span class="n">game_manager</span> <span class="o">=</span> <span class="n">game_manager</span><span class="p">.</span><span class="n">GameManager</span><span class="p">(</span>
     <span class="mi">0</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">paddle1</span><span class="p">,</span> <span class="n">paddle2</span><span class="p">,</span> <span class="n">clock</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="p">[(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span> <i class="conum" data-value="3"></i><b>(3)</b>
 <span class="n">game_manager</span><span class="p">.</span><span class="n">main</span><span class="p">()</span></code></pre>
@@ -7271,19 +7277,19 @@ je toetsenbord.</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Als het ´Pijltje naar beneden´ knop wordt ingedrukt dan beweeg paddle1 naar beneden.</td>
+<td>Als de ´Pijltje naar beneden´-toets wordt ingedrukt dan beweeg paddle1 naar beneden.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Als het ´Pijltje naar boven´ knop wordt ingedrukt dan beweeg paddle1 naar boven.</td>
+<td>Als de ´Pijltje naar boven´-toets wordt ingedrukt dan beweeg paddle1 naar boven.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Als het ´W´ knop wordt ingedrukt dan beweeg paddle2 naar boven.</td>
+<td>Als de ´W´-toets wordt ingedrukt dan beweeg paddle2 naar boven.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Als het ´S´ knop wordt ingedrukt dan beweeg paddle2 naar beneden.</td>
+<td>Als de ´S´-toets wordt ingedrukt dan beweeg paddle2 naar beneden.</td>
 </tr>
 </table>
 </div>
@@ -7514,7 +7520,7 @@ Dat doe je zo:</p>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Voeg de bal to aan de init.</td>
+<td>Voeg de bal toe aan de init.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -7615,7 +7621,7 @@ Dat doe je zo:</p>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Reset het scherm wanneer de bal ´True´ retourneerd.</td>
+<td>Reset het scherm wanneer de bal ´True´ retourneert.</td>
 </tr>
 </table>
 </div>
@@ -7664,11 +7670,11 @@ Dat doe je zo:</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Pak de breedte van de bal en zorg ervoor dat die botst tegen de rand met het uiteinde van de bal en kijk daarna ofdat het tegen de linkse rand botst met coordinaat 0. Daarna reset het scherm. Na de ´or´ zorgt die ervoor dat die rand aan de rechterkant pakt. In de eerste helft wordt de breedte gedeeld door 2 om de straal van de bal te verkrijgen, zodat de rand van de bal (en niet het middelpunt) de botsing bepaalt.</td>
+<td>Pak de breedte van de bal en zorg ervoor dat die botst tegen de rand met het uiteinde van de bal en kijk daarna of het tegen de linkse rand botst met coordinaat 0. Daarna reset het scherm. Na de ´or´ zorgt die ervoor dat die rand aan de rechterkant pakt. In de eerste helft wordt de breedte gedeeld door 2 om de straal van de bal te verkrijgen, zodat de rand van de bal (en niet het middelpunt) de botsing bepaalt.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Doe hetzelfde bij ´1´ maar pak de y coordinaat om die te laten botsen met de y as beneden door de ´0´ coordinaat te gebruiken en de bovenste kant van de bal. Na de ´or´ pakt die de hoogte van het sherm zodat die de onderkant van het scherm pakt en die ook gebruikt als rand waar je kunt tegen botsen.</td>
+<td>Doe hetzelfde bij ´1´ maar pak de y coordinaat om die te laten botsen met de y as beneden door de ´0´ coordinaat te gebruiken en de bovenste kant van de bal. Na de ´or´ pakt die de hoogte van het scherm zodat die de onderkant van het scherm pakt en die ook gebruikt als rand waar je kunt tegen botsen.</td>
 </tr>
 </table>
 </div>
@@ -7745,19 +7751,19 @@ Dat doe je zo:</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Verkrijg de explosie animatie gebasseerd op het nummer</td>
+<td>Verkrijg de explosie animatie gebaseerd op het nummer</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Vergoot de afbeelding</td>
+<td>Vergroot de afbeelding</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Toon de animatie op het scherm 1 voor 1 gebasseerd op de locatie van de bal.</td>
+<td>Toon de animatie op het scherm 1 voor 1 gebaseerd op de locatie van de bal.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Doe dit elke 100 miliseconde</td>
+<td>Doe dit elke 100 milliseconden</td>
 </tr>
 </table>
 </div>
@@ -8592,7 +8598,7 @@ De software die we gaan gebruiken om de database te queriën (ondervragen) is DB
 </ul>
 </div>
 <div class="paragraph">
-<p>bij het verwijderen van gegevens uit de databank moet er dus steeds opgelet worden dat je niets verwijderd waar een FK naar verwijst. De referentie (FK naar PK) mag niet verstoord worden. Voor het verwijderen zal je de FK-PK verwijzing eerst moeten opheffen of verwijderen. Dit is de referentiële integriteit.</p>
+<p>Bij het verwijderen van gegevens uit de databank moet er dus steeds opgelet worden dat je niets verwijdert waarnaar een FK verwijst. De referentie (FK naar PK) mag niet verstoord worden. Voor het verwijderen zal je de FK-PK verwijzing eerst moeten opheffen of verwijderen. Dit is de referentiële integriteit.</p>
 </div>
 </div>
 </div>

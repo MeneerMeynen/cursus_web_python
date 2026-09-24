@@ -804,13 +804,13 @@ Dit zijn afgesproken opdrachten op een laag niveau (vb. onthoud een getal, tel e
 <p>C</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>#include &lt;stdio.h&gt;
-
-int main()
-{
-    printf("Hello World");
-    return 0;
-}</code></pre>
+<pre class="rouge highlight"><code data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Hello World"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 </li>
@@ -818,13 +818,13 @@ int main()
 <p>C plus plus</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>#include &lt;iostream&gt;
-using namespace std;
-int main()
-{
-    cout &lt;&lt; "Hello World";
-    return 0;
-}</code></pre>
+<pre class="rouge highlight"><code data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Hello World"</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 </li>
@@ -832,7 +832,7 @@ int main()
 <p>Ruby</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>puts "Hello World!"</code></pre>
+<pre class="rouge highlight"><code data-lang="ruby"><span class="nb">puts</span> <span class="s2">"Hello World!"</span></code></pre>
 </div>
 </div>
 </li>
@@ -840,11 +840,11 @@ int main()
 <p>Java</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>    class MyClass{
-        public static void main(String args[]){
-         System.out.println("Hello Java");
-        }
-    }</code></pre>
+<pre class="rouge highlight"><code data-lang="java">    <span class="kd">class</span> <span class="nc">MyClass</span><span class="o">{</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[]){</span>
+         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hello Java"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre>
 </div>
 </div>
 </li>
@@ -852,7 +852,7 @@ int main()
 <p>Python 3</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>print("Hello, World!")</code></pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s">"Hello, World!"</span><span class="p">)</span></code></pre>
 </div>
 </div>
 </li>
@@ -860,15 +860,15 @@ int main()
 <p>C#</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>using System;
-namespace HelloWorldApp {
-    class MyClass {
-        static void Main(string[] args) {
-            Console.WriteLine("Hello World!");
-            Console.ReadKey();
-        }
-    }
-}</code></pre>
+<pre class="rouge highlight"><code data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">namespace</span> <span class="nn">HelloWorldApp</span> <span class="p">{</span>
+    <span class="k">class</span> <span class="nc">MyClass</span> <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Hello World!"</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="nf">ReadKey</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 </li>
@@ -876,9 +876,9 @@ namespace HelloWorldApp {
 <p>Fortran</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>program hello
-  print *, 'Hello, World!'
-end program hello</code></pre>
+<pre class="rouge highlight"><code data-lang="fortran"><span class="k">program</span><span class="w"> </span><span class="n">hello</span><span class="w">
+  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">'Hello, World!'</span><span class="w">
+</span><span class="k">end</span><span class="w"> </span><span class="k">program</span><span class="w"> </span><span class="n">hello</span></code></pre>
 </div>
 </div>
 </li>
@@ -897,7 +897,7 @@ end program hello</code></pre>
 </div>
 <div class="paragraph">
 <p>Er zijn voortdurend nieuwe ontwikkelingen in programmeertalen. Nieuwe talen worden ontwikkeld. Ze kunnen populair worden, bijna niet gebruikt worden of andere talen beïnvloeden met hun nieuwe ideeën.
-Iedere bestaande taal, zoals Python, wordt ook verder doorontwikkeld. Het verschil tussen python versie 1 en versie 3.11 is enorm groot. Hoewel het om dezelfde programmeertaal gaat, zal een programma ontwikkeld voor pyhton 3, niet meer werken op python 1.</p>
+Iedere bestaande taal, zoals Python, wordt ook verder doorontwikkeld. Het verschil tussen python versie 1 en versie 3.11 is enorm groot. Hoewel het om dezelfde programmeertaal gaat, zal een programma ontwikkeld voor python 3, niet meer werken op python 1.</p>
 </div>
 </div>
 </div>
@@ -1025,14 +1025,17 @@ Dit zijn een reeks afspraken van de taal:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python"><span class="c1"># Python
-</span><span class="k">print</span><span class="p">(</span><span class="s">"Hello, world!"</span><span class="p">)</span>
-
-<span class="c1"># Java
-</span><span class="n">public</span> <span class="k">class</span> <span class="nc">HelloWorld</span> <span class="p">{</span>
-    <span class="n">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">System</span><span class="p">.</span><span class="n">out</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"Hello, world!"</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre>
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Hello, world!"</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="c1">// Java</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hello, world!"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1048,26 +1051,29 @@ Dit zijn een reeks afspraken van de taal:</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python"><span class="c1"># Python
 </span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-<span class="n">squared</span> <span class="o">=</span> <span class="p">[</span><span class="n">num</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">]</span>
+<span class="n">squared</span> <span class="o">=</span> <span class="p">[</span><span class="n">num</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">]</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="c1">// Java</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
 
-<span class="c1"># Java
-</span><span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SquaredNumbers</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">numbers</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">numbers</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+        <span class="n">numbers</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+        <span class="n">numbers</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
+        <span class="n">numbers</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">4</span><span class="o">);</span>
+        <span class="n">numbers</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
 
-<span class="n">public</span> <span class="k">class</span> <span class="nc">SquaredNumbers</span> <span class="p">{</span>
-    <span class="n">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">numbers</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="n">numbers</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-        <span class="n">numbers</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-        <span class="n">numbers</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
-        <span class="n">numbers</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
-        <span class="n">numbers</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
-
-        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">squared</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">Integer</span> <span class="n">num</span> <span class="p">:</span> <span class="n">numbers</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">squared</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">num</span> <span class="o">*</span> <span class="n">num</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre>
+        <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">squared</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Integer</span> <span class="n">num</span> <span class="o">:</span> <span class="n">numbers</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">squared</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">num</span> <span class="o">*</span> <span class="n">num</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">

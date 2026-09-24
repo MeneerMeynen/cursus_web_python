@@ -664,7 +664,7 @@ We gaan in dit project gebruik maken van brondata.</p>
 <p>Het csv bestand kan je hier terugvinden: <a href="https://www.kaggle.com/datasets/sudalairajkumar/daily-temperature-of-major-cities" class="bare">https://www.kaggle.com/datasets/sudalairajkumar/daily-temperature-of-major-cities</a></p>
 </div>
 <div class="paragraph">
-<p>Een csv bestand bevat verschillende gegevens die met een komme gescheiden zijn (vandaar csv: <em>Comma Seperated Values</em>).</p>
+<p>Een csv bestand bevat verschillende gegevens die met een komma gescheiden zijn (vandaar csv: <em>Comma Separated Values</em>).</p>
 </div>
 <div class="paragraph">
 <p>Enkele voorbeeldlijnen uit het bestand:</p>
@@ -731,7 +731,7 @@ De dictreader maakt een lijst van rows (waar we over kunnen lussen).
 Elke row wordt voorgesteld als een dictionary (waarvan we een <em>key</em> kunnen opvragen).</p>
 </div>
 <div class="paragraph">
-<p>Filteren doen we door te aan de dictionary een bepaalde key te vragen voor elke row:</p>
+<p>Filteren doen we door voor elke row een bepaalde key aan de dictionary te vragen:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -749,12 +749,12 @@ Elke row wordt voorgesteld als een dictionary (waarvan we een <em>key</em> kunne
 </div>
 </div>
 <div class="paragraph">
-<p>Deze temperatuur kunnen we omzetten in Celcius. Hiervoor maken we zelf een functie aan:</p>
+<p>Deze temperatuur kunnen we omzetten in Celsius. Hiervoor maken we zelf een functie aan:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python"><span class="k">def</span> <span class="nf">FtoC</span><span class="p">(</span><span class="n">F</span><span class="p">):</span>
-    <span class="s">'''Deze functie zet de temparatuur van Fahrenheit om naar Celcius'''</span>
+    <span class="s">'''Deze functie zet de temperatuur van Fahrenheit om naar Celsius'''</span>
     <span class="k">return</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">F</span><span class="p">)</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span><span class="o">/</span><span class="mi">9</span></code></pre>
 </div>
 </div>
@@ -763,7 +763,7 @@ Elke row wordt voorgesteld als een dictionary (waarvan we een <em>key</em> kunne
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">celcius</span> <span class="o">=</span> <span class="n">FtoC</span><span class="p">(</span><span class="n">fahrenheit</span><span class="p">)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="n">celsius</span> <span class="o">=</span> <span class="n">FtoC</span><span class="p">(</span><span class="n">fahrenheit</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -772,7 +772,7 @@ Elke row wordt voorgesteld als een dictionary (waarvan we een <em>key</em> kunne
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python"><span class="n">temperatures</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># bovenaan in het programma
-</span><span class="n">temperatures</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">celcius</span><span class="p">)</span> <span class="c1"># telkens bij het uitlezen van de row</span></code></pre>
+</span><span class="n">temperatures</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">celsius</span><span class="p">)</span> <span class="c1"># telkens bij het uitlezen van de row</span></code></pre>
 </div>
 </div>
 </div>
@@ -790,7 +790,7 @@ En het maakt de code ook veel leesbaarder.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python"><span class="k">def</span> <span class="nf">FtoC</span><span class="p">(</span><span class="n">F</span><span class="p">):</span>
-    <span class="s">'''Deze functie zet de temparatuur van Fahrenheit om naar Celcius'''</span>
+    <span class="s">'''Deze functie zet de temperatuur van Fahrenheit om naar Celsius'''</span>
 
 <span class="k">def</span> <span class="nf">readcsv_from_file</span><span class="p">():</span>
     <span class="s">'''Deze functie leest het csv bestand in en filtert'''</span>
@@ -820,7 +820,7 @@ readcsv_from_file()</span></code></pre>
 </span><span class="n">temperatures</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">def</span> <span class="nf">FtoC</span><span class="p">(</span><span class="n">F</span><span class="p">):</span>
-    <span class="s">'''Deze functie zet de temparatuur van Fahrenheit om naar Celcius'''</span>
+    <span class="s">'''Deze functie zet de temperatuur van Fahrenheit om naar Celsius'''</span>
     <span class="k">return</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">F</span><span class="p">)</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span><span class="o">/</span><span class="mi">9</span>
 
 <span class="k">def</span> <span class="nf">readcsv_from_file</span><span class="p">():</span>
@@ -833,14 +833,14 @@ readcsv_from_file()</span></code></pre>
 </span>            <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s">"City"</span><span class="p">]</span> <span class="o">==</span> <span class="s">"Brussels"</span> <span class="ow">and</span> <span class="n">row</span><span class="p">[</span><span class="s">"Year"</span><span class="p">]</span> <span class="o">==</span> <span class="n">year</span><span class="p">:</span>
                 <span class="c1"># Haal voor iedere row de temperatuur op
 </span>                <span class="n">fahrenheit</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s">"AvgTemperature"</span><span class="p">]</span>
-                <span class="c1"># Zet de temperatuur om naar graden Celcius
-</span>                <span class="n">celcius</span> <span class="o">=</span> <span class="n">FtoC</span><span class="p">(</span><span class="n">fahrenheit</span><span class="p">)</span>
+                <span class="c1"># Zet de temperatuur om naar graden Celsius
+</span>                <span class="n">celsius</span> <span class="o">=</span> <span class="n">FtoC</span><span class="p">(</span><span class="n">fahrenheit</span><span class="p">)</span>
                 <span class="c1"># Meetfouten halen we uit de gegevens (ontbrekende metingen staan in het bronbestand als -99 °F)
-</span>                <span class="k">if</span> <span class="n">celcius</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">30</span><span class="p">:</span>
+</span>                <span class="k">if</span> <span class="n">celsius</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">30</span><span class="p">:</span>
                     <span class="c1"># Bij een meetfout slaan we deze rij over en gaan we naar de volgende iteratie van de lus
 </span>                    <span class="k">continue</span>
-                <span class="c1"># Voeg de gevonden tempertuur toe aan de lijst van temperaturen
-</span>                <span class="n">temperatures</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">celcius</span><span class="p">)</span> <span class="c1"># F° =&gt; C°
+                <span class="c1"># Voeg de gevonden temperatuur toe aan de lijst van temperaturen
+</span>                <span class="n">temperatures</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">celsius</span><span class="p">)</span> <span class="c1"># F° =&gt; C°
 </span>
         <span class="c1"># Na het uitvoeren van de lus, roepen we de toongrafiek functie op.
 </span>        <span class="n">toongrafiek</span><span class="p">()</span>
