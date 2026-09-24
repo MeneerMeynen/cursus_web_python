@@ -636,32 +636,37 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <li><a href="#_float_komma_getal">3.2. Float (Komma-getal)</a></li>
 <li><a href="#_string_str">3.3. String (str)</a></li>
 <li><a href="#_boolean_bool">3.4. Boolean (bool)</a></li>
-<li><a href="#_type_opvragen_met_type">3.5. Type Opvragen met <code>type()</code></a></li>
-<li><a href="#_type_conversie">3.6. Type Conversie</a></li>
-<li><a href="#_dynamische_typing">3.7. Dynamische Typing</a></li>
 </ul>
 </li>
-<li><a href="#_expressies">4. Expressies</a>
+<li><a href="#_type_conversie_en_dynamische_typing">4. Type Conversie en Dynamische Typing</a>
 <ul class="sectlevel2">
-<li><a href="#_wat_is_een_expressie">4.1. Wat is een Expressie?</a></li>
-<li><a href="#_wiskundige_expressies">4.2. Wiskundige Expressies</a>
+<li><a href="#_type_opvragen_met_type">4.1. Type Opvragen met <code>type()</code></a></li>
+<li><a href="#_type_conversie">4.2. Type Conversie</a></li>
+<li><a href="#_dynamische_typing">4.3. Dynamische Typing</a></li>
+</ul>
+</li>
+<li><a href="#_expressies">5. Expressies</a>
+<ul class="sectlevel2">
+<li><a href="#_wat_is_een_expressie">5.1. Wat is een Expressie?</a></li>
+<li><a href="#_wiskundige_expressies">5.2. Wiskundige Expressies</a>
 <ul class="sectlevel3">
-<li><a href="#_het_datatype_van_het_resultaat">4.2.1. Het Datatype van het Resultaat</a></li>
-<li><a href="#_volgorde_van_bewerkingen">4.2.2. Volgorde van Bewerkingen</a></li>
-<li><a href="#_verkorte_toewijzing">4.2.3. Verkorte Toewijzing</a></li>
-<li><a href="#_operatoren_op_strings">4.2.4. Operatoren op Strings</a></li>
+<li><a href="#_het_datatype_van_het_resultaat">5.2.1. Het Datatype van het Resultaat</a></li>
+<li><a href="#_volgorde_van_bewerkingen">5.2.2. Volgorde van Bewerkingen</a></li>
+<li><a href="#_verkorte_toewijzing">5.2.3. Verkorte Toewijzing</a></li>
+<li><a href="#_operatoren_op_strings">5.2.4. Operatoren op Strings</a></li>
 </ul>
 </li>
-<li><a href="#_logische_expressies">4.3. Logische Expressies</a>
+<li><a href="#_logische_expressies">5.3. Logische Expressies</a>
 <ul class="sectlevel3">
-<li><a href="#_vergelijkingsoperatoren">4.3.1. Vergelijkingsoperatoren</a></li>
-<li><a href="#_wiskundige_en_logische_expressies_combineren">4.3.2. Wiskundige en Logische Expressies Combineren</a></li>
+<li><a href="#_vergelijkingsoperatoren">5.3.1. Vergelijkingsoperatoren</a></li>
+<li><a href="#_logische_operatoren_and_or_en_not">5.3.2. Logische Operatoren: <code>and</code>, <code>or</code> en <code>not</code></a></li>
+<li><a href="#_wiskundige_en_logische_expressies_combineren">5.3.3. Wiskundige en Logische Expressies Combineren</a></li>
 </ul>
 </li>
-<li><a href="#_overzicht_welk_type_levert_een_expressie_op">4.4. Overzicht: Welk Type Levert een Expressie Op?</a></li>
+<li><a href="#_overzicht_welk_type_levert_een_expressie_op">5.4. Overzicht: Welk Type Levert een Expressie Op?</a></li>
 </ul>
 </li>
-<li><a href="#_conclusie">5. Conclusie</a></li>
+<li><a href="#_conclusie">6. Conclusie</a></li>
 </ul>
 </div>
 </div>
@@ -699,7 +704,7 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <div class="ulist">
 <ul>
 <li>
-<p>Geldigheid: Variabelen moeten met een letter (a-z, A-Z) of een underscore (_) beginnen. Ze kunnen ook cijfers (0-9) bevatten, maar niet als eerste teken. Bijvoorbeeld: player_score, _health, level1.</p>
+<p>Geldigheid: Variabelen moeten met een letter of een underscore (_) beginnen. Ze kunnen ook cijfers (0-9) bevatten, maar niet als eerste teken. Bijvoorbeeld: player_score, _health, level1. Python laat ook letters met accenten toe (zoals <code>ë</code> of <code>ö</code>), maar de afspraak is om enkel a-z, A-Z, cijfers en underscores te gebruiken.</p>
 </li>
 <li>
 <p>Hoofdlettergevoeligheid: Python is hoofdlettergevoelig, wat betekent dat variabelen met verschillende hoofdletters als verschillende namen worden beschouwd. score en Score zouden bijvoorbeeld twee verschillende variabelen zijn.</p>
@@ -895,7 +900,7 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <div class="sect2">
 <h3 id="_float_komma_getal">3.2. Float (Komma-getal)</h3>
 <div class="paragraph">
-<p>Het gegevenstype <code>float</code> vertegenwoordigt komma-getallen, ook wel bekend als zwevendekomma-getallen. Dit omvat getallen met decimale punten, zoals 3.14, -0.5 en 2.0. Float-waarden worden gebruikt voor nauwkeurige berekeningen met reële getallen.</p>
+<p>Het gegevenstype <code>float</code> vertegenwoordigt komma-getallen, ook wel bekend als zwevendekomma-getallen. Dit omvat getallen met decimale punten, zoals 3.14, -0.5 en 2.0. Float-waarden worden gebruikt voor berekeningen met reële getallen.</p>
 </div>
 <div class="paragraph">
 <p>Bijvoorbeeld:</p>
@@ -906,6 +911,18 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <span class="n">geldbedrag</span> <span class="o">=</span> <span class="mf">123.45</span>
 <span class="n">hoogte</span> <span class="o">=</span> <span class="o">-</span><span class="mf">10.5</span></code></pre>
 </div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Een float is een <mark>benadering</mark>. De computer slaat kommagetallen binair op, waardoor sommige getallen niet exact kunnen worden voorgesteld. Zo geeft <code>print(0.1 + 0.2)</code> als resultaat <code>0.30000000000000004</code>. Wil je een net resultaat tonen, rond dan af: <code>round(0.1 + 0.2, 2)</code> geeft <code>0.3</code>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -972,8 +989,13 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <p>Booleaanse waarden zijn krachtige hulpmiddelen in games omdat ze de besluitvorming en logica binnen je code mogelijk maken. Je kunt ze gebruiken om te bepalen of een speler een bepaald level heeft bereikt, of een missie is voltooid, of dat bepaalde acties kunnen worden uitgevoerd op basis van bepaalde voorwaarden.</p>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_type_conversie_en_dynamische_typing">4. Type Conversie en Dynamische Typing</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_type_opvragen_met_type">3.5. Type Opvragen met <code>type()</code></h3>
+<h3 id="_type_opvragen_met_type">4.1. Type Opvragen met <code>type()</code></h3>
 <div class="paragraph">
 <p>Met de functie <code>type()</code> kun je op elk moment opvragen welk datatype een waarde of variabele heeft. Dat is handig om te controleren of Python een waarde begrijpt zoals jij verwacht:</p>
 </div>
@@ -987,7 +1009,7 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_type_conversie">3.6. Type Conversie</h3>
+<h3 id="_type_conversie">4.2. Type Conversie</h3>
 <div class="paragraph">
 <p>Soms is het nodig om gegevens van het ene type naar het andere te converteren. Python biedt hiervoor functies met dezelfde naam als het datatype: <code>int()</code>, <code>float()</code>, <code>str()</code> en <code>bool()</code>.</p>
 </div>
@@ -1017,7 +1039,7 @@ Type conversie heb je vaak nodig in expressies. Je kunt bijvoorbeeld geen tekst 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_dynamische_typing">3.7. Dynamische Typing</h3>
+<h3 id="_dynamische_typing">4.3. Dynamische Typing</h3>
 <div class="paragraph">
 <p>Python staat ook bekend om 'dynamic typed' te zijn, wat betekent dat <mark>het datatype van een variabele kan veranderen terwijl het programma wordt uitgevoerd</mark>. Dit in tegenstelling tot statisch getypeerde talen zoals Java, waar het datatype vastligt.</p>
 </div>
@@ -1038,13 +1060,13 @@ Type conversie heb je vaak nodig in expressies. Je kunt bijvoorbeeld geen tekst 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_expressies">4. Expressies</h2>
+<h2 id="_expressies">5. Expressies</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Nu je de vier basisdatatypes kent, wil je er ook mee kunnen rekenen en vergelijken. Daarvoor gebruik je <strong>expressies</strong>.</p>
 </div>
 <div class="sect2">
-<h3 id="_wat_is_een_expressie">4.1. Wat is een Expressie?</h3>
+<h3 id="_wat_is_een_expressie">5.1. Wat is een Expressie?</h3>
 <div class="paragraph">
 <p><strong>Een expressie</strong> is een stukje code dat Python kan <mark>uitrekenen (evalueren) tot één waarde</mark>. Een expressie bestaat uit waarden, variabelen en operatoren (zoals <code>+</code>, <code>*</code> of <code>&gt;</code>).</p>
 </div>
@@ -1097,7 +1119,7 @@ Type conversie heb je vaak nodig in expressies. Je kunt bijvoorbeeld geen tekst 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_wiskundige_expressies">4.2. Wiskundige Expressies</h3>
+<h3 id="_wiskundige_expressies">5.2. Wiskundige Expressies</h3>
 <div class="paragraph">
 <p>Wiskundige (of rekenkundige) expressies gebruiken <strong>rekenkundige operatoren</strong>:</p>
 </div>
@@ -1178,7 +1200,7 @@ Type conversie heb je vaak nodig in expressies. Je kunt bijvoorbeeld geen tekst 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_het_datatype_van_het_resultaat">4.2.1. Het Datatype van het Resultaat</h4>
+<h4 id="_het_datatype_van_het_resultaat">5.2.1. Het Datatype van het Resultaat</h4>
 <div class="paragraph">
 <p>Let goed op welk datatype je terugkrijgt:</p>
 </div>
@@ -1200,7 +1222,7 @@ Type conversie heb je vaak nodig in expressies. Je kunt bijvoorbeeld geen tekst 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_volgorde_van_bewerkingen">4.2.2. Volgorde van Bewerkingen</h4>
+<h4 id="_volgorde_van_bewerkingen">5.2.2. Volgorde van Bewerkingen</h4>
 <div class="paragraph">
 <p>Python volgt dezelfde voorrangsregels als in de wiskunde:</p>
 </div>
@@ -1240,7 +1262,7 @@ Twijfel je over de volgorde? Zet haakjes. Dat maakt je code ook leesbaarder.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_verkorte_toewijzing">4.2.3. Verkorte Toewijzing</h4>
+<h4 id="_verkorte_toewijzing">5.2.3. Verkorte Toewijzing</h4>
 <div class="paragraph">
 <p>Vaak wil je een variabele aanpassen op basis van haar eigen waarde. Daarvoor bestaan verkorte schrijfwijzen:</p>
 </div>
@@ -1255,7 +1277,7 @@ Twijfel je over de volgorde? Zet haakjes. Dat maakt je code ook leesbaarder.
 </div>
 </div>
 <div class="sect3">
-<h4 id="_operatoren_op_strings">4.2.4. Operatoren op Strings</h4>
+<h4 id="_operatoren_op_strings">5.2.4. Operatoren op Strings</h4>
 <div class="paragraph">
 <p>Ook met tekst kun je enkele operatoren gebruiken:</p>
 </div>
@@ -1280,12 +1302,12 @@ Twijfel je over de volgorde? Zet haakjes. Dat maakt je code ook leesbaarder.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_logische_expressies">4.3. Logische Expressies</h3>
+<h3 id="_logische_expressies">5.3. Logische Expressies</h3>
 <div class="paragraph">
 <p>Een logische expressie levert altijd een <code>bool</code> op: <code>True</code> of <code>False</code>. Je vindt ze terug bij het vergelijken van waarden, en later gebruik je ze als voorwaarde in beslissingsstructuren (hoofdstuk 4) en lussen (hoofdstuk 5).</p>
 </div>
 <div class="sect3">
-<h4 id="_vergelijkingsoperatoren">4.3.1. Vergelijkingsoperatoren</h4>
+<h4 id="_vergelijkingsoperatoren">5.3.1. Vergelijkingsoperatoren</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 16.6666%;">
@@ -1373,9 +1395,93 @@ Verwar <code>=</code> niet met <code>==</code>! Eén <code>=</code> is een <stro
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wiskundige_en_logische_expressies_combineren">4.3.2. Wiskundige en Logische Expressies Combineren</h4>
+<h4 id="_logische_operatoren_and_or_en_not">5.3.2. Logische Operatoren: <code>and</code>, <code>or</code> en <code>not</code></h4>
 <div class="paragraph">
-<p>Wiskundige en logische expressies kun je samen gebruiken. Python rekent eerst de wiskundige delen uit en maakt daarna de vergelijking:</p>
+<p>Met logische operatoren combineer je booleaanse waarden tot één nieuwe booleaanse waarde:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>and</code>: is <code>True</code> als <strong>beide</strong> kanten <code>True</code> zijn.</p>
+</li>
+<li>
+<p><code>or</code>: is <code>True</code> als <strong>minstens één</strong> kant <code>True</code> is.</p>
+</li>
+<li>
+<p><code>not</code>: keert de waarde <strong>om</strong>: <code>not True</code> wordt <code>False</code> en omgekeerd.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Dit kun je samenvatten in een <strong>waarheidstabel</strong>:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><code>a</code></th>
+<th class="tableblock halign-left valign-top"><code>b</code></th>
+<th class="tableblock halign-left valign-top"><code>a and b</code></th>
+<th class="tableblock halign-left valign-top"><code>a or b</code></th>
+<th class="tableblock halign-left valign-top"><code>not a</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="n">player_health</span> <span class="o">=</span> <span class="mi">75</span>
+<span class="n">ammo</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">has_key</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="n">can_fight</span> <span class="o">=</span> <span class="n">player_health</span> <span class="o">&gt;</span> <span class="mi">50</span> <span class="ow">and</span> <span class="n">ammo</span> <span class="o">&gt;</span> <span class="mi">0</span>   <span class="c1"># True and True  -&gt; True
+</span><span class="n">can_open_door</span> <span class="o">=</span> <span class="n">has_key</span> <span class="ow">or</span> <span class="n">ammo</span> <span class="o">&gt;</span> <span class="mi">20</span>          <span class="c1"># False or False -&gt; False
+</span><span class="n">is_locked</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">has_key</span>                        <span class="c1"># not False      -&gt; True</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In hoofdstuk 4 gaan we dieper in op het combineren van voorwaarden met <code>and</code>, <code>or</code> en <code>not</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wiskundige_en_logische_expressies_combineren">5.3.3. Wiskundige en Logische Expressies Combineren</h4>
+<div class="paragraph">
+<p>Wiskundige en logische expressies kun je samen gebruiken. Python rekent eerst de wiskundige delen uit, daarna de vergelijkingen, en pas dan <code>not</code>, <code>and</code> en <code>or</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1401,7 +1507,7 @@ De expressie <code>getal % 2 == 0</code> is een klassieker: ze controleert of ee
 </div>
 </div>
 <div class="sect2">
-<h3 id="_overzicht_welk_type_levert_een_expressie_op">4.4. Overzicht: Welk Type Levert een Expressie Op?</h3>
+<h3 id="_overzicht_welk_type_levert_een_expressie_op">5.4. Overzicht: Welk Type Levert een Expressie Op?</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -1452,13 +1558,13 @@ De expressie <code>getal % 2 == 0</code> is een klassieker: ze controleert of ee
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>bool</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>8 == 2</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>8 == 2 or 8 &gt; 2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>bool</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>8 % 2 == 0</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>True</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>not 8 &gt; 2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>False</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>bool</code></p></td>
 </tr>
 </tbody>
@@ -1467,10 +1573,10 @@ De expressie <code>getal % 2 == 0</code> is een klassieker: ze controleert of ee
 </div>
 </div>
 <div class="sect1">
-<h2 id="_conclusie">5. Conclusie</h2>
+<h2 id="_conclusie">6. Conclusie</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>De vier basisdatatypes in Python, <code>int</code>, <code>float</code>, <code>str</code> en <code>bool</code>, vormen de bouwstenen van elk programma. Met <strong>wiskundige expressies</strong> reken je met getallen, met <strong>logische expressies</strong> vergelijk je waarden en krijg je <code>True</code> of <code>False</code>. Hoe je meerdere voorwaarden combineert met <code>and</code>, <code>or</code> en <code>not</code>, zie je in hoofdstuk 4. Deze expressies heb je nodig in elk volgend hoofdstuk: als voorwaarde in beslissingsstructuren en lussen, en om berekeningen te maken in je programma&#8217;s.</p>
+<p>De vier basisdatatypes in Python, <code>int</code>, <code>float</code>, <code>str</code> en <code>bool</code>, vormen de bouwstenen van elk programma. Met <strong>wiskundige expressies</strong> reken je met getallen, met <strong>logische expressies</strong> vergelijk en combineer je waarden tot <code>True</code> of <code>False</code>. Deze expressies heb je nodig in elk volgend hoofdstuk: als voorwaarde in beslissingsstructuren en lussen, en om berekeningen te maken in je programma&#8217;s.</p>
 </div>
 <div class="paragraph">
 <p>Meer complexe datatypes zoals lijsten (<code>list</code>), tupels (<code>tuple</code>) en woordenboeken (<code>dict</code>) komen aan bod in hoofdstuk 7.</p>

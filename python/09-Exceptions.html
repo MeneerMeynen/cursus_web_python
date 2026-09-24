@@ -623,7 +623,7 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <li><a href="#_het_finally_blok">4. Het Finally Blok</a></li>
 <li><a href="#_hiërarchie_van_exceptions">5. Hiërarchie van Exceptions</a>
 <ul class="sectlevel2">
-<li><a href="#_het_opvangen_van_bovenliggende_exceptions">5.1. Het Opvangen van Bovenliggende Exceptions</a></li>
+<li><a href="#_de_volgorde_van_except_blokken">5.1. De Volgorde van <code>except</code> Blokken</a></li>
 </ul>
 </li>
 <li><a href="#_aangepaste_exceptions">6. Aangepaste <em>exceptions</em></a></li>
@@ -675,7 +675,7 @@ Als er een <em>exception</em> optreedt, wordt de bijbehorende <code>except</code
 <h2 id="_verschillende_exceptions_behandelen">3. Verschillende <em>exceptions</em> behandelen</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Je kunt meerdere <code>except</code> blokken hebben om verschillende soorten <em>exceptions</em> af ​​te handelen.</p>
+<p>Je kunt meerdere <code>except</code> blokken hebben om verschillende soorten <em>exceptions</em> af te handelen.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -703,14 +703,31 @@ Als er een <em>exception</em> optreedt, wordt de bijbehorende <code>except</code
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">try</span><span class="p">:</span>
+<pre class="rouge highlight"><code data-lang="python"><span class="n">bestand</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="k">try</span><span class="p">:</span>
     <span class="n">bestand</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"bestand.txt"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span>
     <span class="c1"># Code om met het bestand te werken
 </span><span class="k">except</span> <span class="nb">FileNotFoundError</span><span class="p">:</span>
     <span class="k">print</span><span class="p">(</span><span class="s">"Het bestand is niet gevonden."</span><span class="p">)</span>
 <span class="k">finally</span><span class="p">:</span>
-    <span class="n">bestand</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># Het bestand wordt altijd gesloten, zelfs als er een __exception__ optreedt</span></code></pre>
+    <span class="k">if</span> <span class="n">bestand</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">bestand</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># Het bestand wordt altijd gesloten, ook als er later een exception optreedt</span></code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Merk op dat we eerst <code>bestand = None</code> zetten. Als <code>open()</code> mislukt, bestaat <code>bestand</code> anders niet, en dan zou <code>bestand.close()</code> in het <code>finally</code> blok zelf een nieuwe fout (<code>NameError</code>) veroorzaken.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+Met een <code>with open(&#8230;&#8203;)</code>-verklaring (zie hoofdstuk 8) wordt het bestand automatisch gesloten, ook bij een exception. Dat is in de praktijk de eenvoudigste oplossing.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -718,7 +735,7 @@ Als er een <em>exception</em> optreedt, wordt de bijbehorende <code>except</code
 <h2 id="_hiërarchie_van_exceptions">5. Hiërarchie van Exceptions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>De meeste uitzonderingen in Python erven (zijn subklassen) van de basisException <em>BaseException</em>. Dit is de hoogste klasse in de uitzonderingshiërarchie. Enkele belangrijke uitzonderingsklassen zijn:</p>
+<p>Alle uitzonderingen in Python erven (rechtstreeks of onrechtstreeks) van de basisklasse <em>BaseException</em>. Dit is de hoogste klasse in de uitzonderingshiërarchie. Enkele belangrijke uitzonderingsklassen zijn:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -758,28 +775,53 @@ Als er een <em>exception</em> optreedt, wordt de bijbehorende <code>except</code
 </div>
 </div>
 <div class="sect2">
-<h3 id="_het_opvangen_van_bovenliggende_exceptions">5.1. Het Opvangen van Bovenliggende Exceptions</h3>
+<h3 id="_de_volgorde_van_except_blokken">5.1. De Volgorde van <code>except</code> Blokken</h3>
 <div class="paragraph">
-<p>Soms wil je verschillende uitzonderingen opvangen, maar ook een meer algemene bovenliggende uitzondering omvatten om brede foutafhandeling mogelijk te maken. Dit kan worden bereikt door een bovenliggende <code>Exception</code>-klasse op te vangen voordat je specifieke uitzonderingen afhandelt. Hier is hoe je dit kunt doen:</p>
+<p>Python overloopt de <code>except</code> blokken <mark>van boven naar onder</mark> en voert <mark>enkel het eerste blok uit dat past</mark>. Een <code>except</code> voor een bovenliggende klasse vangt ook al haar subklassen op. <code>except ArithmeticError</code> vangt dus ook een <code>ZeroDivisionError</code> op, en <code>except Exception</code> vangt bijna alles op.</p>
+</div>
+<div class="paragraph">
+<p>Daarom moet je <mark>specifieke exceptions altijd eerst</mark> zetten, en de algemene pas op het einde.</p>
+</div>
+<div class="paragraph">
+<p><strong>Fout:</strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python"><span class="k">try</span><span class="p">:</span>
-    <span class="c1"># Code die mogelijk een exception kan veroorzaken
-</span>    <span class="n">resultaat</span> <span class="o">=</span> <span class="n">deling</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="k">except</span> <span class="p">(</span><span class="nb">Exception</span><span class="p">,</span> <span class="n">AnotherException</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="c1"># Code die wordt uitgevoerd als een algemene of specifieke exception wordt gevangen
-</span>    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Fout opgetreden: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
-<span class="k">except</span> <span class="n">YetAnotherException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="c1"># Code die wordt uitgevoerd als YetAnotherException wordt gevangen
-</span>    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Nog een andere fout: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span></code></pre>
+    <span class="n">resultaat</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">/</span> <span class="mi">0</span>
+<span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>           <span class="c1"># vangt ALLES op, ook ZeroDivisionError
+</span>    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Algemene fout: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="k">except</span> <span class="nb">ZeroDivisionError</span><span class="p">:</span>        <span class="c1"># wordt NOOIT bereikt
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">"Je kunt niet door nul delen."</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In dit voorbeeld worden zowel <code>Exception</code> als <code>AnotherException</code> opgevangen voordat specifieke uitzonderingen worden behandeld. Hierdoor kun je een meer algemene foutafhandeling implementeren voordat je specifieke uitzonderingen afzonderlijk behandelt.</p>
+<p><strong>Juist:</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="k">try</span><span class="p">:</span>
+    <span class="n">resultaat</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">/</span> <span class="mi">0</span>
+<span class="k">except</span> <span class="nb">ZeroDivisionError</span><span class="p">:</span>        <span class="c1"># eerst de specifieke exception
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">"Je kunt niet door nul delen."</span><span class="p">)</span>
+<span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>           <span class="c1"># pas op het einde de algemene
+</span>    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Algemene fout: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span></code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Dit patroon is handig wanneer je een brede foutafhandeling wilt toevoegen, maar ook enkele specifieke uitzonderingen gedetailleerder wilt afhandelen. Het is echter belangrijk om te weten dat het opvangen van te brede uitzonderingen de leesbaarheid van je code kan verminderen, omdat het moeilijker wordt om specifieke fouten te identificeren en te begrijpen. Gebruik het met zorg en zorg ervoor dat de uitzonderingen die je opvangt, logisch samenhangen.</p>
+<p>Wil je meerdere exceptions op dezelfde manier afhandelen, dan kun je ze samen in één <code>except</code> blok zetten met een tuple:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="k">try</span><span class="p">:</span>
+    <span class="n">getal</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"Voer een getal in: "</span><span class="p">))</span>
+    <span class="n">resultaat</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">/</span> <span class="n">getal</span>
+<span class="k">except</span> <span class="p">(</span><span class="nb">ValueError</span><span class="p">,</span> <span class="nb">ZeroDivisionError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Ongeldige invoer: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Gebruik <code>except Exception</code> met zorg: als je te brede exceptions opvangt, wordt het moeilijker om te begrijpen welke fout er precies is opgetreden.</p>
 </div>
 </div>
 </div>

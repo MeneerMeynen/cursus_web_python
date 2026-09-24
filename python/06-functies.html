@@ -645,11 +645,23 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <h2 id="_wat_is_een_functie">1. Wat is een functie</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Functies (of methods) zijn <mark>stukken code die een naam hebben gekregen</mark>.
+<p>Functies zijn <mark>stukken code die een naam hebben gekregen</mark>.
 Met de naam te gebruiken (en er () achter te voegen), kan het stuk code opgeroepen worden.
 De code van een functie wordt alleen maar uitgevoerd wanneer de functie wordt opgeroepen.
 Als een programma veel dezelfde code bevat (herhaling),
 kan je de code die altijd hetzelfde is, apart zetten in een functie en die functie telkens opnieuw oproepen.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Een functie die binnen een klasse geschreven is, noemen we een <em>method</em>. Klassen en methods komen later in de cursus aan bod.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_functies_definiëren_en_oproepen">1.1. Functies Definiëren en Oproepen</h3>
@@ -834,21 +846,36 @@ kan je de code die altijd hetzelfde is, apart zetten in een functie en die funct
 </span><span class="n">begroeten</span><span class="p">(</span><span class="s">"Alice"</span><span class="p">)</span>  <span class="c1"># Output: Hallo, Alice!</span></code></pre>
 </div>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+In dit voorbeeld gebruiken we een <strong>f-string</strong>: een string met een <code>f</code> voor de aanhalingstekens. Alles wat tussen accolades <code>{ }</code> staat, wordt vervangen door de waarde van die variabele of expressie. <code>f"Hallo, {naam}!"</code> geeft dus hetzelfde als <code>"Hallo, " + naam + "!"</code>, maar is korter en werkt ook met getallen zonder <code>str()</code>: <code>f"Score: {score}"</code>.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_args_en_kwargs">2.4. args en kwargs</h3>
 <div class="paragraph">
-<p>In sommige gevallen wil je een variabel aantal argumenten aan een functie doorgeven, zonder vooraf te weten hoeveel dat er zullen zijn. De notatie <code>args</code> en <code>kwargs</code> staan dit toe.</p>
+<p>In sommige gevallen wil je een variabel aantal argumenten aan een functie doorgeven, zonder vooraf te weten hoeveel dat er zullen zijn. De notatie <code><strong>args</code> en <code></strong>*kwargs</code> staat dit toe.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>args</code> staat voor "arguments" en verzamelt positionele argumenten in een tuple.</p>
+<p><code>*args</code> staat voor "arguments" en verzamelt positionele argumenten in een tuple.</p>
 </li>
 <li>
-<p><code>kwargs</code> staat voor "keyword arguments" en verzamelt genoemde argumenten in een dictionary.</p>
+<p><code>**kwargs</code> staat voor "keyword arguments" en verzamelt genoemde argumenten in een dictionary.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Het zijn <mark>de sterretjes <code><strong></code> en <code></strong>*</code> die het werk doen</mark>. De namen <code>args</code> en <code>kwargs</code> zijn enkel een afspraak: <code>*getallen</code> werkt net zo goed.</p>
 </div>
 <div class="paragraph">
 <p>Bijvoorbeeld, laten we een functie definiëren die een variabel aantal getallen kan optellen:</p>
@@ -936,6 +963,18 @@ kan je de code die altijd hetzelfde is, apart zetten in een functie en die funct
 <p>Onder de docstring wordt vaak een voorbeeld gegeven van hoe de functie kan worden gebruikt. Dit is handig voor andere ontwikkelaars die de functie willen begrijpen en gebruiken.</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+In dit hoofdstuk zag je twee stijlen van docstrings: met <code>:param</code> en <code>:return:</code> (de <em>reStructuredText</em>-stijl) en met <code>Args:</code> en <code>Returns:</code> (de <em>Google</em>-stijl). Beide zijn gangbaar. Kies er één en gebruik die consequent in je project.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Met deze docstring kunnen andere ontwikkelaars snel zien hoe de functie werkt, welke argumenten deze verwacht en wat deze retourneert. Bovendien kunnen hulpmiddelen zoals docstring-generatoren deze informatie automatisch extraheren om documentatie te genereren. Het gebruik van docstrings is dus een goede gewoonte om je code goed gedocumenteerd en onderhoudbaar te houden.</p>

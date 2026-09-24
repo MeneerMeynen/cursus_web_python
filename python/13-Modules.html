@@ -791,11 +791,11 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <span class="n">vierkantswortel</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">getal</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Vierkantswortel van </span><span class="si">{</span><span class="n">getal</span><span class="si">}</span><span class="s"> is </span><span class="si">{</span><span class="n">vierkantswortel</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
-<span class="c1"># Voorbeeld 2: Afronden naar het dichtstbijzijnde gehele getal
+<span class="c1"># Voorbeeld 2: Afronden naar beneden en naar boven
 </span><span class="n">getal_met_decimaal</span> <span class="o">=</span> <span class="mf">4.56</span>
-<span class="n">afgerond_getal</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">getal_met_decimaal</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Afgerond getal: </span><span class="si">{</span><span class="n">afgerond_getal</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
-
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Naar beneden: </span><span class="si">{</span><span class="n">math</span><span class="p">.</span><span class="n">floor</span><span class="p">(</span><span class="n">getal_met_decimaal</span><span class="p">)</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>  <span class="c1"># 4
+</span><span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Naar boven: </span><span class="si">{</span><span class="n">math</span><span class="p">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">getal_met_decimaal</span><span class="p">)</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>     <span class="c1"># 5
+</span>
 <span class="c1"># Voorbeeld 3: Constanten
 </span><span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Pi: </span><span class="si">{</span><span class="n">math</span><span class="p">.</span><span class="n">pi</span><span class="si">}</span><span class="s">, Eulers getal: </span><span class="si">{</span><span class="n">math</span><span class="p">.</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span></code></pre>
 </div>
@@ -883,7 +883,7 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 </div>
 <div class="paragraph">
-<p>Dit zijn slechts enkele voorbeelden van de vele ingebouwde modules die Python biedt. Deze modules kunnen je helpen bij uiteenlopende taken, van wiskundige berekeningen tot het manipuleren van bestanden en gegevens. Raadpleeg de [Python-documentatie](<a href="https://docs.python.org/3/library/index.html" class="bare">https://docs.python.org/3/library/index.html</a>) voor meer informatie over ingebouwde modules en hun functionaliteiten.</p>
+<p>Dit zijn slechts enkele voorbeelden van de vele ingebouwde modules die Python biedt. Deze modules kunnen je helpen bij uiteenlopende taken, van wiskundige berekeningen tot het manipuleren van bestanden en gegevens. Raadpleeg de <a href="https://docs.python.org/3/library/index.html">Python-documentatie</a> voor meer informatie over ingebouwde modules en hun functionaliteiten.</p>
 </div>
 <div class="paragraph">
 <p>Python beschikt over heel wat ingebouwde modules:</p>
@@ -927,15 +927,15 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <div class="sect3">
 <h4 id="_voorbeeld_matplotlib_module">7.2.1. Voorbeeld: Matplotlib Module</h4>
 <div class="paragraph">
-<p>Laten we bijvoorbeeld de populaire <code>Matplotlib</code>-module installeren, die wordt gebruikt voor het verzenden van HTTP-verzoeken.</p>
+<p>Laten we bijvoorbeeld de populaire <code>matplotlib</code>-module installeren, die wordt gebruikt om grafieken te maken (zie het hoofdstuk over Matplotlib).</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">pip</span> <span class="n">install</span> <span class="n">Matplotlib</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="n">pip</span> <span class="n">install</span> <span class="n">matplotlib</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Dit commando zal de <code>Matplotlib</code>-module downloaden en installeren.</p>
+<p>Dit commando zal de <code>matplotlib</code>-module downloaden en installeren.</p>
 </div>
 </div>
 </div>
@@ -954,11 +954,11 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">pip</span> <span class="n">install</span> <span class="n">Matplotlib</span><span class="o">==</span><span class="mf">2.26</span><span class="p">.</span><span class="mi">0</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="n">pip</span> <span class="n">install</span> <span class="n">matplotlib</span><span class="o">==</span><span class="mf">3.8</span><span class="p">.</span><span class="mi">0</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Hiermee wordt versie 2.26.0 van de <code>Matplotlib</code>-module geïnstalleerd.</p>
+<p>Hiermee wordt versie 3.8.0 van de <code>matplotlib</code>-module geïnstalleerd.</p>
 </div>
 </div>
 <div class="sect2">

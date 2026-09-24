@@ -760,25 +760,31 @@ Bijvoorbeeld het ophalen van data uit een database of het inlezen van een <em>cs
 <div class="sectionbody">
 <div class="paragraph">
 <p>Parametrized testcases stellen ons in staat om <mark>dezelfde testlogica met verschillende invoer te hergebruiken</mark>, waardoor we efficiënter kunnen testen.
-Dit wordt bereikt door gebruik te maken van de <em>@unittest.parametrized.expand</em> decorator.</p>
+In unittest doe je dit met een lus en de ingebouwde methode <em>subTest()</em>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python"><span class="kn">import</span> <span class="nn">unittest</span>
 
 <span class="k">class</span> <span class="nc">MyTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="p">.</span><span class="n">TestCase</span><span class="p">):</span>
-    <span class="o">@</span><span class="n">unittest</span><span class="p">.</span><span class="n">parametrized</span><span class="p">.</span><span class="n">expand</span><span class="p">([</span>
-        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
-        <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-        <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-    <span class="p">])</span>
-    <span class="k">def</span> <span class="nf">test_addition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span></code></pre>
+    <span class="k">def</span> <span class="nf">test_addition</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">testgevallen</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+            <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="p">]</span>
+        <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">expected</span> <span class="ow">in</span> <span class="n">testgevallen</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="p">.</span><span class="n">subTest</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">):</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="p">.</span><span class="n">main</span><span class="p">()</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In dit voorbeeld wordt de test_addition-methode herhaaldelijk uitgevoerd met verschillende invoercombinaties.
+<p>In dit voorbeeld wordt dezelfde testlogica uitgevoerd voor elke invoercombinatie in de lijst <code>testgevallen</code>.
+Dankzij <code>subTest()</code> wordt <mark>elke combinatie apart gecontroleerd</mark>: als één combinatie faalt, worden de andere toch nog getest, en toont de foutmelding voor welke waarden van <code>a</code> en <code>b</code> het misliep.
 Dit zorgt ervoor dat dezelfde testlogica wordt toegepast op meerdere scenario&#8217;s, wat de testdekking vergroot en ons helpt om fouten te identificeren.</p>
 </div>
 <div class="paragraph">
@@ -789,17 +795,31 @@ Dit zorgt ervoor dat dezelfde testlogica wordt toegepast op meerdere scenario&#8
 <pre class="rouge highlight"><code data-lang="python"><span class="kn">import</span> <span class="nn">unittest</span>
 
 <span class="k">class</span> <span class="nc">MyTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="p">.</span><span class="n">TestCase</span><span class="p">):</span>
-    <span class="o">@</span><span class="n">unittest</span><span class="p">.</span><span class="n">parametrized</span><span class="p">.</span><span class="n">expand</span><span class="p">([</span>
-        <span class="p">(</span><span class="s">"hello"</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
-        <span class="p">(</span><span class="s">"world"</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
-        <span class="p">(</span><span class="s">"python"</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
-    <span class="p">])</span>
-    <span class="k">def</span> <span class="nf">test_string_length</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">),</span> <span class="n">length</span><span class="p">)</span></code></pre>
+    <span class="k">def</span> <span class="nf">test_string_length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">testgevallen</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s">"hello"</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">"world"</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+            <span class="p">(</span><span class="s">"python"</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+        <span class="p">]</span>
+        <span class="k">for</span> <span class="n">string</span><span class="p">,</span> <span class="n">length</span> <span class="ow">in</span> <span class="n">testgevallen</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="p">.</span><span class="n">subTest</span><span class="p">(</span><span class="n">string</span><span class="o">=</span><span class="n">string</span><span class="p">):</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">),</span> <span class="n">length</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Dit voorbeeld toont hoe dezelfde testlogica wordt toegepast op verschillende invoerwaarden voor het controleren van de lengte van een string.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Er bestaat ook een externe module <code>parameterized</code> (installeren met <code>pip install parameterized</code>). Die biedt een decorator <code>@parameterized.expand([&#8230;&#8203;])</code> die voor elke invoercombinatie een aparte testmethode aanmaakt. Deze decorator zit <mark>niet</mark> in de ingebouwde <code>unittest</code> module.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>

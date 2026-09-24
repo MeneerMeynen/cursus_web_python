@@ -741,13 +741,25 @@ Je kunt logging ook configureren voor specifieke modules in je programma.</p>
 <pre class="rouge highlight"><code data-lang="python"><span class="c1"># Voorbeeld van het configureren van logging voor een specifieke module
 </span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">'my_module'</span><span class="p">)</span>
 <span class="n">logger</span><span class="p">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
-<span class="n">logger</span><span class="p">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">StreamHandler</span><span class="p">())</span>
 <span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="s">'Dit bericht wordt vastgelegd door de my_module logger'</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Hier hebben we een logger geconfigureerd voor de module 'my_module' met een specifiek logniveau en een loghandler.
-Dit stelt ons in staat om logboekberichten te genereren die specifiek zijn voor deze module.</p>
+<p>Hier hebben we een logger aangemaakt voor de module 'my_module' met een eigen logniveau.
+Dit stelt ons in staat om logboekberichten te genereren die specifiek zijn voor deze module.
+De berichten worden doorgegeven aan de configuratie die we met <code>basicConfig()</code> hebben ingesteld, en krijgen dus hetzelfde logformaat.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Voeg je daarnaast nog een eigen handler toe aan de logger (bijvoorbeeld <code>logger.addHandler(logging.StreamHandler())</code>), dan verschijnt elk bericht <mark>twee keer</mark>: één keer via de eigen handler en één keer via de configuratie van <code>basicConfig()</code>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -783,7 +795,6 @@ Dit stelt ons in staat om logboekberichten te genereren die specifiek zijn voor 
 <span class="c1"># Voorbeeld van het configureren van logging voor een specifieke module
 </span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">'my_module'</span><span class="p">)</span>
 <span class="n">logger</span><span class="p">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
-<span class="n">logger</span><span class="p">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">StreamHandler</span><span class="p">())</span>
 <span class="n">logger</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="s">'Dit bericht wordt vastgelegd door de my_module logger'</span><span class="p">)</span></code></pre>
 </div>
 </div>
@@ -800,7 +811,7 @@ Dit stelt ons in staat om logboekberichten te genereren die specifiek zijn voor 
 2024-04-01 12:00:00,000 - INFO - Gebruikersnaam: Alice, Leeftijd: 30
 2024-04-01 12:00:00,000 - ERROR - Er is een fout opgetreden bij het delen
 Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
-  File <span class="s2">"example.py"</span>, line 16, <span class="k">in</span> &lt;module&gt;
+  File <span class="s2">"example.py"</span>, line 20, <span class="k">in</span> &lt;module&gt;
     result <span class="o">=</span> 10 / 0
 ZeroDivisionError: division by zero
 2024-04-01 12:00:00,000 - DEBUG - Dit bericht wordt vastgelegd door de my_module logger</code></pre>

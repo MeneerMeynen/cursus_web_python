@@ -728,23 +728,22 @@ Wanneer een object van deze klasse wordt gemaakt, wordt de constructor automatis
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">class</span> <span class="nc">Driehoek</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">zijde1</span><span class="p">,</span> <span class="n">zijde2</span><span class="p">,</span> <span class="n">zijde3</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">zijde1</span> <span class="o">=</span> <span class="n">zijde1</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">zijde2</span> <span class="o">=</span> <span class="n">zijde2</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">zijde3</span> <span class="o">=</span> <span class="n">zijde3</span> <span class="k">if</span> <span class="n">zijde3</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">zijde1</span> <span class="o">+</span> <span class="n">zijde2</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="k">class</span> <span class="nc">Rechthoek</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lengte</span><span class="p">,</span> <span class="n">breedte</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">lengte</span> <span class="o">=</span> <span class="n">lengte</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">breedte</span> <span class="o">=</span> <span class="n">breedte</span> <span class="k">if</span> <span class="n">breedte</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">lengte</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Hier kan de gebruiker ofwel drie zijden opgeven, of slechts twee, waarbij de derde zijde automatisch wordt berekend.</p>
+<p>Hier kan de gebruiker ofwel een lengte en een breedte opgeven, of enkel een lengte. In dat laatste geval wordt de breedte gelijk aan de lengte en krijg je een vierkant.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="c1"># Voorbeelden van het maken van objecten van de klasse Driehoek
-</span><span class="n">driehoek1</span> <span class="o">=</span> <span class="n">Driehoek</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">driehoek2</span> <span class="o">=</span> <span class="n">Driehoek</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">driehoek1</span><span class="p">.</span><span class="n">zijde3</span><span class="p">)</span>  <span class="c1"># Output: 7
-</span><span class="k">print</span><span class="p">(</span><span class="n">driehoek2</span><span class="p">.</span><span class="n">zijde3</span><span class="p">)</span>  <span class="c1"># Output: 5</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="c1"># Voorbeelden van het maken van objecten van de klasse Rechthoek
+</span><span class="n">rechthoek1</span> <span class="o">=</span> <span class="n">Rechthoek</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>      <span class="c1"># een vierkant
+</span><span class="n">rechthoek2</span> <span class="o">=</span> <span class="n">Rechthoek</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">rechthoek1</span><span class="p">.</span><span class="n">breedte</span><span class="p">)</span>  <span class="c1"># Output: 4
+</span><span class="k">print</span><span class="p">(</span><span class="n">rechthoek2</span><span class="p">.</span><span class="n">breedte</span><span class="p">)</span>  <span class="c1"># Output: 6</span></code></pre>
 </div>
 </div>
 </div>
@@ -760,7 +759,7 @@ Wanneer een object van deze klasse wordt gemaakt, wordt de constructor automatis
 <pre class="rouge highlight"><code data-lang="python"><span class="n">auto1</span> <span class="o">=</span> <span class="n">Auto</span><span class="p">(</span><span class="s">"Toyota"</span><span class="p">,</span> <span class="s">"Camry"</span><span class="p">)</span>
 <span class="n">persoon1</span> <span class="o">=</span> <span class="n">Persoon</span><span class="p">(</span><span class="s">"Alice"</span><span class="p">)</span>
 <span class="n">rekening1</span> <span class="o">=</span> <span class="n">Bankrekening</span><span class="p">(</span><span class="s">"Bob"</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-<span class="n">driehoek1</span> <span class="o">=</span> <span class="n">Driehoek</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span></code></pre>
+<span class="n">rechthoek1</span> <span class="o">=</span> <span class="n">Rechthoek</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -779,7 +778,7 @@ Wanneer een object van deze klasse wordt gemaakt, wordt de constructor automatis
 <pre class="rouge highlight"><code data-lang="python"><span class="k">print</span><span class="p">(</span><span class="n">auto1</span><span class="p">.</span><span class="n">merk</span><span class="p">)</span>  <span class="c1"># Output: Toyota
 </span><span class="k">print</span><span class="p">(</span><span class="n">persoon1</span><span class="p">.</span><span class="n">leeftijd</span><span class="p">)</span>  <span class="c1"># Output: 18
 </span><span class="k">print</span><span class="p">(</span><span class="n">rekening1</span><span class="p">.</span><span class="n">saldo</span><span class="p">)</span>  <span class="c1"># Output: 1020.0
-</span><span class="k">print</span><span class="p">(</span><span class="n">driehoek1</span><span class="p">.</span><span class="n">zijde3</span><span class="p">)</span>  <span class="c1"># Output: 7</span></code></pre>
+</span><span class="k">print</span><span class="p">(</span><span class="n">rechthoek1</span><span class="p">.</span><span class="n">breedte</span><span class="p">)</span>  <span class="c1"># Output: 4</span></code></pre>
 </div>
 </div>
 </div>

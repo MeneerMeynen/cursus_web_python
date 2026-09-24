@@ -741,7 +741,7 @@ Dit komt omdat er van deze ruiter klasse <strong>meerdere instanties</strong> we
 </td>
 <td class="content">
 <div class="paragraph">
-<p><mark>Een klasse begint steeds met een hoofdletter</mark>.</p>
+<p><mark>De naam van een klasse begint steeds met een hoofdletter</mark>. Dit is geen regel van de taal, maar een afspraak (PEP 8) waar alle Python-programmeurs zich aan houden.</p>
 </div>
 </td>
 </tr>
@@ -910,21 +910,7 @@ Deze methods kunnen aangeroepen worden op de instantie van een klasse.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Identieke methods kunnen niet voorkomen in een klasse, tenzij de parameters verschillend zijn.
-Het volgende is dus niet mogelijk:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">def</span> <span class="nf">hit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">health</span> <span class="o">-=</span> <span class="mi">10</span>
-
-<span class="k">def</span> <span class="nf">hit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">health</span> <span class="o">-=</span> <span class="mi">20</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Dit maakt 2 maal dezelfde method (naam) aan, dit geeft de compiler aan als een fout.
-Wat wel kan is andere <em>parameters</em> gebruiken:</p>
+<p>Een klasse kan in Python <mark>geen twee methods met dezelfde naam</mark> hebben. Schrijf je toch twee keer een method met dezelfde naam, dan geeft Python <mark>géén foutmelding</mark>: de tweede definitie overschrijft stilletjes de eerste.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -936,17 +922,42 @@ Wat wel kan is andere <em>parameters</em> gebruiken:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Hier kan de compiler een duidelijk onderscheid maken tussen de 2 methods.
-Bij het aanroepen van de method op een instantie is het immers duidelijk welke van de 2 bedoeld wordt door te kijken naar de parameters:</p>
+<p>Na deze code bestaat enkel nog de tweede <code>hit()</code> method (met de parameter <code>damage</code>). Roep je <code>ruiter3.hit()</code> zonder argument op, dan krijg je een fout:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">ruiter3</span><span class="p">.</span><span class="n">hit</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
-<span class="n">ruiter3</span><span class="p">.</span><span class="n">hit</span><span class="p">()</span></code></pre>
+<pre class="rouge highlight"><code>TypeError: Ruiter.hit() missing 1 required positional argument: 'damage'</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In talen zoals Java kan je wel meerdere methods met dezelfde naam maken, zolang de parameters verschillen (<em>method overloading</em>). Python ondersteunt dit niet.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Wil je een method zowel met als zonder argument kunnen oproepen, gebruik dan een <mark>standaardwaarde</mark> voor de parameter:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="k">def</span> <span class="nf">hit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">damage</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">health</span> <span class="o">-=</span> <span class="n">damage</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="n">ruiter3</span><span class="p">.</span><span class="n">hit</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>   <span class="c1"># de health vermindert met 8
+</span><span class="n">ruiter3</span><span class="p">.</span><span class="n">hit</span><span class="p">()</span>    <span class="c1"># geen argument: de standaardwaarde 10 wordt gebruikt</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>De eerste zal de hit() method oproepen die parameters bevat.</p>
+<p>In de rest van dit hoofdstuk gebruiken we deze versie van de <code>hit()</code> method.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1006,7 +1017,7 @@ In het screenshot kan je zien dat enkele <em>units</em> meer schade hebben opgel
 <p>Voor de bommenwerpers (de vliegtuigen onderaan op het screenshots) kan je zien aan de hand van de gele blokjes, hoeveel bommen ze nog dragen.</p>
 </div>
 <div class="paragraph">
-<p>In Python code zouden we de array als volgt kunnen voorstellen:</p>
+<p>In Python code zouden we de lijst als volgt kunnen voorstellen:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1015,7 +1026,7 @@ In het screenshot kan je zien dat enkele <em>units</em> meer schade hebben opgel
         <span class="bp">self</span><span class="p">.</span><span class="n">health</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="p">.</span><span class="n">hitpoints</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="c1"># Maak een lijst van Unit-objecten met een maximum van 100 eenheden
+<span class="c1"># Een lijst met de geselecteerde Unit-objecten (hier nog leeg)
 </span><span class="n">selected</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="c1"># Bereken het gezondheidspercentage van elke eenheid en druk dit af
@@ -1034,11 +1045,11 @@ In het screenshot kan je zien dat enkele <em>units</em> meer schade hebben opgel
 <h2 id="_gebruik_van_bestaande_klassen">Gebruik van bestaande klassen</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In de <em>standard library</em> van Python (die wordt meegeinstalleerd bij het installeren van Python) zijn veel bestaande klassen aanwezig.
+<p>In de <em>standard library</em> van Python (die wordt meegeinstalleerd bij het installeren van Python) zijn veel bestaande modules en klassen aanwezig.
 Deze kan je gebruiken zonder ze zelf vanaf 0 te hoeven schrijven.</p>
 </div>
 <div class="paragraph">
-<p>Een voorbeeld hiervan is de <em>math</em> klasse.
+<p>Een voorbeeld hiervan is de <em>math</em> module.
 Deze bevat enkele constanten (onveranderbare variabelen), zoals het getal PI.</p>
 </div>
 <div class="listingblock">
@@ -1053,7 +1064,10 @@ Deze bevat enkele constanten (onveranderbare variabelen), zoals het getal PI.</p
 </div>
 </div>
 <div class="paragraph">
-<p>Ook bevat deze klasse enkele methods zoals het berekenen van het gemiddelde, maximum, minimum,.. Kortom veel zaken die in de wiskunde van pas kunnen komen.</p>
+<p>Ook bevat deze module heel wat wiskundige functies, zoals <code>math.sqrt()</code> (vierkantswortel), <code>math.floor()</code> (afronden naar beneden) en <code>math.ceil()</code> (afronden naar boven). Kortom veel zaken die in de wiskunde van pas kunnen komen.</p>
+</div>
+<div class="paragraph">
+<p>Het maximum en minimum bereken je met de ingebouwde functies <code>max()</code> en <code>min()</code>, het gemiddelde met <code>statistics.mean()</code> uit de <code>statistics</code> module.</p>
 </div>
 <div class="sect2">
 <h3 id="_random">Random</h3>

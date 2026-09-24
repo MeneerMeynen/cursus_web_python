@@ -972,7 +972,7 @@ Het eerste element staat op positie 0.</p>
 <p><code>pop(index)</code>: Verwijdert en retourneert het element op de opgegeven index.</p>
 </li>
 <li>
-<p><code>len()</code>: Geeft het aantal elementen in de lijst terug.</p>
+<p><code>len(lijst)</code>: Geeft het aantal elementen in de lijst terug. Let op: dit is geen methode van de lijst, maar een ingebouwde functie. Je schrijft dus <code>len(getallen)</code> en niet <code>getallen.len()</code>.</p>
 </li>
 </ul>
 </div>
@@ -1006,8 +1006,8 @@ Het eerste element staat op positie 0.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">x_coördinaat</span> <span class="o">=</span> <span class="n">speler_positie</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Geeft 100 terug
-</span><span class="n">y_coördinaat</span> <span class="o">=</span> <span class="n">speler_positie</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Geeft 50 terug</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="n">x_coordinaat</span> <span class="o">=</span> <span class="n">speler_positie</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Geeft 100 terug
+</span><span class="n">y_coordinaat</span> <span class="o">=</span> <span class="n">speler_positie</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Geeft 50 terug</span></code></pre>
 </div>
 </div>
 </div>
@@ -1048,11 +1048,29 @@ Het eerste element staat op positie 0.</p>
 <div class="sect2">
 <h3 id="_tuples_in_gaming">3.5. Tuples in Gaming</h3>
 <div class="paragraph">
-<p>Tupels worden vaak gebruikt in gaming om gegevens te beschermen tegen onopzettelijke wijzigingen. Bijvoorbeeld, als je de positie van een speler hebt opgeslagen in een tuple, kun je erop vertrouwen dat die positie niet per ongeluk wordt gewijzigd tijdens het spel.</p>
+<p>Tupels worden vaak gebruikt in gaming voor gegevens die als één geheel bij elkaar horen en niet stukje per stukje mogen veranderen, zoals een kleur of een vaste startpositie.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">speler_positie</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python"><span class="n">ROOD</span> <span class="o">=</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">start_positie</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Onveranderlijk betekent dat je <mark>de inhoud van een tuple niet kan aanpassen</mark>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="n">start_positie</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">120</span>   <span class="c1"># TypeError: 'tuple' object does not support item assignment</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>De variabele zelf kan je wel een nieuwe tuple geven. Beweegt een speler, dan maak je gewoon een nieuwe tuple voor de nieuwe positie:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="n">speler_positie</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">speler_positie</span> <span class="o">=</span> <span class="p">(</span><span class="mi">110</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>   <span class="c1"># dit mag: de variabele verwijst nu naar een nieuwe tuple</span></code></pre>
 </div>
 </div>
 </div>
@@ -1089,18 +1107,21 @@ Values (waarden) kunnen wel meermaals voorkomen.</mark></p>
 <p><code>get(key)</code>: Retourneert de waarde die overeenkomt met de opgegeven sleutel.</p>
 </li>
 <li>
-<p><code>keys()</code>: Geeft een lijst van alle sleutels terug.</p>
+<p><code>keys()</code>: Geeft alle sleutels terug.</p>
 </li>
 <li>
-<p><code>values()</code>: Geeft een lijst van alle waarden terug.</p>
+<p><code>values()</code>: Geeft alle waarden terug.</p>
 </li>
 <li>
-<p><code>items()</code>: Geeft een lijst van sleutel-waardeparen terug.</p>
+<p><code>items()</code>: Geeft alle sleutel-waardeparen terug (als tuples).</p>
 </li>
 <li>
-<p><code>len()</code>: Geeft het aantal sleutels terug.</p>
+<p><code>len(dictionary)</code>: Geeft het aantal sleutels terug. Dit is een ingebouwde functie, geen methode.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p><code>keys()</code>, <code>values()</code> en <code>items()</code> geven geen echte lijst terug, maar een <em>view</em> (bijvoorbeeld <code>dict_keys</code>). Daar kan je met een <code>for</code>-lus over lopen. Heb je echt een lijst nodig, zet de view dan om met <code>list()</code>: <code>list(speler.keys())</code>.</p>
 </div>
 </div>
 <div class="sect2">

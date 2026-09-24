@@ -835,10 +835,10 @@ readcsv_from_file()</span></code></pre>
 </span>                <span class="n">fahrenheit</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s">"AvgTemperature"</span><span class="p">]</span>
                 <span class="c1"># Zet de temperatuur om naar graden Celcius
 </span>                <span class="n">celcius</span> <span class="o">=</span> <span class="n">FtoC</span><span class="p">(</span><span class="n">fahrenheit</span><span class="p">)</span>
-                <span class="c1"># Meetfouten halen we uit de gegevens (er zitten meetfouten van 0 kelvin in het bronbestand)
+                <span class="c1"># Meetfouten halen we uit de gegevens (ontbrekende metingen staan in het bronbestand als -99 °F)
 </span>                <span class="k">if</span> <span class="n">celcius</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">30</span><span class="p">:</span>
-                    <span class="c1"># Bij een meetfout gaan we naar de volgene iteratie van de lus
-</span>                    <span class="k">break</span>
+                    <span class="c1"># Bij een meetfout slaan we deze rij over en gaan we naar de volgende iteratie van de lus
+</span>                    <span class="k">continue</span>
                 <span class="c1"># Voeg de gevonden tempertuur toe aan de lijst van temperaturen
 </span>                <span class="n">temperatures</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">celcius</span><span class="p">)</span> <span class="c1"># F° =&gt; C°
 </span>

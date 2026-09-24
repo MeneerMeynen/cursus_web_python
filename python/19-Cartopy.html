@@ -779,7 +779,7 @@ Hiervoor moeten we de coördinaten van Brussel kennen, namelijk: 50.8503, 4.3517
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="c1"># Bepaal de extent voor de hele wereldkaart
+<pre class="rouge highlight"><code data-lang="python"><span class="c1"># Bepaal de extent: enkel (West-)Europa
 </span><span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">60</span><span class="p">]</span></code></pre>
 </div>
 </div>
@@ -796,7 +796,7 @@ Hiervoor moeten we de coördinaten van Brussel kennen, namelijk: 50.8503, 4.3517
 <h3 id="_grenzen_en_provincies">4.3. Grenzen en provincies</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="c1"># Bepaal de extent voor de hele wereldkaart
+<pre class="rouge highlight"><code data-lang="python"><span class="c1"># Bepaal de extent: enkel België
 </span><span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.8</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mf">49.4</span><span class="p">,</span> <span class="mi">52</span><span class="p">]</span>
 
 <span class="c1"># Maak een nieuwe kaartfiguur
@@ -806,9 +806,12 @@ Hiervoor moeten we de coördinaten van Brussel kennen, namelijk: 50.8503, 4.3517
 
 <span class="c1"># Voeg landen toe aan de kaart
 </span><span class="n">ax</span><span class="p">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="p">.</span><span class="n">feature</span><span class="p">.</span><span class="n">LAND</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="p">.</span><span class="n">feature</span><span class="p">.</span><span class="n">STATES</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">'--'</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'blue'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="p">.</span><span class="n">feature</span><span class="p">.</span><span class="n">STATES</span><span class="p">.</span><span class="n">with_scale</span><span class="p">(</span><span class="s">'10m'</span><span class="p">),</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">'--'</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'blue'</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="p">.</span><span class="n">feature</span><span class="p">.</span><span class="n">BORDERS</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">':'</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'red'</span><span class="p">)</span></code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p><code>STATES</code> tekent de provincies (of deelstaten). Standaard gebruikt Cartopy de grove schaal <code>110m</code>. Die bevat enkel voor enkele grote landen (zoals de VS) deelstaatgrenzen. Met <code>.with_scale('10m')</code> gebruik je de gedetailleerde kaartgegevens, waarin ook de Belgische provincies zitten. De eerste keer worden die gegevens gedownload.</p>
 </div>
 <div class="paragraph">
 <p>Resultaat:</p>

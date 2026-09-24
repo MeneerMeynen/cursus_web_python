@@ -624,11 +624,12 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <ul class="sectlevel2">
 <li><a href="#_het_interpreterproces_van_de_interpreter">4.1. Het Interpreterproces van de interpreter</a></li>
 <li><a href="#_een_voorbeeld">4.2. Een voorbeeld</a></li>
-<li><a href="#_just_in_time_jit_compiler_in_python">4.3. Just-In-Time (JIT) Compiler in Python</a>
+<li><a href="#_just_in_time_jit_compiler">4.3. Just-In-Time (JIT) Compiler</a>
 <ul class="sectlevel3">
-<li><a href="#_hoe_werkt_de_jit_compiler">4.3.1. Hoe Werkt de JIT-Compiler?</a></li>
-<li><a href="#_voorbeeld">4.3.2. Voorbeeld</a></li>
-<li><a href="#_voordelen_in_gaming">4.3.3. Voordelen in Gaming</a></li>
+<li><a href="#_hoe_werkt_een_jit_compiler">4.3.1. Hoe Werkt een JIT-Compiler?</a></li>
+<li><a href="#_jit_en_python">4.3.2. JIT en Python</a></li>
+<li><a href="#_voorbeeld">4.3.3. Voorbeeld</a></li>
+<li><a href="#_voordelen_in_gaming">4.3.4. Voordelen in Gaming</a></li>
 </ul>
 </li>
 <li><a href="#_voordelen_en_nadelen">4.4. Voordelen en Nadelen</a></li>
@@ -725,7 +726,10 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <h2 id="_compilatie_en_uitvoering">4. Compilatie en Uitvoering</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Python wordt beschouwd als een <mark>geïnterpreteerde taal</mark>, wat betekent dat de code <mark>regel voor regel</mark> wordt uitgevoerd door de interpreter. Dit in tegenstelling tot talen zoals C++ of Java, waarbij de code eerst volledig wordt omgezet in machinecode door een <strong>compilatieproces</strong> voordat deze wordt uitgevoerd.</p>
+<p>Python wordt beschouwd als een <mark>geïnterpreteerde taal</mark>. De interpreter zet je code <mark>niet om naar machinecode</mark>, maar naar bytecode, die daarna door de Python Virtual Machine <mark>instructie per instructie</mark> wordt uitgevoerd. Dit in tegenstelling tot talen zoals C of C++, waarbij de code vooraf volledig wordt omgezet in machinecode door een <strong>compilatieproces</strong>, en je een uitvoerbaar bestand (<em>executable</em>) krijgt.</p>
+</div>
+<div class="paragraph">
+<p>Java zit daartussenin: Java-code wordt vooraf gecompileerd naar bytecode, die vervolgens door de Java Virtual Machine (JVM) wordt uitgevoerd. Dat lijkt dus sterk op de werking van Python.</p>
 </div>
 <div class="sect2">
 <h3 id="_het_interpreterproces_van_de_interpreter">4.1. Het Interpreterproces van de interpreter</h3>
@@ -743,15 +747,43 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <p>Parsing: De tokens worden <strong>geanalyseerd</strong> om de <strong>syntactische structuur</strong> van het programma te begrijpen. Hierbij wordt gecontroleerd of de code voldoet aan de grammaticaregels van Python.</p>
 </li>
 <li>
-<p>Vertalen: De geparste code wordt omgezet in <strong>tussentijdse bytecode</strong>. Dit is een binair formaat dat de computer begrijpt en dat sneller kan worden uitgevoerd dan de originele broncode.</p>
+<p>Vertalen: De geparste code wordt omgezet in <strong>tussentijdse bytecode</strong>. Dit is een compact binair formaat dat de Python Virtual Machine (niet de CPU zelf!) begrijpt en dat sneller kan worden uitgevoerd dan de originele broncode.</p>
 </li>
 <li>
-<p>Uitvoering: De bytecode wordt uitgevoerd door de <strong>Python-runtime</strong>. Tijdens deze stap worden variabelen gemaakt, waarden toegewezen, bewerkingen uitgevoerd en resultaten gegenereerd.</p>
+<p>Uitvoering: De bytecode wordt uitgevoerd door de <strong>Python Virtual Machine</strong>. Tijdens deze stap worden variabelen gemaakt, waarden toegewezen, bewerkingen uitgevoerd en resultaten gegenereerd.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>Deze 4 stappen zijn een voortdurende lus, die bij iedere regel (dus regel per regel) wordt uitgevoerd.</p>
+<p>De eerste drie stappen gebeuren voor het <mark>volledige bestand</mark>, nog voor er ook maar één regel wordt uitgevoerd. Pas daarna start de uitvoering (stap 4).</p>
+</div>
+<div class="paragraph">
+<p>Dat merk je wanneer er een syntaxfout in je bestand staat. Bekijk dit programma:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s">"start"</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span>         <span class="c1"># de dubbele punt ontbreekt
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">"x is positief"</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Uitvoer:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>  File "test.py", line 3
+    if x &gt; 0
+            ^
+SyntaxError: invalid syntax</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Zelfs <code>print("start")</code> op regel 1 wordt niet uitgevoerd. Python leest en controleert eerst het hele bestand. Pas als dat volledig in orde is, wordt de bytecode uitgevoerd.</p>
+</div>
+<div class="paragraph">
+<p>Fouten die pas tijdens de uitvoering optreden (bijvoorbeeld delen door nul), zie je wél pas wanneer Python aan die regel komt. De regels daarvoor zijn dan al uitgevoerd.</p>
 </div>
 </div>
 <div class="sect2">
@@ -773,18 +805,27 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_just_in_time_jit_compiler_in_python">4.3. Just-In-Time (JIT) Compiler in Python</h3>
+<h3 id="_just_in_time_jit_compiler">4.3. Just-In-Time (JIT) Compiler</h3>
 <div class="paragraph">
-<p>De Just-In-Time (JIT) compiler is een techniek die wordt gebruikt om de uitvoeringssnelheid van code te verbeteren door delen van de code tijdens de uitvoering te compileren naar machinecode. Hoewel Python een geïnterpreteerde taal is, kan de JIT-compiler de prestaties aanzienlijk verbeteren door bepaalde stukken code te compileren op het moment dat ze worden uitgevoerd.</p>
+<p>De Just-In-Time (JIT) compiler is een techniek om de uitvoeringssnelheid van code te verbeteren door delen van de code <mark>tijdens de uitvoering</mark> te compileren naar machinecode.</p>
 </div>
 <div class="sect3">
-<h4 id="_hoe_werkt_de_jit_compiler">4.3.1. Hoe Werkt de JIT-Compiler?</h4>
+<h4 id="_hoe_werkt_een_jit_compiler">4.3.1. Hoe Werkt een JIT-Compiler?</h4>
 <div class="paragraph">
-<p>Normaal gesproken wordt Python-code geïnterpreteerd en vertaald naar tussentijdse bytecode. Bij gebruik van een JIT-compiler worden sommige delen van de code, die vaak worden uitgevoerd, tijdens de uitvoering gecompileerd naar directe machinecode. Dit maakt de uitvoering sneller omdat machinecode direct door de computer kan worden uitgevoerd zonder interpretatie.</p>
+<p>Normaal wordt de bytecode instructie per instructie geïnterpreteerd door de virtuele machine. Een JIT-compiler houdt bij welke stukken code heel vaak worden uitgevoerd (bijvoorbeeld de binnenkant van een lus die een miljoen keer draait) en zet die tijdens de uitvoering om naar machinecode. Die machinecode kan de CPU rechtstreeks uitvoeren, zonder tussenkomst van de interpreter. Dat is veel sneller.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_voorbeeld">4.3.2. Voorbeeld</h4>
+<h4 id="_jit_en_python">4.3.2. JIT en Python</h4>
+<div class="paragraph">
+<p>De standaard Python-interpreter (CPython, de versie die je downloadt van python.org) gebruikt <mark>standaard géén JIT-compiler</mark>. Sinds Python 3.13 bestaat er een experimentele JIT, maar die staat standaard uit.</p>
+</div>
+<div class="paragraph">
+<p>Er bestaan wel andere Python-interpreters met een ingebouwde JIT-compiler, zoals <strong>PyPy</strong>. Die voeren dezelfde Python-code uit, vaak een stuk sneller. Java gebruikt in de JVM trouwens ook standaard een JIT-compiler.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_voorbeeld">4.3.3. Voorbeeld</h4>
 <div class="paragraph">
 <p>Stel je voor dat je een eenvoudig Python-script hebt voor het simuleren van de beweging van een speler in een game:</p>
 </div>
@@ -804,16 +845,16 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 </div>
 <div class="paragraph">
-<p>In dit voorbeeld wordt de functie simulate_movement herhaaldelijk (meerdere keren per seconde) opgeroepen om de beweging van een speler te simuleren. Python kan na een aantal uitvoeringen ervoor kiezen om de simulate_movement-functie te optimaliseren door het om te zetten in efficiënte machinecode (via de JIT compiler).</p>
+<p>In dit voorbeeld draait de lus in <code>simulate_movement</code> een miljoen keer. De gewone CPython-interpreter interpreteert elke iteratie opnieuw. Een interpreter met een JIT-compiler (zoals PyPy) merkt dat deze lus heel vaak wordt uitgevoerd en zet ze om naar efficiënte machinecode.</p>
 </div>
 <div class="paragraph">
 <p>Dit proces gebeurt automatisch, hier heb je als programmeur geen invloed op.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_voordelen_in_gaming">4.3.3. Voordelen in Gaming</h4>
+<h4 id="_voordelen_in_gaming">4.3.4. Voordelen in Gaming</h4>
 <div class="paragraph">
-<p>In de context van gaming kan de JIT-compiler de prestaties van Python-code verbeteren, vooral voor onderdelen van het spel die veelvuldig worden gebruikt, zoals fysica-simulaties, beeldverwerking of AI-berekeningen. Dit kan leiden tot soepelere en responsievere spelervaringen.</p>
+<p>In de context van gaming kan een JIT-compiler de prestaties van Python-code verbeteren, vooral voor onderdelen van het spel die veelvuldig worden gebruikt, zoals fysica-simulaties, beeldverwerking of AI-berekeningen. Dit kan leiden tot soepelere en responsievere spelervaringen.</p>
 </div>
 <div class="paragraph">
 <p>Hoewel JIT-compilatie Python niet zo snel maakt als strikt gecompileerde talen, kan het aanzienlijke prestatieverbeteringen bieden.</p>
@@ -823,7 +864,7 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <div class="sect2">
 <h3 id="_voordelen_en_nadelen">4.4. Voordelen en Nadelen</h3>
 <div class="paragraph">
-<p>Python&#8217;s interpretatieproces biedt voordelen zoals <strong>directe feedback</strong> en gemakkelijke debugging. Echter, omdat elke regel code wordt geïnterpreteerd wanneer deze wordt uitgevoerd, kan Python trager zijn dan gecompileerde talen voor intensieve berekeningen in games.</p>
+<p>Python&#8217;s interpretatieproces biedt voordelen zoals <strong>directe feedback</strong> en gemakkelijke debugging. Echter, omdat elke bytecode-instructie wordt geïnterpreteerd wanneer ze wordt uitgevoerd, kan Python trager zijn dan gecompileerde talen voor intensieve berekeningen in games.</p>
 </div>
 <div class="paragraph">
 <p>Ondanks enige <strong>snelheidsbeperkingen</strong> blijft Python een veelgebruikte taal in de game-ontwikkeling vanwege zijn flexibiliteit, eenvoudige syntax en uitgebreide bibliotheken.</p>
@@ -835,7 +876,7 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <h2 id="_samenvatting">5. Samenvatting</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Het pad van Python-code naar uitvoering op de CPU omvat diverse tussenstappen, van interpretatie en bytecode tot JIT-compilatie en uiteindelijk machinecode.</p>
+<p>Het pad van Python-code naar uitvoering op de CPU omvat diverse tussenstappen, van het omzetten naar bytecode tot het uitvoeren van die bytecode door de Python Virtual Machine. Sommige interpreters (zoals PyPy) gebruiken daarbovenop een JIT-compiler om veelgebruikte code om te zetten naar machinecode.</p>
 </div>
 </div>
 </div>

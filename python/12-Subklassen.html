@@ -676,7 +676,7 @@ Het stelt je in staat om een nieuwe klasse te maken, die bekend staat als de sub
 </div>
 </div>
 <div class="paragraph">
-<p>In dit voorbeeld heeft <strong><code>Speler</code> de <code>Karakter</code>-klasse uitgebreid</strong>. Het erft de <code><em>init</em></code>-methode van <code>Karakter</code> door <code>super().<em>init</em>(naam, gezondheid)</code> te gebruiken en voegt een extra methode toe, <code>upgrade_level</code>.</p>
+<p>In dit voorbeeld heeft <strong><code>Speler</code> de <code>Karakter</code>-klasse uitgebreid</strong>. <code>Speler</code> heeft een eigen <code><em>init</em></code>-methode, die de <code><em>init</em></code>-methode van <code>Karakter</code> <mark>overschrijft</mark>. Via <code>super().<em>init</em>(naam, gezondheid)</code> roept <code>Speler</code> de <code><em>init</em></code> van de bovenliggende klasse toch op, zodat <code>naam</code> en <code>gezondheid</code> ingesteld worden. Daarna voegt <code>Speler</code> een extra attribuut <code>level</code> en een extra methode <code>upgrade_level</code> toe. De methode <code>take_damage</code> erft <code>Speler</code> gewoon van <code>Karakter</code>.</p>
 </div>
 </div>
 </div>
@@ -695,7 +695,7 @@ Het stelt je in staat om een nieuwe klasse te maken, die bekend staat als de sub
         <span class="bp">self</span><span class="p">.</span><span class="n">aanvalskracht</span> <span class="o">=</span> <span class="n">aanvalskracht</span>
 
     <span class="k">def</span> <span class="nf">val_aan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doelwit</span><span class="p">):</span>
-        <span class="n">doelwit</span><span class="p">.</span><span class="n">neem_damage</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">aanvalskracht</span><span class="p">)</span>
+        <span class="n">doelwit</span><span class="p">.</span><span class="n">take_damage</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">aanvalskracht</span><span class="p">)</span>
 
 <span class="k">class</span> <span class="nc">Zombie</span><span class="p">(</span><span class="n">Vijand</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">naam</span><span class="p">,</span> <span class="n">gezondheid</span><span class="p">,</span> <span class="n">aanvalskracht</span><span class="p">,</span> <span class="n">infectiegraad</span><span class="p">):</span>
@@ -703,7 +703,7 @@ Het stelt je in staat om een nieuwe klasse te maken, die bekend staat als de sub
         <span class="bp">self</span><span class="p">.</span><span class="n">infectiegraad</span> <span class="o">=</span> <span class="n">infectiegraad</span>
 
     <span class="k">def</span> <span class="nf">bijt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doelwit</span><span class="p">):</span>
-        <span class="n">doelwit</span><span class="p">.</span><span class="n">wordt_geïnfecteerd</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">infectiegraad</span><span class="p">)</span></code></pre>
+        <span class="n">doelwit</span><span class="p">.</span><span class="n">wordt_geinfecteerd</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">infectiegraad</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -716,7 +716,19 @@ De zombie is een subklasse van vijand. Vijand is de <strong>superklasse</strong>
 <h2 id="_overerving_en_meerdere_subklassen">3. Overerving en meerdere Subklassen</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Een klasse kan door meerdere subklassen worden uitgebreid, wat bekend staat als veelvoudige overerving. Dit kan krachtig zijn, maar het moet voorzichtig worden gebruikt om verwarring en conflicten te voorkomen.</p>
+<p>Een klasse kan door meerdere subklassen worden uitgebreid. Elke subklasse erft dan dezelfde basis, maar kan die op haar eigen manier aanvullen of aanpassen.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Dit is iets anders dan <em>veelvoudige overerving</em> (<em>multiple inheritance</em>). Daarbij erft één klasse van meerdere bovenliggende klassen tegelijk. Dat komt verderop in dit hoofdstuk aan bod.
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -728,7 +740,7 @@ De zombie is een subklasse van vijand. Vijand is de <strong>superklasse</strong>
     <span class="k">def</span> <span class="nf">vlieg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">naam</span><span class="si">}</span><span class="s"> vliegt."</span><span class="p">)</span>
 
-<span class="k">class</span> <span class="nc">Pinguïn</span><span class="p">(</span><span class="n">Vogel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Pinguin</span><span class="p">(</span><span class="n">Vogel</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">naam</span><span class="p">,</span> <span class="n">vleugelspanwijdte</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">().</span><span class="n">__init__</span><span class="p">(</span><span class="n">naam</span><span class="p">,</span> <span class="n">vleugelspanwijdte</span><span class="p">)</span>
 
@@ -745,7 +757,7 @@ De zombie is een subklasse van vijand. Vijand is de <strong>superklasse</strong>
 </div>
 </div>
 <div class="paragraph">
-<p>In dit voorbeeld hebben zowel <code>Pinguïn</code> als <code>Valk</code> de eigenschappen van de <code>Vogel</code>-klasse geërfd. Beide hebben echter hun eigen implementatie van de <code>vlieg</code>-methode.</p>
+<p>In dit voorbeeld hebben zowel <code>Pinguin</code> als <code>Valk</code> de eigenschappen van de <code>Vogel</code>-klasse geërfd. Beide hebben echter hun eigen implementatie van de <code>vlieg</code>-methode.</p>
 </div>
 </div>
 </div>
@@ -794,15 +806,18 @@ De zombie is een subklasse van vijand. Vijand is de <strong>superklasse</strong>
         <span class="bp">self</span><span class="p">.</span><span class="n">lenigheid</span> <span class="o">=</span> <span class="n">lenigheid</span>
 
     <span class="k">def</span> <span class="nf">voer_aanval_uit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vijand</span><span class="p">):</span>
-        <span class="n">steek</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vijand</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">steek</span><span class="p">(</span><span class="n">vijand</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">steek</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">slachtoffer</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">lenigheid</span> <span class="o">&gt;</span> <span class="n">slachtoffer</span><span class="p">.</span><span class="n">lenigheid</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">lenigheid</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
             <span class="n">slachtoffer</span><span class="p">.</span><span class="n">gezondheid</span> <span class="o">-=</span> <span class="mi">10</span>
-            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">naam</span><span class="si">}</span><span class="s"> steelt snel en steekt </span><span class="si">{</span><span class="n">slachtoffer</span><span class="p">.</span><span class="n">naam</span><span class="si">}</span><span class="s">."</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">naam</span><span class="si">}</span><span class="s"> sluipt snel naderbij en steekt </span><span class="si">{</span><span class="n">slachtoffer</span><span class="p">.</span><span class="n">naam</span><span class="si">}</span><span class="s">."</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">naam</span><span class="si">}</span><span class="s"> probeerde te steken, maar miste."</span><span class="p">)</span></code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Merk op dat je een andere methode van hetzelfde object oproept via <code>self</code>: <code>self.steek(vijand)</code>. Zonder <code>self.</code> vindt Python de methode niet.</p>
 </div>
 <div class="paragraph">
 <p>Hier zie je dat de Dief-subklasse een andere methode heeft dan de Held-subklasse, wat aantoont hoe verschillende subklassen specifieke acties kunnen hebben.</p>
@@ -811,14 +826,15 @@ De zombie is een subklasse van vijand. Vijand is de <strong>superklasse</strong>
 <div class="sect2">
 <h3 id="_veelvoudige_overerving_multiple_inheritance">4.2. Veelvoudige Overerving (Multiple inheritance)</h3>
 <div class="paragraph">
-<p>Laten we nu een voorbeeld bekijken van veelvoudige overerving, waarbij een klasse van meerdere andere klassen erft. Stel dat we een Magiër-klasse willen maken die zowel magische als fysieke aanvallen kan uitvoeren:</p>
+<p>Laten we nu een voorbeeld bekijken van veelvoudige overerving, waarbij een klasse van meerdere andere klassen erft. Stel dat we een Magier-klasse willen maken die zowel magische als fysieke aanvallen kan uitvoeren:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">class</span> <span class="nc">Magiër</span><span class="p">(</span><span class="n">Held</span><span class="p">,</span> <span class="n">Dief</span><span class="p">):</span>
+<pre class="rouge highlight"><code data-lang="python"><span class="k">class</span> <span class="nc">Magier</span><span class="p">(</span><span class="n">Held</span><span class="p">,</span> <span class="n">Dief</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">naam</span><span class="p">,</span> <span class="n">gezondheid</span><span class="p">,</span> <span class="n">kracht</span><span class="p">,</span> <span class="n">lenigheid</span><span class="p">,</span> <span class="n">magie</span><span class="p">):</span>
-        <span class="n">Held</span><span class="p">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">naam</span><span class="p">,</span> <span class="n">gezondheid</span><span class="p">,</span> <span class="n">kracht</span><span class="p">)</span>
-        <span class="n">Dief</span><span class="p">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">naam</span><span class="p">,</span> <span class="n">gezondheid</span><span class="p">,</span> <span class="n">lenigheid</span><span class="p">)</span>
+        <span class="n">Personage</span><span class="p">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">naam</span><span class="p">,</span> <span class="n">gezondheid</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">kracht</span> <span class="o">=</span> <span class="n">kracht</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">lenigheid</span> <span class="o">=</span> <span class="n">lenigheid</span>
         <span class="bp">self</span><span class="p">.</span><span class="n">magie</span> <span class="o">=</span> <span class="n">magie</span>
 
     <span class="k">def</span> <span class="nf">voer_aanval_uit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doelwit</span><span class="p">):</span>
@@ -827,7 +843,19 @@ De zombie is een subklasse van vijand. Vijand is de <strong>superklasse</strong>
 </div>
 </div>
 <div class="paragraph">
-<p>Hier erft Magiër van zowel Held als Dief, wat betekent dat het zowel de methode voer_aanval_uit van Held als steek van Dief erft. Het kan ook specifieke methoden toevoegen, zoals voer_magische_aanval_uit.</p>
+<p>Hier erft Magier van zowel Held als Dief. Magier heeft daardoor de attributen <code>kracht</code> en <code>lenigheid</code> en erft bijvoorbeeld de methode <code>steek</code> van Dief: <code>magier.steek(vijand)</code> werkt dus ook. De methode <code>voer_aanval_uit</code> erft Magier niet, die <mark>overschrijft</mark> hij met een eigen magische aanval.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+In de <code><em>init</em></code> van Magier roepen we <code>Held.<em>init</em>()</code> en <code>Dief.<em>init</em>()</code> bewust níét allebei op. Door de manier waarop Python bij veelvoudige overerving de volgorde van de klassen bepaalt (de <em>Method Resolution Order</em>), zou de <code>super().<em>init</em>()</code> in <code>Held</code> dan de <code><em>init</em></code> van <code>Dief</code> oproepen zonder het argument <code>lenigheid</code>. Dat geeft een <code>TypeError</code>. Veelvoudige overerving maakt code snel ingewikkeld. Gebruik het dus spaarzaam.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -840,21 +868,34 @@ De zombie is een subklasse van vijand. Vijand is de <strong>superklasse</strong>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">def</span> <span class="nf">voer_aanval_uit_en_toon_info</span><span class="p">(</span><span class="n">personage</span><span class="p">):</span>
-    <span class="n">personage</span><span class="p">.</span><span class="n">voer_aanval_uit</span><span class="p">()</span>
-    <span class="n">personage</span><span class="p">.</span><span class="n">toon_info</span><span class="p">()</span>
+<pre class="rouge highlight"><code data-lang="python"><span class="k">def</span> <span class="nf">voer_aanval_uit_en_toon_info</span><span class="p">(</span><span class="n">personage</span><span class="p">,</span> <span class="n">vijand</span><span class="p">):</span>
+    <span class="n">personage</span><span class="p">.</span><span class="n">voer_aanval_uit</span><span class="p">(</span><span class="n">vijand</span><span class="p">)</span>
+    <span class="n">vijand</span><span class="p">.</span><span class="n">toon_info</span><span class="p">()</span>
 
 <span class="n">held</span> <span class="o">=</span> <span class="n">Held</span><span class="p">(</span><span class="s">"Arthur"</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 <span class="n">dief</span> <span class="o">=</span> <span class="n">Dief</span><span class="p">(</span><span class="s">"Sly"</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
-<span class="n">magiër</span> <span class="o">=</span> <span class="n">Magiër</span><span class="p">(</span><span class="s">"Gandalf"</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="n">magier</span> <span class="o">=</span> <span class="n">Magier</span><span class="p">(</span><span class="s">"Gandalf"</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="n">trol</span> <span class="o">=</span> <span class="n">Personage</span><span class="p">(</span><span class="s">"Trol"</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
 
-<span class="n">voer_aanval_uit_en_toon_info</span><span class="p">(</span><span class="n">held</span><span class="p">)</span>
-<span class="n">voer_aanval_uit_en_toon_info</span><span class="p">(</span><span class="n">dief</span><span class="p">)</span>
-<span class="n">voer_aanval_uit_en_toon_info</span><span class="p">(</span><span class="n">magiër</span><span class="p">)</span></code></pre>
+<span class="k">for</span> <span class="n">personage</span> <span class="ow">in</span> <span class="p">[</span><span class="n">held</span><span class="p">,</span> <span class="n">dief</span><span class="p">,</span> <span class="n">magier</span><span class="p">]:</span>
+    <span class="n">voer_aanval_uit_en_toon_info</span><span class="p">(</span><span class="n">personage</span><span class="p">,</span> <span class="n">trol</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Hier kan dezelfde functie worden gebruikt voor verschillende typen personages. Het resultaat is verschillend voor elke klasse, wat het polymorfe karakter illustreert.</p>
+<p>Uitvoer:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>Arthur valt Trol aan met kracht 20.
+Trol (Gezondheid: 180)
+Sly sluipt snel naderbij en steekt Trol.
+Trol (Gezondheid: 170)
+Gandalf gebruikt magie en valt Trol aan met magie 25.
+Trol (Gezondheid: 145)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Hier kan dezelfde functie worden gebruikt voor verschillende typen personages. De functie roept telkens <code>voer_aanval_uit</code> op, maar het resultaat is verschillend voor elke klasse. Dat is het polymorfe karakter.</p>
 </div>
 </div>
 </div>
@@ -906,26 +947,30 @@ De zombie is een subklasse van vijand. Vijand is de <strong>superklasse</strong>
 <p>Python maakt gebruik van duck typing, wat betekent dat de geschiktheid van een object voor een bepaalde rol wordt bepaald door zijn gedrag in plaats van door expliciete implementaties of interfaces. Als een object loopt als een eend en kwaakt als een eend, dan is het een eend.</p>
 </div>
 <div class="paragraph">
-<p>Laten we een voorbeeld bekijken met een abstracte klasse <code>Vliegbaar</code>:</p>
+<p>Laten we een voorbeeld bekijken. De klassen <code>Eend</code> en <code>Vliegtuig</code> hebben <mark>géén gemeenschappelijke bovenliggende klasse</mark>, maar ze hebben allebei een methode <code>vlieg</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">class</span> <span class="nc">Vliegbaar</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-    <span class="o">@</span><span class="n">abstractmethod</span>
+<pre class="rouge highlight"><code data-lang="python"><span class="k">class</span> <span class="nc">Eend</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">vlieg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"De eend fladdert over de vijver."</span><span class="p">)</span>
 
-<span class="k">class</span> <span class="nc">Vogel</span><span class="p">(</span><span class="n">Vliegbaar</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Vliegtuig</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">vlieg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">"De vogel vliegt door de lucht."</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Het vliegtuig stijgt op en vliegt hoog in de lucht."</span><span class="p">)</span>
 
-<span class="k">class</span> <span class="nc">Vliegtuig</span><span class="p">(</span><span class="n">Vliegbaar</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">vlieg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">"Het vliegtuig stijgt op en vliegt hoog in de lucht."</span><span class="p">)</span></code></pre>
+<span class="k">def</span> <span class="nf">laat_vliegen</span><span class="p">(</span><span class="n">ding</span><span class="p">):</span>
+    <span class="n">ding</span><span class="p">.</span><span class="n">vlieg</span><span class="p">()</span>
+
+<span class="n">laat_vliegen</span><span class="p">(</span><span class="n">Eend</span><span class="p">())</span>
+<span class="n">laat_vliegen</span><span class="p">(</span><span class="n">Vliegtuig</span><span class="p">())</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In dit geval is <code>Vogel</code> en <code>Vliegtuig</code> vliegbaar omdat ze de methode <code>vlieg</code> implementeren. Duck typing in actie!</p>
+<p>De functie <code>laat_vliegen</code> controleert niet van welke klasse <code>ding</code> is. Ze roept gewoon <code>vlieg()</code> op. Zolang het object een methode <code>vlieg</code> heeft, werkt het. Dat is duck typing in actie!</p>
+</div>
+<div class="paragraph">
+<p>Het verschil met een abstracte basisklasse (zoals <code>Beweging</code> hierboven): bij duck typing wordt niets afgedwongen. Een object zonder <code>vlieg</code>-methode geeft pas een fout wanneer de methode wordt opgeroepen. Met een abstracte basisklasse kan je een subklasse die een abstracte methode vergeet te implementeren <mark>niet eens aanmaken</mark>: Python geeft dan meteen een <code>TypeError</code>.</p>
 </div>
 </div>
 <div class="sect2">

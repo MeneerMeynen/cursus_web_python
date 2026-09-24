@@ -622,9 +622,10 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <li><a href="#_het_gebruik_van_for_lussen">3. Het Gebruik van 'For'-Lussen</a></li>
 <li><a href="#_geavanceerd_gebruik_van_lussen">4. Geavanceerd Gebruik van Lussen</a></li>
 <li><a href="#_oneindige_lussen_voorkomen">5. Oneindige Lussen Voorkomen</a></li>
-<li><a href="#_geneste_lussen_of_dubbele_lussen">6. Geneste lussen of dubbele lussen</a></li>
-<li><a href="#_lussen_en_efficiëntie">7. Lussen en Efficiëntie</a></li>
-<li><a href="#_samenvatting">8. Samenvatting</a></li>
+<li><a href="#_lusbeheersing_break_en_continue">6. Lusbeheersing: <code>break</code> en <code>continue</code></a></li>
+<li><a href="#_geneste_lussen_of_dubbele_lussen">7. Geneste lussen of dubbele lussen</a></li>
+<li><a href="#_lussen_en_efficiëntie">8. Lussen en Efficiëntie</a></li>
+<li><a href="#_samenvatting">9. Samenvatting</a></li>
 </ul>
 </div>
 </div>
@@ -728,9 +729,21 @@ Lussen stellen ons in staat om een reeks instructies meerdere keren uit te voere
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python"><span class="n">frames</span> <span class="o">=</span> <span class="p">[</span><span class="s">"frame1.png"</span><span class="p">,</span> <span class="s">"frame2.png"</span><span class="p">,</span> <span class="s">"frame3.png"</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">frames</span><span class="p">:</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
-    <span class="n">wait</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>  <span class="c1"># Wacht voor een vloeiende animatie</span></code></pre>
+    <span class="n">display</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>  <span class="c1"># verzonnen functie: toon het frame
+</span>    <span class="n">wait</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>       <span class="c1"># verzonnen functie: wacht 0.1 seconde voor een vloeiende animatie</span></code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<code>display()</code> en <code>wait()</code> bestaan niet in Python. Dit voorbeeld is <em>pseudocode</em>: het toont het idee, maar je kan het niet zomaar uitvoeren.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Hier wordt een 'for'-lus gebruikt om door de lijst van frames van een animatie te itereren en elk frame op het scherm weer te geven met een kleine wachttijd voor vloeiende animatie.</p>
@@ -746,6 +759,29 @@ Lussen stellen ons in staat om een reeks instructies meerdere keren uit te voere
 </div>
 <div class="paragraph">
 <p>De range()-functie genereert een reeks getallen, die perfect is voor 'for'-lussen. In dit voorbeeld wordt de 'for'-lus vijf keer herhaald, waarbij i achtereenvolgens 0, 1, 2, 3 en 4 wordt.</p>
+</div>
+<div class="paragraph">
+<p><code>range()</code> kan ook met twee of drie getallen worden opgeroepen:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>range(stop)</code>: van 0 tot (niet tot en met) <code>stop</code>. <code>range(5)</code> geeft 0, 1, 2, 3, 4.</p>
+</li>
+<li>
+<p><code>range(start, stop)</code>: van <code>start</code> tot (niet tot en met) <code>stop</code>. <code>range(2, 5)</code> geeft 2, 3, 4.</p>
+</li>
+<li>
+<p><code>range(start, stop, stap)</code>: met een eigen stapgrootte. <code>range(0, 10, 2)</code> geeft 0, 2, 4, 6, 8.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>   <span class="c1"># aftellen: 10, 9, ..., 1
+</span>    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Start!"</span><span class="p">)</span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -777,7 +813,7 @@ Lussen stellen ons in staat om een reeks instructies meerdere keren uit te voere
 <h2 id="_oneindige_lussen_voorkomen">5. Oneindige Lussen Voorkomen</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Een potentieel risico bij while-lussen is dat ze oneindig kunnen doorgaan als de boolean voorwaarde nooit wordt voldaan. Dit kan leiden tot een programma dat vastloopt. Zorg ervoor dat je altijd een mechanisme hebt om de lus te beëindigen.</p>
+<p>Een potentieel risico bij while-lussen is dat ze oneindig kunnen doorgaan als de voorwaarde nooit <code>False</code> wordt. Dit kan leiden tot een programma dat vastloopt. Zorg ervoor dat je altijd een mechanisme hebt om de lus te beëindigen.</p>
 </div>
 <div class="paragraph">
 <p>Veilige 'While'-Lus:</p>
@@ -796,7 +832,7 @@ Lussen stellen ons in staat om een reeks instructies meerdere keren uit te voere
 </div>
 </div>
 <div class="paragraph">
-<p>In dit voorbeeld wordt de 'while'-lus beëindigd na drie mislukte pogingen.</p>
+<p>In dit voorbeeld wordt de 'while'-lus beëindigd na drie mislukte pogingen. Wordt het juiste wachtwoord ingegeven, dan stopt de lus meteen door het <code>break</code> statement (zie verder).</p>
 </div>
 <div class="paragraph">
 <p>Eeuwig lopende 'While'-lus (= vastlopend programma):</p>
@@ -816,10 +852,54 @@ Lussen stellen ons in staat om een reeks instructies meerdere keren uit te voere
 </div>
 </div>
 <div class="sect1">
-<h2 id="_geneste_lussen_of_dubbele_lussen">6. Geneste lussen of dubbele lussen</h2>
+<h2 id="_lusbeheersing_break_en_continue">6. Lusbeheersing: <code>break</code> en <code>continue</code></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><mark>Een geneste 'for'-lus is een lus die zich binnenin een andere 'for'-lus bevindt</mark>. Hiermee kun je complexe patronen en herhalingen in je code creëren.</p>
+<p>Met twee sleutelwoorden kan je het verloop van een lus (zowel <code>for</code> als <code>while</code>) bijsturen:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>break</code> stopt de lus <mark>onmiddellijk</mark>. Het programma gaat verder met de code na de lus.</p>
+</li>
+<li>
+<p><code>continue</code> slaat <mark>de rest van de huidige iteratie</mark> over en gaat meteen verder met de volgende iteratie.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python"><span class="n">enemies</span> <span class="o">=</span> <span class="p">[</span><span class="s">"alien"</span><span class="p">,</span> <span class="s">"robot"</span><span class="p">,</span> <span class="s">"zombie"</span><span class="p">,</span> <span class="s">"boss"</span><span class="p">,</span> <span class="s">"alien"</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">enemy</span> <span class="ow">in</span> <span class="n">enemies</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">enemy</span> <span class="o">==</span> <span class="s">"robot"</span><span class="p">:</span>
+        <span class="k">continue</span>          <span class="c1"># robots negeren we, ga naar de volgende vijand
+</span>    <span class="k">if</span> <span class="n">enemy</span> <span class="o">==</span> <span class="s">"boss"</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"De eindbaas verschijnt! Het level stopt."</span><span class="p">)</span>
+        <span class="k">break</span>             <span class="c1"># stop de lus volledig
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">"Een"</span><span class="p">,</span> <span class="n">enemy</span><span class="p">,</span> <span class="s">"verschijnt!"</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>Een alien verschijnt!
+Een zombie verschijnt!
+De eindbaas verschijnt! Het level stopt.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>De laatste "alien" wordt nooit afgedrukt: de lus werd al gestopt door <code>break</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_geneste_lussen_of_dubbele_lussen">7. Geneste lussen of dubbele lussen</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><mark>Een geneste lus is een lus die zich binnenin een andere lus bevindt</mark>. Meestal zijn dit 'for'-lussen, maar het kan ook met 'while'-lussen. Hiermee kun je complexe patronen en herhalingen in je code creëren.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -923,7 +1003,7 @@ Lussen stellen ons in staat om een reeks instructies meerdere keren uit te voere
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lussen_en_efficiëntie">7. Lussen en Efficiëntie</h2>
+<h2 id="_lussen_en_efficiëntie">8. Lussen en Efficiëntie</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Hoewel lussen krachtig zijn, moeten we rekening houden met de efficiëntie van onze code. <mark>Te veel iteraties kunnen leiden tot vertraging</mark> in je programma of game. Het is belangrijk om de beste lus voor een specifieke taak te kiezen en optimalisaties toe te passen wanneer dat nodig is.</p>
@@ -931,7 +1011,7 @@ Lussen stellen ons in staat om een reeks instructies meerdere keren uit te voere
 </div>
 </div>
 <div class="sect1">
-<h2 id="_samenvatting">8. Samenvatting</h2>
+<h2 id="_samenvatting">9. Samenvatting</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In dit hoofdstuk hebben we lussen verkend als een cruciaal hulpmiddel voor herhaling in Python. We hebben 'while'- en 'for'-lussen behandeld. Door lussen op de juiste manier te gebruiken, kun je herhalende taken automatiseren, iteraties door gegevens uitvoeren.</p>

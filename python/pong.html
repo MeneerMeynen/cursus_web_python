@@ -672,21 +672,9 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <h2 id="_wat_is_pygame">2. Wat is pygame?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Pygame is een python library waarmee je eenvoudige games snel en efficiënt kunt bouwen.
-Populaire voorbeelden zijn:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Without a Voice</p>
-</li>
-<li>
-<p>Highway Blossoms</p>
-</li>
-<li>
-<p>Love in a Bottle</p>
-</li>
-</ul>
+<p>Pygame is een python library waarmee je eenvoudige 2D-games snel en efficiënt kunt bouwen.
+Het wordt veel gebruikt om te leren programmeren en voor kleine (indie)games.
+Op de website <a href="https://www.pygame.org">pygame.org</a> vind je documentatie en heel wat voorbeeldprojecten.</p>
 </div>
 </div>
 </div>
@@ -723,8 +711,8 @@ Populaire voorbeelden zijn:</p>
 <div class="sect2">
 <h3 id="_game_manager">3.3. Game Manager</h3>
 <div class="paragraph">
-<p>Creeër een ´gamemanager.py´ bestand waar we de basis op gaan bouwen.
-Plaats deze code in de ´gamemanager.py´.</p>
+<p>Creeër een ´game_manager.py´ bestand waar we de basis op gaan bouwen.
+Plaats deze code in de ´game_manager.py´.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -830,7 +818,6 @@ Om een lijn te maken doen we dat zo:</p>
         <span class="n">screen_width</span><span class="p">,</span> <span class="n">screen_height</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">get_size</span><span class="p">()</span> <i class="conum" data-value="1"></i><b>(1)</b>
         <span class="n">pygame</span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">line</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="p">[</span><span class="n">screen_width</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">screen_width</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">screen_height</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
-        <span class="n">pygame</span><span class="p">.</span><span class="n">display</span><span class="p">.</span><span class="n">update</span><span class="p">()</span> <i class="conum" data-value="3"></i><b>(3)</b>
 
 
     <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -857,10 +844,6 @@ Om een lijn te maken doen we dat zo:</p>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>Teken een lijn in het midden van het scherm met als grootte het scherm en als breedte 5.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Update de game.</td>
 </tr>
 </table>
 </div>
@@ -923,8 +906,7 @@ Om een lijn te maken doen we dat zo:</p>
             <span class="bp">self</span><span class="p">.</span><span class="n">rect</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">rect</span><span class="p">.</span><span class="n">width</span> <span class="o">-</span> <span class="mi">10</span> <i class="conum" data-value="3"></i><b>(3)</b>
 
     <span class="k">def</span> <span class="nf">draw_paddle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">screen</span><span class="p">):</span>
-        <span class="n">pygame</span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">rect</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="bp">self</span><span class="p">.</span><span class="n">rect</span><span class="p">)</span>
-        <span class="n">pygame</span><span class="p">.</span><span class="n">display</span><span class="p">.</span><span class="n">update</span><span class="p">()</span></code></pre>
+        <span class="n">pygame</span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">rect</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="bp">self</span><span class="p">.</span><span class="n">rect</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -953,7 +935,6 @@ Om een lijn te maken doen we dat zo:</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python"><span class="kn">import</span> <span class="nn">pygame</span>
 <span class="kn">import</span> <span class="nn">paddle</span>
-<span class="kn">import</span> <span class="nn">game_ball</span>
 <span class="kn">import</span> <span class="nn">game_manager</span>
 
 <span class="n">pygame</span><span class="p">.</span><span class="n">init</span><span class="p">()</span>
@@ -1025,7 +1006,6 @@ Je doet dat zo:</p>
         <span class="n">screen_width</span><span class="p">,</span> <span class="n">screen_height</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">get_size</span><span class="p">()</span>
         <span class="n">pygame</span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">line</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="p">[</span><span class="n">screen_width</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">screen_width</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">screen_height</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
-        <span class="n">pygame</span><span class="p">.</span><span class="n">display</span><span class="p">.</span><span class="n">update</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">running</span> <span class="o">=</span> <span class="bp">True</span>
@@ -1053,11 +1033,11 @@ Je doet dat zo:</p>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Teken paddle 1 met als parameter de breedte en hoogte van het scherm</td>
+<td>Teken paddle 1 op het scherm (het scherm wordt als parameter meegegeven)</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Teken paddle 2 met als parameter de breedte en hoogte van het scherm</td>
+<td>Teken paddle 2 op het scherm (het scherm wordt als parameter meegegeven)</td>
 </tr>
 </table>
 </div>
@@ -1110,26 +1090,24 @@ je toetsenbord.</p>
         <span class="n">screen_width</span><span class="p">,</span> <span class="n">screen_height</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">get_size</span><span class="p">()</span>
         <span class="n">pygame</span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">line</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="p">[</span><span class="n">screen_width</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">screen_width</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">screen_height</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
-        <span class="n">pygame</span><span class="p">.</span><span class="n">display</span><span class="p">.</span><span class="n">update</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">running</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="k">while</span> <span class="n">running</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">get</span><span class="p">():</span>
-                <span class="c1"># Add key input
-</span>                <span class="n">keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">get_pressed</span><span class="p">()</span>
-                <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_DOWN</span><span class="p">]:</span> <i class="conum" data-value="1"></i><b>(1)</b>
-                    <span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">move_down</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_UP</span><span class="p">]:</span> <i class="conum" data-value="2"></i><b>(2)</b>
-                    <span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_w</span><span class="p">]:</span> <i class="conum" data-value="3"></i><b>(3)</b>
-                    <span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_s</span><span class="p">]:</span> <i class="conum" data-value="4"></i><b>(4)</b>
-                  <span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">move_down</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
-
                 <span class="k">if</span> <span class="n">event</span><span class="p">.</span><span class="nb">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="p">.</span><span class="n">QUIT</span><span class="p">:</span>
                     <span class="n">running</span> <span class="o">=</span> <span class="bp">False</span>
 
+            <span class="c1"># Add key input (buiten de event-lus: de paddles bewegen zolang je de toets inhoudt)
+</span>            <span class="n">keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">get_pressed</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_DOWN</span><span class="p">]:</span> <i class="conum" data-value="1"></i><b>(1)</b>
+                <span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">move_down</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_UP</span><span class="p">]:</span> <i class="conum" data-value="2"></i><b>(2)</b>
+                <span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_w</span><span class="p">]:</span> <i class="conum" data-value="3"></i><b>(3)</b>
+                <span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_s</span><span class="p">]:</span> <i class="conum" data-value="4"></i><b>(4)</b>
+                <span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">move_down</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">colors</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
             <span class="bp">self</span><span class="p">.</span><span class="n">draw_line</span><span class="p">()</span>
@@ -1195,8 +1173,6 @@ je toetsenbord.</p>
 
     <span class="k">def</span> <span class="nf">draw_paddle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">screen</span><span class="p">):</span>
         <span class="n">pygame</span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">rect</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="bp">self</span><span class="p">.</span><span class="n">rect</span><span class="p">)</span>
-        <span class="n">pygame</span><span class="p">.</span><span class="n">display</span><span class="p">.</span><span class="n">update</span><span class="p">()</span>
-        <span class="n">pygame</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">set_repeat</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">speed</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">screen</span><span class="p">):</span>
         <span class="n">screen</span><span class="p">.</span><span class="n">get_height</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">rect</span><span class="p">.</span><span class="n">height</span>
@@ -1257,8 +1233,7 @@ je toetsenbord.</p>
 
     <span class="k">def</span> <span class="nf">draw_ball</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">screen</span><span class="p">):</span>
         <span class="n">radius</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">height</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span> <i class="conum" data-value="1"></i><b>(1)</b>
-        <span class="n">pygame</span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">circle</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="n">radius</span><span class="p">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
-        <span class="n">pygame</span><span class="p">.</span><span class="n">display</span><span class="p">.</span><span class="n">update</span><span class="p">()</span></code></pre>
+        <span class="n">pygame</span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">circle</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="n">radius</span><span class="p">)</span> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1269,7 +1244,7 @@ je toetsenbord.</p>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Teken een witte cirkel met de gegeven x en y coordinaten en de radius van ´1´.</td>
+<td>Teken een witte cirkel met de gegeven x en y coordinaten en de berekende radius (bij een bal van 25 op 25 is dat 12).</td>
 </tr>
 </table>
 </div>
@@ -1353,25 +1328,24 @@ Dat doe je zo:</p>
         <span class="n">screen_width</span><span class="p">,</span> <span class="n">screen_height</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">get_size</span><span class="p">()</span>
         <span class="n">pygame</span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">line</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="p">[</span><span class="n">screen_width</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">screen_width</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">screen_height</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
-        <span class="n">pygame</span><span class="p">.</span><span class="n">display</span><span class="p">.</span><span class="n">update</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">running</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="k">while</span> <span class="n">running</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">get</span><span class="p">():</span>
-                <span class="c1"># Add key input
-</span>                <span class="n">keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">get_pressed</span><span class="p">()</span>
-                <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_DOWN</span><span class="p">]:</span>
-                    <span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">move_down</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_UP</span><span class="p">]:</span>
-                    <span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_w</span><span class="p">]:</span>
-                    <span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_s</span><span class="p">]:</span>
-                    <span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">move_down</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
-
                 <span class="k">if</span> <span class="n">event</span><span class="p">.</span><span class="nb">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="p">.</span><span class="n">QUIT</span><span class="p">:</span>
                     <span class="n">running</span> <span class="o">=</span> <span class="bp">False</span>
+
+            <span class="c1"># Add key input (buiten de event-lus: de paddles bewegen zolang je de toets inhoudt)
+</span>            <span class="n">keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">get_pressed</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_DOWN</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">move_down</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_UP</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_w</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_s</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">move_down</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">colors</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
             <span class="bp">self</span><span class="p">.</span><span class="n">draw_line</span><span class="p">()</span>
@@ -1442,7 +1416,6 @@ Dat doe je zo:</p>
         <span class="n">screen_width</span><span class="p">,</span> <span class="n">screen_height</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">get_size</span><span class="p">()</span>
         <span class="n">pygame</span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">line</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="p">[</span><span class="n">screen_width</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">screen_width</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">screen_height</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
-        <span class="n">pygame</span><span class="p">.</span><span class="n">display</span><span class="p">.</span><span class="n">update</span><span class="p">()</span>
 
     <span class="c1"># Reset screen
 </span>    <span class="k">def</span> <span class="nf">reset_screen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <i class="conum" data-value="1"></i><b>(1)</b>
@@ -1457,18 +1430,19 @@ Dat doe je zo:</p>
         <span class="n">running</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="k">while</span> <span class="n">running</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">get</span><span class="p">():</span>
-                <span class="n">keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">get_pressed</span><span class="p">()</span>
-                <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_DOWN</span><span class="p">]:</span>
-                    <span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">move_down</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_UP</span><span class="p">]:</span>
-                    <span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_w</span><span class="p">]:</span>
-                    <span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_s</span><span class="p">]:</span>
-                    <span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">move_down</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
-
                 <span class="k">if</span> <span class="n">event</span><span class="p">.</span><span class="nb">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="p">.</span><span class="n">QUIT</span><span class="p">:</span>
                     <span class="n">running</span> <span class="o">=</span> <span class="bp">False</span>
+
+            <span class="c1"># Lees de ingedrukte toetsen (buiten de event-lus)
+</span>            <span class="n">keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">get_pressed</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_DOWN</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">move_down</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_UP</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_w</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_s</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">move_down</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">colors</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
             <span class="bp">self</span><span class="p">.</span><span class="n">draw_line</span><span class="p">()</span>
@@ -1516,18 +1490,10 @@ Dat doe je zo:</p>
     <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">width</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">speed</span> <span class="o">=</span> <span class="n">speed</span>
-
     <span class="k">def</span> <span class="nf">draw_ball</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">screen</span><span class="p">):</span>
         <span class="n">radius</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">height</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
         <span class="n">pygame</span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">circle</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
                            <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="n">radius</span><span class="p">)</span>
-        <span class="n">pygame</span><span class="p">.</span><span class="n">display</span><span class="p">.</span><span class="n">update</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="bp">self</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
@@ -1539,23 +1505,21 @@ Dat doe je zo:</p>
         <span class="bp">self</span><span class="p">.</span><span class="n">dx</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">speed</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
         <span class="bp">self</span><span class="p">.</span><span class="n">dy</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">speed</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">move_ball</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">screen</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">move_ball</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">paddle1</span><span class="p">,</span> <span class="n">paddle2</span><span class="p">):</span>
         <span class="bp">self</span><span class="p">.</span><span class="n">x</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">dx</span>
         <span class="bp">self</span><span class="p">.</span><span class="n">y</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">dy</span>
         <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">width</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="bp">self</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="p">.</span><span class="n">width</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">&gt;=</span> <span class="n">screen</span><span class="p">.</span><span class="n">get_width</span><span class="p">():</span> <i class="conum" data-value="1"></i><b>(1)</b>
             <span class="k">return</span> <span class="bp">True</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">height</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="bp">self</span><span class="p">.</span><span class="n">height</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">&gt;=</span> <span class="n">screen</span><span class="p">.</span><span class="n">get_height</span><span class="p">():</span> <i class="conum" data-value="2"></i><b>(2)</b>
-            <span class="bp">self</span><span class="p">.</span><span class="n">dy</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="p">.</span><span class="n">dy</span>
-
-        <span class="n">pygame</span><span class="p">.</span><span class="n">display</span><span class="p">.</span><span class="n">update</span><span class="p">()</span></code></pre>
+            <span class="bp">self</span><span class="p">.</span><span class="n">dy</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="p">.</span><span class="n">dy</span></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Pak de breedte van de bal en zorg ervoor dat die botst tegen de rand met het uiteinde van de bal en kijk daarna ofdat het tegen de linkse rand botst met coordinaat 0. Daarna reset het scherm. Na de ´or´ zorgt die ervoor dat die rand aan de rechterkant pakt. In de eerste helft doet die een deling om de straal van het object te verkrijgen zodat de rand van het object wordt gebruikt als nauwkeurigheid tijdens het botsen, er wordt ook een int gebruikt om het nauwkeuriger te maken tijdens het spelen want een float is minder nauwkeurig dan een int in grafische applicaties.</td>
+<td>Pak de breedte van de bal en zorg ervoor dat die botst tegen de rand met het uiteinde van de bal en kijk daarna ofdat het tegen de linkse rand botst met coordinaat 0. Daarna reset het scherm. Na de ´or´ zorgt die ervoor dat die rand aan de rechterkant pakt. In de eerste helft wordt de breedte gedeeld door 2 om de straal van de bal te verkrijgen, zodat de rand van de bal (en niet het middelpunt) de botsing bepaalt.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -1620,16 +1584,6 @@ Dat doe je zo:</p>
         <span class="n">pygame</span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">circle</span><span class="p">(</span><span class="n">screen</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
                            <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="n">radius</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">width</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">speed</span> <span class="o">=</span> <span class="n">speed</span>
-        <span class="n">angle</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">3.14159</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">3.14159</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">dx</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">speed</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">dy</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">speed</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
-
     <span class="k">def</span> <span class="nf">move_ball</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">paddle1</span><span class="p">,</span> <span class="n">paddle2</span><span class="p">):</span>
         <span class="bp">self</span><span class="p">.</span><span class="n">x</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">dx</span>
         <span class="bp">self</span><span class="p">.</span><span class="n">y</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">dy</span>
@@ -1685,13 +1639,6 @@ Dat doe je zo:</p>
     <span class="n">speed</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">width</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">speed</span> <span class="o">=</span> <span class="n">speed</span>
 
     <span class="k">def</span> <span class="nf">ExplosionAnimation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">screen</span><span class="p">):</span>
         <span class="c1"># Load explosion images
@@ -1816,18 +1763,19 @@ Dat doe je zo:</p>
         <span class="n">running</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="k">while</span> <span class="n">running</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">get</span><span class="p">():</span>
-                <span class="n">keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">get_pressed</span><span class="p">()</span>
-                <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_DOWN</span><span class="p">]:</span>
-                    <span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">move_down</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_UP</span><span class="p">]:</span>
-                    <span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_w</span><span class="p">]:</span>
-                    <span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_s</span><span class="p">]:</span>
-                    <span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">move_down</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
-
                 <span class="k">if</span> <span class="n">event</span><span class="p">.</span><span class="nb">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="p">.</span><span class="n">QUIT</span><span class="p">:</span>
                     <span class="n">running</span> <span class="o">=</span> <span class="bp">False</span>
+
+            <span class="c1"># Lees de ingedrukte toetsen (buiten de event-lus)
+</span>            <span class="n">keys</span> <span class="o">=</span> <span class="n">pygame</span><span class="p">.</span><span class="n">key</span><span class="p">.</span><span class="n">get_pressed</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_DOWN</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">move_down</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_UP</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_w</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">move_up</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="p">.</span><span class="n">K_s</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">move_down</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">colors</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
             <span class="bp">self</span><span class="p">.</span><span class="n">draw_line</span><span class="p">()</span>
@@ -1838,9 +1786,11 @@ Dat doe je zo:</p>
             <span class="c1"># When something is returned then check which player made the point.
 </span>            <span class="k">if</span> <span class="n">move_ball</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">move_ball</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">paddle1</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="p">.</span><span class="n">score1</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="c1"># De bal ging links buiten: speler 1 miste, dus speler 2 scoort
+</span>                    <span class="bp">self</span><span class="p">.</span><span class="n">score2</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="k">elif</span> <span class="n">move_ball</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">paddle2</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="p">.</span><span class="n">score2</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="c1"># De bal ging rechts buiten: speler 2 miste, dus speler 1 scoort
+</span>                    <span class="bp">self</span><span class="p">.</span><span class="n">score1</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="bp">self</span><span class="p">.</span><span class="n">reset_screen</span><span class="p">()</span>
             <span class="bp">self</span><span class="p">.</span><span class="n">ball</span><span class="p">.</span><span class="n">draw_ball</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">screen</span><span class="p">)</span>
 
@@ -1879,13 +1829,6 @@ Dat doe je zo:</p>
     <span class="n">speed</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">width</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">speed</span> <span class="o">=</span> <span class="n">speed</span>
 
     <span class="k">def</span> <span class="nf">ExplosionAnimation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">screen</span><span class="p">):</span>
         <span class="c1"># Load explosion images

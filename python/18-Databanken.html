@@ -764,7 +764,7 @@ De software die we gaan gebruiken om de database te queriën (ondervragen) is DB
 </div>
 </div>
 <div class="paragraph">
-<p>Dit geeft alle records en kolommen van de 'artists'-tabel weer:</p>
+<p>Dit geeft alle records en kolommen van de 'artist'-tabel weer:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -779,7 +779,7 @@ De software die we gaan gebruiken om de database te queriën (ondervragen) is DB
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="sql"><span class="c1">-- Selecteer artiesten met een specifieke naam uit de 'artists' tabel</span>
+<pre class="rouge highlight"><code data-lang="sql"><span class="c1">-- Selecteer artiesten met een specifieke naam uit de 'artist' tabel</span>
 <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">artist</span> <span class="k">WHERE</span> <span class="n">Name</span> <span class="o">=</span> <span class="s1">'Queen'</span><span class="p">;</span></code></pre>
 </div>
 </div>
@@ -820,7 +820,7 @@ De software die we gaan gebruiken om de database te queriën (ondervragen) is DB
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="sql"><span class="c1">-- Tel het aantal tracks per album</span>
-<span class="k">SELECT</span> <span class="n">AlbumId</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">TrackId</span><span class="p">)</span> <span class="k">AS</span> <span class="n">AantalTracks</span> <span class="k">FROM</span> <span class="n">tracks</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">AlbumId</span><span class="p">;</span></code></pre>
+<span class="k">SELECT</span> <span class="n">AlbumId</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="n">TrackId</span><span class="p">)</span> <span class="k">AS</span> <span class="n">AantalTracks</span> <span class="k">FROM</span> <span class="n">track</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">AlbumId</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -844,20 +844,37 @@ De software die we gaan gebruiken om de database te queriën (ondervragen) is DB
 <p>Voorbeeld Chinook Database:</p>
 </div>
 <div class="paragraph">
-<p>In de 'artists'-tabel van de Chinook-database is het veld 'ArtistId' een voorbeeld van een Primary Key. Hiermee wordt elke artiest <mark>uniek geïdentificeerd</mark>. Een bepaald primary key nummer kan dus maar 1 keer voorkomen in een tabel.</p>
+<p>In de 'artist'-tabel van de Chinook-database is het veld 'ArtistId' een voorbeeld van een Primary Key. Hiermee wordt elke artiest <mark>uniek geïdentificeerd</mark>. Een bepaald primary key nummer kan dus maar 1 keer voorkomen in een tabel.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="sql"><span class="c1">-- Voorbeeld van een Primary Key in de 'artists'-tabel</span>
-<span class="o">|===</span>
-<span class="o">|</span> <span class="n">ArtistId</span> <span class="o">|</span> <span class="n">Name</span>
-<span class="o">|</span> <span class="mi">1</span>        <span class="o">|</span> <span class="n">AC</span><span class="o">/</span><span class="n">DC</span>
-<span class="o">|</span> <span class="mi">2</span>        <span class="o">|</span> <span class="n">Accept</span>
-<span class="o">|</span> <span class="mi">3</span>        <span class="o">|</span> <span class="n">Aerosmith</span>
-<span class="o">|</span><span class="p">...</span>
-<span class="o">|===</span></code></pre>
-</div>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Voorbeeld van een Primary Key in de 'artist'-tabel</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ArtistId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AC/DC</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accept</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Aerosmith</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#8230;&#8203;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#8230;&#8203;</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_foreign_key">4.2. Foreign Key</h3>
@@ -868,22 +885,45 @@ De software die we gaan gebruiken om de database te queriën (ondervragen) is DB
 <p>Voorbeeld Chinook Database:</p>
 </div>
 <div class="paragraph">
-<p>In de 'albums'-tabel van de Chinook-database verwijst het veld 'ArtistId' naar de Primary Key 'ArtistId' in de 'artists'-tabel. Hiermee wordt een relatie tussen de twee tabellen gevestigd.</p>
+<p>In de 'album'-tabel van de Chinook-database verwijst het veld 'ArtistId' naar de Primary Key 'ArtistId' in de 'artist'-tabel. Hiermee wordt een relatie tussen de twee tabellen gevestigd.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="sql"><span class="c1">-- Voorbeeld van een Foreign Key in de 'albums'-tabel</span>
-<span class="o">|===</span>
-<span class="o">|</span> <span class="n">AlbumId</span> <span class="o">|</span> <span class="n">Title</span>                         <span class="o">|</span> <span class="n">ArtistId</span>
-<span class="o">|</span> <span class="mi">1</span>       <span class="o">|</span> <span class="k">For</span> <span class="n">Those</span> <span class="n">About</span> <span class="k">To</span> <span class="n">Rock</span> <span class="n">We</span> <span class="n">Salute</span> <span class="n">You</span> <span class="o">|</span> <span class="mi">1</span>
-<span class="o">|</span> <span class="mi">2</span>       <span class="o">|</span> <span class="n">Balls</span> <span class="k">to</span> <span class="n">the</span> <span class="n">Wall</span>             <span class="o">|</span> <span class="mi">2</span>
-<span class="o">|</span> <span class="mi">3</span>       <span class="o">|</span> <span class="n">Restless</span> <span class="k">and</span> <span class="n">Wild</span>             <span class="o">|</span> <span class="mi">2</span>
-<span class="o">|</span><span class="p">...</span>
-<span class="o">|===</span></code></pre>
-</div>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Voorbeeld van een Foreign Key in de 'album'-tabel</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AlbumId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Title</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ArtistId</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For Those About To Rock We Salute You</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Balls to the Wall</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Restless and Wild</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#8230;&#8203;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#8230;&#8203;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&#8230;&#8203;</p></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
-<p>In dit voorbeeld verwijst het veld 'ArtistId' naar de Primary Key 'ArtistId' in de 'artists'-tabel, waardoor een <strong>relatie ontstaat</strong> tussen de artiesten en de albums in de database.</p>
+<p>In dit voorbeeld verwijst het veld 'ArtistId' naar de Primary Key 'ArtistId' in de 'artist'-tabel, waardoor een <strong>relatie ontstaat</strong> tussen de artiesten en de albums in de database.</p>
 </div>
 </div>
 <div class="sect2">
@@ -966,8 +1006,8 @@ De software die we gaan gebruiken om de database te queriën (ondervragen) is DB
 <span class="c1"># Verbinding maken
 </span><span class="n">verbinding</span> <span class="o">=</span> <span class="n">mysql</span><span class="p">.</span><span class="n">connector</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span>
     <span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">,</span>
-    <span class="n">user</span><span class="o">=</span><span class="n">gebruiker</span><span class="p">,</span>
-    <span class="n">password</span><span class="o">=</span><span class="n">wachtwoord</span><span class="p">,</span>
+    <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span>
     <span class="n">database</span><span class="o">=</span><span class="n">database</span>
 <span class="p">)</span>
 

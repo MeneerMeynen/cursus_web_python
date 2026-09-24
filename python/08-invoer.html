@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Hoofdstuk 8: Gegevensinvoer, Expressies en Berekeningen</title>
+<title>Hoofdstuk 8: Gegevensinvoer en Bestanden</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -613,12 +613,12 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Hoofdstuk 8: Gegevensinvoer, Expressies en Berekeningen</h1>
+<h1>Hoofdstuk 8: Gegevensinvoer en Bestanden</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_gegevensinvoer">1. Gegevensinvoer</a></li>
-<li><a href="#_expressies_en_berekeningen">2. Expressies en Berekeningen</a></li>
+<li><a href="#_rekenen_met_invoer">2. Rekenen met Invoer</a></li>
 <li><a href="#_interactie">3. Interactie</a></li>
 <li><a href="#_bestandsinvoer_en_uitvoer_in_python">4. Bestandsinvoer en -uitvoer in Python</a>
 <ul class="sectlevel2">
@@ -643,7 +643,7 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In dit hoofdstuk gaan we in op gegevensinvoer en het gebruik van expressies en berekeningen.</p>
+<p>In dit hoofdstuk gaan we in op gegevensinvoer: invoer van de gebruiker via het toetsenbord, en het lezen en schrijven van bestanden. We combineren de invoer met de expressies uit hoofdstuk 3.</p>
 </div>
 </div>
 </div>
@@ -682,7 +682,7 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_expressies_en_berekeningen">2. Expressies en Berekeningen</h2>
+<h2 id="_rekenen_met_invoer">2. Rekenen met Invoer</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Het vermogen om expressies en berekeningen te gebruiken, opent een wereld van mogelijkheden in game-ontwikkeling. Hiermee kun je wiskundige en logische bewerkingen uitvoeren op basis van variabele waarden, invoer van spelers of gamegebeurtenissen.</p>
@@ -708,12 +708,9 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <div class="colist arabic">
 <ol>
 <li>
-<p>De invoer wordt hier omgezet naar een integer. Zodoende kan hiermee gerekend worden, dit zou met het text datatype niet kunnen.</p>
+<p><code>input()</code> geeft altijd een string (<code>str</code>) terug, ook als de gebruiker een getal intypt. Daarom zetten we de invoer hier om naar een integer met <code>int()</code>. Zo kan ermee gerekend worden, met een <code>str</code> zou dat niet kunnen.</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p>Deze code gebruikt input() om de schade van de speler te vragen, en de berekening controleert of de vijand is verslagen of nog steeds in leven is.</p>
 </div>
 <div class="paragraph">
 <p>Deze code gebruikt de invoer van de speler om de resterende gezondheid van een vijand na het toebrengen van schade te berekenen.</p>
@@ -784,6 +781,18 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="paragraph">
 <p>In dit voorbeeld wordt het bestand 'voorbeeld.txt' geopend <strong>om te schrijven ('w')</strong>. De 'w'-modus betekent dat het <mark>bestand wordt gewist als het al bestaat</mark>, en anders wordt het aangemaakt.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+Geef bij het openen van tekstbestanden best ook de codering mee: <code>open('voorbeeld.txt', 'w', encoding='utf-8')</code>. Zonder <code>encoding</code> gebruikt Python de standaardcodering van je besturingssysteem. Op Windows kunnen letters zoals é, ë of ç dan verkeerd worden gelezen of weggeschreven.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -864,13 +873,13 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <pre class="rouge highlight"><code data-lang="python"><span class="n">bestand</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'voorbeeld.txt'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">regel</span> <span class="ow">in</span> <span class="n">bestand</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">regel</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">regel</span><span class="p">.</span><span class="n">strip</span><span class="p">())</span>
 
 <span class="n">bestand</span><span class="p">.</span><span class="n">close</span><span class="p">()</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Hier wordt elke regel van het bestand afzonderlijk gelezen en afgedrukt.</p>
+<p>Hier wordt elke regel van het bestand afzonderlijk gelezen en afgedrukt. Elke gelezen regel eindigt met een <code>\n</code> (nieuwe regel), en <code>print()</code> voegt zelf ook een nieuwe regel toe. Zonder <code>.strip()</code> zou er dus telkens een lege regel tussen staan. <code>.strip()</code> verwijdert witruimte en <code>\n</code> aan het begin en einde van de regel.</p>
 </div>
 </div>
 <div class="sect2">
@@ -908,10 +917,13 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Bestand verplaatsen of hernoemen:</strong> Dit kan worden gedaan met de <code>os</code>-module.</p>
+<p><strong>Bestand hernoemen:</strong> Gebruik de <code>os.rename()</code>-functie.</p>
 </li>
 <li>
-<p><strong>Bestand kopiëren:</strong> Dit kan ook worden gedaan met de <code>os</code>-module.</p>
+<p><strong>Bestand verplaatsen:</strong> Gebruik de <code>shutil.move()</code>-functie uit de <code>shutil</code>-module.</p>
+</li>
+<li>
+<p><strong>Bestand kopiëren:</strong> Gebruik de <code>shutil.copy()</code>-functie uit de <code>shutil</code>-module. (De <code>os</code>-module heeft geen functie om bestanden te kopiëren.)</p>
 </li>
 <li>
 <p><strong>Bestand verwijderen:</strong> Gebruik de <code>os.remove()</code>-functie om een bestand te verwijderen.</p>

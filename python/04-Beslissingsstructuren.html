@@ -802,13 +802,25 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 </div>
 <div class="paragraph">
-<p>In het eerste voorbeeld wordt de tweede en derde regel uitgevoerd als de voorwaarde waar is. In het tweede voorbeeld wordt de derde regel altijd uitgevoerd, ongeacht de voorwaarde.</p>
+<p>In het eerste voorbeeld worden de drie ingesprongen regels enkel uitgevoerd als de voorwaarde waar is. In het tweede voorbeeld hoort enkel de tweede regel bij de <code>if</code>: de derde regel wordt altijd uitgevoerd, ongeacht de voorwaarde.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_logische_structurering">5.2. Logische Structurering</h3>
 <div class="paragraph">
-<p>De juiste indentatie zorgt ervoor dat je code correct wordt uitgevoerd volgens de gewenste logica. Indentatie scheidt codeblokken, zoals loops, functies en conditionele statements, van elkaar. Het stelt Python in staat om de scope van variabelen en de uitvoering van instructies op de juiste manier te interpreteren.</p>
+<p>De juiste indentatie zorgt ervoor dat je code correct wordt uitgevoerd volgens de gewenste logica. Indentatie scheidt codeblokken, zoals loops, functies en conditionele statements, van elkaar. Het bepaalt welke instructies bij welk blok horen, en dus wanneer (en hoe vaak) ze worden uitgevoerd.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+In tegenstelling tot sommige andere programmeertalen maakt een <code>if</code>- of <code>for</code>-blok in Python <mark>géén nieuwe scope</mark> voor variabelen. Een variabele die je binnen een <code>if</code> aanmaakt, bestaat ook na de <code>if</code> nog. Enkel functies (en klassen) hebben een eigen scope.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p><strong>Loop met Correcte Identatie:</strong></p>
@@ -833,7 +845,7 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 </div>
 <div class="paragraph">
-<p>In het eerste voorbeeld worden de eerste twee regels binnen elke iteratie van de loop uitgevoerd. In het tweede voorbeeld worden deze regels na de voltooiing van de loop uitgevoerd, wat resulteert in een ander gedrag.</p>
+<p>In het eerste voorbeeld worden beide ingesprongen regels bij elke iteratie van de loop uitgevoerd. In het tweede voorbeeld hoort enkel <code>print(i)</code> nog bij de loop: de zin "Dit is een iteratie van de loop." wordt maar één keer afgedrukt, na de voltooiing van de loop.</p>
 </div>
 </div>
 <div class="sect2">
