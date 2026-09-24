@@ -40,6 +40,24 @@ jobs:
       run: |
         cp -r python/images build/python/
         
+    - name: Setup Node.js
+      uses: actions/setup-node@v5
+      with:
+        node-version: 22
+        cache: npm
+        cache-dependency-path: react-app/package-lock.json
+
+    - name: Build React app
+      working-directory: react-app
+      run: |
+        npm ci
+        npm run build
+
+    - name: Copy React app
+      run: |
+        mkdir -p build/react
+        cp -r react-app/dist/. build/react/
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
       with:
