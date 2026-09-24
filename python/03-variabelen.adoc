@@ -29,7 +29,7 @@ In Python is het benoemen van variabelen van groot belang om duidelijke en begri
 
 === Regels voor Naamgeving van Variabelen in Python
 
-* Geldigheid: Variabelen moeten met een letter (a-z, A-Z) of een underscore (_) beginnen. Ze kunnen ook cijfers (0-9) bevatten, maar niet als eerste teken. Bijvoorbeeld: player_score, _health, level1.
+* Geldigheid: Variabelen moeten met een letter of een underscore (_) beginnen. Ze kunnen ook cijfers (0-9) bevatten, maar niet als eerste teken. Bijvoorbeeld: player_score, _health, level1. Python laat ook letters met accenten toe (zoals `ë` of `ö`), maar de afspraak is om enkel a-z, A-Z, cijfers en underscores te gebruiken.
 
 * Hoofdlettergevoeligheid: Python is hoofdlettergevoelig, wat betekent dat variabelen met verschillende hoofdletters als verschillende namen worden beschouwd. score en Score zouden bijvoorbeeld twee verschillende variabelen zijn.
 
@@ -164,7 +164,7 @@ aantal_studenten = 30
 
 === Float (Komma-getal)
 
-Het gegevenstype `float` vertegenwoordigt komma-getallen, ook wel bekend als zwevendekomma-getallen. Dit omvat getallen met decimale punten, zoals 3.14, -0.5 en 2.0. Float-waarden worden gebruikt voor nauwkeurige berekeningen met reële getallen.
+Het gegevenstype `float` vertegenwoordigt komma-getallen, ook wel bekend als zwevendekomma-getallen. Dit omvat getallen met decimale punten, zoals 3.14, -0.5 en 2.0. Float-waarden worden gebruikt voor berekeningen met reële getallen.
 
 Bijvoorbeeld:
 
@@ -174,6 +174,8 @@ pi = 3.14159
 geldbedrag = 123.45
 hoogte = -10.5
 ----
+
+WARNING: Een float is een ##benadering##. De computer slaat kommagetallen binair op, waardoor sommige getallen niet exact kunnen worden voorgesteld. Zo geeft `print(0.1 + 0.2)` als resultaat `0.30000000000000004`. Wil je een net resultaat tonen, rond dan af: `round(0.1 + 0.2, 2)` geeft `0.3`.
 
 === String (str)
 
@@ -228,6 +230,7 @@ In dit voorbeeld vergelijken we de gezondheid van de speler (player_health) met 
 
 Booleaanse waarden zijn krachtige hulpmiddelen in games omdat ze de besluitvorming en logica binnen je code mogelijk maken. Je kunt ze gebruiken om te bepalen of een speler een bepaald level heeft bereikt, of een missie is voltooid, of dat bepaalde acties kunnen worden uitgevoerd op basis van bepaalde voorwaarden.
 
+== Type Conversie en Dynamische Typing
 
 === Type Opvragen met `type()`
 
@@ -439,9 +442,41 @@ print("Alice" == "Alice")   # True
 print("Alice" == "alice")   # False
 ----
 
+==== Logische Operatoren: `and`, `or` en `not`
+
+Met logische operatoren combineer je booleaanse waarden tot één nieuwe booleaanse waarde:
+
+* `and`: is `True` als **beide** kanten `True` zijn.
+* `or`: is `True` als **minstens één** kant `True` is.
+* `not`: keert de waarde **om**: `not True` wordt `False` en omgekeerd.
+
+Dit kun je samenvatten in een **waarheidstabel**:
+
+[cols="1,1,1,1,1", options="header"]
+|===
+| `a` | `b` | `a and b` | `a or b` | `not a`
+| `True` | `True` | `True` | `True` | `False`
+| `True` | `False` | `False` | `True` | `False`
+| `False` | `True` | `False` | `True` | `True`
+| `False` | `False` | `False` | `False` | `True`
+|===
+
+[source,python]
+----
+player_health = 75
+ammo = 12
+has_key = False
+
+can_fight = player_health > 50 and ammo > 0   # True and True  -> True
+can_open_door = has_key or ammo > 20          # False or False -> False
+is_locked = not has_key                        # not False      -> True
+----
+
+In hoofdstuk 4 gaan we dieper in op het combineren van voorwaarden met `and`, `or` en `not`.
+
 ==== Wiskundige en Logische Expressies Combineren
 
-Wiskundige en logische expressies kun je samen gebruiken. Python rekent eerst de wiskundige delen uit en maakt daarna de vergelijking:
+Wiskundige en logische expressies kun je samen gebruiken. Python rekent eerst de wiskundige delen uit, daarna de vergelijkingen, en pas dan `not`, `and` en `or`:
 
 [source,python]
 ----
@@ -466,12 +501,12 @@ TIP: De expressie `getal % 2 == 0` is een klassieker: ze controleert of een geta
 | `2.5 * 2` | `5.0` | `float`
 | `"8" + "2"` | `"82"` | `str`
 | `8 > 2` | `True` | `bool`
-| `8 == 2` | `False` | `bool`
-| `8 % 2 == 0` | `True` | `bool`
+| `8 == 2 or 8 > 2` | `True` | `bool`
+| `not 8 > 2` | `False` | `bool`
 |===
 
 == Conclusie
 
-De vier basisdatatypes in Python, `int`, `float`, `str` en `bool`, vormen de bouwstenen van elk programma. Met **wiskundige expressies** reken je met getallen, met **logische expressies** vergelijk je waarden en krijg je `True` of `False`. Hoe je meerdere voorwaarden combineert met `and`, `or` en `not`, zie je in hoofdstuk 4. Deze expressies heb je nodig in elk volgend hoofdstuk: als voorwaarde in beslissingsstructuren en lussen, en om berekeningen te maken in je programma's.
+De vier basisdatatypes in Python, `int`, `float`, `str` en `bool`, vormen de bouwstenen van elk programma. Met **wiskundige expressies** reken je met getallen, met **logische expressies** vergelijk en combineer je waarden tot `True` of `False`. Deze expressies heb je nodig in elk volgend hoofdstuk: als voorwaarde in beslissingsstructuren en lussen, en om berekeningen te maken in je programma's.
 
 Meer complexe datatypes zoals lijsten (`list`), tupels (`tuple`) en woordenboeken (`dict`) komen aan bod in hoofdstuk 7.

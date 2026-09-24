@@ -114,11 +114,11 @@ Een balkgrafiek is handig voor het vergelijken van verschillende categorieën:
 import matplotlib.pyplot as plt
 
 # Gegevens
-categorieën = ['A', 'B', 'C', 'D']
+categorieen = ['A', 'B', 'C', 'D']
 waarden = [3, 7, 1, 9]
 
 # Maak een balkgrafiek
-plt.bar(categorieën, waarden, color='skyblue')
+plt.bar(categorieen, waarden, color='skyblue')
 
 # Toon de plot
 plt.show()

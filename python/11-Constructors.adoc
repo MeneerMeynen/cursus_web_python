@@ -90,22 +90,21 @@ Python heeft geen traditionele __methodoverloading__ zoals sommige andere talen.
 
 [source, python]
 ----
-class Driehoek:
-    def __init__(self, zijde1, zijde2, zijde3=None):
-        self.zijde1 = zijde1
-        self.zijde2 = zijde2
-        self.zijde3 = zijde3 if zijde3 is not None else zijde1 + zijde2
+class Rechthoek:
+    def __init__(self, lengte, breedte=None):
+        self.lengte = lengte
+        self.breedte = breedte if breedte is not None else lengte
 ----
 
-Hier kan de gebruiker ofwel drie zijden opgeven, of slechts twee, waarbij de derde zijde automatisch wordt berekend.
+Hier kan de gebruiker ofwel een lengte en een breedte opgeven, of enkel een lengte. In dat laatste geval wordt de breedte gelijk aan de lengte en krijg je een vierkant.
 
 [source, python]
 ----
-# Voorbeelden van het maken van objecten van de klasse Driehoek
-driehoek1 = Driehoek(3, 4)
-driehoek2 = Driehoek(3, 4, 5)
-print(driehoek1.zijde3)  # Output: 7
-print(driehoek2.zijde3)  # Output: 5
+# Voorbeelden van het maken van objecten van de klasse Rechthoek
+rechthoek1 = Rechthoek(4)      # een vierkant
+rechthoek2 = Rechthoek(4, 6)
+print(rechthoek1.breedte)  # Output: 4
+print(rechthoek2.breedte)  # Output: 6
 ----
 
 == Initialisatie van Objecten
@@ -117,7 +116,7 @@ Het initialiseren van objecten gebeurt door een instantie van de klasse te maken
 auto1 = Auto("Toyota", "Camry")
 persoon1 = Persoon("Alice")
 rekening1 = Bankrekening("Bob", 1000)
-driehoek1 = Driehoek(3, 4)
+rechthoek1 = Rechthoek(4)
 ----
 
 Wanneer je een object van een klasse maakt, wordt automatisch de bijbehorende constructor aangeroepen en worden de attributen geïnitialiseerd.
@@ -131,5 +130,5 @@ Na initialisatie zijn de attributen van een object toegankelijk met behulp van d
 print(auto1.merk)  # Output: Toyota
 print(persoon1.leeftijd)  # Output: 18
 print(rekening1.saldo)  # Output: 1020.0
-print(driehoek1.zijde3)  # Output: 7
+print(rechthoek1.breedte)  # Output: 4
 ----

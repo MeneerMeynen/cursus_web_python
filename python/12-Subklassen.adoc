@@ -40,7 +40,7 @@ class Speler(Karakter):
         self.level += 1
 ----
 
-In dit voorbeeld heeft **`Speler` de `Karakter`-klasse uitgebreid**. Het erft de `__init__`-methode van `Karakter` door `super().__init__(naam, gezondheid)` te gebruiken en voegt een extra methode toe, `upgrade_level`.
+In dit voorbeeld heeft **`Speler` de `Karakter`-klasse uitgebreid**. `Speler` heeft een eigen `__init__`-methode, die de `__init__`-methode van `Karakter` ##overschrijft##. Via `super().__init__(naam, gezondheid)` roept `Speler` de `__init__` van de bovenliggende klasse toch op, zodat `naam` en `gezondheid` ingesteld worden. Daarna voegt `Speler` een extra attribuut `level` en een extra methode `upgrade_level` toe. De methode `take_damage` erft `Speler` gewoon van `Karakter`.
 
 == Toepassingen in Gaming
 
@@ -55,7 +55,7 @@ class Vijand:
         self.aanvalskracht = aanvalskracht
 
     def val_aan(self, doelwit):
-        doelwit.neem_damage(self.aanvalskracht)
+        doelwit.take_damage(self.aanvalskracht)
 
 class Zombie(Vijand):
     def __init__(self, naam, gezondheid, aanvalskracht, infectiegraad):
@@ -63,7 +63,7 @@ class Zombie(Vijand):
         self.infectiegraad = infectiegraad
 
     def bijt(self, doelwit):
-        doelwit.wordt_geïnfecteerd(self.infectiegraad)
+        doelwit.wordt_geinfecteerd(self.infectiegraad)
 ----
 
 Hier erft de `Zombie`-klasse van de `Vijand`-klasse. Het erft de eigenschappen en methoden van `Vijand` en voegt een nieuwe methode toe, `bijt`. Dit stelt je in staat om specifieke kenmerken van zombies te modelleren zonder de gemeenschappelijke kenmerken van vijanden opnieuw te hoeven implementeren.
@@ -71,7 +71,9 @@ De zombie is een subklasse van vijand. Vijand is de **superklasse** van zombie.
 
 == Overerving en meerdere Subklassen
 
-Een klasse kan door meerdere subklassen worden uitgebreid, wat bekend staat als veelvoudige overerving. Dit kan krachtig zijn, maar het moet voorzichtig worden gebruikt om verwarring en conflicten te voorkomen.
+Een klasse kan door meerdere subklassen worden uitgebreid. Elke subklasse erft dan dezelfde basis, maar kan die op haar eigen manier aanvullen of aanpassen.
+
+NOTE: Dit is iets anders dan _veelvoudige overerving_ (_multiple inheritance_). Daarbij erft één klasse van meerdere bovenliggende klassen tegelijk. Dat komt verderop in dit hoofdstuk aan bod.
 
 [source, python]
 ----
@@ -83,7 +85,7 @@ class Vogel:
     def vlieg(self):
         print(f"{self.naam} vliegt.")
 
-class Pinguïn(Vogel):
+class Pinguin(Vogel):
     def __init__(self, naam, vleugelspanwijdte):
         super().__init__(naam, vleugelspanwijdte)
 
@@ -99,7 +101,7 @@ class Valk(Vogel):
         print(f"{self.naam} valt de prooi aan met een snelheid van {self.snelheid} km/u.")
 ----
 
-In dit voorbeeld hebben zowel `Pinguïn` als `Valk` de eigenschappen van de `Vogel`-klasse geërfd. Beide hebben echter hun eigen implementatie van de `vlieg`-methode.
+In dit voorbeeld hebben zowel `Pinguin` als `Valk` de eigenschappen van de `Vogel`-klasse geërfd. Beide hebben echter hun eigen implementatie van de `vlieg`-methode.
 
 == Polymorfisme
 
@@ -141,28 +143,31 @@ class Dief(Personage):
         self.lenigheid = lenigheid
 
     def voer_aanval_uit(self, vijand):
-        steek(self, vijand)
+        self.steek(vijand)
 
     def steek(self, slachtoffer):
-        if self.lenigheid > slachtoffer.lenigheid:
+        if self.lenigheid > 10:
             slachtoffer.gezondheid -= 10
-            print(f"{self.naam} steelt snel en steekt {slachtoffer.naam}.")
+            print(f"{self.naam} sluipt snel naderbij en steekt {slachtoffer.naam}.")
         else:
             print(f"{self.naam} probeerde te steken, maar miste.")
 ----
+
+Merk op dat je een andere methode van hetzelfde object oproept via `self`: `self.steek(vijand)`. Zonder `self.` vindt Python de methode niet.
 
 Hier zie je dat de Dief-subklasse een andere methode heeft dan de Held-subklasse, wat aantoont hoe verschillende subklassen specifieke acties kunnen hebben.
 
 === Veelvoudige Overerving (Multiple inheritance)
 
-Laten we nu een voorbeeld bekijken van veelvoudige overerving, waarbij een klasse van meerdere andere klassen erft. Stel dat we een Magiër-klasse willen maken die zowel magische als fysieke aanvallen kan uitvoeren:
+Laten we nu een voorbeeld bekijken van veelvoudige overerving, waarbij een klasse van meerdere andere klassen erft. Stel dat we een Magier-klasse willen maken die zowel magische als fysieke aanvallen kan uitvoeren:
 
 [source, python]
 ----
-class Magiër(Held, Dief):
+class Magier(Held, Dief):
     def __init__(self, naam, gezondheid, kracht, lenigheid, magie):
-        Held.__init__(self, naam, gezondheid, kracht)
-        Dief.__init__(self, naam, gezondheid, lenigheid)
+        Personage.__init__(self, naam, gezondheid)
+        self.kracht = kracht
+        self.lenigheid = lenigheid
         self.magie = magie
 
     def voer_aanval_uit(self, doelwit):
@@ -170,7 +175,9 @@ class Magiër(Held, Dief):
         print(f"{self.naam} gebruikt magie en valt {doelwit.naam} aan met magie {self.magie}.")
 ----
 
-Hier erft Magiër van zowel Held als Dief, wat betekent dat het zowel de methode voer_aanval_uit van Held als steek van Dief erft. Het kan ook specifieke methoden toevoegen, zoals voer_magische_aanval_uit.
+Hier erft Magier van zowel Held als Dief. Magier heeft daardoor de attributen `kracht` en `lenigheid` en erft bijvoorbeeld de methode `steek` van Dief: `magier.steek(vijand)` werkt dus ook. De methode `voer_aanval_uit` erft Magier niet, die ##overschrijft## hij met een eigen magische aanval.
+
+WARNING: In de `__init__` van Magier roepen we `Held.__init__()` en `Dief.__init__()` bewust níét allebei op. Door de manier waarop Python bij veelvoudige overerving de volgorde van de klassen bepaalt (de _Method Resolution Order_), zou de `super().__init__()` in `Held` dan de `__init__` van `Dief` oproepen zonder het argument `lenigheid`. Dat geeft een `TypeError`. Veelvoudige overerving maakt code snel ingewikkeld. Gebruik het dus spaarzaam.
 
 === Polymorfisme in Actie
 
@@ -180,20 +187,32 @@ Laten we een voorbeeld bekijken met de voer_aanval_uit-methode:
 
 [source, python]
 ----
-def voer_aanval_uit_en_toon_info(personage):
-    personage.voer_aanval_uit()
-    personage.toon_info()
+def voer_aanval_uit_en_toon_info(personage, vijand):
+    personage.voer_aanval_uit(vijand)
+    vijand.toon_info()
 
 held = Held("Arthur", 100, 20)
 dief = Dief("Sly", 80, 15)
-magiër = Magiër("Gandalf", 120, 15, 10, 25)
+magier = Magier("Gandalf", 120, 15, 10, 25)
+trol = Personage("Trol", 200)
 
-voer_aanval_uit_en_toon_info(held)
-voer_aanval_uit_en_toon_info(dief)
-voer_aanval_uit_en_toon_info(magiër)
+for personage in [held, dief, magier]:
+    voer_aanval_uit_en_toon_info(personage, trol)
 ----
 
-Hier kan dezelfde functie worden gebruikt voor verschillende typen personages. Het resultaat is verschillend voor elke klasse, wat het polymorfe karakter illustreert.
+Uitvoer:
+
+[source]
+----
+Arthur valt Trol aan met kracht 20.
+Trol (Gezondheid: 180)
+Sly sluipt snel naderbij en steekt Trol.
+Trol (Gezondheid: 170)
+Gandalf gebruikt magie en valt Trol aan met magie 25.
+Trol (Gezondheid: 145)
+----
+
+Hier kan dezelfde functie worden gebruikt voor verschillende typen personages. De functie roept telkens `voer_aanval_uit` op, maar het resultaat is verschillend voor elke klasse. Dat is het polymorfe karakter.
 
 == Interfaces
 
@@ -231,25 +250,28 @@ Hierin is `Beweging` een abstracte basisklasse met de abstracte methoden `ga_voo
 
 Python maakt gebruik van duck typing, wat betekent dat de geschiktheid van een object voor een bepaalde rol wordt bepaald door zijn gedrag in plaats van door expliciete implementaties of interfaces. Als een object loopt als een eend en kwaakt als een eend, dan is het een eend.
 
-Laten we een voorbeeld bekijken met een abstracte klasse `Vliegbaar`:
+Laten we een voorbeeld bekijken. De klassen `Eend` en `Vliegtuig` hebben ##géén gemeenschappelijke bovenliggende klasse##, maar ze hebben allebei een methode `vlieg`:
 
 [source, python]
 ----
-class Vliegbaar(ABC):
-    @abstractmethod
+class Eend:
     def vlieg(self):
-        pass
+        print("De eend fladdert over de vijver.")
 
-class Vogel(Vliegbaar):
-    def vlieg(self):
-        print("De vogel vliegt door de lucht.")
-
-class Vliegtuig(Vliegbaar):
+class Vliegtuig:
     def vlieg(self):
         print("Het vliegtuig stijgt op en vliegt hoog in de lucht.")
+
+def laat_vliegen(ding):
+    ding.vlieg()
+
+laat_vliegen(Eend())
+laat_vliegen(Vliegtuig())
 ----
 
-In dit geval is `Vogel` en `Vliegtuig` vliegbaar omdat ze de methode `vlieg` implementeren. Duck typing in actie!
+De functie `laat_vliegen` controleert niet van welke klasse `ding` is. Ze roept gewoon `vlieg()` op. Zolang het object een methode `vlieg` heeft, werkt het. Dat is duck typing in actie!
+
+Het verschil met een abstracte basisklasse (zoals `Beweging` hierboven): bij duck typing wordt niets afgedwongen. Een object zonder `vlieg`-methode geeft pas een fout wanneer de methode wordt opgeroepen. Met een abstracte basisklasse kan je een subklasse die een abstracte methode vergeet te implementeren ##niet eens aanmaken##: Python geeft dan meteen een `TypeError`.
 
 === Toepassing op Game-Interfaces
 

@@ -173,10 +173,10 @@ def readcsv_from_file():
                 fahrenheit = row["AvgTemperature"]
                 # Zet de temperatuur om naar graden Celcius
                 celcius = FtoC(fahrenheit)
-                # Meetfouten halen we uit de gegevens (er zitten meetfouten van 0 kelvin in het bronbestand)
+                # Meetfouten halen we uit de gegevens (ontbrekende metingen staan in het bronbestand als -99 °F)
                 if celcius < -30:
-                    # Bij een meetfout gaan we naar de volgene iteratie van de lus
-                    break
+                    # Bij een meetfout slaan we deze rij over en gaan we naar de volgende iteratie van de lus
+                    continue
                 # Voeg de gevonden tempertuur toe aan de lijst van temperaturen
                 temperatures.append(celcius) # F° => C°
 

@@ -34,7 +34,7 @@ In dit voorbeeld wordt de `ValueError` __exception__ afgehandeld. Als de gebruik
 
 == Verschillende __exceptions__ behandelen
 
-Je kunt meerdere `except` blokken hebben om verschillende soorten __exceptions__ af ​​te handelen.
+Je kunt meerdere `except` blokken hebben om verschillende soorten __exceptions__ af te handelen.
 
 [source,python]
 ----
@@ -57,17 +57,23 @@ Het `finally` blok wordt altijd uitgevoerd, ongeacht of er een __exception__ is 
 
 [source,python]
 ----
+bestand = None
 try:
     bestand = open("bestand.txt", "r")
     # Code om met het bestand te werken
 except FileNotFoundError:
     print("Het bestand is niet gevonden.")
 finally:
-    bestand.close()  # Het bestand wordt altijd gesloten, zelfs als er een __exception__ optreedt
+    if bestand is not None:
+        bestand.close()  # Het bestand wordt altijd gesloten, ook als er later een exception optreedt
 ----
 
+Merk op dat we eerst `bestand = None` zetten. Als `open()` mislukt, bestaat `bestand` anders niet, en dan zou `bestand.close()` in het `finally` blok zelf een nieuwe fout (`NameError`) veroorzaken.
+
+TIP: Met een `with open(...)`-verklaring (zie hoofdstuk 8) wordt het bestand automatisch gesloten, ook bij een exception. Dat is in de praktijk de eenvoudigste oplossing.
+
 == Hiërarchie van Exceptions
-De meeste uitzonderingen in Python erven (zijn subklassen) van de basisException __BaseException__. Dit is de hoogste klasse in de uitzonderingshiërarchie. Enkele belangrijke uitzonderingsklassen zijn:
+Alle uitzonderingen in Python erven (rechtstreeks of onrechtstreeks) van de basisklasse __BaseException__. Dit is de hoogste klasse in de uitzonderingshiërarchie. Enkele belangrijke uitzonderingsklassen zijn:
 
 * Exception: Basis voor bijna alle ingebouwde uitzonderingen.
 * ArithmeticError: Basis voor uitzonderingen die optreden bij wiskundige berekeningen.
@@ -92,26 +98,48 @@ except Exception as e:
 
 image::images/exception_hierarchy.png[]
 
-=== Het Opvangen van Bovenliggende Exceptions
+=== De Volgorde van `except` Blokken
 
-Soms wil je verschillende uitzonderingen opvangen, maar ook een meer algemene bovenliggende uitzondering omvatten om brede foutafhandeling mogelijk te maken. Dit kan worden bereikt door een bovenliggende `Exception`-klasse op te vangen voordat je specifieke uitzonderingen afhandelt. Hier is hoe je dit kunt doen:
+Python overloopt de `except` blokken ##van boven naar onder## en voert ##enkel het eerste blok uit dat past##. Een `except` voor een bovenliggende klasse vangt ook al haar subklassen op. `except ArithmeticError` vangt dus ook een `ZeroDivisionError` op, en `except Exception` vangt bijna alles op.
+
+Daarom moet je ##specifieke exceptions altijd eerst## zetten, en de algemene pas op het einde.
+
+**Fout:**
 
 [source, python]
 ----
 try:
-    # Code die mogelijk een exception kan veroorzaken
-    resultaat = deling(x, y)
-except (Exception, AnotherException) as e:
-    # Code die wordt uitgevoerd als een algemene of specifieke exception wordt gevangen
-    print(f"Fout opgetreden: {e}")
-except YetAnotherException as e:
-    # Code die wordt uitgevoerd als YetAnotherException wordt gevangen
-    print(f"Nog een andere fout: {e}")
+    resultaat = 10 / 0
+except Exception as e:           # vangt ALLES op, ook ZeroDivisionError
+    print(f"Algemene fout: {e}")
+except ZeroDivisionError:        # wordt NOOIT bereikt
+    print("Je kunt niet door nul delen.")
 ----
 
-In dit voorbeeld worden zowel `Exception` als `AnotherException` opgevangen voordat specifieke uitzonderingen worden behandeld. Hierdoor kun je een meer algemene foutafhandeling implementeren voordat je specifieke uitzonderingen afzonderlijk behandelt.
+**Juist:**
 
-Dit patroon is handig wanneer je een brede foutafhandeling wilt toevoegen, maar ook enkele specifieke uitzonderingen gedetailleerder wilt afhandelen. Het is echter belangrijk om te weten dat het opvangen van te brede uitzonderingen de leesbaarheid van je code kan verminderen, omdat het moeilijker wordt om specifieke fouten te identificeren en te begrijpen. Gebruik het met zorg en zorg ervoor dat de uitzonderingen die je opvangt, logisch samenhangen.
+[source, python]
+----
+try:
+    resultaat = 10 / 0
+except ZeroDivisionError:        # eerst de specifieke exception
+    print("Je kunt niet door nul delen.")
+except Exception as e:           # pas op het einde de algemene
+    print(f"Algemene fout: {e}")
+----
+
+Wil je meerdere exceptions op dezelfde manier afhandelen, dan kun je ze samen in één `except` blok zetten met een tuple:
+
+[source, python]
+----
+try:
+    getal = int(input("Voer een getal in: "))
+    resultaat = 10 / getal
+except (ValueError, ZeroDivisionError) as e:
+    print(f"Ongeldige invoer: {e}")
+----
+
+Gebruik `except Exception` met zorg: als je te brede exceptions opvangt, wordt het moeilijker om te begrijpen welke fout er precies is opgetreden.
 
 == Aangepaste __exceptions__
 

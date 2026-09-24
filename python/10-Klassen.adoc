@@ -67,7 +67,7 @@ class Ruiter: <1>
 
 [IMPORTANT]
 ====
-##Een klasse begint steeds met een hoofdletter##.
+##De naam van een klasse begint steeds met een hoofdletter##. Dit is geen regel van de taal, maar een afspraak (PEP 8) waar alle Python-programmeurs zich aan houden.
 ====
 
 == Instanties
@@ -170,40 +170,41 @@ def hit(self):
         self.health -= 10
 ----
 
-Identieke methods kunnen niet voorkomen in een klasse, tenzij de parameters verschillend zijn.
-Het volgende is dus niet mogelijk:
+Een klasse kan in Python ##geen twee methods met dezelfde naam## hebben. Schrijf je toch twee keer een method met dezelfde naam, dan geeft Python ##géén foutmelding##: de tweede definitie overschrijft stilletjes de eerste.
 
 [source,python]
 ----
 def hit(self):
         self.health -= 10
-        
-def hit(self):
-        self.health -= 20
-----
 
-Dit maakt 2 maal dezelfde method (naam) aan, dit geeft de compiler aan als een fout.
-Wat wel kan is andere _parameters_ gebruiken:
-
-[source,python]
-----
-def hit(self):
-        self.health -= 10
-        
 def hit(self, damage):
         self.health -= damage
 ----
 
-Hier kan de compiler een duidelijk onderscheid maken tussen de 2 methods.
-Bij het aanroepen van de method op een instantie is het immers duidelijk welke van de 2 bedoeld wordt door te kijken naar de parameters:
+Na deze code bestaat enkel nog de tweede `hit()` method (met de parameter `damage`). Roep je `ruiter3.hit()` zonder argument op, dan krijg je een fout:
+
+[source]
+----
+TypeError: Ruiter.hit() missing 1 required positional argument: 'damage'
+----
+
+NOTE: In talen zoals Java kan je wel meerdere methods met dezelfde naam maken, zolang de parameters verschillen (_method overloading_). Python ondersteunt dit niet.
+
+Wil je een method zowel met als zonder argument kunnen oproepen, gebruik dan een ##standaardwaarde## voor de parameter:
 
 [source,python]
 ----
-ruiter3.hit(8)
-ruiter3.hit()
+def hit(self, damage=10):
+        self.health -= damage
 ----
 
-De eerste zal de hit() method oproepen die parameters bevat.
+[source,python]
+----
+ruiter3.hit(8)   # de health vermindert met 8
+ruiter3.hit()    # geen argument: de standaardwaarde 10 wordt gebruikt
+----
+
+In de rest van dit hoofdstuk gebruiken we deze versie van de `hit()` method.
 
 === Lists en Tuples
 
@@ -253,7 +254,7 @@ In het screenshot kan je zien dat enkele _units_ meer schade hebben opgelopen da
 
 Voor de bommenwerpers (de vliegtuigen onderaan op het screenshots) kan je zien aan de hand van de gele blokjes, hoeveel bommen ze nog dragen.
 
-In Python code zouden we de array als volgt kunnen voorstellen:
+In Python code zouden we de lijst als volgt kunnen voorstellen:
 
 [source,python]
 ----
@@ -262,7 +263,7 @@ class Unit:
         self.health = 0
         self.hitpoints = 0
 
-# Maak een lijst van Unit-objecten met een maximum van 100 eenheden
+# Een lijst met de geselecteerde Unit-objecten (hier nog leeg)
 selected = []
 
 # Bereken het gezondheidspercentage van elke eenheid en druk dit af
@@ -277,10 +278,10 @@ for unit in selected:
 
 == Gebruik van bestaande klassen
 
-In de _standard library_ van Python (die wordt meegeinstalleerd bij het installeren van Python) zijn veel bestaande klassen aanwezig.
+In de _standard library_ van Python (die wordt meegeinstalleerd bij het installeren van Python) zijn veel bestaande modules en klassen aanwezig.
 Deze kan je gebruiken zonder ze zelf vanaf 0 te hoeven schrijven.
 
-Een voorbeeld hiervan is de _math_ klasse.
+Een voorbeeld hiervan is de _math_ module.
 Deze bevat enkele constanten (onveranderbare variabelen), zoals het getal PI.
 
 [source,python]
@@ -294,7 +295,9 @@ pi_value = math.pi
 print("De waarde van pi is:", pi_value)
 ----
 
-Ook bevat deze klasse enkele methods zoals het berekenen van het gemiddelde, maximum, minimum,.. Kortom veel zaken die in de wiskunde van pas kunnen komen.
+Ook bevat deze module heel wat wiskundige functies, zoals `math.sqrt()` (vierkantswortel), `math.floor()` (afronden naar beneden) en `math.ceil()` (afronden naar boven). Kortom veel zaken die in de wiskunde van pas kunnen komen.
+
+Het maximum en minimum bereken je met de ingebouwde functies `max()` en `min()`, het gemiddelde met `statistics.mean()` uit de `statistics` module.
 
 === Random
 

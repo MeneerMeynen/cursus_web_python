@@ -124,11 +124,13 @@ if score > 100:
 print("Je bent nu level", player_level)
 ----
 
-In het eerste voorbeeld wordt de tweede en derde regel uitgevoerd als de voorwaarde waar is. In het tweede voorbeeld wordt de derde regel altijd uitgevoerd, ongeacht de voorwaarde.
+In het eerste voorbeeld worden de drie ingesprongen regels enkel uitgevoerd als de voorwaarde waar is. In het tweede voorbeeld hoort enkel de tweede regel bij de `if`: de derde regel wordt altijd uitgevoerd, ongeacht de voorwaarde.
 
 === Logische Structurering
 
-De juiste indentatie zorgt ervoor dat je code correct wordt uitgevoerd volgens de gewenste logica. Indentatie scheidt codeblokken, zoals loops, functies en conditionele statements, van elkaar. Het stelt Python in staat om de scope van variabelen en de uitvoering van instructies op de juiste manier te interpreteren.
+De juiste indentatie zorgt ervoor dat je code correct wordt uitgevoerd volgens de gewenste logica. Indentatie scheidt codeblokken, zoals loops, functies en conditionele statements, van elkaar. Het bepaalt welke instructies bij welk blok horen, en dus wanneer (en hoe vaak) ze worden uitgevoerd.
+
+NOTE: In tegenstelling tot sommige andere programmeertalen maakt een `if`- of `for`-blok in Python ##géén nieuwe scope## voor variabelen. Een variabele die je binnen een `if` aanmaakt, bestaat ook na de `if` nog. Enkel functies (en klassen) hebben een eigen scope.
 
 **Loop met Correcte Identatie:**
 
@@ -150,7 +152,7 @@ print("Dit is een iteratie van de loop.")
 print("De loop is voltooid.")
 ----
 
-In het eerste voorbeeld worden de eerste twee regels binnen elke iteratie van de loop uitgevoerd. In het tweede voorbeeld worden deze regels na de voltooiing van de loop uitgevoerd, wat resulteert in een ander gedrag.
+In het eerste voorbeeld worden beide ingesprongen regels bij elke iteratie van de loop uitgevoerd. In het tweede voorbeeld hoort enkel `print(i)` nog bij de loop: de zin "Dit is een iteratie van de loop." wordt maar één keer afgedrukt, na de voltooiing van de loop.
 
 === Foutpreventie
 

@@ -59,7 +59,9 @@ Een linter zou hier waarschuwingen genereren voor onjuiste naamgeving van variab
 
 == Compilatie en Uitvoering
 
-Python wordt beschouwd als een ##geïnterpreteerde taal##, wat betekent dat de code ##regel voor regel## wordt uitgevoerd door de interpreter. Dit in tegenstelling tot talen zoals C++ of Java, waarbij de code eerst volledig wordt omgezet in machinecode door een **compilatieproces** voordat deze wordt uitgevoerd.
+Python wordt beschouwd als een ##geïnterpreteerde taal##. De interpreter zet je code ##niet om naar machinecode##, maar naar bytecode, die daarna door de Python Virtual Machine ##instructie per instructie## wordt uitgevoerd. Dit in tegenstelling tot talen zoals C of C++, waarbij de code vooraf volledig wordt omgezet in machinecode door een **compilatieproces**, en je een uitvoerbaar bestand (_executable_) krijgt.
+
+Java zit daartussenin: Java-code wordt vooraf gecompileerd naar bytecode, die vervolgens door de Java Virtual Machine (JVM) wordt uitgevoerd. Dat lijkt dus sterk op de werking van Python.
 
 === Het Interpreterproces van de interpreter
 
@@ -69,11 +71,35 @@ image::images/lexer.webp[]
 
 . Parsing: De tokens worden **geanalyseerd** om de **syntactische structuur** van het programma te begrijpen. Hierbij wordt gecontroleerd of de code voldoet aan de grammaticaregels van Python.
 
-. Vertalen: De geparste code wordt omgezet in **tussentijdse bytecode**. Dit is een binair formaat dat de computer begrijpt en dat sneller kan worden uitgevoerd dan de originele broncode.
+. Vertalen: De geparste code wordt omgezet in **tussentijdse bytecode**. Dit is een compact binair formaat dat de Python Virtual Machine (niet de CPU zelf!) begrijpt en dat sneller kan worden uitgevoerd dan de originele broncode.
 
-. Uitvoering: De bytecode wordt uitgevoerd door de **Python-runtime**. Tijdens deze stap worden variabelen gemaakt, waarden toegewezen, bewerkingen uitgevoerd en resultaten gegenereerd.
+. Uitvoering: De bytecode wordt uitgevoerd door de **Python Virtual Machine**. Tijdens deze stap worden variabelen gemaakt, waarden toegewezen, bewerkingen uitgevoerd en resultaten gegenereerd.
 
-Deze 4 stappen zijn een voortdurende lus, die bij iedere regel (dus regel per regel) wordt uitgevoerd.
+De eerste drie stappen gebeuren voor het ##volledige bestand##, nog voor er ook maar één regel wordt uitgevoerd. Pas daarna start de uitvoering (stap 4).
+
+Dat merk je wanneer er een syntaxfout in je bestand staat. Bekijk dit programma:
+
+[source,python]
+----
+print("start")
+x = 1
+if x > 0         # de dubbele punt ontbreekt
+    print("x is positief")
+----
+
+Uitvoer:
+
+[source]
+----
+  File "test.py", line 3
+    if x > 0
+            ^
+SyntaxError: invalid syntax
+----
+
+Zelfs `print("start")` op regel 1 wordt niet uitgevoerd. Python leest en controleert eerst het hele bestand. Pas als dat volledig in orde is, wordt de bytecode uitgevoerd.
+
+Fouten die pas tijdens de uitvoering optreden (bijvoorbeeld delen door nul), zie je wél pas wanneer Python aan die regel komt. De regels daarvoor zijn dan al uitgevoerd.
 
 === Een voorbeeld
 
@@ -90,13 +116,19 @@ print("Nieuwe positie van de speler:", new_position)
 
 Bij het uitvoeren van dit script zal de interpreter de variabelen initial_position en movement_speed aanmaken en waarden toewijzen. Vervolgens wordt de positie van de speler berekend door movement_speed op te tellen bij initial_position. Het resultaat wordt afgedrukt.
 
-=== Just-In-Time (JIT) Compiler in Python
+=== Just-In-Time (JIT) Compiler
 
-De Just-In-Time (JIT) compiler is een techniek die wordt gebruikt om de uitvoeringssnelheid van code te verbeteren door delen van de code tijdens de uitvoering te compileren naar machinecode. Hoewel Python een geïnterpreteerde taal is, kan de JIT-compiler de prestaties aanzienlijk verbeteren door bepaalde stukken code te compileren op het moment dat ze worden uitgevoerd.
+De Just-In-Time (JIT) compiler is een techniek om de uitvoeringssnelheid van code te verbeteren door delen van de code ##tijdens de uitvoering## te compileren naar machinecode.
 
-==== Hoe Werkt de JIT-Compiler?
+==== Hoe Werkt een JIT-Compiler?
 
-Normaal gesproken wordt Python-code geïnterpreteerd en vertaald naar tussentijdse bytecode. Bij gebruik van een JIT-compiler worden sommige delen van de code, die vaak worden uitgevoerd, tijdens de uitvoering gecompileerd naar directe machinecode. Dit maakt de uitvoering sneller omdat machinecode direct door de computer kan worden uitgevoerd zonder interpretatie.
+Normaal wordt de bytecode instructie per instructie geïnterpreteerd door de virtuele machine. Een JIT-compiler houdt bij welke stukken code heel vaak worden uitgevoerd (bijvoorbeeld de binnenkant van een lus die een miljoen keer draait) en zet die tijdens de uitvoering om naar machinecode. Die machinecode kan de CPU rechtstreeks uitvoeren, zonder tussenkomst van de interpreter. Dat is veel sneller.
+
+==== JIT en Python
+
+De standaard Python-interpreter (CPython, de versie die je downloadt van python.org) gebruikt ##standaard géén JIT-compiler##. Sinds Python 3.13 bestaat er een experimentele JIT, maar die staat standaard uit.
+
+Er bestaan wel andere Python-interpreters met een ingebouwde JIT-compiler, zoals **PyPy**. Die voeren dezelfde Python-code uit, vaak een stuk sneller. Java gebruikt in de JVM trouwens ook standaard een JIT-compiler.
 
 ==== Voorbeeld
 
@@ -117,23 +149,23 @@ final_position = simulate_movement(initial_position, movement_speed)
 print("Laatste positie van de speler:", final_position)
 ----
 
-In dit voorbeeld wordt de functie simulate_movement herhaaldelijk (meerdere keren per seconde) opgeroepen om de beweging van een speler te simuleren. Python kan na een aantal uitvoeringen ervoor kiezen om de simulate_movement-functie te optimaliseren door het om te zetten in efficiënte machinecode (via de JIT compiler).
+In dit voorbeeld draait de lus in `simulate_movement` een miljoen keer. De gewone CPython-interpreter interpreteert elke iteratie opnieuw. Een interpreter met een JIT-compiler (zoals PyPy) merkt dat deze lus heel vaak wordt uitgevoerd en zet ze om naar efficiënte machinecode.
 
 Dit proces gebeurt automatisch, hier heb je als programmeur geen invloed op.
 
 ==== Voordelen in Gaming
 
-In de context van gaming kan de JIT-compiler de prestaties van Python-code verbeteren, vooral voor onderdelen van het spel die veelvuldig worden gebruikt, zoals fysica-simulaties, beeldverwerking of AI-berekeningen. Dit kan leiden tot soepelere en responsievere spelervaringen.
+In de context van gaming kan een JIT-compiler de prestaties van Python-code verbeteren, vooral voor onderdelen van het spel die veelvuldig worden gebruikt, zoals fysica-simulaties, beeldverwerking of AI-berekeningen. Dit kan leiden tot soepelere en responsievere spelervaringen.
 
 Hoewel JIT-compilatie Python niet zo snel maakt als strikt gecompileerde talen, kan het aanzienlijke prestatieverbeteringen bieden.
 
 === Voordelen en Nadelen
 
-Python's interpretatieproces biedt voordelen zoals **directe feedback** en gemakkelijke debugging. Echter, omdat elke regel code wordt geïnterpreteerd wanneer deze wordt uitgevoerd, kan Python trager zijn dan gecompileerde talen voor intensieve berekeningen in games.
+Python's interpretatieproces biedt voordelen zoals **directe feedback** en gemakkelijke debugging. Echter, omdat elke bytecode-instructie wordt geïnterpreteerd wanneer ze wordt uitgevoerd, kan Python trager zijn dan gecompileerde talen voor intensieve berekeningen in games.
 
 Ondanks enige **snelheidsbeperkingen** blijft Python een veelgebruikte taal in de game-ontwikkeling vanwege zijn flexibiliteit, eenvoudige syntax en uitgebreide bibliotheken.
 
 == Samenvatting
 
-Het pad van Python-code naar uitvoering op de CPU omvat diverse tussenstappen, van interpretatie en bytecode tot JIT-compilatie en uiteindelijk machinecode.
+Het pad van Python-code naar uitvoering op de CPU omvat diverse tussenstappen, van het omzetten naar bytecode tot het uitvoeren van die bytecode door de Python Virtual Machine. Sommige interpreters (zoals PyPy) gebruiken daarbovenop een JIT-compiler om veelgebruikte code om te zetten naar machinecode.
 

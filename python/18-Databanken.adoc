@@ -69,7 +69,7 @@ Het meest fundamentele SQL-statement is het SELECT-statement. Hiermee kun je geg
 SELECT * FROM artist;
 ----
 
-Dit geeft alle records en kolommen van de 'artists'-tabel weer:
+Dit geeft alle records en kolommen van de 'artist'-tabel weer:
 
 image::images/dbresult.PNG[]
 
@@ -79,7 +79,7 @@ Om specifieke resultaten te verkrijgen, gebruiken we de WHERE-clausule.
 
 [source, sql]
 ----
--- Selecteer artiesten met een specifieke naam uit de 'artists' tabel
+-- Selecteer artiesten met een specifieke naam uit de 'artist' tabel
 SELECT * FROM artist WHERE Name = 'Queen';
 ----
 
@@ -108,7 +108,7 @@ Aggregatiefuncties vatten gegevens samen. Bijvoorbeeld, het aantal tracks per al
 [source, sql]
 ----
 -- Tel het aantal tracks per album
-SELECT AlbumId, COUNT(TrackId) AS AantalTracks FROM tracks GROUP BY AlbumId;
+SELECT AlbumId, COUNT(TrackId) AS AantalTracks FROM track GROUP BY AlbumId;
 ----
 
 Dit geeft het aantal tracks per album weer.
@@ -124,19 +124,16 @@ Een **Primary Key** is een unieke identificatie voor een record in een tabel. De
 
 Voorbeeld Chinook Database:
 
-In de 'artists'-tabel van de Chinook-database is het veld 'ArtistId' een voorbeeld van een Primary Key. Hiermee wordt elke artiest #uniek geïdentificeerd#. Een bepaald primary key nummer kan dus maar 1 keer voorkomen in een tabel.
+In de 'artist'-tabel van de Chinook-database is het veld 'ArtistId' een voorbeeld van een Primary Key. Hiermee wordt elke artiest #uniek geïdentificeerd#. Een bepaald primary key nummer kan dus maar 1 keer voorkomen in een tabel.
 
-[source, sql]
-----
--- Voorbeeld van een Primary Key in de 'artists'-tabel
+.Voorbeeld van een Primary Key in de 'artist'-tabel
 |===
 | ArtistId | Name
 | 1        | AC/DC
 | 2        | Accept
 | 3        | Aerosmith
-|... 
+| ...      | ...
 |===
-----
 
 === Foreign Key
 
@@ -144,21 +141,18 @@ Een **Foreign Key** is een veld in een tabel dat verwijst naar de Primary Key in
 
 Voorbeeld Chinook Database:
 
-In de 'albums'-tabel van de Chinook-database verwijst het veld 'ArtistId' naar de Primary Key 'ArtistId' in de 'artists'-tabel. Hiermee wordt een relatie tussen de twee tabellen gevestigd.
+In de 'album'-tabel van de Chinook-database verwijst het veld 'ArtistId' naar de Primary Key 'ArtistId' in de 'artist'-tabel. Hiermee wordt een relatie tussen de twee tabellen gevestigd.
 
-[source, sql]
-----
--- Voorbeeld van een Foreign Key in de 'albums'-tabel
+.Voorbeeld van een Foreign Key in de 'album'-tabel
 |===
 | AlbumId | Title                         | ArtistId
 | 1       | For Those About To Rock We Salute You | 1
 | 2       | Balls to the Wall             | 2
 | 3       | Restless and Wild             | 2
-|... 
+| ...     | ...                           | ...
 |===
-----
 
-In dit voorbeeld verwijst het veld 'ArtistId' naar de Primary Key 'ArtistId' in de 'artists'-tabel, waardoor een **relatie ontstaat** tussen de artiesten en de albums in de database.
+In dit voorbeeld verwijst het veld 'ArtistId' naar de Primary Key 'ArtistId' in de 'artist'-tabel, waardoor een **relatie ontstaat** tussen de artiesten en de albums in de database.
 
 === FK en PK: Referentiële integriteit
 
@@ -214,8 +208,8 @@ database = "jouw_database"
 # Verbinding maken
 verbinding = mysql.connector.connect(
     host=host,
-    user=gebruiker,
-    password=wachtwoord,
+    user=user,
+    password=password,
     database=database
 )
 

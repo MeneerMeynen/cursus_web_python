@@ -97,12 +97,14 @@ Je kunt logging ook configureren voor specifieke modules in je programma.
 # Voorbeeld van het configureren van logging voor een specifieke module
 logger = logging.getLogger('my_module')
 logger.setLevel(logging.DEBUG)
-logger.addHandler(logging.StreamHandler())
 logger.debug('Dit bericht wordt vastgelegd door de my_module logger')
 ----
 
-Hier hebben we een logger geconfigureerd voor de module 'my_module' met een specifiek logniveau en een loghandler. 
+Hier hebben we een logger aangemaakt voor de module 'my_module' met een eigen logniveau. 
 Dit stelt ons in staat om logboekberichten te genereren die specifiek zijn voor deze module.
+De berichten worden doorgegeven aan de configuratie die we met `basicConfig()` hebben ingesteld, en krijgen dus hetzelfde logformaat.
+
+WARNING: Voeg je daarnaast nog een eigen handler toe aan de logger (bijvoorbeeld `logger.addHandler(logging.StreamHandler())`), dan verschijnt elk bericht ##twee keer##: één keer via de eigen handler en één keer via de configuratie van `basicConfig()`.
 
 == Een samenvattend voorbeeld
 
@@ -134,7 +136,6 @@ except ZeroDivisionError as e:
 # Voorbeeld van het configureren van logging voor een specifieke module
 logger = logging.getLogger('my_module')
 logger.setLevel(logging.DEBUG)
-logger.addHandler(logging.StreamHandler())
 logger.debug('Dit bericht wordt vastgelegd door de my_module logger')
 ----
 
@@ -150,7 +151,7 @@ Uitvoer:
 2024-04-01 12:00:00,000 - INFO - Gebruikersnaam: Alice, Leeftijd: 30
 2024-04-01 12:00:00,000 - ERROR - Er is een fout opgetreden bij het delen
 Traceback (most recent call last):
-  File "example.py", line 16, in <module>
+  File "example.py", line 20, in <module>
     result = 10 / 0
 ZeroDivisionError: division by zero
 2024-04-01 12:00:00,000 - DEBUG - Dit bericht wordt vastgelegd door de my_module logger

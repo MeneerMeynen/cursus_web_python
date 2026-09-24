@@ -108,7 +108,7 @@ Hier wordt een 'for'-lus gebruikt om door de lijst van scores te itereren en het
 
 == Oneindige Lussen Voorkomen
 
-Een potentieel risico bij while-lussen is dat ze oneindig kunnen doorgaan als de boolean voorwaarde nooit wordt voldaan. Dit kan leiden tot een programma dat vastloopt. Zorg ervoor dat je altijd een mechanisme hebt om de lus te beëindigen.
+Een potentieel risico bij while-lussen is dat ze oneindig kunnen doorgaan als de voorwaarde nooit `False` wordt. Dit kan leiden tot een programma dat vastloopt. Zorg ervoor dat je altijd een mechanisme hebt om de lus te beëindigen.
 
 Veilige 'While'-Lus:
 

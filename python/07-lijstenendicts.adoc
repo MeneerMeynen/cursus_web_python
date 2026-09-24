@@ -261,8 +261,8 @@ Je kunt de elementen in een tuple op dezelfde manier benaderen als bij lijsten, 
 
 [source, python]
 ----
-x_coördinaat = speler_positie[0]  # Geeft 100 terug
-y_coördinaat = speler_positie[1]  # Geeft 50 terug
+x_coordinaat = speler_positie[0]  # Geeft 100 terug
+y_coordinaat = speler_positie[1]  # Geeft 50 terug
 ----
 
 === Unpacking Tupels

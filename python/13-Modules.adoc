@@ -113,10 +113,10 @@ getal = 25
 vierkantswortel = math.sqrt(getal)
 print(f"Vierkantswortel van {getal} is {vierkantswortel}")
 
-# Voorbeeld 2: Afronden naar het dichtstbijzijnde gehele getal
+# Voorbeeld 2: Afronden naar beneden en naar boven
 getal_met_decimaal = 4.56
-afgerond_getal = round(getal_met_decimaal)
-print(f"Afgerond getal: {afgerond_getal}")
+print(f"Naar beneden: {math.floor(getal_met_decimaal)}")  # 4
+print(f"Naar boven: {math.ceil(getal_met_decimaal)}")     # 5
 
 # Voorbeeld 3: Constanten
 print(f"Pi: {math.pi}, Eulers getal: {math.e}")
@@ -196,7 +196,7 @@ nieuw_json_data = json.dumps(python_dict)
 print(f"Nieuwe JSON-data: {nieuw_json_data}")
 ----
 
-Dit zijn slechts enkele voorbeelden van de vele ingebouwde modules die Python biedt. Deze modules kunnen je helpen bij uiteenlopende taken, van wiskundige berekeningen tot het manipuleren van bestanden en gegevens. Raadpleeg de [Python-documentatie](https://docs.python.org/3/library/index.html) voor meer informatie over ingebouwde modules en hun functionaliteiten.
+Dit zijn slechts enkele voorbeelden van de vele ingebouwde modules die Python biedt. Deze modules kunnen je helpen bij uiteenlopende taken, van wiskundige berekeningen tot het manipuleren van bestanden en gegevens. Raadpleeg de https://docs.python.org/3/library/index.html[Python-documentatie] voor meer informatie over ingebouwde modules en hun functionaliteiten.
 
 Python beschikt over heel wat ingebouwde modules:
 
@@ -226,14 +226,14 @@ Vervang `module_naam` door de naam van de module die je wilt installeren.
 
 ==== Voorbeeld: Matplotlib Module
 
-Laten we bijvoorbeeld de populaire `Matplotlib`-module installeren, die wordt gebruikt voor het verzenden van HTTP-verzoeken.
+Laten we bijvoorbeeld de populaire `matplotlib`-module installeren, die wordt gebruikt om grafieken te maken (zie het hoofdstuk over Matplotlib).
 
 [source, python]
 ----
-pip install Matplotlib
+pip install matplotlib
 ----
 
-Dit commando zal de `Matplotlib`-module downloaden en installeren.
+Dit commando zal de `matplotlib`-module downloaden en installeren.
 
 === Versie Opgeven
 
@@ -248,10 +248,10 @@ Bijvoorbeeld:
 
 [source, python]
 ----
-pip install Matplotlib==2.26.0
+pip install matplotlib==3.8.0
 ----
 
-Hiermee wordt versie 2.26.0 van de `Matplotlib`-module geïnstalleerd.
+Hiermee wordt versie 3.8.0 van de `matplotlib`-module geïnstalleerd.
 
 === __requirements__ Uit Een Bestand Installeren
 

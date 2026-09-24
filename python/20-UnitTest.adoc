@@ -101,25 +101,31 @@ if __name__ == '__main__':
 
 == __Parametrized Testcases__
 
-Parametrized testcases stellen ons in staat om ##dezelfde testlogica met verschillende invoer te hergebruiken##, waardoor we efficiënter kunnen testen. 
-Dit wordt bereikt door gebruik te maken van de __@unittest.parametrized.expand__ decorator.
+Parametrized testcases stellen ons in staat om ##dezelfde testlogica met verschillende invoer te hergebruiken##, waardoor we efficiënter kunnen testen.
+In unittest doe je dit met een lus en de ingebouwde methode __subTest()__.
 
 [source, python]
 ----
 import unittest
 
 class MyTestCase(unittest.TestCase):
-    @unittest.parametrized.expand([
-        (1, 2, 3),
-        (0, 0, 0),
-        (-1, 1, 0),
-    ])
-    def test_addition(self, a, b, expected):
-        result = a + b
-        self.assertEqual(result, expected)
+    def test_addition(self):
+        testgevallen = [
+            (1, 2, 3),
+            (0, 0, 0),
+            (-1, 1, 0),
+        ]
+        for a, b, expected in testgevallen:
+            with self.subTest(a=a, b=b):
+                result = a + b
+                self.assertEqual(result, expected)
+
+if __name__ == '__main__':
+    unittest.main()
 ----
 
-In dit voorbeeld wordt de test_addition-methode herhaaldelijk uitgevoerd met verschillende invoercombinaties. 
+In dit voorbeeld wordt dezelfde testlogica uitgevoerd voor elke invoercombinatie in de lijst `testgevallen`.
+Dankzij `subTest()` wordt ##elke combinatie apart gecontroleerd##: als één combinatie faalt, worden de andere toch nog getest, en toont de foutmelding voor welke waarden van `a` en `b` het misliep.
 Dit zorgt ervoor dat dezelfde testlogica wordt toegepast op meerdere scenario's, wat de testdekking vergroot en ons helpt om fouten te identificeren.
 
 Een ander voorbeeld van parametrized testcases:
@@ -129,16 +135,20 @@ Een ander voorbeeld van parametrized testcases:
 import unittest
 
 class MyTestCase(unittest.TestCase):
-    @unittest.parametrized.expand([
-        ("hello", 5),
-        ("world", 5),
-        ("python", 6),
-    ])
-    def test_string_length(self, string, length):
-        self.assertEqual(len(string), length)
+    def test_string_length(self):
+        testgevallen = [
+            ("hello", 5),
+            ("world", 5),
+            ("python", 6),
+        ]
+        for string, length in testgevallen:
+            with self.subTest(string=string):
+                self.assertEqual(len(string), length)
 ----
 
 Dit voorbeeld toont hoe dezelfde testlogica wordt toegepast op verschillende invoerwaarden voor het controleren van de lengte van een string.
+
+NOTE: Er bestaat ook een externe module `parameterized` (installeren met `pip install parameterized`). Die biedt een decorator `@parameterized.expand([...])` die voor elke invoercombinatie een aparte testmethode aanmaakt. Deze decorator zit ##niet## in de ingebouwde `unittest` module.
 
 == Test Coverage
 

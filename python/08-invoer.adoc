@@ -211,7 +211,8 @@ Dit voorbeeld maakt een nieuw bestand genaamd 'nieuw_bestand.txt' en schrijft de
 
 === Handige Bestandsbewerkingen
 
-* **Bestand verplaatsen of hernoemen:** Dit kan worden gedaan met de `os`-module.
-* **Bestand kopiëren:** Dit kan ook worden gedaan met de `os`-module.
+* **Bestand hernoemen:** Gebruik de `os.rename()`-functie.
+* **Bestand verplaatsen:** Gebruik de `shutil.move()`-functie uit de `shutil`-module.
+* **Bestand kopiëren:** Gebruik de `shutil.copy()`-functie uit de `shutil`-module. (De `os`-module heeft geen functie om bestanden te kopiëren.)
 * **Bestand verwijderen:** Gebruik de `os.remove()`-functie om een bestand te verwijderen.
 
