@@ -355,7 +355,7 @@ Elke eigenschap is een *afstand tussen een rand van het referentiepunt en dezelf
 ----
 
 * `top: 30px`: de bovenkant van de tag staat 30px *onder* de bovenkant van het referentiepunt.
-* `left: 60px`: de linkerkant van de tag staat 60px *rechts van* de linkerkant van het referentiepunt.
+* `left: 60px`: de linkerkant van de tag staat 60px van het referentiepunt.
 * `right: 0`: de rechterkant van de tag raakt de rechterkant van het referentiepunt.
 * Een *negatieve* waarde verschuift in de andere richting: `top: -20px` gaat naar boven.
 * Een *percentage* is een percentage van de grootte van het referentiepunt: `left: 50%` is halverwege de breedte.
@@ -567,22 +567,3 @@ Veelgemaakte fouten:
 * het punt (`.`) vergeten voor een class-selector;
 * een verkeerd pad in de `link`-tag;
 * een spatie tussen getal en eenheid: `20 px` werkt niet, `20px` wel.
-
-== Oefeningen
-
-=== Oefening 1: Stijl je Over mij-pagina
-
-Maak een extern stylesheet `style.css` voor 1 van de opgaves uit de lessen 'software' deze opgaves zijn geschreven in 'kale' html. 
-
-* Kies een lettertype van Google Fonts voor de hele pagina.
-* Geef de `h1` een eigen kleur en centreer hem.
-* Beperk de breedte van de inhoud tot 800px en centreer ze op de pagina (tip: `max-width` en `margin: 0 auto`).
-* Laat links van kleur veranderen als je er met de muis over gaat.
-
-=== Oefening 2: Kaartjes
-
-Maak een pagina met drie "kaartjes" (bijvoorbeeld drie producten, drie sporten of drie games).
-
-* Elk kaartje is een `article` met een afbeelding, een titel, een korte tekst en een link.
-* Geef de kaartjes padding, een rand of schaduw en afgeronde hoeken (tip: zoek de eigenschappen `padding`, `border`, `box-shadow` en `border-radius` op via https://www.w3schools.com/css/[w3schools]).
-
