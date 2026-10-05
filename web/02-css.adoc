@@ -380,6 +380,43 @@ Elke waarde van `position` is een ander antwoord op de twee vragen van hierboven
 | `sticky` | ja | zijn plaats in de flow, tot hij de rand van het venster raakt | tot hij blijft plakken
 |===
 
+==== static: het standaardgedrag
+
+`static` is de *standaardwaarde*: elke tag heeft `position: static`, tenzij je zelf iets anders instelt.
+Je hoeft het dus nooit te schrijven. Een tag met `static` staat gewoon in de *normale flow*, precies zoals de browser de HTML van boven naar onder leest:
+
+* blok-tags (`div`, `p`, `h1`, `section`, ...) beginnen op een *nieuwe regel*, komen *onder* elkaar en nemen de *volledige breedte* van de bovenliggende tag;
+* inline tags (`span`, `a`, `strong`, `img`, ...) komen *naast* elkaar in de lopende tekst en zijn maar zo breed als hun inhoud. Is de regel vol, dan gaan ze verder op de volgende regel;
+* de *volgorde in de HTML* bepaalt de volgorde op het scherm: wat eerst in de HTML staat, staat eerst (bovenaan of links);
+* elke tag *neemt plaats in*: tags overlappen elkaar nooit, de volgende tag begint pas waar de vorige eindigt;
+* de tag scrolt mee met de rest van de pagina.
+
+----
+<h1>Titel</h1>                    +----------------------------------+
+<p>Tekst met <a>link</a>.</p>     | Titel                            |
+<div>Een vak</div>          -->   +----------------------------------+
+<span>A</span><span>B</span>      | Tekst met link.                  |
+                                  +----------------------------------+
+                                  | Een vak                          |
+                                  +----------------------------------+
+                                  AB
+----
+
+De afstand tussen tags regel je bij `static` dus niet met `top` of `left` (die worden genegeerd), maar met `margin` en `padding`.
+
+[source,css]
+----
+.vak {
+  position: static;   /* mag je weglaten: dit is de standaard */
+  top: 50px;          /* heeft GEEN effect bij static */
+  margin-top: 50px;   /* dit werkt wel: 50px extra ruimte boven het vak */
+}
+----
+
+Je schrijft `position: static` alleen als je een andere `position` weer ongedaan wilt maken, bijvoorbeeld in een media query.
+
+TIP: Probeer een opmaak eerst op te lossen met de normale flow (met `margin`, `padding` of Bootstrap). Gebruik pas een andere `position` als dat niet lukt.
+
 ==== relative: verschuiven vanaf de eigen plaats
 
 De tag wordt eerst normaal in de flow geplaatst. Daarna wordt hij verschoven, vertrekkend van die plaats.
