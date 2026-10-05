@@ -417,6 +417,8 @@ Je schrijft `position: static` alleen als je een andere `position` weer ongedaan
 
 TIP: Probeer een opmaak eerst op te lossen met de normale flow (met `margin`, `padding` of Bootstrap). Gebruik pas een andere `position` als dat niet lukt.
 
+Voorbeeld: https://www.w3schools.com/css/tryit.asp?filename=trycss_position_static[`position: static` uitproberen op w3schools^]
+
 ==== relative: verschuiven vanaf de eigen plaats
 
 De tag wordt eerst normaal in de flow geplaatst. Daarna wordt hij verschoven, vertrekkend van die plaats.
@@ -443,6 +445,8 @@ De andere tags merken daar niets van: zijn *oorspronkelijke plaats blijft bezet*
 ----
 
 `relative` heeft nog een tweede, heel belangrijke rol: de tag wordt het *referentiepunt* voor tags met `position: absolute` die erin zitten (zie hieronder).
+
+Voorbeeld: https://www.w3schools.com/css/tryit.asp?filename=trycss_position_relative[`position: relative` uitproberen op w3schools^]
 
 ==== absolute: uit de flow, geplaatst in een referentiepunt
 
@@ -490,6 +494,8 @@ Heeft een tag met `absolute` geen gepositioneerde bovenliggende tag, dan is de p
 }
 ----
 
+Voorbeeld: https://www.w3schools.com/css/tryit.asp?filename=trycss_position_absolute[`position: absolute` uitproberen op w3schools^]
+
 ==== fixed: vast in het venster
 
 Een tag met `fixed` wordt ook uit de flow gehaald, maar zijn referentiepunt is altijd het *browservenster*.
@@ -505,6 +511,8 @@ Zo maak je bijvoorbeeld een menu dat altijd zichtbaar blijft of een knop "Terug 
 }
 ----
 
+Voorbeeld: https://www.w3schools.com/css/tryit.asp?filename=trycss_position_fixed[`position: fixed` uitproberen op w3schools^]
+
 ==== sticky: eerst normaal, dan vastgeplakt
 
 Een `sticky` tag staat eerst gewoon in de flow en scrolt mee. Zodra hij de afstand bereikt die je opgeeft, blijft hij plakken.
@@ -516,6 +524,8 @@ nav {
   top: 0;    /* plakt vast zodra hij de bovenkant van het venster raakt */
 }
 ----
+
+Voorbeeld: https://www.w3schools.com/css/tryit.asp?filename=trycss_position_sticky[`position: sticky` uitproberen op w3schools^]
 
 === Een tag centreren met positie
 
