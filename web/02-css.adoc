@@ -22,7 +22,8 @@ In dit hoofdstuk leer je:
 * hoe een CSS-regel opgebouwd is;
 * hoe je met selectoren de juiste tags kiest;
 * kleuren en tekst opmaken;
-* tags positioneren met `position`.
+* tags positioneren met `position`;
+* een navigatiebalk en een dropdown-menu maken.
 
 == CSS koppelen aan HTML
 
@@ -598,6 +599,328 @@ Stel jezelf de twee vragen van het begin:
 
 TIP: Gebruik `position` niet om een volledige pagina op te bouwen: laat tags zoveel mogelijk in de normale flow staan. `position` gebruik je voor tags die *bovenop* of *buiten* de normale indeling moeten staan.
 
+== Navigatie
+
+Bijna elke website heeft een *navigatiebalk*: een reeks links naar de andere pagina's van de site.
+Een navigatiebalk is eigenlijk gewoon een *lijst met links*. Daarom schrijf je hem in HTML met een `ul` en `li`-tags. Met CSS maak je er daarna een mooie balk van.
+
+[source,html]
+----
+<nav>
+  <ul>
+    <li><a class="actief" href="index.html">Home</a></li>
+    <li><a href="nieuws.html">Nieuws</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="over.html">Over ons</a></li>
+  </ul>
+</nav>
+----
+
+TIP: De tag `nav` heeft zelf geen opmaak. Hij vertelt de browser (en bijvoorbeeld een schermlezer voor blinden) dat de links erin de navigatie van de site zijn.
+
+=== Stap 1: de lijst opkuisen
+
+Een `ul` toont standaard bolletjes, en de browser zet er een `margin` en `padding` rond. Voor een navigatiebalk wil je dat niet:
+
+[source,css]
+----
+nav ul {
+  list-style-type: none;  /* geen bolletjes */
+  margin: 0;              /* geen ruimte buiten de lijst */
+  padding: 0;             /* geen inspringing links */
+}
+----
+
+Dit is de basis voor *elke* navigatiebalk, verticaal of horizontaal.
+
+=== Verticale navigatiebalk
+
+Bij een verticale navigatiebalk staan de links *onder elkaar*, bijvoorbeeld in een zijbalk.
+
+[source,css]
+----
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;                 /* breedte van de zijbalk */
+  background-color: #f1f1f1;
+}
+
+nav li a {
+  display: block; <1>
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none; <2>
+}
+
+nav li a:hover:not(.actief) { <3>
+  background-color: #555;
+  color: white;
+}
+
+nav li a.actief { <4>
+  background-color: #04aa6d;
+  color: white;
+}
+----
+<1> Een `a`-tag is een inline tag: hij is maar zo breed als zijn tekst. Met `display: block` wordt de *volledige rij* klikbaar en kan je er `padding` en `width` aan geven.
+<2> Haalt de onderlijning van de link weg.
+<3> Als de muis over een link gaat, verandert de kleur. Met `:not(.actief)` sluit je de actieve link uit.
+<4> De class `actief` geef je aan de link van de pagina waar je nu bent. Zo ziet de bezoeker waar hij zich bevindt.
+
+----
++------------------+
+|  Home            |   <- actief: groen
+|  Nieuws          |
+|  Contact         |   <- muis erover: donkergrijs
+|  Over ons        |
++------------------+
+----
+
+Wil je dat de zijbalk de *volledige hoogte* van het venster inneemt en blijft staan als je scrolt? Combineer dan met wat je over `position` geleerd hebt:
+
+[source,css]
+----
+nav ul {
+  position: fixed;    /* blijft staan als je scrolt */
+  height: 100%;       /* volledige hoogte van het venster */
+  overflow: auto;     /* scrolbalk als er te veel links zijn */
+  width: 200px;
+}
+
+main {
+  margin-left: 200px; /* anders schuift de inhoud onder de zijbalk */
+}
+----
+
+Meer voorbeelden: https://www.w3schools.com/css/css_navbar_vertical.asp[verticale navigatiebalken op w3schools^]
+
+=== Horizontale navigatiebalk
+
+Bij een horizontale navigatiebalk staan de links *naast elkaar*, meestal bovenaan de pagina.
+`li`-tags zijn blok-tags en komen dus onder elkaar. Er zijn twee manieren om ze naast elkaar te krijgen.
+
+==== Manier 1: inline
+
+De eenvoudigste manier: maak van de `li`-tags inline tags.
+
+[source,css]
+----
+nav li {
+  display: inline;   /* naast elkaar, zoals woorden in een zin */
+}
+----
+
+Nadeel: inline tags krijgen niet goed een `padding` of `width`. Daarom gebruik je meestal manier 2.
+
+==== Manier 2: float
+
+Met `float: left` schuift elke `li` zo ver mogelijk naar links, naast de vorige.
+
+[source,css]
+----
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; <1>
+  background-color: #333;
+}
+
+nav li {
+  float: left; <2>
+}
+
+nav li a {
+  display: block; <3>
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+nav li a:hover {
+  background-color: #111;
+}
+
+nav li a.actief {
+  background-color: #04aa6d;
+}
+----
+<1> Tags met `float` worden uit de flow gehaald, waardoor de `ul` geen hoogte meer heeft en de achtergrondkleur verdwijnt. Met `overflow: hidden` blijft de `ul` rond de `li`-tags passen.
+<2> De `li`-tags komen naast elkaar.
+<3> Zoals bij de verticale balk: het hele vak wordt klikbaar en krijgt `padding`.
+
+----
++--------------------------------------------------------+
+| Home | Nieuws | Contact | Over ons                     |
++--------------------------------------------------------+
+  ^ actief: groen
+----
+
+TIP: Wil je één link (bijvoorbeeld "Aanmelden") helemaal rechts? Geef die `li` dan `float: right`.
+
+Ook hier kan je `position` gebruiken: met `position: fixed; top: 0; width: 100%;` blijft de balk bovenaan het venster staan. Met `position: sticky; top: 0;` scrolt hij eerst mee en blijft hij daarna bovenaan plakken.
+
+Meer voorbeelden: https://www.w3schools.com/css/css_navbar_horizontal.asp[horizontale navigatiebalken op w3schools^]
+
+=== Dropdown-menu
+
+Een dropdown-menu is een lijst met links die pas *verschijnt als je met de muis over een knop gaat*.
+Je hebt er niets nieuws voor nodig: het is een combinatie van `position`, `display` en de pseudo-class `:hover`.
+
+[source,html]
+----
+<div class="dropdown">
+  <button class="dropknop">Vakken</button>
+  <div class="dropdown-inhoud">
+    <a href="wiskunde.html">Wiskunde</a>
+    <a href="informatica.html">Informatica</a>
+    <a href="frans.html">Frans</a>
+  </div>
+</div>
+----
+
+[source,css]
+----
+.dropdown {
+  position: relative; <1>
+  display: inline-block; <2>
+}
+
+.dropknop {
+  background-color: #04aa6d;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown-inhoud {
+  display: none; <3>
+  position: absolute; <4>
+  min-width: 160px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); <5>
+  z-index: 1; <6>
+}
+
+.dropdown-inhoud a {
+  display: block;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+}
+
+.dropdown-inhoud a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-inhoud { <7>
+  display: block;
+}
+
+.dropdown:hover .dropknop {
+  background-color: #3e8e41;
+}
+----
+<1> De `.dropdown` wordt het *referentiepunt* voor het menu (dat `absolute` is).
+<2> De `.dropdown` is maar zo breed als de knop, en niet de volledige breedte van de pagina.
+<3> Het menu is standaard *onzichtbaar*.
+<4> Het menu wordt uit de flow gehaald: het duwt de rest van de pagina niet naar beneden, maar ligt erover. Omdat er geen `top` of `left` staat, verschijnt het net onder de knop.
+<5> Een schaduw, zodat het menu boven de pagina lijkt te zweven.
+<6> Het menu ligt boven de andere tags van de pagina.
+<7> Gaat de muis over de `.dropdown` (de knop *of* het menu), dan wordt het menu zichtbaar. Dit is een combinatie van een pseudo-class en een afstammeling-selector.
+
+----
+ muis niet erover           muis erover
++--------+                 +--------+
+| Vakken |                 | Vakken |
++--------+                 +--------+---+
+tekst van de pagina        | Wiskunde    |
+                           | Informatica |  <- ligt over de tekst
+                           | Frans       |
+                           +-------------+
+----
+
+TIP: Wil je het menu rechts uitlijnen onder de knop (handig voor een knop helemaal rechts op de pagina)? Geef `.dropdown-inhoud` dan `right: 0;`.
+
+==== Dropdown in een navigatiebalk
+
+Je kan een dropdown ook in een horizontale navigatiebalk zetten. Je geeft de `li` met het menu de class `dropdown`:
+
+[source,html]
+----
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="nieuws.html">Nieuws</a></li>
+    <li class="dropdown">
+      <a href="#" class="dropknop">Vakken</a>
+      <div class="dropdown-inhoud">
+        <a href="wiskunde.html">Wiskunde</a>
+        <a href="informatica.html">Informatica</a>
+        <a href="frans.html">Frans</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+----
+
+[source,css]
+----
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+}
+
+nav li {
+  display: inline-block; <1>
+}
+
+nav li a {
+  display: inline-block;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+nav li a:hover,
+.dropdown:hover .dropknop {
+  background-color: red;
+}
+
+.dropdown-inhoud {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-inhoud a {
+  display: block; <2>
+  color: black;
+}
+
+.dropdown-inhoud a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-inhoud {
+  display: block;
+}
+----
+<1> Hier gebruiken we `inline-block` in plaats van `float`: de `li`-tags staan naast elkaar én kunnen `padding` krijgen. Met `overflow: hidden` (nodig bij `float`) zou het menu afgeknipt worden.
+<2> De links in het menu staan wél onder elkaar.
+
+Meer voorbeelden: https://www.w3schools.com/css/css_dropdowns.asp[dropdowns op w3schools^]
+
+TIP: In Bootstrap (zie verder) zijn navigatiebalken en dropdowns kant-en-klaar. Toch is het nuttig om te weten hoe ze werken: dan kan je ze ook aanpassen.
 
 == Fouten opsporen
 
