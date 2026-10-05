@@ -684,10 +684,11 @@ pre.rouge {
 <li><a href="#_het_coördinatensysteem">6.2. Het coördinatensysteem</a></li>
 <li><a href="#_de_vijf_waarden_van_position">6.3. De vijf waarden van position</a>
 <ul class="sectlevel3">
-<li><a href="#_relative_verschuiven_vanaf_de_eigen_plaats">6.3.1. relative: verschuiven vanaf de eigen plaats</a></li>
-<li><a href="#_absolute_uit_de_flow_geplaatst_in_een_referentiepunt">6.3.2. absolute: uit de flow, geplaatst in een referentiepunt</a></li>
-<li><a href="#_fixed_vast_in_het_venster">6.3.3. fixed: vast in het venster</a></li>
-<li><a href="#_sticky_eerst_normaal_dan_vastgeplakt">6.3.4. sticky: eerst normaal, dan vastgeplakt</a></li>
+<li><a href="#_static_het_standaardgedrag">6.3.1. static: het standaardgedrag</a></li>
+<li><a href="#_relative_verschuiven_vanaf_de_eigen_plaats">6.3.2. relative: verschuiven vanaf de eigen plaats</a></li>
+<li><a href="#_absolute_uit_de_flow_geplaatst_in_een_referentiepunt">6.3.3. absolute: uit de flow, geplaatst in een referentiepunt</a></li>
+<li><a href="#_fixed_vast_in_het_venster">6.3.4. fixed: vast in het venster</a></li>
+<li><a href="#_sticky_eerst_normaal_dan_vastgeplakt">6.3.5. sticky: eerst normaal, dan vastgeplakt</a></li>
 </ul>
 </li>
 <li><a href="#_een_tag_centreren_met_positie">6.4. Een tag centreren met positie</a></li>
@@ -1324,7 +1325,72 @@ Denk aan <code>top</code> en <code>left</code> als "afstand <strong>van</strong>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="_relative_verschuiven_vanaf_de_eigen_plaats">6.3.1. relative: verschuiven vanaf de eigen plaats</h4>
+<h4 id="_static_het_standaardgedrag">6.3.1. static: het standaardgedrag</h4>
+<div class="paragraph">
+<p><code>static</code> is de <strong>standaardwaarde</strong>: elke tag heeft <code>position: static</code>, tenzij je zelf iets anders instelt.
+Je hoeft het dus nooit te schrijven. Een tag met <code>static</code> staat gewoon in de <strong>normale flow</strong>, precies zoals de browser de HTML van boven naar onder leest:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>blok-tags (<code>div</code>, <code>p</code>, <code>h1</code>, <code>section</code>, &#8230;&#8203;) beginnen op een <strong>nieuwe regel</strong>, komen <strong>onder</strong> elkaar en nemen de <strong>volledige breedte</strong> van de bovenliggende tag;</p>
+</li>
+<li>
+<p>inline tags (<code>span</code>, <code>a</code>, <code>strong</code>, <code>img</code>, &#8230;&#8203;) komen <strong>naast</strong> elkaar in de lopende tekst en zijn maar zo breed als hun inhoud. Is de regel vol, dan gaan ze verder op de volgende regel;</p>
+</li>
+<li>
+<p>de <strong>volgorde in de HTML</strong> bepaalt de volgorde op het scherm: wat eerst in de HTML staat, staat eerst (bovenaan of links);</p>
+</li>
+<li>
+<p>elke tag <strong>neemt plaats in</strong>: tags overlappen elkaar nooit, de volgende tag begint pas waar de vorige eindigt;</p>
+</li>
+<li>
+<p>de tag scrolt mee met de rest van de pagina.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&lt;h1&gt;Titel&lt;/h1&gt;                    +----------------------------------+
+&lt;p&gt;Tekst met &lt;a&gt;link&lt;/a&gt;.&lt;/p&gt;     | Titel                            |
+&lt;div&gt;Een vak&lt;/div&gt;          --&gt;   +----------------------------------+
+&lt;span&gt;A&lt;/span&gt;&lt;span&gt;B&lt;/span&gt;      | Tekst met link.                  |
+                                  +----------------------------------+
+                                  | Een vak                          |
+                                  +----------------------------------+
+                                  AB</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>De afstand tussen tags regel je bij <code>static</code> dus niet met <code>top</code> of <code>left</code> (die worden genegeerd), maar met <code>margin</code> en <code>padding</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="nc">.vak</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">static</span><span class="p">;</span>   <span class="c">/* mag je weglaten: dit is de standaard */</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>          <span class="c">/* heeft GEEN effect bij static */</span>
+  <span class="nl">margin-top</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>   <span class="c">/* dit werkt wel: 50px extra ruimte boven het vak */</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Je schrijft <code>position: static</code> alleen als je een andere <code>position</code> weer ongedaan wilt maken, bijvoorbeeld in een media query.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Probeer een opmaak eerst op te lossen met de normale flow (met <code>margin</code>, <code>padding</code> of Bootstrap). Gebruik pas een andere <code>position</code> als dat niet lukt.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_relative_verschuiven_vanaf_de_eigen_plaats">6.3.2. relative: verschuiven vanaf de eigen plaats</h4>
 <div class="paragraph">
 <p>De tag wordt eerst normaal in de flow geplaatst. Daarna wordt hij verschoven, vertrekkend van die plaats.
 De andere tags merken daar niets van: zijn <strong>oorspronkelijke plaats blijft bezet</strong>, alsof er een onzichtbare kopie achterblijft.</p>
@@ -1355,7 +1421,7 @@ De andere tags merken daar niets van: zijn <strong>oorspronkelijke plaats blijft
 </div>
 </div>
 <div class="sect3">
-<h4 id="_absolute_uit_de_flow_geplaatst_in_een_referentiepunt">6.3.2. absolute: uit de flow, geplaatst in een referentiepunt</h4>
+<h4 id="_absolute_uit_de_flow_geplaatst_in_een_referentiepunt">6.3.3. absolute: uit de flow, geplaatst in een referentiepunt</h4>
 <div class="paragraph">
 <p>De tag wordt <strong>uit de flow gehaald</strong>. De andere tags schuiven op alsof hij er niet is.
 Daarna wordt hij geplaatst ten opzichte van zijn referentiepunt. De browser zoekt dat zo:</p>
@@ -1415,7 +1481,7 @@ Daarna wordt hij geplaatst ten opzichte van zijn referentiepunt. De browser zoek
 </div>
 </div>
 <div class="sect3">
-<h4 id="_fixed_vast_in_het_venster">6.3.3. fixed: vast in het venster</h4>
+<h4 id="_fixed_vast_in_het_venster">6.3.4. fixed: vast in het venster</h4>
 <div class="paragraph">
 <p>Een tag met <code>fixed</code> wordt ook uit de flow gehaald, maar zijn referentiepunt is altijd het <strong>browservenster</strong>.
 Omdat het venster niet meescrolt, blijft de tag <strong>op dezelfde plaats op het scherm</strong> staan terwijl de rest van de pagina eronder schuift.
@@ -1432,7 +1498,7 @@ Zo maak je bijvoorbeeld een menu dat altijd zichtbaar blijft of een knop "Terug 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_sticky_eerst_normaal_dan_vastgeplakt">6.3.4. sticky: eerst normaal, dan vastgeplakt</h4>
+<h4 id="_sticky_eerst_normaal_dan_vastgeplakt">6.3.5. sticky: eerst normaal, dan vastgeplakt</h4>
 <div class="paragraph">
 <p>Een <code>sticky</code> tag staat eerst gewoon in de flow en scrolt mee. Zodra hij de afstand bereikt die je opgeeft, blijft hij plakken.</p>
 </div>
