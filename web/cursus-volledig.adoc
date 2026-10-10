@@ -20,6 +20,8 @@ include::01-html-basis.adoc[]
 
 include::02-css.adoc[]
 
+include::02b-css-transities.adoc[]
+
 include::03-bootstrap.adoc[]
 
 include::javascript.adoc[]
