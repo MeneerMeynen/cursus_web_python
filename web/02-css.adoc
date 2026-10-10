@@ -425,16 +425,7 @@ Voorbeeld: https://www.w3schools.com/css/tryit.asp?filename=trycss_position_stat
 De tag wordt eerst normaal in de flow geplaatst. Daarna wordt hij verschoven, vertrekkend van die plaats.
 De andere tags merken daar niets van: zijn *oorspronkelijke plaats blijft bezet*, alsof er een onzichtbare kopie achterblijft.
 
-----
-  zonder position              met position: relative;
-                                   top: 20px; left: 40px;
-
-+--------------+               +..............+
-| div          |               :              :   <- lege plek: blijft bezet
-+--------------+               +.....+--------------+
-| p            |               | p   | div          |   <- de div ligt over de p
-+--------------+               +-----+--------------+
-----
+image::images/css/position-relative.svg["Zonder position en met position: relative; top: 20px; left: 40px. De div schuift op, zijn oorspronkelijke plaats blijft bezet en hij ligt nu over de p.",width=780]
 
 [source,css]
 ----
