@@ -757,7 +757,7 @@ Je hebt er niets nieuws voor nodig: het is een combinatie van `position`, `displ
 <4> Het menu wordt uit de flow gehaald: het duwt de rest van de pagina niet naar beneden, maar ligt erover. Omdat er geen `top` of `left` staat, verschijnt het net onder de knop.
 <5> Een schaduw, zodat het menu boven de pagina lijkt te zweven.
 <6> Het menu ligt boven de andere tags van de pagina.
-<7> Gaat de muis over de `.dropdown` (de knop *of* het menu), dan wordt het menu zichtbaar. Dit is een combinatie van een pseudo-class en een afstammeling-selector.
+<7> Gaat de muis over de `.dropdown` (de knop *of* het menu), dan wordt het menu zichtbaar. Dit is een combinatie van de pseudo-class `:hover` en de spatie-combinator (_descendant_) uit <<_combinaties,Combinaties>>: `.dropdown-inhoud` staat ergens *in* de `.dropdown`.
 
 image::images/css/dropdown.svg["Zonder muis is alleen de knop Vakken zichtbaar; met de muis erover verschijnt het menu en ligt het over de tekst"]
 
