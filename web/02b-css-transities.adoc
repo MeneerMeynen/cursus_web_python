@@ -1,0 +1,423 @@
+:experimental:
+:icons: font
+:source-highlighter: rouge
+:toc: left
+:toclevels: 5
+:sectnums:
+
+= CSS-transities
+
+In het vorige hoofdstuk maakte je een navigatiebalk waarvan de links van kleur veranderen als je er met de muis over gaat, en een dropdown-menu dat verschijnt.
+Die veranderingen gebeuren *in één klap*: de ene kleur springt meteen naar de andere.
+
+Met een ##transitie## laat je zo'n verandering *geleidelijk* gebeuren, over een tijd die je zelf kiest. De kleur vloeit dan rustig over naar de nieuwe kleur, een knop groeit langzaam, een menu schuift zachtjes open.
+
+----
+  zonder transitie                    met transitie (0.5s)
+
+  grijs ──────────► zwart             grijs ─► donkergrijs ─► zwart
+        in één klap                         geleidelijk, in een halve seconde
+----
+
+In dit hoofdstuk leer je:
+
+* wat een transitie is en wanneer ze start;
+* hoe lang een transitie duurt (`transition-duration`);
+* welke eigenschappen je laat veranderen (`transition-property`);
+* hoe de snelheid verloopt (`transition-timing-function`);
+* hoe je een transitie later laat starten (`transition-delay`);
+* tags verplaatsen, vergroten en draaien met `transform`;
+* transities toepassen op je navigatiebalk en dropdown-menu.
+
+Meer uitleg en voorbeelden: https://www.w3schools.com/css/css3_transitions.asp[CSS-transities op w3schools^]
+
+== Je eerste transitie
+
+Een transitie heeft altijd twee dingen nodig:
+
+. de *eigenschap* die moet veranderen, bijvoorbeeld `width` of `background-color`;
+. de *duur* van de verandering, in seconden (`s`) of milliseconden (`ms`).
+
+[source,html]
+----
+<div class="vak">Ga met je muis over mij</div>
+----
+
+[source,css]
+----
+.vak {
+  width: 100px;
+  height: 100px;
+  background-color: tomato;
+  transition: width 2s; <1>
+}
+
+.vak:hover {
+  width: 300px; <2>
+}
+----
+<1> Als `width` verandert, gebeurt dat geleidelijk, over 2 seconden.
+<2> Gaat de muis over het vak, dan wordt het 300px breed.
+
+Gaat de muis over het vak, dan groeit het in twee seconden van 100px naar 300px. Haal je de muis weg, dan krimpt het in twee seconden terug.
+
+IMPORTANT: Zet de `transition` op de *gewone* selector (`.vak`), niet op `.vak:hover`. Zo werkt de transitie in de twee richtingen: bij het erover gaan én bij het weggaan. Staat ze alleen bij `:hover`, dan springt het vak bij het weggaan in één klap terug.
+
+Een transitie *start* altijd wanneer een eigenschap een andere waarde krijgt. Meestal gebeurt dat met een pseudo-class zoals `:hover` of `:focus`. Later, met JavaScript, kan je ook een class toevoegen of weghalen.
+
+TIP: Vergeet je de duur, dan is die `0s` en zie je dus geen transitie.
+
+Voorbeeld: https://www.w3schools.com/css/tryit.asp?filename=trycss3_transition1[een eerste transitie uitproberen op w3schools^]
+
+== Meerdere eigenschappen tegelijk
+
+Wil je meer dan één eigenschap geleidelijk laten veranderen? Zet ze dan na elkaar, gescheiden door een *komma*. Elke eigenschap kan een eigen duur krijgen.
+
+[source,css]
+----
+.vak {
+  width: 100px;
+  height: 100px;
+  background-color: tomato;
+  transition: width 2s, height 4s, background-color 1s;
+}
+
+.vak:hover {
+  width: 300px;
+  height: 300px;
+  background-color: royalblue;
+}
+----
+
+Hier wordt het vak in 2 seconden breder, in 4 seconden hoger en in 1 seconde blauw.
+
+Wil je *alle* eigenschappen die veranderen dezelfde transitie geven? Gebruik dan `all`:
+
+[source,css]
+----
+.vak {
+  transition: all 0.5s;
+}
+----
+
+TIP: `all` is handig, maar soms laat het dingen bewegen die je niet verwacht. Schrijf je de eigenschappen zelf uit, dan houd je beter de controle.
+
+Niet elke eigenschap kan geleidelijk veranderen. Alles met een *getal* (`width`, `height`, `margin`, `padding`, `top`, `left`, `font-size`, `opacity`, ...) of een *kleur* (`color`, `background-color`, `border-color`, ...) kan dat wel. Een eigenschap zoals `display` (van `none` naar `block`) of `font-family` kan dat niet: daar bestaat geen tussenstap, dus die springt meteen.
+
+== Het verloop van de snelheid: transition-timing-function
+
+Een transitie hoeft niet aan één gelijke snelheid te gebeuren. Met `transition-timing-function` kies je hoe de snelheid verloopt:
+
+|===
+| Waarde | Verloop
+
+| `ease` (standaard) | traag beginnen, dan snel, dan traag eindigen
+| `linear` | van begin tot einde dezelfde snelheid
+| `ease-in` | traag beginnen, snel eindigen
+| `ease-out` | snel beginnen, traag eindigen
+| `ease-in-out` | traag beginnen en traag eindigen
+| `cubic-bezier(n,n,n,n)` | een eigen verloop, met vier getallen tussen 0 en 1
+|===
+
+----
+afgelegde weg
+  ^                                 ^                                 ^
+  |               ....              |                 .               |        ......
+  |           ..                    |              .                  |     .
+  |         .                       |           .                     |   .
+  |       .                         |        .                        |  .
+  |  ....                           |     .                           | .
+  +-----------------> tijd          +-----------------> tijd          +-----------------> tijd
+        ease-in-out                         linear                         ease-out
+----
+
+[source,css]
+----
+#vak1 { transition: width 2s; transition-timing-function: linear; }
+#vak2 { transition: width 2s; transition-timing-function: ease; }
+#vak3 { transition: width 2s; transition-timing-function: ease-in; }
+#vak4 { transition: width 2s; transition-timing-function: ease-out; }
+#vak5 { transition: width 2s; transition-timing-function: ease-in-out; }
+----
+
+Zet je vijf zulke vakken onder elkaar en ga je er met de muis over, dan zie je goed het verschil: ze vertrekken en komen allemaal tegelijk aan, maar onderweg gaan ze anders.
+
+TIP: Voor de meeste effecten op een website (knoppen, menu's) voelen `ease` en `ease-out` het meest natuurlijk aan. Met `linear` lijkt een beweging al snel mechanisch.
+
+Voorbeeld: https://www.w3schools.com/css/tryit.asp?filename=trycss3_transition_speed[de verschillende snelheden vergelijken op w3schools^]
+
+== Later starten: transition-delay
+
+Met `transition-delay` wacht de browser eerst een tijdje voor de transitie begint.
+
+[source,css]
+----
+.vak {
+  width: 100px;
+  transition: width 3s;
+  transition-delay: 1s;   /* wacht 1 seconde, en groei dan in 3 seconden */
+}
+
+.vak:hover {
+  width: 300px;
+}
+----
+
+Een vertraging is handig bij een dropdown-menu: zo klapt het niet meteen dicht als je muis per ongeluk even naast het menu komt (zie verder).
+
+Voorbeeld: https://www.w3schools.com/css/tryit.asp?filename=trycss3_transition_delay[`transition-delay` uitproberen op w3schools^]
+
+== De vier eigenschappen samengevat
+
+Een transitie bestaat uit vier eigenschappen:
+
+|===
+| Eigenschap | Betekenis | Standaardwaarde
+
+| `transition-property` | welke eigenschap(pen) geleidelijk veranderen | `all`
+| `transition-duration` | hoe lang de verandering duurt | `0s`
+| `transition-timing-function` | hoe de snelheid verloopt | `ease`
+| `transition-delay` | hoe lang de browser wacht voor hij begint | `0s`
+|===
+
+Je kan ze apart schrijven:
+
+[source,css]
+----
+.vak {
+  transition-property: width;
+  transition-duration: 2s;
+  transition-timing-function: linear;
+  transition-delay: 1s;
+}
+----
+
+Maar meestal schrijf je ze samen in één regel met de verkorte eigenschap `transition`, in deze volgorde:
+
+[source,css]
+----
+.vak {
+  transition: width 2s linear 1s;
+  /*          |     |  |      |
+              |     |  |      +-- delay
+              |     |  +--------- timing-function
+              |     +------------ duration
+              +------------------ property          */
+}
+----
+
+Je moet niet alles invullen: wat je weglaat, krijgt de standaardwaarde. `transition: width 2s;` is dus hetzelfde als `transition: width 2s ease 0s;`.
+
+NOTE: Staan er twee tijden in de regel, dan is de *eerste* altijd de duur en de *tweede* de vertraging.
+
+== Transitie en transform
+
+Een transitie wordt pas echt leuk in combinatie met `transform`. Met `transform` kan je een tag *verplaatsen*, *vergroten* of *draaien*, zonder dat de andere tags opschuiven: net zoals bij `position: relative` blijft de oorspronkelijke plaats bezet.
+
+|===
+| Functie | Wat doet ze? | Voorbeeld
+
+| `translate(x, y)` | verplaatsen of verschuift van de tag | `transform: translate(20px, -10px);`
+| `scale(n)` | vergroot of verkleint de tag (`1` = normaal, `1.5` = anderhalf keer zo groot) | `transform: scale(1.1);`
+| `rotate(hoek)` | draait de tag, in graden (`deg`) | `transform: rotate(45deg);`
+|===
+
+Je kan ze ook combineren, gescheiden door een spatie: `transform: scale(1.2) rotate(10deg);`.
+
+`translate` ken je al uit het vorige hoofdstuk: daar gebruikte je `transform: translate(-50%, -50%)` om een tag te centreren.
+
+[source,css]
+----
+.vak {
+  width: 100px;
+  height: 100px;
+  background-color: tomato;
+  transition: width 2s, height 2s, transform 2s;
+}
+
+.vak:hover {
+  width: 300px;
+  height: 300px;
+  transform: rotate(180deg);   /* draait een halve toer terwijl hij groeit */
+}
+----
+
+Een bekend effect is een knop die een klein beetje groeit en omhoog komt als je erover gaat:
+
+[source,css]
+----
+.knop {
+  background-color: #04aa6d;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.knop:hover {
+  transform: translateY(-3px) scale(1.05);       /* 3px omhoog en iets groter */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);   /* schaduw: de knop lijkt te zweven */
+}
+----
+
+TIP: Wil je iets laten bewegen, gebruik dan liever `transform` dan `width`, `top` of `margin`. Bij `transform` moet de browser de rest van de pagina niet opnieuw schikken, waardoor de beweging vlotter verloopt.
+
+Voorbeeld: https://www.w3schools.com/css/tryit.asp?filename=trycss3_transition_transform[transitie met transform uitproberen op w3schools^]
+
+== Transities in je navigatiebalk
+
+Nu kan je de navigatiebalk uit het vorige hoofdstuk afwerken. We vertrekken van de horizontale navigatiebalk:
+
+[source,html]
+----
+<nav>
+  <ul>
+    <li><a class="actief" href="index.html">Home</a></li>
+    <li><a href="nieuws.html">Nieuws</a></li>
+    <li class="dropdown">
+      <a href="#" class="dropknop">Vakken</a>
+      <div class="dropdown-inhoud">
+        <a href="wiskunde.html">Wiskunde</a>
+        <a href="informatica.html">Informatica</a>
+        <a href="frans.html">Frans</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+----
+
+=== Een zachte hoverkleur
+
+De eenvoudigste verbetering: laat de achtergrondkleur van de links geleidelijk veranderen.
+
+[source,css]
+----
+nav li a {
+  display: inline-block;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s; <1>
+}
+
+nav li a:hover {
+  background-color: #111;
+}
+----
+<1> Eén regel extra, en de kleur vloeit voortaan in 0,3 seconden over.
+
+TIP: Houd transities in een menu kort: tussen `0.2s` en `0.4s`. Duurt het langer, dan lijkt je website traag.
+
+=== Een streep die onder de link groeit
+
+Een mooi effect is een streep die onder de link verschijnt en van links naar rechts groeit. Daarvoor gebruik je `::after`: daarmee voeg je met CSS een extra (lege) tag toe *in* de link, na de tekst.
+
+[source,css]
+----
+nav li a {
+  position: relative; <1>
+}
+
+nav li a::after {
+  content: ""; <2>
+  position: absolute; <3>
+  left: 0;
+  bottom: 0;
+  width: 0; <4>
+  height: 3px;
+  background-color: #04aa6d;
+  transition: width 0.3s ease-out;
+}
+
+nav li a:hover::after {
+  width: 100%; <5>
+}
+----
+<1> De link wordt het referentiepunt voor de streep.
+<2> Zonder `content` toont de browser `::after` niet. Hier is de inhoud leeg: we willen alleen een gekleurd vak.
+<3> De streep wordt uit de flow gehaald en onderaan in de link gezet.
+<4> In het begin is de streep 0px breed, dus onzichtbaar.
+<5> Gaat de muis over de link, dan groeit de streep tot de volledige breedte van de link.
+
+----
+ muis niet erover        net erover            even later
+ +----------+            +----------+          +----------+
+ |  Nieuws  |            |  Nieuws  |          |  Nieuws  |
+ +----------+            |===       |          |==========|
+                         +----------+          +----------+
+----
+
+=== Een dropdown die zacht verschijnt
+
+In het vorige hoofdstuk maakte je het menu zichtbaar met `display: none` en `display: block`. Maar `display` kan geen transitie krijgen: het menu springt dus altijd in één keer open.
+
+De oplossing: laat het menu altijd `display: block` en verberg het op een andere manier, met eigenschappen die *wel* geleidelijk kunnen veranderen:
+
+* `opacity`: de doorzichtigheid, van `0` (volledig doorzichtig) tot `1` (volledig zichtbaar);
+* `visibility`: `hidden` of `visible`. Een tag met `visibility: hidden` is onzichtbaar *en* je kan er niet op klikken. Bij `opacity: 0` alleen zou je nog op de onzichtbare links kunnen klikken.
+
+[source,css]
+----
+.dropdown-inhoud {
+  display: block;                   /* niet meer none */
+  position: absolute;
+  min-width: 160px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+
+  opacity: 0; <1>
+  visibility: hidden;
+  transform: translateY(-10px); <2>
+  transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+}
+
+.dropdown:hover .dropdown-inhoud {
+  opacity: 1; <3>
+  visibility: visible;
+  transform: translateY(0);
+}
+----
+<1> In het begin is het menu doorzichtig en onzichtbaar.
+<2> Het menu staat ook 10px te hoog.
+<3> Gaat de muis over de `.dropdown`, dan wordt het menu zichtbaar en schuift het naar zijn plaats: het lijkt zachtjes naar beneden te glijden.
+
+TIP: Wil je dat het menu niet meteen dichtklapt als je muis even van het menu glijdt? Geef het dichtklappen dan een kleine vertraging. Zet `transition-delay: 0.2s;` bij `.dropdown-inhoud` en `transition-delay: 0s;` bij `.dropdown:hover .dropdown-inhoud`. Zo opent het menu meteen, maar sluit het pas na 0,2 seconden.
+
+== Rekening houden met de bezoeker
+
+Sommige mensen worden misselijk of duizelig van bewegingen op een scherm. Zij kunnen in de instellingen van hun computer of smartphone aangeven dat ze *minder beweging* willen. Met een media query kan je daar rekening mee houden:
+
+[source,css]
+----
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;   /* alle transities uitschakelen */
+  }
+}
+----
+
+Gebruik transities altijd om je website *duidelijker* te maken (de bezoeker ziet wat er verandert), niet om zoveel mogelijk te laten bewegen.
+
+== Samengevat
+
+* Een transitie laat een verandering van een eigenschap *geleidelijk* gebeuren.
+* Je zet de `transition` op de gewone selector, en laat de eigenschap veranderen met bijvoorbeeld `:hover`.
+* Je hebt minstens een *eigenschap* en een *duur* nodig: `transition: background-color 0.3s;`.
+* Meerdere eigenschappen scheid je met een komma, of je gebruikt `all`.
+* Met `transition-timing-function` kies je het verloop van de snelheid, met `transition-delay` een vertraging.
+* Alleen eigenschappen met een getal of een kleur kunnen geleidelijk veranderen. `display` niet: gebruik daarvoor `opacity` en `visibility`.
+* Met `transform` (`translate`, `scale`, `rotate`) maak je vlotte bewegingen.
+
+|===
+| Wat wil je? | CSS
+
+| Een kleur zacht laten veranderen | `transition: background-color 0.3s;`
+| Een knop laten groeien | `transition: transform 0.2s;` en bij `:hover`: `transform: scale(1.1);`
+| Een menu zacht laten verschijnen | `opacity` en `visibility` met een transitie, in plaats van `display`
+| Alles laten veranderen met dezelfde snelheid | `transition: all 0.5s;`
+| Een transitie later laten starten | `transition-delay: 1s;`
+|===
+
+Wil je meer weten? Op w3schools vind je ook het volgende onderwerp: https://www.w3schools.com/css/css3_animations.asp[CSS-animaties^]. Daarmee laat je iets bewegen zonder dat de bezoeker iets moet doen, en met meer dan twee stappen.

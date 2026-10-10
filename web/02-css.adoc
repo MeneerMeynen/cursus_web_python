@@ -319,17 +319,7 @@ Hij leest de HTML van boven naar onder en zet alle tags volgens deze twee regels
 * blok-tags (`div`, `p`, `h1`, ...) komen *onder* elkaar en nemen de volledige breedte;
 * inline tags (`span`, `a`, `strong`, ...) komen *naast* elkaar, in de lopende tekst.
 
-----
-+----------------------------------------------+  <- bovenkant van de pagina
-| h1                                           |
-+----------------------------------------------+
-| p  tekst tekst <a>link</a> tekst tekst       |
-+----------------------------------------------+
-| div                                          |
-+----------------------------------------------+
-| p                                            |
-+----------------------------------------------+
-----
+image::images/css/position-flow.svg["De normale flow: blok-tags onder elkaar, inline tags naast elkaar.",width=780]
 
 Elke tag *neemt plaats in*: de volgende tag begint pas waar de vorige eindigt.
 Is de inhoud langer dan het venster, dan kan je scrollen, en schuift alles in de flow mee.
@@ -339,21 +329,7 @@ Is de inhoud langer dan het venster, dan kan je scrollen, en schuift alles in de
 Als je een tag verplaatst, gebruik je vier eigenschappen: `top`, `right`, `bottom` en `left`.
 Elke eigenschap is een *afstand tussen een rand van het referentiepunt en dezelfde rand van de tag*.
 
-----
-       referentiepunt
-+-------------------------------------+
-|           ^                         |
-|           | top: 30px               |
-|           v                         |
-|<--------->+----------+              |
-| left:     |   tag    |              |
-|  60px     |          |<------------>|
-|           +----------+  right       |
-|                ^                    |
-|                | bottom             |
-|                v                    |
-+-------------------------------------+
-----
+image::images/css/coordinatensysteem.svg["top, right, bottom en left zijn afstanden tussen een rand van het referentiepunt en dezelfde rand van de tag"]
 
 * `top: 30px`: de bovenkant van de tag staat 30px *onder* de bovenkant van het referentiepunt.
 * `left: 60px`: de linkerkant van de tag staat 60px van het referentiepunt.
@@ -392,16 +368,7 @@ Je hoeft het dus nooit te schrijven. Een tag met `static` staat gewoon in de *no
 * elke tag *neemt plaats in*: tags overlappen elkaar nooit, de volgende tag begint pas waar de vorige eindigt;
 * de tag scrolt mee met de rest van de pagina.
 
-----
-<h1>Titel</h1>                    +----------------------------------+
-<p>Tekst met <a>link</a>.</p>     | Titel                            |
-<div>Een vak</div>          -->   +----------------------------------+
-<span>A</span><span>B</span>      | Tekst met link.                  |
-                                  +----------------------------------+
-                                  | Een vak                          |
-                                  +----------------------------------+
-                                  AB
-----
+image::images/css/static-flow.svg["De HTML-code links wordt in de browser getoond als blokken onder elkaar; de twee span-tags staan naast elkaar"]
 
 De afstand tussen tags regel je bij `static` dus niet met `top` of `left` (die worden genegeerd), maar met `margin` en `padding`.
 
@@ -425,16 +392,7 @@ Voorbeeld: https://www.w3schools.com/css/tryit.asp?filename=trycss_position_stat
 De tag wordt eerst normaal in de flow geplaatst. Daarna wordt hij verschoven, vertrekkend van die plaats.
 De andere tags merken daar niets van: zijn *oorspronkelijke plaats blijft bezet*, alsof er een onzichtbare kopie achterblijft.
 
-----
-  zonder position              met position: relative;
-                                   top: 20px; left: 40px;
-
-+--------------+               +..............+
-| div          |               :              :   <- lege plek: blijft bezet
-+--------------+               +.....+--------------+
-| p            |               | p   | div          |   <- de div ligt over de p
-+--------------+               +-----+--------------+
-----
+image::images/css/position-relative.svg["Zonder position en met position: relative; top: 20px; left: 40px. De div schuift op, zijn oorspronkelijke plaats blijft bezet en hij ligt nu over de p.",width=780]
 
 [source,css]
 ----
@@ -458,16 +416,7 @@ Daarna wordt hij geplaatst ten opzichte van zijn referentiepunt. De browser zoek
 . Zo niet, kijk naar de tag daarboven, enzovoort.
 . Vind je er geen, dan is de *pagina* het referentiepunt.
 
-----
-  <div class="kaart">  (position: relative)
-+-----------------------------------+
-|                        +-------+  |
-|                        | label |  |  <- position: absolute;
-|                        +-------+  |     top: 10px; right: 10px;
-|  tekst van het kaartje            |
-|                                   |
-+-----------------------------------+
-----
+image::images/css/absolute-kaart.svg["Een label met position: absolute; top: 10px; right: 10px; staat rechtsboven in het kaartje met position: relative"]
 
 [source,css]
 ----
@@ -532,18 +481,7 @@ Voorbeeld: https://www.w3schools.com/css/tryit.asp?filename=trycss_position_stic
 
 Met wat je nu weet, kan je een tag precies in het midden van zijn referentiepunt zetten. Dat gaat in twee stappen:
 
-----
- stap 1: top: 50%; left: 50%;         stap 2: transform: translate(-50%, -50%);
-+---------------------------+         +---------------------------+
-|                           |         |                           |
-|                           |         |        +---------+        |
-|             +---------+   |         |        |   tag   |        |
-|             |   tag   |   |         |        +---------+        |
-|             +---------+   |         |                           |
-+---------------------------+         +---------------------------+
-   de linkerbovenhoek staat               het midden van de tag staat
-   in het midden                          in het midden
-----
+image::images/css/centreren.svg["Stap 1: de linkerbovenhoek van de tag staat in het midden. Stap 2: met translate(-50%, -50%) staat het midden van de tag in het midden"]
 
 [source,css]
 ----
@@ -669,14 +607,7 @@ nav li a.actief { <4>
 <3> Als de muis over een link gaat, verandert de kleur. Met `:not(.actief)` sluit je de actieve link uit.
 <4> De class `actief` geef je aan de link van de pagina waar je nu bent. Zo ziet de bezoeker waar hij zich bevindt.
 
-----
-+------------------+
-|  Home            |   <- actief: groen
-|  Nieuws          |
-|  Contact         |   <- muis erover: donkergrijs
-|  Over ons        |
-+------------------+
-----
+image::images/css/nav-verticaal.svg["Verticale navigatiebalk: de actieve link is groen, de link onder de muis donkergrijs"]
 
 Wil je dat de zijbalk de *volledige hoogte* van het venster inneemt en blijft staan als je scrolt? Combineer dan met wat je over `position` geleerd hebt:
 
@@ -752,12 +683,7 @@ nav li a.actief {
 <2> De `li`-tags komen naast elkaar.
 <3> Zoals bij de verticale balk: het hele vak wordt klikbaar en krijgt `padding`.
 
-----
-+--------------------------------------------------------+
-| Home | Nieuws | Contact | Over ons                     |
-+--------------------------------------------------------+
-  ^ actief: groen
-----
+image::images/css/nav-horizontaal.svg["Horizontale navigatiebalk met de links naast elkaar; de actieve link Home is groen"]
 
 TIP: Wil je één link (bijvoorbeeld "Aanmelden") helemaal rechts? Geef die `li` dan `float: right`.
 
@@ -833,16 +759,7 @@ Je hebt er niets nieuws voor nodig: het is een combinatie van `position`, `displ
 <6> Het menu ligt boven de andere tags van de pagina.
 <7> Gaat de muis over de `.dropdown` (de knop *of* het menu), dan wordt het menu zichtbaar. Dit is een combinatie van een pseudo-class en een afstammeling-selector.
 
-----
- muis niet erover           muis erover
-+--------+                 +--------+
-| Vakken |                 | Vakken |
-+--------+                 +--------+---+
-tekst van de pagina        | Wiskunde    |
-                           | Informatica |  <- ligt over de tekst
-                           | Frans       |
-                           +-------------+
-----
+image::images/css/dropdown.svg["Zonder muis is alleen de knop Vakken zichtbaar; met de muis erover verschijnt het menu en ligt het over de tekst"]
 
 TIP: Wil je het menu rechts uitlijnen onder de knop (handig voor een knop helemaal rechts op de pagina)? Geef `.dropdown-inhoud` dan `right: 0;`.
 
@@ -929,12 +846,7 @@ Die veranderingen gebeuren *in één klap*: de ene kleur springt meteen naar de 
 
 Met een ##transitie## laat je zo'n verandering *geleidelijk* gebeuren, over een tijd die je zelf kiest. De kleur vloeit dan rustig over naar de nieuwe kleur, een knop groeit langzaam, een menu schuift zachtjes open.
 
-----
-  zonder transitie                    met transitie (0.5s)
-
-  grijs ──────────► zwart             grijs ─► donkergrijs ─► zwart
-        in één klap                         geleidelijk, in een halve seconde
-----
+image::images/css/transitie-intro.svg["Zonder transitie springt de kleur in één klap van grijs naar zwart; met transitie verloopt ze geleidelijk in een halve seconde"]
 
 In dit deel leer je:
 
@@ -1036,17 +948,7 @@ Een transitie hoeft niet aan één gelijke snelheid te gebeuren. Met `transition
 | `cubic-bezier(n,n,n,n)` | een eigen verloop, met vier getallen tussen 0 en 1
 |===
 
-----
-afgelegde weg
-  ^                                 ^                                 ^
-  |               ....              |                 .               |        ......
-  |           ..                    |              .                  |     .
-  |         .                       |           .                     |   .
-  |       .                         |        .                        |  .
-  |  ....                           |     .                           | .
-  +-----------------> tijd          +-----------------> tijd          +-----------------> tijd
-        ease-in-out                         linear                         ease-out
-----
+image::images/css/timing-functions.svg["Het verloop van de snelheid bij linear, ease, ease-in, ease-out en ease-in-out"]
 
 [source,css]
 ----
@@ -1257,13 +1159,7 @@ nav li a:hover::after {
 <4> In het begin is de streep 0px breed, dus onzichtbaar.
 <5> Gaat de muis over de link, dan groeit de streep tot de volledige breedte van de link.
 
-----
- muis niet erover        net erover            even later
- +----------+            +----------+          +----------+
- |  Nieuws  |            |  Nieuws  |          |  Nieuws  |
- +----------+            |===       |          |==========|
-                         +----------+          +----------+
-----
+image::images/css/streep-onder-link.svg["Een groene streep onder de link groeit van 0 tot de volledige breedte"]
 
 ==== Een dropdown die zacht verschijnt
 

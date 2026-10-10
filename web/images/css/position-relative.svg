@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 270" width="780" height="270" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="pijl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9AA1AD"/>
+    </marker>
+  </defs>
+
+  <rect width="780" height="270" fill="#F5F7FA"/>
+
+  <!-- titels -->
+  <text x="30" y="30" font-size="14" font-weight="700" fill="#1F2A44">zonder position</text>
+  <text x="30" y="48" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" font-size="13" fill="#5B6270">position: static; (standaard)</text>
+  <text x="330" y="30" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" font-size="14" font-weight="700" fill="#1F2A44">position: relative;</text>
+  <text x="330" y="48" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" font-size="13" fill="#5B6270">top: 20px; left: 40px;</text>
+
+  <!-- links: zonder position -->
+  <rect x="30" y="64" width="220" height="136" rx="6" fill="#FFFFFF" stroke="#1F2A44" stroke-width="1.5"/>
+  <g stroke="#3F7A88" stroke-width="1.5" fill="#8CB6C0">
+    <rect x="42" y="76"  width="196" height="52" rx="4"/>
+    <rect x="42" y="136" width="196" height="52" rx="4"/>
+  </g>
+
+  <!-- rechts: met position: relative -->
+  <rect x="330" y="64" width="220" height="136" rx="6" fill="#FFFFFF" stroke="#1F2A44" stroke-width="1.5"/>
+  <!-- oorspronkelijke plaats van de div: blijft bezet -->
+  <rect x="342" y="76" width="196" height="52" rx="4" fill="none" stroke="#3F7A88" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <rect x="342" y="136" width="196" height="52" rx="4" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <!-- verschoven div, ligt over de p -->
+  <rect x="382" y="116" width="196" height="52" rx="4" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <line x1="347" y1="81" x2="378" y2="112" stroke="#9AA1AD" stroke-width="1.5" marker-end="url(#pijl)"/>
+
+  <g font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" font-size="14" font-weight="700" fill="#1F2A44">
+    <text x="56" y="107">div</text>
+    <text x="56" y="167">p</text>
+    <text x="356" y="167">p</text>
+    <text x="396" y="147">div</text>
+  </g>
+
+  <!-- annotaties -->
+  <g font-size="13" fill="#5B6270">
+    <line x1="600" y1="88" x2="546" y2="88" stroke="#9AA1AD" stroke-width="1.5" marker-end="url(#pijl)"/>
+    <text x="606" y="84">lege plek:</text>
+    <text x="606" y="100">blijft bezet</text>
+    <line x1="600" y1="150" x2="586" y2="150" stroke="#9AA1AD" stroke-width="1.5" marker-end="url(#pijl)"/>
+    <text x="606" y="146">de div ligt</text>
+    <text x="606" y="162">over de p</text>
+  </g>
+
+  <!-- legende -->
+  <g font-size="13" fill="#5B6270">
+    <rect x="30" y="228" width="16" height="16" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+    <text x="54" y="241">blok-element</text>
+    <rect x="166" y="228" width="16" height="16" rx="3" fill="none" stroke="#3F7A88" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="190" y="241">oorspronkelijke plaats</text>
+  </g>
+</svg>

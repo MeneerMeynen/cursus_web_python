@@ -53,23 +53,23 @@ In het spel maken we gebruik van enkele afbeeldingen:
 
 * Het ruimteschip
 +
-image::Char.png[200,150]
+image::images/spaceinvaders/Char.png[200,150]
 +
 * De vijand
 +
-image::Enemy.png[200,150]
+image::images/spaceinvaders/Enemy.png[200,150]
 +
 * Een laserstraal
 +
-image::Shot.png[200,150]
+image::images/spaceinvaders/Shot.png[200,150]
 +
 * Een explosie
 +
-image::explosion-gif.gif[200,150]
+image::images/spaceinvaders/explosion-gif.gif[200,150]
 +
 * Een achtergrond (sterren)
 +
-image::stars.jpg[Stars,200,150]
+image::images/spaceinvaders/stars.jpg[Stars,200,150]
 
 == De achergrond toepassen
 
@@ -259,4 +259,4 @@ function removeimg(img){
 
 Het resultaat bij het drukken op de spatieknop:
 
-image::schieten.png[400,400]
+image::images/spaceinvaders/schieten.png[400,400]

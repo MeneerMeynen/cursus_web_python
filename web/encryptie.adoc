@@ -79,14 +79,14 @@ Deze sleutel wordt dan ook de ##publieke sleutel## genoemd. De decryptiesleutel 
 Die heet daarom ook de geheime sleutel of ##_private key_##. 
 Als iemand een boodschap met je publieke sleutel versleutelt, kan alleen jij met de bijbehorende geheime sleutel (_private key_) de boodschap decrypteren.
 
-image::encrypt1.jpg[Public private key encryptie]
+image::images/encryptie/encrypt1.jpg[Public private key encryptie]
 
 ##Bob versleutelt zijn boodschap met de publieke sleutel van Alice.## 
 Alleen Alice kan de boodschap lezen, met haar geheime sleutel – bron: Wikipedia, David Göthberg
 
 Een bijkomend voorbeeld:
 
-image::encrypt3.png[Public private key encryption]
+image::images/encryptie/encrypt3.png[Public private key encryption]
 
 == Digitale handtekening
 
@@ -113,7 +113,7 @@ Als je de hashwaarde van twee boodschappen vergelijkt en die identiek zijn, ben 
 Een digitale handtekening maak je in de praktijk dan ook door een hashwaarde van je boodschap te berekenen, die hashwaarde te versleutelen met je geheime sleutel en het resultaat (een kort getal) mee te sturen met je boodschap. 
 De ontvanger hoeft je digitale handtekening maar te ontsleutelen met je publieke sleutel en de resulterende hashwaarde te vergelijken met de hashwaarde van je boodschap, die hij eenvoudig kan berekenen.
 
-image::encrypt2.jpg[Public private key signing]
+image::images/encryptie/encrypt2.jpg[Public private key signing]
 
 Alice versleutelt de hashwaarde van haar boodschap met haar geheime sleutel. Bob kan met de publieke sleutel van Alice verifiëren of de boodschap van haar komt.
 

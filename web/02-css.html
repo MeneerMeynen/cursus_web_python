@@ -1231,17 +1231,9 @@ Hij leest de HTML van boven naar onder en zet alle tags volgens deze twee regels
 </li>
 </ul>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>+----------------------------------------------+  &lt;- bovenkant van de pagina
-| h1                                           |
-+----------------------------------------------+
-| p  tekst tekst &lt;a&gt;link&lt;/a&gt; tekst tekst       |
-+----------------------------------------------+
-| div                                          |
-+----------------------------------------------+
-| p                                            |
-+----------------------------------------------+</pre>
+<img src="images/css/position-flow.svg" alt="De normale flow: blok-tags onder elkaar, inline tags naast elkaar." width="780">
 </div>
 </div>
 <div class="paragraph">
@@ -1255,21 +1247,9 @@ Is de inhoud langer dan het venster, dan kan je scrollen, en schuift alles in de
 <p>Als je een tag verplaatst, gebruik je vier eigenschappen: <code>top</code>, <code>right</code>, <code>bottom</code> en <code>left</code>.
 Elke eigenschap is een <strong>afstand tussen een rand van het referentiepunt en dezelfde rand van de tag</strong>.</p>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>       referentiepunt
-+-------------------------------------+
-|           ^                         |
-|           | top: 30px               |
-|           v                         |
-|&lt;---------&gt;+----------+              |
-| left:     |   tag    |              |
-|  60px     |          |&lt;------------&gt;|
-|           +----------+  right       |
-|                ^                    |
-|                | bottom             |
-|                v                    |
-+-------------------------------------+</pre>
+<img src="images/css/coordinatensysteem.svg" alt="top, right, bottom en left zijn afstanden tussen een rand van het referentiepunt en dezelfde rand van de tag">
 </div>
 </div>
 <div class="ulist">
@@ -1388,16 +1368,9 @@ Je hoeft het dus nooit te schrijven. Een tag met <code>static</code> staat gewoo
 </li>
 </ul>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>&lt;h1&gt;Titel&lt;/h1&gt;                    +----------------------------------+
-&lt;p&gt;Tekst met &lt;a&gt;link&lt;/a&gt;.&lt;/p&gt;     | Titel                            |
-&lt;div&gt;Een vak&lt;/div&gt;          --&gt;   +----------------------------------+
-&lt;span&gt;A&lt;/span&gt;&lt;span&gt;B&lt;/span&gt;      | Tekst met link.                  |
-                                  +----------------------------------+
-                                  | Een vak                          |
-                                  +----------------------------------+
-                                  AB</pre>
+<img src="images/css/static-flow.svg" alt="De HTML-code links wordt in de browser getoond als blokken onder elkaar; de twee span-tags staan naast elkaar">
 </div>
 </div>
 <div class="paragraph">
@@ -1437,16 +1410,9 @@ Probeer een opmaak eerst op te lossen met de normale flow (met <code>margin</cod
 <p>De tag wordt eerst normaal in de flow geplaatst. Daarna wordt hij verschoven, vertrekkend van die plaats.
 De andere tags merken daar niets van: zijn <strong>oorspronkelijke plaats blijft bezet</strong>, alsof er een onzichtbare kopie achterblijft.</p>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>  zonder position              met position: relative;
-                                   top: 20px; left: 40px;
-
-+--------------+               +..............+
-| div          |               :              :   &lt;- lege plek: blijft bezet
-+--------------+               +.....+--------------+
-| p            |               | p   | div          |   &lt;- de div ligt over de p
-+--------------+               +-----+--------------+</pre>
+<img src="images/css/position-relative.svg" alt="Zonder position en met position: relative; top: 20px; left: 40px. De div schuift op, zijn oorspronkelijke plaats blijft bezet en hij ligt nu over de p." width="780">
 </div>
 </div>
 <div class="listingblock">
@@ -1484,16 +1450,9 @@ Daarna wordt hij geplaatst ten opzichte van zijn referentiepunt. De browser zoek
 </li>
 </ol>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>  &lt;div class="kaart"&gt;  (position: relative)
-+-----------------------------------+
-|                        +-------+  |
-|                        | label |  |  &lt;- position: absolute;
-|                        +-------+  |     top: 10px; right: 10px;
-|  tekst van het kaartje            |
-|                                   |
-+-----------------------------------+</pre>
+<img src="images/css/absolute-kaart.svg" alt="Een label met position: absolute; top: 10px; right: 10px; staat rechtsboven in het kaartje met position: relative">
 </div>
 </div>
 <div class="listingblock">
@@ -1571,18 +1530,9 @@ Zo maak je bijvoorbeeld een menu dat altijd zichtbaar blijft of een knop "Terug 
 <div class="paragraph">
 <p>Met wat je nu weet, kan je een tag precies in het midden van zijn referentiepunt zetten. Dat gaat in twee stappen:</p>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre> stap 1: top: 50%; left: 50%;         stap 2: transform: translate(-50%, -50%);
-+---------------------------+         +---------------------------+
-|                           |         |                           |
-|                           |         |        +---------+        |
-|             +---------+   |         |        |   tag   |        |
-|             |   tag   |   |         |        +---------+        |
-|             +---------+   |         |                           |
-+---------------------------+         +---------------------------+
-   de linkerbovenhoek staat               het midden van de tag staat
-   in het midden                          in het midden</pre>
+<img src="images/css/centreren.svg" alt="Stap 1: de linkerbovenhoek van de tag staat in het midden. Stap 2: met translate(-50%, -50%) staat het midden van de tag in het midden">
 </div>
 </div>
 <div class="listingblock">
@@ -1806,14 +1756,9 @@ De tag <code>nav</code> heeft zelf geen opmaak. Hij vertelt de browser (en bijvo
 </tr>
 </table>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>+------------------+
-|  Home            |   &lt;- actief: groen
-|  Nieuws          |
-|  Contact         |   &lt;- muis erover: donkergrijs
-|  Over ons        |
-+------------------+</pre>
+<img src="images/css/nav-verticaal.svg" alt="Verticale navigatiebalk: de actieve link is groen, de link onder de muis donkergrijs">
 </div>
 </div>
 <div class="paragraph">
@@ -1911,12 +1856,9 @@ De tag <code>nav</code> heeft zelf geen opmaak. Hij vertelt de browser (en bijvo
 </tr>
 </table>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>+--------------------------------------------------------+
-| Home | Nieuws | Contact | Over ons                     |
-+--------------------------------------------------------+
-  ^ actief: groen</pre>
+<img src="images/css/nav-horizontaal.svg" alt="Horizontale navigatiebalk met de links naast elkaar; de actieve link Home is groen">
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -2033,16 +1975,9 @@ Je hebt er niets nieuws voor nodig: het is een combinatie van <code>position</co
 </tr>
 </table>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre> muis niet erover           muis erover
-+--------+                 +--------+
-| Vakken |                 | Vakken |
-+--------+                 +--------+---+
-tekst van de pagina        | Wiskunde    |
-                           | Informatica |  &lt;- ligt over de tekst
-                           | Frans       |
-                           +-------------+</pre>
+<img src="images/css/dropdown.svg" alt="Zonder muis is alleen de knop Vakken zichtbaar; met de muis erover verschijnt het menu en ligt het over de tekst">
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -2169,12 +2104,9 @@ Die veranderingen gebeuren <strong>in één klap</strong>: de ene kleur springt 
 <div class="paragraph">
 <p>Met een <mark>transitie</mark> laat je zo&#8217;n verandering <strong>geleidelijk</strong> gebeuren, over een tijd die je zelf kiest. De kleur vloeit dan rustig over naar de nieuwe kleur, een knop groeit langzaam, een menu schuift zachtjes open.</p>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>  zonder transitie                    met transitie (0.5s)
-
-  grijs ──────────► zwart             grijs ─► donkergrijs ─► zwart
-        in één klap                         geleidelijk, in een halve seconde</pre>
+<img src="images/css/transitie-intro.svg" alt="Zonder transitie springt de kleur in één klap van grijs naar zwart; met transitie verloopt ze geleidelijk in een halve seconde">
 </div>
 </div>
 <div class="paragraph">
@@ -2381,17 +2313,9 @@ Vergeet je de duur, dan is die <code>0s</code> en zie je dus geen transitie.
 </tr>
 </tbody>
 </table>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>afgelegde weg
-  ^                                 ^                                 ^
-  |               ....              |                 .               |        ......
-  |           ..                    |              .                  |     .
-  |         .                       |           .                     |   .
-  |       .                         |        .                        |  .
-  |  ....                           |     .                           | .
-  +-----------------&gt; tijd          +-----------------&gt; tijd          +-----------------&gt; tijd
-        ease-in-out                         linear                         ease-out</pre>
+<img src="images/css/timing-functions.svg" alt="Het verloop van de snelheid bij linear, ease, ease-in, ease-out en ease-in-out">
 </div>
 </div>
 <div class="listingblock">
@@ -2741,13 +2665,9 @@ Houd transities in een menu kort: tussen <code>0.2s</code> en <code>0.4s</code>.
 </tr>
 </table>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre> muis niet erover        net erover            even later
- +----------+            +----------+          +----------+
- |  Nieuws  |            |  Nieuws  |          |  Nieuws  |
- +----------+            |===       |          |==========|
-                         +----------+          +----------+</pre>
+<img src="images/css/streep-onder-link.svg" alt="Een groene streep onder de link groeit van 0 tot de volledige breedte">
 </div>
 </div>
 </div>
