@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 360" width="700" height="360" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="pijl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9AA1AD"/>
+    </marker>
+    <marker id="pijlinkt" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1F2A44"/>
+    </marker>
+  </defs>
+  <rect width="700" height="360" fill="#F5F7FA"/>
+  <rect x="30" y="30" width="76" height="36" rx="6" fill="#FFFFFF" stroke="#1F2A44" stroke-width="1.5"/>
+  <text x="68.0" y="53" font-size="15" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" text-anchor="middle">@media</text>
+  <rect x="118" y="30" width="76" height="36" rx="6" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="156.0" y="53" font-size="15" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" text-anchor="middle">screen</text>
+  <rect x="206" y="30" width="49" height="36" rx="6" fill="#DDE1E7" stroke="#9AA1AD" stroke-width="1.5"/>
+  <text x="230.5" y="53" font-size="15" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" text-anchor="middle">and</text>
+  <rect x="267" y="30" width="184" height="36" rx="6" fill="#DCD0EE" stroke="#7A5BA8" stroke-width="1.5"/>
+  <text x="359.0" y="53" font-size="15" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" text-anchor="middle">(max-width: 600px)</text>
+  <rect x="463" y="30" width="31" height="36" rx="6" fill="#FFFFFF" stroke="#1F2A44" stroke-width="1.5"/>
+  <text x="478.5" y="53" font-size="15" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" text-anchor="middle">{</text>
+  <line x1="42" y1="66" x2="42" y2="172" stroke="#9AA1AD" stroke-width="1.5"/>
+  <text x="50" y="176" font-size="13" fill="#5B6270">zo begint elke media query</text>
+  <line x1="130" y1="66" x2="130" y2="146" stroke="#9AA1AD" stroke-width="1.5"/>
+  <text x="138" y="150" font-size="13" fill="#5B6270">media type: voor welk soort toestel?</text>
+  <line x1="218" y1="66" x2="218" y2="120" stroke="#9AA1AD" stroke-width="1.5"/>
+  <text x="226" y="124" font-size="13" fill="#5B6270">and: alles moet kloppen</text>
+  <line x1="279" y1="66" x2="279" y2="94" stroke="#9AA1AD" stroke-width="1.5"/>
+  <text x="287" y="98" font-size="13" fill="#5B6270">media feature: een eigenschap van het scherm, tussen haakjes</text>
+  <rect x="30" y="204" width="640" height="132" rx="6" fill="#FFFFFF" stroke="#1F2A44" stroke-width="1.5"/>
+  <rect x="31" y="238" width="638" height="66" rx="0" fill="#EAF2F4"/>
+  <text x="46.0" y="228" font-size="14" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace">@media screen and (max-width: 600px) {</text>
+  <text x="62.8" y="250" font-size="14" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace">body {</text>
+  <text x="79.6" y="272" font-size="14" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace">background-color: lightblue;</text>
+  <text x="62.8" y="294" font-size="14" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace">}</text>
+  <text x="46.0" y="316" font-size="14" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace">}</text>
+  <text x="650" y="266" font-size="13" fill="#3F7A88" text-anchor="end">deze CSS-regels gelden</text>
+  <text x="650" y="284" font-size="13" fill="#3F7A88" text-anchor="end">alleen als de query klopt</text>
+
+</svg>

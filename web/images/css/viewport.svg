@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 336" width="700" height="336" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="pijl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9AA1AD"/>
+    </marker>
+    <marker id="pijlinkt" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1F2A44"/>
+    </marker>
+  </defs>
+  <rect width="700" height="336" fill="#F5F7FA"/>
+  <rect x="60" y="44" width="150" height="250" rx="16" fill="#FFFFFF" stroke="#1F2A44" stroke-width="1.5"/>
+  <rect x="111" y="52" width="48" height="4" rx="2" fill="#DDE1E7"/>
+  <text x="135" y="24" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">zonder viewport-tag</text>
+  <text x="135" y="318" font-size="12" fill="#5B6270" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" text-anchor="middle">computerpagina, verkleind</text>
+  <rect x="70" y="64" width="130" height="7" rx="0" fill="#333333"/>
+  <rect x="70" y="64" width="14" height="7" rx="0" fill="#04aa6d"/>
+  <rect x="70.0" y="76" width="40.7" height="26" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <rect x="70.0" y="108" width="40.7" height="2" rx="0" fill="#9AA1AD"/>
+  <rect x="70.0" y="114" width="40.7" height="2" rx="0" fill="#9AA1AD"/>
+  <rect x="70.0" y="120" width="40.7" height="2" rx="0" fill="#9AA1AD"/>
+  <rect x="70.0" y="126" width="40.7" height="2" rx="0" fill="#9AA1AD"/>
+  <rect x="70.0" y="132" width="34.7" height="2" rx="0" fill="#9AA1AD"/>
+  <rect x="114.7" y="76" width="40.7" height="26" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <rect x="114.7" y="108" width="40.7" height="2" rx="0" fill="#9AA1AD"/>
+  <rect x="114.7" y="114" width="40.7" height="2" rx="0" fill="#9AA1AD"/>
+  <rect x="114.7" y="120" width="40.7" height="2" rx="0" fill="#9AA1AD"/>
+  <rect x="114.7" y="126" width="40.7" height="2" rx="0" fill="#9AA1AD"/>
+  <rect x="114.7" y="132" width="34.7" height="2" rx="0" fill="#9AA1AD"/>
+  <rect x="159.3" y="76" width="40.7" height="26" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <rect x="159.3" y="108" width="40.7" height="2" rx="0" fill="#9AA1AD"/>
+  <rect x="159.3" y="114" width="40.7" height="2" rx="0" fill="#9AA1AD"/>
+  <rect x="159.3" y="120" width="40.7" height="2" rx="0" fill="#9AA1AD"/>
+  <rect x="159.3" y="126" width="40.7" height="2" rx="0" fill="#9AA1AD"/>
+  <rect x="159.3" y="132" width="34.7" height="2" rx="0" fill="#9AA1AD"/>
+  <text x="135" y="172" font-size="12" fill="#5B6270" text-anchor="middle">alles piepklein:</text>
+  <text x="135" y="188" font-size="12" fill="#5B6270" text-anchor="middle">inzoomen en schuiven</text>
+  <circle cx="135" cy="236" r="18" fill="none" stroke="#9AA1AD" stroke-width="2"/>
+  <line x1="148" y1="249" x2="160" y2="261" stroke="#9AA1AD" stroke-width="1.5"/>
+  <line x1="250" y1="170" x2="440" y2="170" stroke="#9AA1AD" stroke-width="1.5" marker-end="url(#pijl)"/>
+  <text x="345" y="160" font-size="12" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" text-anchor="middle">&lt;meta name="viewport" ...&gt;</text>
+  <rect x="490" y="44" width="150" height="250" rx="16" fill="#FFFFFF" stroke="#1F2A44" stroke-width="1.5"/>
+  <rect x="541" y="52" width="48" height="4" rx="2" fill="#DDE1E7"/>
+  <text x="565" y="24" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">met viewport-tag</text>
+  <text x="565" y="318" font-size="12" fill="#5B6270" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" text-anchor="middle">width=device-width</text>
+  <rect x="502" y="66" width="126" height="16" rx="0" fill="#04aa6d"/>
+  <rect x="502" y="82" width="126" height="16" rx="0" fill="#333333"/>
+  <rect x="502" y="106" width="126" height="52" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <rect x="502" y="168" width="126" height="5" rx="2" fill="#9AA1AD"/>
+  <rect x="502" y="180" width="126" height="5" rx="2" fill="#9AA1AD"/>
+  <rect x="502" y="192" width="96" height="5" rx="2" fill="#9AA1AD"/>
+  <rect x="502" y="214" width="126" height="52" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+
+</svg>

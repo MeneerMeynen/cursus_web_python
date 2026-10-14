@@ -732,7 +732,40 @@ pre.rouge {
 <li><a href="#_transities_samengevat">8.9. Transities samengevat</a></li>
 </ul>
 </li>
-<li><a href="#_fouten_opsporen">9. Fouten opsporen</a></li>
+<li><a href="#_media_queries">9. Media queries</a>
+<ul class="sectlevel2">
+<li><a href="#_de_syntax_van_een_media_query">9.1. De syntax van een media query</a>
+<ul class="sectlevel3">
+<li><a href="#_voorwaarden_combineren">9.1.1. Voorwaarden combineren</a></li>
+<li><a href="#_waar_zet_je_je_media_queries">9.1.2. Waar zet je je media queries?</a></li>
+</ul>
+</li>
+<li><a href="#_media_types">9.2. Media types</a></li>
+<li><a href="#_media_features">9.3. Media features</a>
+<ul class="sectlevel3">
+<li><a href="#_min_width_en_max_width">9.3.1. min-width en max-width</a></li>
+<li><a href="#_orientation_staand_of_liggend">9.3.2. orientation: staand of liggend</a></li>
+<li><a href="#_prefers_color_scheme_donkere_modus">9.3.3. prefers-color-scheme: donkere modus</a></li>
+<li><a href="#_prefers_reduced_motion_en_hover">9.3.4. prefers-reduced-motion en hover</a></li>
+</ul>
+</li>
+<li><a href="#_queries_voor_verschillende_schermgroottes">9.4. Queries voor verschillende schermgroottes</a>
+<ul class="sectlevel3">
+<li><a href="#_stap_1_de_viewport_tag">9.4.1. Stap 1: de viewport-tag</a></li>
+<li><a href="#_stap_2_breakpoints_kiezen">9.4.2. Stap 2: breakpoints kiezen</a></li>
+<li><a href="#_stap_3_mobile_first">9.4.3. Stap 3: mobile first</a></li>
+<li><a href="#_voorbeeld_een_navigatiebalk_voor_de_smartphone">9.4.4. Voorbeeld: een navigatiebalk voor de smartphone</a></li>
+</ul>
+</li>
+<li><a href="#_queries_voor_kolommen">9.5. Queries voor kolommen</a>
+<ul class="sectlevel3">
+<li><a href="#_kolommen_met_een_verschillende_breedte">9.5.1. Kolommen met een verschillende breedte</a></li>
+</ul>
+</li>
+<li><a href="#_media_queries_samengevat">9.6. Media queries samengevat</a></li>
+</ul>
+</li>
+<li><a href="#_fouten_opsporen">10. Fouten opsporen</a></li>
 </ul>
 </div>
 </div>
@@ -780,7 +813,10 @@ Waar HTML de <strong>inhoud en structuur</strong> van een pagina bepaalt, bepaal
 <p>tags positioneren met <code>position</code>;</p>
 </li>
 <li>
-<p>een navigatiebalk en een dropdown-menu maken.</p>
+<p>een navigatiebalk en een dropdown-menu maken;</p>
+</li>
+<li>
+<p>je website aanpassen aan elk scherm met media queries.</p>
 </li>
 </ul>
 </div>
@@ -2757,6 +2793,9 @@ Wil je dat het menu niet meteen dichtklapt als je muis even van het menu glijdt?
 </div>
 </div>
 <div class="paragraph">
+<p>Hoe zo&#8217;n media query precies werkt, leer je verder bij <a href="#_media_queries">Media queries</a>.</p>
+</div>
+<div class="paragraph">
 <p>Gebruik transities altijd om je website <strong>duidelijker</strong> te maken (de bezoeker ziet wat er verandert), niet om zoveel mogelijk te laten bewegen.</p>
 </div>
 </div>
@@ -2828,7 +2867,929 @@ Wil je dat het menu niet meteen dichtklapt als je muis even van het menu glijdt?
 </div>
 </div>
 <div class="sect1">
-<h2 id="_fouten_opsporen">9. Fouten opsporen</h2>
+<h2 id="_media_queries">9. Media queries</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Je website wordt bekeken op een smartphone, een tablet, een laptop en een groot computerscherm. Een navigatiebalk met vijf links naast elkaar past mooi op een laptop, maar op een smartphone is er gewoon geen plaats voor. En drie kolommen tekst naast elkaar worden op een smal scherm onleesbaar.</p>
+</div>
+<div class="paragraph">
+<p>Met een <mark>media query</mark> geef je de browser CSS-regels die <strong>alleen gelden onder een bepaalde voorwaarde</strong>, bijvoorbeeld: "alleen als het venster smaller is dan 768px". Zo pas je de opmaak aan het scherm aan, met dezelfde HTML en hetzelfde CSS-bestand. Een website die dat doet, noemen we een <mark>responsive</mark> website.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/css/media-intro.svg" alt="Dezelfde website op een smartphone (1 kolom, menu onder elkaar), een tablet (2 kolommen) en een laptop (3 kolommen, menu naast elkaar)" width="760">
+</div>
+</div>
+<div class="paragraph">
+<p>In dit deel leer je:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>hoe een media query opgebouwd is;</p>
+</li>
+<li>
+<p>welke media types er zijn (scherm, printer, &#8230;&#8203;);</p>
+</li>
+<li>
+<p>welke media features je kan testen (breedte, oriëntatie, donkere modus, &#8230;&#8203;);</p>
+</li>
+<li>
+<p>hoe je je website aanpast aan smartphones, tablets en computers;</p>
+</li>
+<li>
+<p>hoe je kolommen maakt die zich aanpassen aan de breedte van het scherm.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Meer uitleg en voorbeelden: <a href="https://www.w3schools.com/css/css3_mediaqueries.asp" target="_blank" rel="noopener">media queries op w3schools</a></p>
+</div>
+<div class="sect2">
+<h3 id="_de_syntax_van_een_media_query">9.1. De syntax van een media query</h3>
+<div class="paragraph">
+<p>Een media query begint altijd met <code>@media</code>. Daarna volgt de <strong>voorwaarde</strong>, en tussen accolades de CSS-regels die alleen gelden als de voorwaarde klopt.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/css/media-syntax.svg" alt="De delen van een media query: @media, het media type screen, and, de media feature (max-width: 600px) tussen haakjes, en tussen accolades de CSS-regels die alleen gelden als de query klopt" width="700">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="nt">body</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="p">}</span>
+
+<span class="k">@media</span> <span class="n">screen</span> <span class="n">and</span> <span class="p">(</span><span class="n">max-width</span><span class="p">:</span> <span class="m">600px</span><span class="p">)</span> <span class="p">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
+  <span class="nt">body</span> <span class="p">{</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">lightblue</span><span class="p">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Gewone CSS: geldt altijd.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>De media query: "op een scherm dat hoogstens 600px breed is".</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Deze regel geldt alleen als de voorwaarde klopt. Maak je het venster breder dan 600px, dan wordt de achtergrond weer wit.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Een media query bestaat dus uit:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Deel</th>
+<th class="tableblock halign-left valign-top">Betekenis</th>
+<th class="tableblock halign-left valign-top">Voorbeeld</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@media</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">zo begint elke media query</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@media</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">media type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">voor welk soort toestel? Mag je weglaten.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>screen</code>, <code>print</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">media feature</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">een eigenschap van het toestel of het venster, altijd <strong>tussen haakjes</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(max-width: 600px)</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{ &#8230;&#8203; }</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">de CSS-regels die alleen gelden als de query klopt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>body { &#8230;&#8203; }</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Let op de <strong>dubbele accolades</strong>: de accolades van de media query zelf, en daarbinnen de accolades van elke CSS-regel. Vergeet je de laatste <code>}</code>, dan valt alle CSS die volgt ook in je media query.</p>
+</div>
+<div class="sect3">
+<h4 id="_voorwaarden_combineren">9.1.1. Voorwaarden combineren</h4>
+<div class="paragraph">
+<p>Je kan meerdere voorwaarden aan elkaar koppelen:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Schrijfwijze</th>
+<th class="tableblock halign-left valign-top">Betekenis</th>
+<th class="tableblock halign-left valign-top">Voorbeeld</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>and</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>en</strong>: alle voorwaarden moeten kloppen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@media screen and (min-width: 600px) and (max-width: 900px)</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>,</code> (komma)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>of</strong>: minstens één voorwaarde moet kloppen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@media (max-width: 600px), print</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>not</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>niet</strong>: draait de volledige query om</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@media not print</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>only</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wordt genegeerd door oude browsers die media queries niet kennen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@media only screen and (max-width: 600px)</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>only</code> zie je nog vaak in oudere voorbeelden. Vandaag kennen alle browsers media queries, dus je mag <code>only</code> gerust weglaten.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_waar_zet_je_je_media_queries">9.1.2. Waar zet je je media queries?</h4>
+<div class="paragraph">
+<p>Zet je media queries <strong>onderaan</strong> je CSS-bestand, na de gewone regels.
+Een media query geeft een regel niet meer gewicht. Als twee regels even specifiek zijn, wint gewoon de regel die <strong>het laatst</strong> staat. Staat je media query bovenaan, dan overschrijft de gewone regel eronder hem meteen weer, en lijkt je media query niet te werken.</p>
+</div>
+<div class="paragraph">
+<p>Je kan een media query ook in de <code>link</code>-tag zetten met het attribuut <code>media</code>. Dan laadt de browser dat CSS-bestand alleen als de voorwaarde klopt:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"stijl.css"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"print.css"</span> <span class="na">media=</span><span class="s">"print"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"smal.css"</span> <span class="na">media=</span><span class="s">"(max-width: 600px)"</span><span class="nt">&gt;</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_media_types">9.2. Media types</h3>
+<div class="paragraph">
+<p>Het <mark>media type</mark> zegt voor <strong>welk soort toestel</strong> de CSS bedoeld is.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Media type</th>
+<th class="tableblock halign-left valign-top">Gebruikt voor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>all</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">alle toestellen (de standaardwaarde)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>screen</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">schermen: computer, laptop, tablet, smartphone</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>print</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">het afdrukvoorbeeld en de printer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>speech</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">schermlezers die de pagina voorlezen</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Laat je het media type weg, dan is het <code>all</code>. <code>@media (max-width: 600px)</code> is dus hetzelfde als <code>@media all and (max-width: 600px)</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Vroeger bestonden er nog meer media types, zoals <code>tv</code>, <code>handheld</code> en <code>projection</code>. Die worden niet meer gebruikt: een tv of smartphone telt vandaag gewoon als <code>screen</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Het type dat je naast <code>screen</code> het meest gebruikt, is <code>print</code>. Daarmee bepaal je hoe je pagina eruitziet als iemand ze afdrukt (<span class="keyseq"><kbd>Ctrl</kbd>+<kbd>P</kbd></span>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="k">@media</span> <span class="n">print</span> <span class="p">{</span>
+  <span class="nt">nav</span><span class="o">,</span> <span class="nt">footer</span><span class="o">,</span> <span class="nc">.reclame</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="p">}</span>
+
+  <span class="nt">body</span> <span class="p">{</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="no">black</span><span class="p">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nt">a</span><span class="nd">::after</span> <span class="p">{</span>
+    <span class="nl">content</span><span class="p">:</span> <span class="s1">" ("</span> <span class="n">attr</span><span class="p">(</span><span class="n">href</span><span class="p">)</span> <span class="s1">")"</span><span class="p">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Een navigatiebalk of reclame heeft geen zin op papier: verberg ze.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Zwarte tekst op een witte achtergrond spaart inkt en is goed leesbaar.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Op papier kan je niet klikken. Met <code>::after</code> zet je het adres van elke link achter de linktekst. <code>attr(href)</code> haalt de waarde van het attribuut <code>href</code> op.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Je ziet het resultaat in het afdrukvoorbeeld van je browser (<span class="keyseq"><kbd>Ctrl</kbd>+<kbd>P</kbd></span>). Je hoeft dus niets echt af te drukken.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_media_features">9.3. Media features</h3>
+<div class="paragraph">
+<p>Een <mark>media feature</mark> is een <strong>eigenschap van het toestel of het venster</strong> die je kan testen. Je zet ze altijd tussen haakjes, met een dubbelpunt tussen de naam en de waarde.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Media feature</th>
+<th class="tableblock halign-left valign-top">Test</th>
+<th class="tableblock halign-left valign-top">Mogelijke waarden</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>width</code>, <code>min-width</code>, <code>max-width</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">de breedte van het venster</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bv. <code>600px</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>height</code>, <code>min-height</code>, <code>max-height</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">de hoogte van het venster</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bv. <code>400px</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>orientation</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">staat het scherm rechtop of ligt het?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>portrait</code> (staand), <code>landscape</code> (liggend)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>prefers-color-scheme</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">heeft de bezoeker een licht of donker thema gekozen?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>light</code>, <code>dark</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>prefers-reduced-motion</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wil de bezoeker minder beweging?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>no-preference</code>, <code>reduce</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hover</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">kan de bezoeker met een muis ergens over gaan?</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hover</code> (muis), <code>none</code> (aanraakscherm)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="_min_width_en_max_width">9.3.1. min-width en max-width</h4>
+<div class="paragraph">
+<p>De features die je het meest gebruikt, zijn <code>min-width</code> en <code>max-width</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>max-width: 600px</code> betekent: het venster is <strong>hoogstens</strong> 600px breed (600px of smaller);</p>
+</li>
+<li>
+<p><code>min-width: 600px</code> betekent: het venster is <strong>minstens</strong> 600px breed (600px of breder).</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/css/min-max-width.svg" alt="max-width: 600px geldt van 0 tot en met 600px, min-width: 600px geldt vanaf 600px en breder" width="700">
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Het gaat om de breedte van het <strong>venster</strong> (de viewport), niet om de breedte van het toestel. Maak je je browservenster op je laptop smal, dan gelden dezelfde regels als op een smartphone. Zo kan je het makkelijk uittesten.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In nieuwere voorbeelden zie je soms ook <code>@media (width &gt;= 600px)</code>. Dat betekent hetzelfde als <code>(min-width: 600px)</code> en werkt in alle huidige browsers. In deze cursus gebruiken we <code>min-width</code> en <code>max-width</code>, omdat je die in de meeste voorbeelden (en in Bootstrap) tegenkomt.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_orientation_staand_of_liggend">9.3.2. orientation: staand of liggend</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="k">@media</span> <span class="p">(</span><span class="n">orientation</span><span class="p">:</span> <span class="nb">landscape</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nt">header</span> <span class="p">{</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">60px</span><span class="p">;</span>   <span class="c">/* liggend scherm: weinig hoogte, dus een lage header */</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>landscape</code> betekent eigenlijk gewoon: het venster is breder dan hoog. Ook een gewoon laptopscherm is dus <code>landscape</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_prefers_color_scheme_donkere_modus">9.3.3. prefers-color-scheme: donkere modus</h4>
+<div class="paragraph">
+<p>Veel mensen zetten hun smartphone of computer in <strong>donkere modus</strong>. Met <code>prefers-color-scheme</code> volgt je website die keuze:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="nt">body</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#222</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">@media</span> <span class="p">(</span><span class="n">prefers-color-scheme</span><span class="p">:</span> <span class="n">dark</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nt">body</span> <span class="p">{</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="m">#222</span><span class="p">;</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="m">#eee</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Je hoeft je hele computer niet in donkere modus te zetten om dit te testen. In de ontwikkelaarstools van Chrome (<kbd>F12</kbd>) kies je via <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></span> de opdracht "Emulate CSS prefers-color-scheme: dark".
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_prefers_reduced_motion_en_hover">9.3.4. prefers-reduced-motion en hover</h4>
+<div class="paragraph">
+<p><code>prefers-reduced-motion</code> ken je al van <a href="#_rekening_houden_met_de_bezoeker">Rekening houden met de bezoeker</a> bij de transities: daarmee schakel je bewegingen uit voor mensen die daar last van hebben.</p>
+</div>
+<div class="paragraph">
+<p>Met <code>hover</code> kan je testen of de bezoeker een muis heeft. Dat is handig voor je <a href="#_dropdown_menu">dropdown-menu</a>: op een aanraakscherm kan je niet met de muis "over" een knop gaan.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="k">@media</span> <span class="p">(</span><span class="n">hover</span><span class="p">:</span> <span class="nb">none</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nc">.dropdown-inhoud</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>       <span class="c">/* geen muis: toon het menu altijd */</span>
+    <span class="nl">opacity</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>           <span class="c">/* ook als je de versie met transitie gebruikt */</span>
+    <span class="nl">visibility</span><span class="p">:</span> <span class="nb">visible</span><span class="p">;</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">static</span><span class="p">;</span>     <span class="c">/* gewoon in de flow, onder de knop */</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_queries_voor_verschillende_schermgroottes">9.4. Queries voor verschillende schermgroottes</h3>
+<div class="paragraph">
+<p>Het belangrijkste gebruik van media queries: je website aanpassen aan smartphones, tablets en computers.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Weetje: van computerscherm naar zakformaat</div>
+<div class="paragraph">
+<p>Tot 2007 bekeek bijna iedereen websites op een computer. Webdesigners ontwierpen hun pagina&#8217;s voor een scherm van ongeveer 1000 pixels breed, en daar bleef het bij.</p>
+</div>
+<div class="paragraph">
+<p>In 2007 kwam de eerste <strong>iPhone</strong>, in 2010 de eerste <strong>iPad</strong>. Plots wilden mensen dezelfde websites bekijken op een scherm dat drie keer smaller was, en dat ze in hun hand hielden in plaats van op een bureau. De browser van de iPhone loste dat op met een trucje: hij deed alsof het scherm 980 pixels breed was en toonde de volledige computerpagina <strong>verkleind</strong>. Om iets te lezen moest je inzoomen en heen en weer schuiven.</p>
+</div>
+<div class="paragraph">
+<p>Veel bedrijven maakten daarom een <strong>aparte mobiele website</strong>, vaak op een adres zoals <code>m.voorbeeld.be</code>. Maar twee websites bijhouden is dubbel werk, en welke versie toon je op een tablet?</p>
+</div>
+<div class="paragraph">
+<p>In 2010 stelde de webontwerper Ethan Marcotte een betere oplossing voor: <mark>responsive webdesign</mark>. Eén website, die zich met media queries aanpast aan elk scherm. Media queries waren toen nog nieuw; in 2012 werden ze een officiële standaard van CSS.</p>
+</div>
+<div class="paragraph">
+<p>In 2016 gebeurde er iets wat niemand tien jaar eerder verwacht had: wereldwijd werden websites voor het eerst <strong>meer bezocht met een smartphone of tablet dan met een computer</strong>. Vandaag gebeurt meer dan de helft van alle websitebezoeken op een mobiel toestel. Daarom ontwerpen veel webdesigners hun website eerst voor de smartphone, en pas daarna voor grotere schermen: <mark>mobile first</mark>.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_stap_1_de_viewport_tag">9.4.1. Stap 1: de viewport-tag</h4>
+<div class="paragraph">
+<p>Het trucje van de eerste iPhone bestaat nog altijd: zonder extra informatie doet een smartphone alsof hij een computerscherm is van ongeveer 980px breed. Je media queries voor smalle schermen werken dan <strong>niet</strong>, want het "venster" is volgens de browser nog altijd 980px breed.</p>
+</div>
+<div class="paragraph">
+<p>Daarom zet je in de <code>head</code> van <strong>elke</strong> pagina de <mark>viewport-tag</mark>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="nt">&lt;title&gt;</span>Mijn website<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"stijl.css"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>width=device-width</code>: het venster is even breed als het scherm van het toestel. <code>initial-scale=1.0</code>: de browser zoomt niet in of uit.</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/css/viewport.svg" alt="Zonder viewport-tag toont de smartphone de computerpagina verkleind; met de viewport-tag krijg je een leesbare pagina met één kolom" width="700">
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Vergeet je de viewport-tag, dan lijken je media queries op je laptop perfect te werken, maar op een echte smartphone niet.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Meer uitleg: <a href="https://www.w3schools.com/css/css_rwd_viewport.asp" target="_blank" rel="noopener">de viewport op w3schools</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_stap_2_breakpoints_kiezen">9.4.2. Stap 2: breakpoints kiezen</h4>
+<div class="paragraph">
+<p>De breedtes waarbij je opmaak verandert, noemen we <mark>breakpoints</mark>. Er bestaan geen officiële waarden: je kiest ze zelf, op de plaats waar je pagina er niet meer goed uitziet. Toch gebruiken de meeste websites ongeveer dezelfde groepen:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Groep</th>
+<th class="tableblock halign-left valign-top">Breedte van het venster</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">smartphone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tot 767px</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tablet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">vanaf 768px</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">laptop</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">vanaf 992px</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">groot scherm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">vanaf 1200px</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Dat zijn ook de breakpoints <code>md</code>, <code>lg</code> en <code>xl</code> die je later bij Bootstrap tegenkomt.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Kies je breakpoints niet op basis van één bepaald toestel. Er bestaan honderden smartphones en tablets, allemaal met een andere breedte. Kijk liever waar <strong>jouw</strong> pagina begint te wringen.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_stap_3_mobile_first">9.4.3. Stap 3: mobile first</h4>
+<div class="paragraph">
+<p>Er zijn twee manieren om je media queries te schrijven.</p>
+</div>
+<div class="paragraph">
+<p><strong>Desktop first</strong> (met <code>max-width</code>): je schrijft eerst de CSS voor een groot scherm, en past die met <code>max-width</code> aan voor kleinere schermen.</p>
+</div>
+<div class="paragraph">
+<p><strong>Mobile first</strong> (met <code>min-width</code>): je schrijft eerst de CSS voor een smartphone, en voegt met <code>min-width</code> telkens iets toe voor grotere schermen. Dat is de aanbevolen manier.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/css/breakpoints.svg" alt="Mobile first: de basis-CSS geldt altijd; de media queries met min-width 768px, 992px en 1200px voegen telkens iets toe vanaf die breedte" width="720">
+</div>
+</div>
+<div class="paragraph">
+<p>Een voorbeeld: de tekst wordt groter naarmate het scherm breder wordt.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="c">/* basis: smartphone */</span>
+<span class="nt">body</span> <span class="p">{</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">16px</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* tablet en groter */</span>
+<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">768px</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nt">body</span> <span class="p">{</span>
+    <span class="nl">font-size</span><span class="p">:</span> <span class="m">17px</span><span class="p">;</span>
+    <span class="nl">padding</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c">/* laptop en groter */</span>
+<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">992px</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nt">body</span> <span class="p">{</span>
+    <span class="nl">font-size</span><span class="p">:</span> <span class="m">18px</span><span class="p">;</span>
+    <span class="nl">padding</span><span class="p">:</span> <span class="m">20px</span> <span class="m">60px</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Waarom is mobile first beter?</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Een smartphone moet de minste CSS verwerken: hij gebruikt alleen de basisregels.</p>
+</li>
+<li>
+<p>De opmaak voor een smal scherm is meestal de eenvoudigste: alles onder elkaar. Je <strong>voegt</strong> dus dingen toe (kolommen naast elkaar) in plaats van ze weg te halen.</p>
+</li>
+<li>
+<p>Je denkt eerst na over wat echt belangrijk is op je pagina, want op een klein scherm is er weinig plaats.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Let op de <strong>volgorde</strong>. Bij <code>min-width</code> zet je de media queries van <strong>klein naar groot</strong>: eerst 768px, dan 992px, dan 1200px. Bij <code>max-width</code> net omgekeerd, van groot naar klein. Anders overschrijft een algemenere regel de specifiekere, omdat de regel die het laatst staat wint.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_voorbeeld_een_navigatiebalk_voor_de_smartphone">9.4.4. Voorbeeld: een navigatiebalk voor de smartphone</h4>
+<div class="paragraph">
+<p>Je <a href="#_horizontale_navigatiebalk">horizontale navigatiebalk</a> past op een smartphone niet meer op één rij. Met mobile first zet je de links standaard <strong>onder elkaar</strong>, en pas vanaf 768px <strong>naast elkaar</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="nt">nav</span> <span class="nt">ul</span> <span class="p">{</span>
+  <span class="nl">list-style-type</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#333</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">nav</span> <span class="nt">li</span> <span class="nt">a</span> <span class="p">{</span>
+  <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">14px</span> <span class="m">16px</span><span class="p">;</span>
+  <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="p">}</span>
+
+<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">768px</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nt">nav</span> <span class="nt">li</span> <span class="p">{</span>
+    <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Zonder media query zijn de <code>li</code>-tags blok-tags: de links staan onder elkaar, over de volledige breedte. Dat is makkelijk aan te tikken met een vinger.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Vanaf 768px komen de links naast elkaar, zoals je eerder leerde.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Je hoeft geen smartphone te gebruiken om te testen. Open de ontwikkelaarstools (<kbd>F12</kbd>) en klik op het icoontje met de smartphone en de tablet (of druk op <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd></span>). Bovenaan kies je een toestel of sleep je de breedte groter en kleiner.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Meer voorbeelden: <a href="https://www.w3schools.com/css/css_rwd_mediaqueries.asp" target="_blank" rel="noopener">media queries voor responsive webdesign op w3schools</a></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_queries_voor_kolommen">9.5. Queries voor kolommen</h3>
+<div class="paragraph">
+<p>Op een groot scherm staat de inhoud vaak in <strong>kolommen naast elkaar</strong>. Op een smal scherm worden die kolommen te smal om te lezen: daar zet je ze beter <strong>onder elkaar</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/css/kolommen.svg" alt="Vier kolommen: onder elkaar (width 100%) op een smartphone, twee per rij (width 50%) vanaf 768px, vier naast elkaar (width 25%) vanaf 992px" width="740">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"rij"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"kolom"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"kolom"</span><span class="nt">&gt;</span>2<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"kolom"</span><span class="nt">&gt;</span>3<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"kolom"</span><span class="nt">&gt;</span>4<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="o">*</span> <span class="p">{</span>
+  <span class="nl">box-sizing</span><span class="p">:</span> <span class="n">border-box</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="p">}</span>
+
+<span class="nc">.rij</span> <span class="p">{</span>
+  <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="p">}</span>
+
+<span class="nc">.kolom</span> <span class="p">{</span>
+  <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span> <i class="conum" data-value="4"></i><b>(4)</b>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">768px</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nc">.kolom</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span> <i class="conum" data-value="5"></i><b>(5)</b>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">992px</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nc">.kolom</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">25%</span><span class="p">;</span> <i class="conum" data-value="6"></i><b>(6)</b>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Normaal komt de <code>padding</code> <strong>bovenop</strong> de <code>width</code>: een kolom met <code>width: 25%</code> en <code>padding: 10px</code> is dan breder dan 25%, en de vierde kolom past niet meer op de rij. Met <code>box-sizing: border-box</code> zit de <code>padding</code> (en de rand) <strong>in</strong> de breedte.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Net zoals bij de navigatiebalk: zonder <code>overflow: hidden</code> heeft de <code>.rij</code> geen hoogte meer, omdat de kolommen met <code>float</code> uit de flow gehaald worden.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>De kolommen schuiven naar links, naast elkaar, zolang er plaats is.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Basis (smartphone): elke kolom is even breed als de rij, dus ze staan onder elkaar.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Vanaf 768px: twee kolommen per rij.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Vanaf 992px: vier kolommen naast elkaar.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Zorg dat de breedtes van de kolommen op één rij samen precies 100% zijn: 4 × 25%, 2 × 50%, 3 × 33.33%, &#8230;&#8203; Is het meer dan 100%, dan schuift de laatste kolom naar een nieuwe rij.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_kolommen_met_een_verschillende_breedte">9.5.1. Kolommen met een verschillende breedte</h4>
+<div class="paragraph">
+<p>Je kan ook kolommen maken die niet even breed zijn, zoals een hoofdinhoud met een zijbalk:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"rij"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;main</span> <span class="na">class=</span><span class="s">"inhoud"</span><span class="nt">&gt;</span>...<span class="nt">&lt;/main&gt;</span>
+  <span class="nt">&lt;aside</span> <span class="na">class=</span><span class="s">"zijbalk"</span><span class="nt">&gt;</span>...<span class="nt">&lt;/aside&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css"><span class="nc">.inhoud</span><span class="o">,</span>
+<span class="nc">.zijbalk</span> <span class="p">{</span>
+  <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>   <span class="c">/* smartphone: onder elkaar */</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">768px</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nc">.inhoud</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">75%</span><span class="p">;</span>  <span class="c">/* samen 100% */</span>
+  <span class="p">}</span>
+
+  <span class="nc">.zijbalk</span> <span class="p">{</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">25%</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Op een smartphone staat de zijbalk nu <strong>onder</strong> de hoofdinhoud. Dat is meestal ook wat je wil: de bezoeker ziet eerst het belangrijkste.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In het hoofdstuk Bootstrap ga je zien dat Bootstrap precies dit doet met zijn grid. Een class als <code>col-md-6</code> betekent: "vanaf 768px is deze kolom de helft van de rij breed". Achter de schermen gebruikt Bootstrap gewoon media queries met <code>min-width</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Meer uitleg: <a href="https://www.w3schools.com/css/css_rwd_grid.asp" target="_blank" rel="noopener">een responsive grid op w3schools</a></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_media_queries_samengevat">9.6. Media queries samengevat</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Met een media query gelden CSS-regels <strong>alleen onder een bepaalde voorwaarde</strong>.</p>
+</li>
+<li>
+<p>Een media query bestaat uit <code>@media</code>, een media type (mag je weglaten), media features tussen haakjes, en de CSS-regels tussen accolades.</p>
+</li>
+<li>
+<p>De belangrijkste media types zijn <code>screen</code> en <code>print</code>.</p>
+</li>
+<li>
+<p>De belangrijkste media features zijn <code>min-width</code> (minstens) en <code>max-width</code> (hoogstens).</p>
+</li>
+<li>
+<p>Zet de viewport-tag in de <code>head</code> van elke pagina, anders werken je media queries niet op een smartphone.</p>
+</li>
+<li>
+<p>Werk <strong>mobile first</strong>: eerst de CSS voor een smartphone, dan met <code>min-width</code> aanpassingen voor grotere schermen, van klein naar groot.</p>
+</li>
+<li>
+<p>Zet je media queries onderaan je CSS-bestand.</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Wat wil je?</th>
+<th class="tableblock halign-left valign-top">CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Iets aanpassen op een smal scherm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@media (max-width: 767px) { &#8230;&#8203; }</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Iets toevoegen vanaf een tablet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@media (min-width: 768px) { &#8230;&#8203; }</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Een opmaak alleen voor het afdrukken</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@media print { &#8230;&#8203; }</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Een donker thema</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@media (prefers-color-scheme: dark) { &#8230;&#8203; }</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Iets aanpassen op een liggend scherm</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@media (orientation: landscape) { &#8230;&#8203; }</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kolommen die onder elkaar komen op een smartphone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>width: 100%</code>, en met <code>@media (min-width: &#8230;&#8203;)</code> een kleinere breedte</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_fouten_opsporen">10. Fouten opsporen</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Open de ontwikkelaarstools (<kbd>F12</kbd>) en selecteer een tag. Rechts zie je:</p>
