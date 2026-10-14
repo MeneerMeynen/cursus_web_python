@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" width="720" height="300" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="pijl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9AA1AD"/>
+    </marker>
+    <marker id="pijlinkt" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1F2A44"/>
+    </marker>
+  </defs>
+  <rect width="720" height="300" fill="#F5F7FA"/>
+  <rect x="40.0" y="30" width="345.6" height="52" rx="0" fill="#FFFFFF" stroke="#DDE1E7" stroke-width="1.5"/>
+  <text x="212.8" y="52" font-size="13" fill="#1F2A44" font-weight="700" text-anchor="middle">smartphone</text>
+  <text x="212.8" y="70" font-size="12" fill="#5B6270" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" text-anchor="middle">tot 767px</text>
+  <rect x="385.6" y="30" width="100.79999999999995" height="52" rx="0" fill="#FFFFFF" stroke="#DDE1E7" stroke-width="1.5"/>
+  <text x="436.0" y="52" font-size="13" fill="#1F2A44" font-weight="700" text-anchor="middle">tablet</text>
+  <text x="436.0" y="70" font-size="12" fill="#5B6270" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" text-anchor="middle">vanaf 768px</text>
+  <rect x="486.4" y="30" width="93.60000000000002" height="52" rx="0" fill="#FFFFFF" stroke="#DDE1E7" stroke-width="1.5"/>
+  <text x="533.2" y="52" font-size="13" fill="#1F2A44" font-weight="700" text-anchor="middle">laptop</text>
+  <text x="533.2" y="70" font-size="12" fill="#5B6270" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" text-anchor="middle">vanaf 992px</text>
+  <rect x="580.0" y="30" width="100.0" height="52" rx="0" fill="#FFFFFF" stroke="#DDE1E7" stroke-width="1.5"/>
+  <text x="630.0" y="52" font-size="13" fill="#1F2A44" font-weight="700" text-anchor="middle">groot scherm</text>
+  <text x="630.0" y="70" font-size="12" fill="#5B6270" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" text-anchor="middle">vanaf 1200px</text>
+  <rect x="40.0" y="104" width="640.0" height="26" rx="4" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="52.0" y="122" font-size="13" fill="#1F2A44">basis-CSS: geldt altijd</text>
+  <rect x="385.6" y="140" width="294.4" height="26" rx="4" fill="#DCD0EE" stroke="#7A5BA8" stroke-width="1.5"/>
+  <text x="375.6" y="158" font-size="13" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" text-anchor="end">@media (min-width: 768px)</text>
+  <rect x="486.4" y="176" width="193.60000000000002" height="26" rx="4" fill="#DCD0EE" stroke="#7A5BA8" stroke-width="1.5"/>
+  <text x="476.4" y="194" font-size="13" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" text-anchor="end">@media (min-width: 992px)</text>
+  <rect x="580.0" y="212" width="100.0" height="26" rx="4" fill="#DCD0EE" stroke="#7A5BA8" stroke-width="1.5"/>
+  <text x="570.0" y="230" font-size="13" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" text-anchor="end">@media (min-width: 1200px)</text>
+  <line x1="385.6" y1="30" x2="385.6" y2="246" stroke="#9AA1AD" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <line x1="486.4" y1="30" x2="486.4" y2="246" stroke="#9AA1AD" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <line x1="580.0" y1="30" x2="580.0" y2="246" stroke="#9AA1AD" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <line x1="40.0" y1="256" x2="698" y2="256" stroke="#1F2A44" stroke-width="1.5" marker-end="url(#pijlinkt)"/>
+  <line x1="40.0" y1="250" x2="40.0" y2="262" stroke="#1F2A44" stroke-width="1.5"/>
+  <text x="40.0" y="280" font-size="12" fill="#5B6270" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" text-anchor="middle">0px</text>
+  <line x1="385.6" y1="250" x2="385.6" y2="262" stroke="#1F2A44" stroke-width="1.5"/>
+  <text x="385.6" y="280" font-size="12" fill="#5B6270" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" text-anchor="middle">768px</text>
+  <line x1="486.4" y1="250" x2="486.4" y2="262" stroke="#1F2A44" stroke-width="1.5"/>
+  <text x="486.4" y="280" font-size="12" fill="#5B6270" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" text-anchor="middle">992px</text>
+  <line x1="580.0" y1="250" x2="580.0" y2="262" stroke="#1F2A44" stroke-width="1.5"/>
+  <text x="580.0" y="280" font-size="12" fill="#5B6270" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" text-anchor="middle">1200px</text>
+  <text x="698" y="280" font-size="12" fill="#5B6270" text-anchor="end">breedte</text>
+
+</svg>
