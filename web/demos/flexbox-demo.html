@@ -85,10 +85,10 @@
 
     /* Kaart 3 */
     #veld3 { display: flex; width: 700px; max-width: none; padding: 0; border: none; outline: 2px dashed #b8c2d0; border-radius: 8px; }
-    #veld3 .item { min-width: 0; min-height: 70px; display: flex; align-items: center; justify-content: center; flex-direction: column; font-size: 0.9rem; }
+    #veld3 .item { padding: 0; min-width: 0; min-height: 70px; display: flex; align-items: center; justify-content: center; flex-direction: column; font-size: 0.9rem; }
     #veld3 .breedte { font-weight: 400; font-size: 0.8rem; }
     .rekenregel { font-size: 0.9rem; margin: 0.8rem 0; padding: 0.5rem 0.8rem; background: #eef3fb; border-radius: 6px; color: #0f3460; }
-    .rij-invoer { display: grid; grid-template-columns: 2rem 1fr 1fr; gap: 0.5rem 1rem; align-items: end; margin-bottom: 0.5rem; }
+    .rij-invoer { display: grid; grid-template-columns: 2rem 10rem; gap: 0.5rem 1rem; align-items: end; margin-bottom: 0.5rem; }
     .rij-invoer .naam { font-weight: 700; padding-bottom: 0.4rem; }
     /* Ingebed in de cursus: ?kaart=1, 2 of 3 toont één kaart, zonder titel en schaduw */
     html[data-kaart] body { padding: 0; background: transparent; }
@@ -176,31 +176,28 @@
 
   <!-- ============ KAART 3 ============ -->
   <div class="kaart">
-    <h2>3. Groeien met flex-basis en flex-grow</h2>
-    <p class="uitleg">Dit zijn eigenschappen van de <strong>items</strong>. De container is hier 700px breed. <code>flex-grow</code> verdeelt de <strong>vrije ruimte</strong>.</p>
+    <h2>3. Groeien met flex</h2>
+    <p class="uitleg"><code>flex</code> zet je op de <strong>items</strong>. De container is hier 700px breed. Een item zonder <code>flex</code> blijft 100px breed. Items met <code>flex</code> delen de <strong>vrije ruimte</strong>: een item met <code>flex: 2</code> krijgt twee keer zoveel als een item met <code>flex: 1</code>.</p>
 
     <div class="knoppen">
-      <button id="g-start">Standaard (0, 100px)</button>
+      <button id="g-start">Standaard (geen flex)</button>
+      <button id="g-alle">flex: 1 voor alle</button>
       <button id="g-112">1 · 1 · 2</button>
-      <button id="g-alle">flex: 1 voor alle (basis 0)</button>
       <button id="g-laatste">Enkel het laatste groeit</button>
     </div>
 
-    <div class="rij-invoer"><span></span><small>flex-grow</small><small>flex-basis (px)</small></div>
+    <div class="rij-invoer"><span></span><small>flex (0 = geen flex)</small></div>
     <div class="rij-invoer">
       <span class="naam">A</span>
-      <input type="number" id="ga" min="0" max="5" value="0">
-      <input type="number" id="ba" min="0" max="700" step="10" value="100">
+      <input type="number" id="ga" min="0" max="5" step="1" value="0">
     </div>
     <div class="rij-invoer">
       <span class="naam">B</span>
-      <input type="number" id="gb" min="0" max="5" value="0">
-      <input type="number" id="bb" min="0" max="700" step="10" value="100">
+      <input type="number" id="gb" min="0" max="5" step="1" value="0">
     </div>
     <div class="rij-invoer">
       <span class="naam">C</span>
-      <input type="number" id="gc" min="0" max="5" value="0">
-      <input type="number" id="bc" min="0" max="700" step="10" value="100">
+      <input type="number" id="gc" min="0" max="5" step="1" value="0">
     </div>
 
     <div class="rekenregel" id="rekenregel"></div>
@@ -305,44 +302,41 @@
   /* ---------- Kaart 3 ---------- */
   const NAMEN = ['A', 'B', 'C'];
   const ITEMS = ['itemA', 'itemB', 'itemC'];
-  const GROW = ['ga', 'gb', 'gc'];
-  const BASIS = ['ba', 'bb', 'bc'];
+  const FLEX = ['ga', 'gb', 'gc'];
   const BREEDTE_CONTAINER = 700;
+  const VASTE_BREEDTE = 100;
 
   function updateKaart3() {
-    let somBasis = 0, somGrow = 0;
-    const grow = [], basis = [];
+    let somVast = 0, somFlex = 0;
+    const flex = [];
 
     for (let i = 0; i < 3; i++) {
-      grow[i] = Math.max(0, parseFloat($(GROW[i]).value) || 0);
-      basis[i] = Math.max(0, parseFloat($(BASIS[i]).value) || 0);
-      somBasis += basis[i];
-      somGrow += grow[i];
+      flex[i] = Math.max(0, parseInt($(FLEX[i]).value, 10) || 0);
       const el = $(ITEMS[i]);
-      el.style.flexGrow = grow[i];
-      el.style.flexBasis = basis[i] + 'px';
+      if (flex[i] > 0) {
+        somFlex += flex[i];
+        el.style.flex = flex[i];
+        el.style.width = '';
+      } else {
+        somVast += VASTE_BREEDTE;
+        el.style.flex = '';
+        el.style.width = VASTE_BREEDTE + 'px';
+      }
     }
 
-    const vrij = BREEDTE_CONTAINER - somBasis;
-    let tekst;
-    if (vrij < 0) {
-      tekst = 'Vrije ruimte = ' + BREEDTE_CONTAINER + ' − ' + somBasis + ' = <strong>' + vrij +
-              'px</strong>. Te weinig plaats: de items krimpen (flex-shrink).';
-    } else if (somGrow === 0) {
-      tekst = 'Vrije ruimte = ' + BREEDTE_CONTAINER + ' − ' + somBasis + ' = <strong>' + vrij +
-              'px</strong>. Niemand heeft flex-grow, dus die ruimte blijft leeg.';
+    const vrij = BREEDTE_CONTAINER - somVast;
+    const som = 'Vrije ruimte = ' + BREEDTE_CONTAINER + ' − ' + somVast + ' = <strong>' + vrij + 'px</strong>. ';
+    if (somFlex === 0) {
+      $('rekenregel').innerHTML = som + 'Niemand heeft flex, dus die ruimte blijft leeg.';
     } else {
-      tekst = 'Vrije ruimte = ' + BREEDTE_CONTAINER + ' − ' + somBasis + ' = <strong>' + vrij +
-              'px</strong>. Verdeeld over ' + somGrow + (somGrow === 1 ? ' deel' : ' delen') + ' = <strong>' +
-              (Math.round(vrij / somGrow * 10) / 10) + 'px per deel</strong>.';
+      $('rekenregel').innerHTML = som + 'Verdeeld over ' + somFlex + (somFlex === 1 ? ' deel' : ' delen') +
+        ' = <strong>' + (Math.round(vrij / somFlex * 10) / 10) + 'px per deel</strong>.';
     }
-    $('rekenregel').innerHTML = tekst;
 
     let code = '';
     for (let i = 0; i < 3; i++) {
       code += '<span class="selector">.' + NAMEN[i].toLowerCase() + '</span> {\n' +
-              regel('flex-grow', grow[i]) +
-              regel('flex-basis', basis[i] + 'px') + '}\n';
+              (flex[i] > 0 ? regel('flex', flex[i]) : regel('width', VASTE_BREEDTE + 'px')) + '}\n';
     }
     $('code3').innerHTML = code.trimEnd();
 
@@ -352,17 +346,18 @@
     }
   }
 
-  GROW.concat(BASIS).forEach(id => $(id).addEventListener('input', updateKaart3));
+  FLEX.forEach(id => $(id).addEventListener('input', updateKaart3));
 
-  function zet3(g, b) {
-    for (let i = 0; i < 3; i++) { $(GROW[i]).value = g[i]; $(BASIS[i]).value = b[i]; }
+  function zet3(g) {
+    for (let i = 0; i < 3; i++) $(FLEX[i]).value = g[i];
     updateKaart3();
   }
-  $('g-start').onclick = () => zet3([0, 0, 0], [100, 100, 100]);
-  $('g-112').onclick = () => zet3([1, 1, 2], [100, 100, 100]);
-  $('g-alle').onclick = () => zet3([1, 1, 1], [0, 0, 0]);
-  $('g-laatste').onclick = () => zet3([0, 0, 1], [100, 100, 100]);
+  $('g-start').onclick = () => zet3([0, 0, 0]);
+  $('g-alle').onclick = () => zet3([1, 1, 1]);
+  $('g-112').onclick = () => zet3([1, 1, 2]);
+  $('g-laatste').onclick = () => zet3([0, 0, 1]);
   updateKaart3();
+
   /* ---------- Ingebed in de cursus ---------- */
   if (document.documentElement.dataset.kaart && window.parent !== window) {
     const stuurHoogte = () => window.parent.postMessage(

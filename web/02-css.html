@@ -4289,9 +4289,9 @@ Voorspel eerst wat er zal gebeuren en klik pas daarna. Zet bijvoorbeeld <code>fl
 <p><code>flex: 1</code> betekent <code>flex: 1 1 0%</code>: grow <code>1</code>, shrink <code>1</code> en basis <code>0%</code>.</p>
 </div>
 <div class="paragraph">
-<p>In de volgende demo zie je hoe de vrije ruimte verdeeld wordt. De container is 700px breed. De demo rekent de vrije ruimte voor je uit (de breedte van de container min de startbreedtes) en toont daarna hoeveel ruimte elk deel van <code>flex-grow</code> krijgt. Dit gaat iets verder dan <code>flex: 1</code>: je ziet <code>flex-grow</code> en <code>flex-basis</code> apart.</p>
+<p>In de volgende demo zie je hoe de vrije ruimte verdeeld wordt. De container is 700px breed. Een item zonder <code>flex</code> blijft 100px breed, items met <code>flex</code> delen de rest. De demo rekent de vrije ruimte voor je uit en toont hoeveel ruimte elk deel krijgt.</p>
 </div>
-<iframe class="demo" src="demos/flexbox-demo.html?kaart=3" title="Demo: flex-grow en flex-basis" loading="lazy" style="width:100%;height:800px;border:0;"></iframe>
+<iframe class="demo" src="demos/flexbox-demo.html?kaart=3" title="Demo: groeien met flex" loading="lazy" style="width:100%;height:760px;border:0;"></iframe>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -4299,7 +4299,7 @@ Voorspel eerst wat er zal gebeuren en klik pas daarna. Zet bijvoorbeeld <code>fl
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Voorspel eerst de breedtes van A, B en C voor je op een knop klikt. Welke knop geeft dezelfde verdeling als <code>flex: 1</code> op alle items?
+Voorspel eerst de breedtes van A, B en C voor je op een knop klikt. Vul daarna zelf getallen in: wat gebeurt er als je bij alle drie <code>flex: 3</code> zet?
 </td>
 </tr>
 </table>

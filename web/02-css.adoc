@@ -2020,13 +2020,13 @@ NOTE: `flex` is een korte schrijfwijze voor drie eigenschappen. Voor deze cursus
 
 `flex: 1` betekent `flex: 1 1 0%`: grow `1`, shrink `1` en basis `0%`.
 
-In de volgende demo zie je hoe de vrije ruimte verdeeld wordt. De container is 700px breed. De demo rekent de vrije ruimte voor je uit (de breedte van de container min de startbreedtes) en toont daarna hoeveel ruimte elk deel van `flex-grow` krijgt. Dit gaat iets verder dan `flex: 1`: je ziet `flex-grow` en `flex-basis` apart.
+In de volgende demo zie je hoe de vrije ruimte verdeeld wordt. De container is 700px breed. Een item zonder `flex` blijft 100px breed, items met `flex` delen de rest. De demo rekent de vrije ruimte voor je uit en toont hoeveel ruimte elk deel krijgt.
 
 ++++
-<iframe class="demo" src="demos/flexbox-demo.html?kaart=3" title="Demo: flex-grow en flex-basis" loading="lazy" style="width:100%;height:800px;border:0;"></iframe>
+<iframe class="demo" src="demos/flexbox-demo.html?kaart=3" title="Demo: groeien met flex" loading="lazy" style="width:100%;height:760px;border:0;"></iframe>
 ++++
 
-TIP: Voorspel eerst de breedtes van A, B en C voor je op een knop klikt. Welke knop geeft dezelfde verdeling als `flex: 1` op alle items?
+TIP: Voorspel eerst de breedtes van A, B en C voor je op een knop klikt. Vul daarna zelf getallen in: wat gebeurt er als je bij alle drie `flex: 3` zet?
 
 === Flexbox in de praktijk
 
