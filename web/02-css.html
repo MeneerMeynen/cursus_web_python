@@ -554,10 +554,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_flexbox">10. Flexbox</a>
 <ul class="sectlevel2">
 <li><a href="#_flex_container_en_flex_items">10.1. Flex container en flex items</a></li>
-<li><a href="#_de_twee_assen_hoofdas_en_kruisas">10.2. De twee assen: hoofdas en kruisas</a></li>
-<li><a href="#_flex_direction_de_richting_van_de_hoofdas">10.3. flex-direction: de richting van de hoofdas</a></li>
-<li><a href="#_justify_content_verdelen_op_de_hoofdas">10.4. justify-content: verdelen op de hoofdas</a></li>
-<li><a href="#_align_items_uitlijnen_op_de_kruisas">10.5. align-items: uitlijnen op de kruisas</a></li>
+<li><a href="#_de_twee_assen_main_axis_en_cross_axis">10.2. De twee assen: main axis en cross axis</a></li>
+<li><a href="#_flex_direction_de_richting_van_de_main_axis">10.3. flex-direction: de richting van de main axis</a></li>
+<li><a href="#_justify_content_verdelen_op_de_main_axis">10.4. justify-content: verdelen op de main axis</a></li>
+<li><a href="#_align_items_uitlijnen_op_de_cross_axis">10.5. align-items: uitlijnen op de cross axis</a></li>
 <li><a href="#_een_tag_centreren">10.6. Een tag centreren</a></li>
 <li><a href="#_gap_ruimte_tussen_de_items">10.7. gap: ruimte tussen de items</a></li>
 <li><a href="#_flex_wrap_naar_de_volgende_rij">10.8. flex-wrap: naar de volgende rij</a></li>
@@ -3621,7 +3621,7 @@ In het hoofdstuk Bootstrap ga je zien dat Bootstrap precies dit doet met zijn gr
 <p>wat een flex container en flex items zijn;</p>
 </li>
 <li>
-<p>wat de hoofdas en de kruisas zijn;</p>
+<p>wat de main axis en de cross axis zijn;</p>
 </li>
 <li>
 <p>in welke richting de items staan (<code>flex-direction</code>);</p>
@@ -3763,36 +3763,36 @@ window.addEventListener('message', function (e) {
 <iframe class="demo" src="demos/flexbox-demo.html?kaart=1" title="Demo: display block en display flex" loading="lazy" style="width:100%;height:580px;border:0;"></iframe>
 </div>
 <div class="sect2">
-<h3 id="_de_twee_assen_hoofdas_en_kruisas">10.2. De twee assen: hoofdas en kruisas</h3>
+<h3 id="_de_twee_assen_main_axis_en_cross_axis">10.2. De twee assen: main axis en cross axis</h3>
 <div class="paragraph">
 <p>Bij flexbox draait alles om twee richtingen:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>de <mark>hoofdas</mark> (<em>main axis</em>): de richting waarin de items achter elkaar staan;</p>
+<p>de <mark>main axis</mark> (de hoofdas): de richting waarin de items achter elkaar staan;</p>
 </li>
 <li>
-<p>de <mark>kruisas</mark> (<em>cross axis</em>): de richting loodrecht op de hoofdas.</p>
+<p>de <mark>cross axis</mark> (de kruisas): de richting loodrecht op de main axis.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Standaard loopt de hoofdas horizontaal, van links naar rechts, en de kruisas verticaal, van boven naar onder. Verander je de richting van de hoofdas, dan verandert de kruisas mee.</p>
+<p>Standaard loopt de main axis horizontaal, van links naar rechts, en de cross axis verticaal, van boven naar onder. Verander je de richting van de main axis, dan verandert de cross axis mee.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/css/flex-assen.svg" alt="Bij flex-direction: row loopt de hoofdas horizontaal en de kruisas verticaal. Bij flex-direction: column loopt de hoofdas verticaal en de kruisas horizontaal" width="740">
+<img src="images/css/flex-assen.svg" alt="Bij flex-direction: row loopt de main axis horizontaal en de cross axis verticaal. Bij flex-direction: column loopt de main axis verticaal en de cross axis horizontaal" width="740">
 </div>
 </div>
 <div class="paragraph">
-<p>Je moet deze twee assen goed kennen, want bijna elke flexbox-eigenschap werkt op een van beide: <code>justify-content</code> op de hoofdas en <code>align-items</code> op de kruisas.</p>
+<p>Je moet deze twee assen goed kennen, want bijna elke flexbox-eigenschap werkt op een van beide: <code>justify-content</code> op de main axis en <code>align-items</code> op de cross axis.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_flex_direction_de_richting_van_de_hoofdas">10.3. flex-direction: de richting van de hoofdas</h3>
+<h3 id="_flex_direction_de_richting_van_de_main_axis">10.3. flex-direction: de richting van de main axis</h3>
 <div class="paragraph">
-<p>Met <code>flex-direction</code> (op de container) kies je de richting van de hoofdas:</p>
+<p>Met <code>flex-direction</code> (op de container) kies je de richting van de main axis:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -3854,9 +3854,9 @@ Bij <code>row-reverse</code> en <code>column-reverse</code> verandert alleen wat
 </div>
 </div>
 <div class="sect2">
-<h3 id="_justify_content_verdelen_op_de_hoofdas">10.4. justify-content: verdelen op de hoofdas</h3>
+<h3 id="_justify_content_verdelen_op_de_main_axis">10.4. justify-content: verdelen op de main axis</h3>
 <div class="paragraph">
-<p>Zijn de items samen smaller dan de container, dan blijft er <mark>vrije ruimte</mark> over. Met <code>justify-content</code> (op de container) bepaal je <strong>wat er met die ruimte gebeurt</strong>, op de hoofdas.</p>
+<p>Zijn de items samen smaller dan de container, dan blijft er <mark>vrije ruimte</mark> over. Met <code>justify-content</code> (op de container) bepaal je <strong>wat er met die ruimte gebeurt</strong>, op de main axis.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -3924,16 +3924,16 @@ Bij <code>row-reverse</code> en <code>column-reverse</code> verandert alleen wat
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-<code>justify-content</code> doet pas iets als er <strong>vrije ruimte</strong> is. Bij <code>flex-direction: column</code> is de hoofdas verticaal, en de container is dan maar net zo hoog als zijn items: er is geen vrije ruimte. Geef de container in dat geval een hoogte, bijvoorbeeld <code>height: 300px;</code>, anders zie je geen verschil.
+<code>justify-content</code> doet pas iets als er <strong>vrije ruimte</strong> is. Bij <code>flex-direction: column</code> is de main axis verticaal, en de container is dan maar net zo hoog als zijn items: er is geen vrije ruimte. Geef de container in dat geval een hoogte, bijvoorbeeld <code>height: 300px;</code>, anders zie je geen verschil.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_align_items_uitlijnen_op_de_kruisas">10.5. align-items: uitlijnen op de kruisas</h3>
+<h3 id="_align_items_uitlijnen_op_de_cross_axis">10.5. align-items: uitlijnen op de cross axis</h3>
 <div class="paragraph">
-<p>Met <code>align-items</code> (op de container) bepaal je hoe de items staan op de <strong>kruisas</strong>. Bij een rij is dat dus de verticale richting.</p>
+<p>Met <code>align-items</code> (op de container) bepaal je hoe de items staan op de <strong>cross axis</strong>. Bij een rij is dat dus de verticale richting.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -3971,7 +3971,7 @@ Bij <code>row-reverse</code> en <code>column-reverse</code> verandert alleen wat
 </table>
 <div class="imageblock">
 <div class="content">
-<img src="images/css/align-items.svg" alt="De vier belangrijkste waarden van align-items bij flex-direction: row en een container van 150px hoog, met de hoofdas horizontaal en de kruisas verticaal: stretch, flex-start, center en flex-end" width="740">
+<img src="images/css/align-items.svg" alt="De vier belangrijkste waarden van align-items bij flex-direction: row en een container van 150px hoog, met de main axis horizontaal en de cross axis verticaal: stretch, flex-start, center en flex-end" width="740">
 </div>
 </div>
 <div class="listingblock">
@@ -3988,11 +3988,11 @@ Bij <code>row-reverse</code> en <code>column-reverse</code> verandert alleen wat
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>De hoofdas loopt horizontaal. Dit is de standaardwaarde, je mag ze dus weglaten. Zo is de kruisas verticaal en lijnt <code>align-items</code> de items verticaal uit.</td>
+<td>De main axis loopt horizontaal. Dit is de standaardwaarde, je mag ze dus weglaten. Zo is de cross axis verticaal en lijnt <code>align-items</code> de items verticaal uit.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>De container moet hoger zijn dan zijn items, anders is er op de kruisas niets te verdelen en zie je geen verschil.</td>
+<td>De container moet hoger zijn dan zijn items, anders is er op de cross axis niets te verdelen en zie je geen verschil.</td>
 </tr>
 </table>
 </div>
@@ -4000,7 +4000,7 @@ Bij <code>row-reverse</code> en <code>column-reverse</code> verandert alleen wat
 <p>Dat <code>stretch</code> de standaardwaarde is, verklaart waarom items in een rij altijd even hoog zijn, ook als het ene item veel meer tekst heeft dan het andere. Handig voor kaartjes die naast elkaar staan.</p>
 </div>
 <div class="paragraph">
-<p>Wat <code>justify-content</code> en <code>align-items</code> doen, hangt af van de richting van de hoofdas:</p>
+<p>Wat <code>justify-content</code> en <code>align-items</code> doen, hangt af van de richting van de main axis:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -4035,7 +4035,7 @@ Bij <code>row-reverse</code> en <code>column-reverse</code> verandert alleen wat
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Onthoud: <code>justify-content</code> is de <strong>hoofdas</strong>, <code>align-items</code> is de <strong>kruisas</strong>. Bij een rij is dat horizontaal en verticaal; bij een kolom is het omgekeerd.
+Onthoud: <code>justify-content</code> is de <strong>main axis</strong>, <code>align-items</code> is de <strong>cross axis</strong>. Bij een rij is dat horizontaal en verticaal; bij een kolom is het omgekeerd.
 </td>
 </tr>
 </table>
@@ -4068,11 +4068,11 @@ Onthoud: <code>justify-content</code> is de <strong>hoofdas</strong>, <code>alig
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Horizontaal centreren: op de hoofdas.</td>
+<td>Horizontaal centreren: op de main axis.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Verticaal centreren: op de kruisas.</td>
+<td>Verticaal centreren: op de cross axis.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -4508,10 +4508,10 @@ Staat er op de laatste rij maar één kaartje, dan groeit dat over de volledige 
 <p>Zet je <code>display: flex</code> op een tag, dan wordt die een <strong>flex container</strong> en worden de tags die er rechtstreeks in zitten <strong>flex items</strong>.</p>
 </li>
 <li>
-<p>Een flex container heeft een <strong>hoofdas</strong> (standaard horizontaal) en een <strong>kruisas</strong> (standaard verticaal). Met <code>flex-direction</code> kies je de richting van de hoofdas.</p>
+<p>Een flex container heeft een <strong>main axis</strong> (standaard horizontaal) en een <strong>cross axis</strong> (standaard verticaal). Met <code>flex-direction</code> kies je de richting van de main axis.</p>
 </li>
 <li>
-<p><code>justify-content</code> verdeelt de items op de <strong>hoofdas</strong>, <code>align-items</code> lijnt ze uit op de <strong>kruisas</strong>.</p>
+<p><code>justify-content</code> verdeelt de items op de <strong>main axis</strong>, <code>align-items</code> lijnt ze uit op de <strong>cross axis</strong>.</p>
 </li>
 <li>
 <p>Beide hebben pas effect als er vrije ruimte is: geef de container een hoogte als je verticaal wil verdelen of uitlijnen.</p>
@@ -4546,17 +4546,17 @@ Staat er op de laatste rij maar één kaartje, dan groeit dat over de volledige 
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>flex-direction</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">container</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">de richting van de hoofdas: <code>row</code>, <code>column</code>, &#8230;&#8203;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">de richting van de main axis: <code>row</code>, <code>column</code>, &#8230;&#8203;</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>justify-content</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">container</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">verdeelt de items op de hoofdas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">verdeelt de items op de main axis</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>align-items</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">container</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">lijnt de items uit op de kruisas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lijnt de items uit op de cross axis</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>flex-wrap</code></p></td>

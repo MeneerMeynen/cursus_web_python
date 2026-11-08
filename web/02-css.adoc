@@ -1702,7 +1702,7 @@ image::images/css/flex-intro.svg["Links: drie blok-tags staan onder elkaar. Rech
 In dit deel leer je:
 
 * wat een flex container en flex items zijn;
-* wat de hoofdas en de kruisas zijn;
+* wat de main axis en de cross axis zijn;
 * in welke richting de items staan (`flex-direction`);
 * hoe je items verdeelt (`justify-content`) en uitlijnt (`align-items`);
 * hoe je een tag in twee regels centreert;
@@ -1774,22 +1774,22 @@ window.addEventListener('message', function (e) {
 <iframe class="demo" src="demos/flexbox-demo.html?kaart=1" title="Demo: display block en display flex" loading="lazy" style="width:100%;height:580px;border:0;"></iframe>
 ++++
 
-=== De twee assen: hoofdas en kruisas
+=== De twee assen: main axis en cross axis
 
 Bij flexbox draait alles om twee richtingen:
 
-* de ##hoofdas## (_main axis_): de richting waarin de items achter elkaar staan;
-* de ##kruisas## (_cross axis_): de richting loodrecht op de hoofdas.
+* de ##main axis## (de hoofdas): de richting waarin de items achter elkaar staan;
+* de ##cross axis## (de kruisas): de richting loodrecht op de main axis.
 
-Standaard loopt de hoofdas horizontaal, van links naar rechts, en de kruisas verticaal, van boven naar onder. Verander je de richting van de hoofdas, dan verandert de kruisas mee.
+Standaard loopt de main axis horizontaal, van links naar rechts, en de cross axis verticaal, van boven naar onder. Verander je de richting van de main axis, dan verandert de cross axis mee.
 
-image::images/css/flex-assen.svg["Bij flex-direction: row loopt de hoofdas horizontaal en de kruisas verticaal. Bij flex-direction: column loopt de hoofdas verticaal en de kruisas horizontaal",width=740]
+image::images/css/flex-assen.svg["Bij flex-direction: row loopt de main axis horizontaal en de cross axis verticaal. Bij flex-direction: column loopt de main axis verticaal en de cross axis horizontaal",width=740]
 
-Je moet deze twee assen goed kennen, want bijna elke flexbox-eigenschap werkt op een van beide: `justify-content` op de hoofdas en `align-items` op de kruisas.
+Je moet deze twee assen goed kennen, want bijna elke flexbox-eigenschap werkt op een van beide: `justify-content` op de main axis en `align-items` op de cross axis.
 
-=== flex-direction: de richting van de hoofdas
+=== flex-direction: de richting van de main axis
 
-Met `flex-direction` (op de container) kies je de richting van de hoofdas:
+Met `flex-direction` (op de container) kies je de richting van de main axis:
 
 |===
 | Waarde | Betekenis
@@ -1814,9 +1814,9 @@ Met `flex-direction: column` staan de items weer onder elkaar, net zoals zonder 
 
 NOTE: Bij `row-reverse` en `column-reverse` verandert alleen wat je op het scherm ziet. De volgorde in de HTML blijft dezelfde, en dat is ook de volgorde waarin een schermlezer de tags voorleest en waarin je met kbd:[Tab] door de links springt. Gebruik de `reverse`-waarden dus spaarzaam.
 
-=== justify-content: verdelen op de hoofdas
+=== justify-content: verdelen op de main axis
 
-Zijn de items samen smaller dan de container, dan blijft er ##vrije ruimte## over. Met `justify-content` (op de container) bepaal je *wat er met die ruimte gebeurt*, op de hoofdas.
+Zijn de items samen smaller dan de container, dan blijft er ##vrije ruimte## over. Met `justify-content` (op de container) bepaal je *wat er met die ruimte gebeurt*, op de main axis.
 
 |===
 | Waarde | Betekenis
@@ -1840,11 +1840,11 @@ image::images/css/justify-content.svg["De zes waarden van justify-content met dr
 ----
 <1> Het eerste item staat links, het laatste rechts en de rest zit gelijk verdeeld tussenin.
 
-IMPORTANT: `justify-content` doet pas iets als er *vrije ruimte* is. Bij `flex-direction: column` is de hoofdas verticaal, en de container is dan maar net zo hoog als zijn items: er is geen vrije ruimte. Geef de container in dat geval een hoogte, bijvoorbeeld `height: 300px;`, anders zie je geen verschil.
+IMPORTANT: `justify-content` doet pas iets als er *vrije ruimte* is. Bij `flex-direction: column` is de main axis verticaal, en de container is dan maar net zo hoog als zijn items: er is geen vrije ruimte. Geef de container in dat geval een hoogte, bijvoorbeeld `height: 300px;`, anders zie je geen verschil.
 
-=== align-items: uitlijnen op de kruisas
+=== align-items: uitlijnen op de cross axis
 
-Met `align-items` (op de container) bepaal je hoe de items staan op de *kruisas*. Bij een rij is dat dus de verticale richting.
+Met `align-items` (op de container) bepaal je hoe de items staan op de *cross axis*. Bij een rij is dat dus de verticale richting.
 
 |===
 | Waarde | Betekenis
@@ -1856,7 +1856,7 @@ Met `align-items` (op de container) bepaal je hoe de items staan op de *kruisas*
 | `baseline` | de eerste tekstlijn van alle items staat op dezelfde hoogte
 |===
 
-image::images/css/align-items.svg["De vier belangrijkste waarden van align-items bij flex-direction: row en een container van 150px hoog, met de hoofdas horizontaal en de kruisas verticaal: stretch, flex-start, center en flex-end",width=740]
+image::images/css/align-items.svg["De vier belangrijkste waarden van align-items bij flex-direction: row en een container van 150px hoog, met de main axis horizontaal en de cross axis verticaal: stretch, flex-start, center en flex-end",width=740]
 
 [source,css]
 ----
@@ -1867,12 +1867,12 @@ image::images/css/align-items.svg["De vier belangrijkste waarden van align-items
   align-items: center;
 }
 ----
-<1> De hoofdas loopt horizontaal. Dit is de standaardwaarde, je mag ze dus weglaten. Zo is de kruisas verticaal en lijnt `align-items` de items verticaal uit.
-<2> De container moet hoger zijn dan zijn items, anders is er op de kruisas niets te verdelen en zie je geen verschil.
+<1> De main axis loopt horizontaal. Dit is de standaardwaarde, je mag ze dus weglaten. Zo is de cross axis verticaal en lijnt `align-items` de items verticaal uit.
+<2> De container moet hoger zijn dan zijn items, anders is er op de cross axis niets te verdelen en zie je geen verschil.
 
 Dat `stretch` de standaardwaarde is, verklaart waarom items in een rij altijd even hoog zijn, ook als het ene item veel meer tekst heeft dan het andere. Handig voor kaartjes die naast elkaar staan.
 
-Wat `justify-content` en `align-items` doen, hangt af van de richting van de hoofdas:
+Wat `justify-content` en `align-items` doen, hangt af van de richting van de main axis:
 
 |===
 | `flex-direction` | `justify-content` werkt | `align-items` werkt
@@ -1881,7 +1881,7 @@ Wat `justify-content` en `align-items` doen, hangt af van de richting van de hoo
 | `column` | verticaal | horizontaal
 |===
 
-TIP: Onthoud: `justify-content` is de *hoofdas*, `align-items` is de *kruisas*. Bij een rij is dat horizontaal en verticaal; bij een kolom is het omgekeerd.
+TIP: Onthoud: `justify-content` is de *main axis*, `align-items` is de *cross axis*. Bij een rij is dat horizontaal en verticaal; bij een kolom is het omgekeerd.
 
 === Een tag centreren
 
@@ -1904,8 +1904,8 @@ Bij het positioneren centreerde je een tag met `top`, `left` en `transform` (zie
   background-color: #eee;
 }
 ----
-<1> Horizontaal centreren: op de hoofdas.
-<2> Verticaal centreren: op de kruisas.
+<1> Horizontaal centreren: op de main axis.
+<2> Verticaal centreren: op de cross axis.
 <3> Zonder hoogte is de container maar zo hoog als zijn inhoud, en is er niets om in te centreren.
 
 Het centreren met flexbox is korter en je ziet meteen wat elke regel doet. Daarom gebruiken de meeste websites tegenwoordig flexbox om iets te centreren.
@@ -2162,8 +2162,8 @@ Je gebruikt dezelfde HTML, maar de indeling past zich aan het scherm aan.
 === Flexbox samengevat
 
 * Zet je `display: flex` op een tag, dan wordt die een *flex container* en worden de tags die er rechtstreeks in zitten *flex items*.
-* Een flex container heeft een *hoofdas* (standaard horizontaal) en een *kruisas* (standaard verticaal). Met `flex-direction` kies je de richting van de hoofdas.
-* `justify-content` verdeelt de items op de *hoofdas*, `align-items` lijnt ze uit op de *kruisas*.
+* Een flex container heeft een *main axis* (standaard horizontaal) en een *cross axis* (standaard verticaal). Met `flex-direction` kies je de richting van de main axis.
+* `justify-content` verdeelt de items op de *main axis*, `align-items` lijnt ze uit op de *cross axis*.
 * Beide hebben pas effect als er vrije ruimte is: geef de container een hoogte als je verticaal wil verdelen of uitlijnen.
 * Met `gap` zet je ruimte tussen de items, met `flex-wrap: wrap` laat je items naar een volgende rij gaan.
 * Met `flex: 1` op een item laat je het de vrije ruimte opvullen.
@@ -2172,9 +2172,9 @@ Je gebruikt dezelfde HTML, maar de indeling past zich aan het scherm aan.
 | Eigenschap | Zet je op | Wat doet ze?
 
 | `display: flex` | container | maakt van de tag een flex container
-| `flex-direction` | container | de richting van de hoofdas: `row`, `column`, ...
-| `justify-content` | container | verdeelt de items op de hoofdas
-| `align-items` | container | lijnt de items uit op de kruisas
+| `flex-direction` | container | de richting van de main axis: `row`, `column`, ...
+| `justify-content` | container | verdeelt de items op de main axis
+| `align-items` | container | lijnt de items uit op de cross axis
 | `flex-wrap` | container | laat items naar een volgende rij gaan
 | `gap` | container | ruimte tussen de items
 | `flex` | item | laat het item groeien om de vrije ruimte op te vullen

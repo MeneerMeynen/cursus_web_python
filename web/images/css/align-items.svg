@@ -54,7 +54,7 @@
   <text x="640" y="240" font-size="12" fill="#5B6270" text-anchor="middle">onderaan</text>
   <text x="370" y="270" font-size="12" fill="#5B6270" text-anchor="middle">de container heeft hier flex-direction: row en height: 150px</text>
   <line x1="196" y1="293" x2="236" y2="293" stroke="#1F2A44" stroke-width="2" marker-end="url(#pijlinkt)"/>
-  <text x="244" y="298" font-size="13" fill="#1F2A44" font-weight="700">hoofdas<tspan dx="6" font-weight="400" font-size="12" fill="#5B6270">horizontaal</tspan></text>
+  <text x="244" y="298" font-size="13" fill="#1F2A44" font-weight="700">main axis<tspan dx="6" font-weight="400" font-size="12" fill="#5B6270">horizontaal</tspan></text>
   <line x1="418" y1="284" x2="418" y2="302" stroke="#9AA1AD" stroke-width="1.5" marker-end="url(#pijl)"/>
-  <text x="430" y="298" font-size="13" fill="#5B6270" font-weight="700">kruisas<tspan dx="6" font-weight="400" font-size="12">verticaal</tspan></text>
+  <text x="430" y="298" font-size="13" fill="#5B6270" font-weight="700">cross axis<tspan dx="6" font-weight="400" font-size="12">verticaal</tspan></text>
 </svg>
