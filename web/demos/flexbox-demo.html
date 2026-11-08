@@ -129,8 +129,8 @@
 
   <!-- ============ KAART 2 ============ -->
   <div class="kaart">
-    <h2>2. Hoofdas en kruisas</h2>
-    <p class="uitleg"><code>justify-content</code> werkt langs de <strong>hoofdas</strong>, <code>align-items</code> langs de <strong>kruisas</strong>. Verander de richting en kijk hoe de assen meedraaien.</p>
+    <h2>2. Main axis en cross axis</h2>
+    <p class="uitleg"><code>justify-content</code> werkt langs de <strong>main axis</strong>, <code>align-items</code> langs de <strong>cross axis</strong>. Verander de richting en kijk hoe de assen meedraaien.</p>
 
     <div class="knoppen">
       <button id="p-reset">Standaard</button>
@@ -242,10 +242,10 @@
   }
 
   const ASSEN = {
-    'row':            ['Hoofdas: links naar rechts →', 'Kruisas: boven naar onder ↓'],
-    'row-reverse':    ['Hoofdas: rechts naar links ←', 'Kruisas: boven naar onder ↓'],
-    'column':         ['Hoofdas: boven naar onder ↓', 'Kruisas: links naar rechts →'],
-    'column-reverse': ['Hoofdas: onder naar boven ↑', 'Kruisas: links naar rechts →']
+    'row':            ['Main axis: links naar rechts →', 'Cross axis: boven naar onder ↓'],
+    'row-reverse':    ['Main axis: rechts naar links ←', 'Cross axis: boven naar onder ↓'],
+    'column':         ['Main axis: boven naar onder ↓', 'Cross axis: links naar rechts →'],
+    'column-reverse': ['Main axis: onder naar boven ↑', 'Cross axis: links naar rechts →']
   };
 
   function updateKaart2() {
