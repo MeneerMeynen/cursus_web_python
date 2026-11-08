@@ -4892,6 +4892,18 @@ In de ontwikkelaarstools (<kbd>F12</kbd>) zie je naast een flex container het la
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>Probeer het zelf: klik op de knoppen en kijk wat er met de kaartjes gebeurt.</p>
+</div>
+<script>
+window.addEventListener('message', function (e) {
+  if (!e.data || e.data.type !== 'flexbox-demo-hoogte') return;
+  document.querySelectorAll('iframe.demo').forEach(function (f) {
+    if (f.contentWindow === e.source) f.style.height = e.data.hoogte + 'px';
+  });
+});
+</script>
+<iframe class="demo" src="demos/flexbox-demo.html?kaart=1" title="Demo: display block en display flex" loading="lazy" style="width:100%;height:580px;border:0;"></iframe>
 </div>
 <div class="sect3">
 <h4 id="_de_twee_assen_hoofdas_en_kruisas">2.10.2. De twee assen: hoofdas en kruisas</h4>
@@ -5297,6 +5309,22 @@ Met <code>flex-flow: row wrap;</code> zet je <code>flex-direction</code> en <cod
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>Nu kan je alles uitproberen wat je tot hier zag: kies een richting, verdeel en lijn de items uit, laat ze naar een volgende rij gaan en pas de ruimte aan. Onder de demo staat telkens de CSS die erbij hoort. De knop <em>Centreren</em> toont het centreren met <code>justify-content</code> en <code>align-items</code>, en <em>Menubalk</em> een navigatiebalk met <code>space-between</code>.</p>
+</div>
+<iframe class="demo" src="demos/flexbox-demo.html?kaart=2" title="Demo: richting, verdelen, uitlijnen, ruimte en rijen" loading="lazy" style="width:100%;height:1030px;border:0;"></iframe>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Voorspel eerst wat er zal gebeuren en klik pas daarna. Zet bijvoorbeeld <code>flex-direction</code> op <code>column</code> en probeer <code>justify-content</code> en <code>align-items</code>. Let op de regel <code>height: 360px</code> onder de demo: zonder die hoogte zou <code>justify-content</code> bij <code>column</code> niets doen.
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_flex_items_laten_groeien">2.10.9. flex: items laten groeien</h4>
@@ -5402,6 +5430,22 @@ Met <code>flex-flow: row wrap;</code> zet je <code>flex-direction</code> en <cod
 </table>
 <div class="paragraph">
 <p><code>flex: 1</code> betekent <code>flex: 1 1 0%</code>: grow <code>1</code>, shrink <code>1</code> en basis <code>0%</code>.</p>
+</div>
+<div class="paragraph">
+<p>In de volgende demo zie je hoe de vrije ruimte verdeeld wordt. De container is 700px breed. De demo rekent de vrije ruimte voor je uit (de breedte van de container min de startbreedtes) en toont daarna hoeveel ruimte elk deel van <code>flex-grow</code> krijgt. Dit gaat iets verder dan <code>flex: 1</code>: je ziet <code>flex-grow</code> en <code>flex-basis</code> apart.</p>
+</div>
+<iframe class="demo" src="demos/flexbox-demo.html?kaart=3" title="Demo: flex-grow en flex-basis" loading="lazy" style="width:100%;height:800px;border:0;"></iframe>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Voorspel eerst de breedtes van A, B en C voor je op een knop klikt. Welke knop geeft dezelfde verdeling als <code>flex: 1</code> op alle items?
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -5729,7 +5773,7 @@ Staat er op de laatste rij maar één kaartje, dan groeit dat over de volledige 
 <p>In het volgende hoofdstuk, over Bootstrap, kom je dezelfde ideeën terug als kant-en-klare classes: <code>d-flex</code> is <code>display: flex</code>, <code>justify-content-between</code> is <code>justify-content: space-between</code>, <code>align-items-center</code> is <code>align-items: center</code> en <code>gap-3</code> is een <code>gap</code>.</p>
 </div>
 <div class="paragraph">
-<p>Wil je oefenen? Het spel <a href="https://flexboxfroggy.com/" target="_blank" rel="noopener">Flexbox Froggy</a> laat je met flexbox-code kikkers naar hun waterlelie brengen. Een volledig overzicht van alle eigenschappen vind je in <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener">A Complete Guide to Flexbox</a> (Engels). Flexbox schikt tags in één richting; voor rijen <strong>en</strong> kolommen tegelijk, een raster, bestaat <code>grid</code>: <a href="https://www.w3schools.com/css/css_grid.asp" target="_blank" rel="noopener">CSS grid op w3schools</a>.</p>
+<p>Alle demo&#8217;s staan ook samen op een eigen pagina: <a href="demos/flexbox-demo.html" target="_blank" rel="noopener">Flexbox-demo</a>. Wil je nog meer oefenen? Het spel <a href="https://flexboxfroggy.com/" target="_blank" rel="noopener">Flexbox Froggy</a> laat je met flexbox-code kikkers naar hun waterlelie brengen. Een volledig overzicht van alle eigenschappen vind je in <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener">A Complete Guide to Flexbox</a> (Engels). Flexbox schikt tags in één richting; voor rijen <strong>en</strong> kolommen tegelijk, een raster, bestaat <code>grid</code>: <a href="https://www.w3schools.com/css/css_grid.asp" target="_blank" rel="noopener">CSS grid op w3schools</a>.</p>
 </div>
 </div>
 </div>

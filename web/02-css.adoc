@@ -1760,6 +1760,20 @@ IMPORTANT: De meeste flexbox-eigenschappen zet je op de *container*, niet op de 
 
 TIP: In de ontwikkelaarstools (kbd:[F12]) zie je naast een flex container het label `flex`. Klik erop en de browser tekent de container en zijn items. Handig om te zien wat er gebeurt.
 
+Probeer het zelf: klik op de knoppen en kijk wat er met de kaartjes gebeurt.
+
+++++
+<script>
+window.addEventListener('message', function (e) {
+  if (!e.data || e.data.type !== 'flexbox-demo-hoogte') return;
+  document.querySelectorAll('iframe.demo').forEach(function (f) {
+    if (f.contentWindow === e.source) f.style.height = e.data.hoogte + 'px';
+  });
+});
+</script>
+<iframe class="demo" src="demos/flexbox-demo.html?kaart=1" title="Demo: display block en display flex" loading="lazy" style="width:100%;height:580px;border:0;"></iframe>
+++++
+
 === De twee assen: hoofdas en kruisas
 
 Bij flexbox draait alles om twee richtingen:
@@ -1943,6 +1957,14 @@ Maak je het venster smaller, dan springen de items die niet meer passen naar de 
 
 NOTE: Met `flex-flow: row wrap;` zet je `flex-direction` en `flex-wrap` samen in één regel.
 
+Nu kan je alles uitproberen wat je tot hier zag: kies een richting, verdeel en lijn de items uit, laat ze naar een volgende rij gaan en pas de ruimte aan. Onder de demo staat telkens de CSS die erbij hoort. De knop _Centreren_ toont het centreren met `justify-content` en `align-items`, en _Menubalk_ een navigatiebalk met `space-between`.
+
+++++
+<iframe class="demo" src="demos/flexbox-demo.html?kaart=2" title="Demo: richting, verdelen, uitlijnen, ruimte en rijen" loading="lazy" style="width:100%;height:1030px;border:0;"></iframe>
+++++
+
+TIP: Voorspel eerst wat er zal gebeuren en klik pas daarna. Zet bijvoorbeeld `flex-direction` op `column` en probeer `justify-content` en `align-items`. Let op de regel `height: 360px` onder de demo: zonder die hoogte zou `justify-content` bij `column` niets doen.
+
 === flex: items laten groeien
 
 Een item is standaard zo breed als zijn inhoud, en de vrije ruimte blijft leeg. Met `flex` (nu op een *item*) laat je een item een deel van die vrije ruimte opeisen.
@@ -1997,6 +2019,14 @@ NOTE: `flex` is een korte schrijfwijze voor drie eigenschappen. Voor deze cursus
 |===
 
 `flex: 1` betekent `flex: 1 1 0%`: grow `1`, shrink `1` en basis `0%`.
+
+In de volgende demo zie je hoe de vrije ruimte verdeeld wordt. De container is 700px breed. De demo rekent de vrije ruimte voor je uit (de breedte van de container min de startbreedtes) en toont daarna hoeveel ruimte elk deel van `flex-grow` krijgt. Dit gaat iets verder dan `flex: 1`: je ziet `flex-grow` en `flex-basis` apart.
+
+++++
+<iframe class="demo" src="demos/flexbox-demo.html?kaart=3" title="Demo: flex-grow en flex-basis" loading="lazy" style="width:100%;height:800px;border:0;"></iframe>
+++++
+
+TIP: Voorspel eerst de breedtes van A, B en C voor je op een knop klikt. Welke knop geeft dezelfde verdeling als `flex: 1` op alle items?
 
 === Flexbox in de praktijk
 
@@ -2165,7 +2195,7 @@ Je gebruikt dezelfde HTML, maar de indeling past zich aan het scherm aan.
 
 In het volgende hoofdstuk, over Bootstrap, kom je dezelfde ideeën terug als kant-en-klare classes: `d-flex` is `display: flex`, `justify-content-between` is `justify-content: space-between`, `align-items-center` is `align-items: center` en `gap-3` is een `gap`.
 
-Wil je oefenen? Het spel https://flexboxfroggy.com/[Flexbox Froggy^] laat je met flexbox-code kikkers naar hun waterlelie brengen. Een volledig overzicht van alle eigenschappen vind je in https://css-tricks.com/snippets/css/a-guide-to-flexbox/[A Complete Guide to Flexbox^] (Engels). Flexbox schikt tags in één richting; voor rijen *en* kolommen tegelijk, een raster, bestaat `grid`: https://www.w3schools.com/css/css_grid.asp[CSS grid op w3schools^].
+Alle demo's staan ook samen op een eigen pagina: link:demos/flexbox-demo.html[Flexbox-demo^]. Wil je nog meer oefenen? Het spel https://flexboxfroggy.com/[Flexbox Froggy^] laat je met flexbox-code kikkers naar hun waterlelie brengen. Een volledig overzicht van alle eigenschappen vind je in https://css-tricks.com/snippets/css/a-guide-to-flexbox/[A Complete Guide to Flexbox^] (Engels). Flexbox schikt tags in één richting; voor rijen *en* kolommen tegelijk, een raster, bestaat `grid`: https://www.w3schools.com/css/css_grid.asp[CSS grid op w3schools^].
 
 == Fouten opsporen
 
