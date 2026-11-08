@@ -1856,17 +1856,19 @@ Met `align-items` (op de container) bepaal je hoe de items staan op de *kruisas*
 | `baseline` | de eerste tekstlijn van alle items staat op dezelfde hoogte
 |===
 
-image::images/css/align-items.svg["De vier belangrijkste waarden van align-items bij een container van 150px hoog: stretch, flex-start, center en flex-end",width=740]
+image::images/css/align-items.svg["De vier belangrijkste waarden van align-items bij flex-direction: row en een container van 150px hoog, met de hoofdas horizontaal en de kruisas verticaal: stretch, flex-start, center en flex-end",width=740]
 
 [source,css]
 ----
 .container {
   display: flex;
-  height: 200px; <1>
+  flex-direction: row; <1>
+  height: 200px; <2>
   align-items: center;
 }
 ----
-<1> De container moet hoger zijn dan zijn items, anders is er op de kruisas niets te verdelen en zie je geen verschil.
+<1> De hoofdas loopt horizontaal. Dit is de standaardwaarde, je mag ze dus weglaten. Zo is de kruisas verticaal en lijnt `align-items` de items verticaal uit.
+<2> De container moet hoger zijn dan zijn items, anders is er op de kruisas niets te verdelen en zie je geen verschil.
 
 Dat `stretch` de standaardwaarde is, verklaart waarom items in een rij altijd even hoog zijn, ook als het ene item veel meer tekst heeft dan het andere. Handig voor kaartjes die naast elkaar staan.
 
