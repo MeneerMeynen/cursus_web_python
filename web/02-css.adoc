@@ -24,7 +24,8 @@ In dit hoofdstuk leer je:
 * kleuren en tekst opmaken;
 * tags positioneren met `position`;
 * een navigatiebalk en een dropdown-menu maken;
-* je website aanpassen aan elk scherm met media queries.
+* je website aanpassen aan elk scherm met media queries;
+* tags vlot schikken en uitlijnen met flexbox.
 
 == CSS koppelen aan HTML
 
@@ -1689,6 +1690,482 @@ Meer uitleg: https://www.w3schools.com/css/css_rwd_grid.asp[een responsive grid 
 | Iets aanpassen op een liggend scherm | `@media (orientation: landscape) { ... }`
 | Kolommen die onder elkaar komen op een smartphone | `width: 100%`, en met `@media (min-width: ...)` een kleinere breedte
 |===
+
+== Flexbox
+
+In de vorige onderdelen zette je tags naast elkaar met `inline`, `inline-block` en `float`, en maakte je kolommen met breedtes in procent. Dat werkt, maar het blijft behelpen: je moet `overflow: hidden` toevoegen omdat de ouder-tag anders ineenkrimpt, je moet procenten optellen tot precies 100%, en een tag verticaal centreren was een kunstje met `position` en `transform`.
+
+Met ##flexbox## (voluit: _Flexible Box Layout_) los je dat veel eenvoudiger op. Je zegt tegen een tag dat de tags erin *flexibel* moeten zijn, en daarna bepaal je met een paar eigenschappen hoe ze verdeeld en uitgelijnd worden: naast of onder elkaar, links, rechts of in het midden, even breed of net niet.
+
+image::images/css/flex-intro.svg["Links: drie blok-tags staan onder elkaar. Rechts: dezelfde drie tags staan naast elkaar in een tag met display: flex",width=740]
+
+In dit deel leer je:
+
+* wat een flex container en flex items zijn;
+* wat de hoofdas en de kruisas zijn;
+* in welke richting de items staan (`flex-direction`);
+* hoe je items verdeelt (`justify-content`) en uitlijnt (`align-items`);
+* hoe je een tag in twee regels centreert;
+* hoe je ruimte tussen items zet (`gap`) en items naar een volgende rij laat gaan (`flex-wrap`);
+* hoe je items laat groeien om de vrije ruimte op te vullen (`flex`);
+* hoe je een navigatiebalk en kaartjes met flexbox maakt, en flexbox combineert met media queries.
+
+Meer uitleg en voorbeelden: https://www.w3schools.com/css/css3_flexbox.asp[CSS-flexbox op w3schools^]
+
+=== Flex container en flex items
+
+Flexbox werkt altijd met *twee niveaus*:
+
+* de ##flex container##: de ouder-tag, waarop je `display: flex` zet;
+* de ##flex items##: de tags die *rechtstreeks* in de container zitten.
+
+[source,html]
+----
+<div class="container">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+</div>
+----
+
+[source,css]
+----
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex; <1>
+  background-color: white;
+  border: 2px solid #333;
+}
+
+.item {
+  background-color: #8cb6c0;
+  border: 2px solid #3f7a88;
+  padding: 20px;
+}
+----
+<1> Eén regel is genoeg: de drie `div`-tags staan nu naast elkaar in plaats van onder elkaar.
+
+Zonder `display: flex` zijn de drie `div`-tags blok-tags en staan ze onder elkaar (zie <<_de_normale_flow,De normale flow>>). Met `display: flex` verandert er een hele reeks dingen:
+
+* de items komen *naast elkaar*, van links naar rechts;
+* elk item is zo breed als zijn inhoud, ook al is het een blok-tag;
+* alle items zijn even hoog: zo hoog als het hoogste item.
+
+IMPORTANT: Alleen de tags die *rechtstreeks* in de container zitten, zijn flex items. Een tag die in een item zit, wordt niet beïnvloed. Wil je die ook flexibel schikken, dan zet je op dat item zelf weer `display: flex`.
+
+IMPORTANT: De meeste flexbox-eigenschappen zet je op de *container*, niet op de items. Een veelgemaakte fout is `justify-content` op een item zetten: dat doet niets. In het overzicht op het einde van dit deel zie je welke eigenschap waar hoort.
+
+TIP: In de ontwikkelaarstools (kbd:[F12]) zie je naast een flex container het label `flex`. Klik erop en de browser tekent de container en zijn items. Handig om te zien wat er gebeurt.
+
+=== De twee assen: hoofdas en kruisas
+
+Bij flexbox draait alles om twee richtingen:
+
+* de ##hoofdas## (_main axis_): de richting waarin de items achter elkaar staan;
+* de ##kruisas## (_cross axis_): de richting loodrecht op de hoofdas.
+
+Standaard loopt de hoofdas horizontaal, van links naar rechts, en de kruisas verticaal, van boven naar onder. Verander je de richting van de hoofdas, dan verandert de kruisas mee.
+
+image::images/css/flex-assen.svg["Bij flex-direction: row loopt de hoofdas horizontaal en de kruisas verticaal. Bij flex-direction: column loopt de hoofdas verticaal en de kruisas horizontaal",width=740]
+
+Je moet deze twee assen goed kennen, want bijna elke flexbox-eigenschap werkt op een van beide: `justify-content` op de hoofdas en `align-items` op de kruisas.
+
+=== flex-direction: de richting van de hoofdas
+
+Met `flex-direction` (op de container) kies je de richting van de hoofdas:
+
+|===
+| Waarde | Betekenis
+
+| `row` (standaard) | de items staan naast elkaar, van links naar rechts
+| `row-reverse` | naast elkaar, van rechts naar links
+| `column` | onder elkaar, van boven naar onder
+| `column-reverse` | onder elkaar, van onder naar boven
+|===
+
+image::images/css/flex-direction.svg["De vier waarden van flex-direction met drie genummerde items: row, row-reverse, column en column-reverse",width=740]
+
+[source,css]
+----
+.container {
+  display: flex;
+  flex-direction: column;
+}
+----
+
+Met `flex-direction: column` staan de items weer onder elkaar, net zoals zonder flexbox. Het verschil is dat je ze nu wel kan verdelen en uitlijnen met de eigenschappen hieronder.
+
+NOTE: Bij `row-reverse` en `column-reverse` verandert alleen wat je op het scherm ziet. De volgorde in de HTML blijft dezelfde, en dat is ook de volgorde waarin een schermlezer de tags voorleest en waarin je met kbd:[Tab] door de links springt. Gebruik de `reverse`-waarden dus spaarzaam.
+
+=== justify-content: verdelen op de hoofdas
+
+Zijn de items samen smaller dan de container, dan blijft er ##vrije ruimte## over. Met `justify-content` (op de container) bepaal je *wat er met die ruimte gebeurt*, op de hoofdas.
+
+|===
+| Waarde | Betekenis
+
+| `flex-start` (standaard) | alle items vooraan, de vrije ruimte komt achteraan
+| `flex-end` | alle items achteraan, de vrije ruimte komt vooraan
+| `center` | alle items in het midden, de vrije ruimte is evenveel vooraan als achteraan
+| `space-between` | het eerste item vooraan, het laatste achteraan, de vrije ruimte komt *tussen* de items
+| `space-around` | elk item krijgt evenveel ruimte aan beide kanten: tussen twee items is dat dubbel zoveel als aan de uiteinden
+| `space-evenly` | de vrije ruimte is overal even groot: tussen de items en aan de uiteinden
+|===
+
+image::images/css/justify-content.svg["De zes waarden van justify-content met drie items in een rij: flex-start, flex-end, center, space-between, space-around en space-evenly",width=740]
+
+[source,css]
+----
+.container {
+  display: flex;
+  justify-content: space-between; <1>
+}
+----
+<1> Het eerste item staat links, het laatste rechts en de rest zit gelijk verdeeld tussenin.
+
+IMPORTANT: `justify-content` doet pas iets als er *vrije ruimte* is. Bij `flex-direction: column` is de hoofdas verticaal, en de container is dan maar net zo hoog als zijn items: er is geen vrije ruimte. Geef de container in dat geval een hoogte, bijvoorbeeld `height: 300px;`, anders zie je geen verschil.
+
+=== align-items: uitlijnen op de kruisas
+
+Met `align-items` (op de container) bepaal je hoe de items staan op de *kruisas*. Bij een rij is dat dus de verticale richting.
+
+|===
+| Waarde | Betekenis
+
+| `stretch` (standaard) | de items worden zo hoog als de container
+| `flex-start` | bovenaan
+| `center` | in het midden
+| `flex-end` | onderaan
+| `baseline` | de eerste tekstlijn van alle items staat op dezelfde hoogte
+|===
+
+image::images/css/align-items.svg["De vier belangrijkste waarden van align-items bij een container van 150px hoog: stretch, flex-start, center en flex-end",width=740]
+
+[source,css]
+----
+.container {
+  display: flex;
+  height: 200px; <1>
+  align-items: center;
+}
+----
+<1> De container moet hoger zijn dan zijn items, anders is er op de kruisas niets te verdelen en zie je geen verschil.
+
+Dat `stretch` de standaardwaarde is, verklaart waarom items in een rij altijd even hoog zijn, ook als het ene item veel meer tekst heeft dan het andere. Handig voor kaartjes die naast elkaar staan.
+
+Wat `justify-content` en `align-items` doen, hangt af van de richting van de hoofdas:
+
+|===
+| `flex-direction` | `justify-content` werkt | `align-items` werkt
+
+| `row` (standaard) | horizontaal | verticaal
+| `column` | verticaal | horizontaal
+|===
+
+TIP: Onthoud: `justify-content` is de *hoofdas*, `align-items` is de *kruisas*. Bij een rij is dat horizontaal en verticaal; bij een kolom is het omgekeerd.
+
+=== Een tag centreren
+
+Bij het positioneren centreerde je een tag met `top`, `left` en `transform` (zie <<_een_tag_centreren_met_positie,Een tag centreren met positie>>). Met flexbox lukt dat met twee regels:
+
+[source,html]
+----
+<div class="hero">
+  <div class="tekst">Ik sta in het midden</div>
+</div>
+----
+
+[source,css]
+----
+.hero {
+  display: flex;
+  justify-content: center; <1>
+  align-items: center; <2>
+  height: 300px; <3>
+  background-color: #eee;
+}
+----
+<1> Horizontaal centreren: op de hoofdas.
+<2> Verticaal centreren: op de kruisas.
+<3> Zonder hoogte is de container maar zo hoog als zijn inhoud, en is er niets om in te centreren.
+
+Het centreren met flexbox is korter en je ziet meteen wat elke regel doet. Daarom gebruiken de meeste websites tegenwoordig flexbox om iets te centreren.
+
+=== gap: ruimte tussen de items
+
+Zonder extra opmaak staan de items tegen elkaar. Vroeger gaf je elk item een `margin`. Met `gap` (op de container) zet je ruimte *tussen* de items:
+
+[source,css]
+----
+.container {
+  display: flex;
+  gap: 20px;
+}
+----
+
+Het grote verschil met `margin`: `gap` zet alleen ruimte *tussen* de items en niet aan de buitenkant. Je hebt dus geen last van een marge voor het eerste of na het laatste item.
+
+Wil je een andere ruimte tussen de rijen dan tussen de kolommen? Geef dan twee waarden: eerst de ruimte tussen de rijen, dan tussen de kolommen. `gap: 10px 30px;`
+
+=== flex-wrap: naar de volgende rij
+
+Standaard blijven alle items op *één rij*, ook als ze er eigenlijk niet allemaal naast elkaar passen. Ze worden dan smaller gemaakt. Zijn ze nog te breed, dan loopt de rij uit de container.
+
+Met `flex-wrap` (op de container) kies je wat er gebeurt als er te weinig plaats is:
+
+|===
+| Waarde | Betekenis
+
+| `nowrap` (standaard) | alle items blijven op één rij en worden smaller
+| `wrap` | items die niet meer passen, gaan naar de volgende rij
+| `wrap-reverse` | idem, maar de nieuwe rij komt *boven* de vorige
+|===
+
+image::images/css/flex-wrap.svg["Vijf items van 90px breed in een container van 320px. Bij nowrap blijven ze op één rij en worden ze smaller. Bij wrap staan er drie op de eerste rij en twee op de tweede",width=740]
+
+[source,css]
+----
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.item {
+  width: 150px;
+}
+----
+
+Maak je het venster smaller, dan springen de items die niet meer passen naar de volgende rij. Maak je het weer breder, dan komen ze terug naast de andere.
+
+NOTE: Met `flex-flow: row wrap;` zet je `flex-direction` en `flex-wrap` samen in één regel.
+
+=== flex: items laten groeien
+
+Een item is standaard zo breed als zijn inhoud, en de vrije ruimte blijft leeg. Met `flex` (nu op een *item*) laat je een item een deel van die vrije ruimte opeisen.
+
+[source,css]
+----
+.item {
+  flex: 1;
+}
+----
+
+Geef je *alle* items `flex: 1`, dan wordt de vrije ruimte gelijk verdeeld en zijn ze even breed. Het getal is een soort gewicht: een item met `flex: 2` krijgt twee keer zoveel van de vrije ruimte als een item met `flex: 1`.
+
+image::images/css/flex-grow.svg["Drie items in een rij: zonder flex blijft er vrije ruimte over, met flex: 1 zijn ze even breed, met flex: 1, flex: 2 en flex: 1 krijgt het middelste item dubbel zoveel ruimte",width=740]
+
+Een bekend gebruik is een pagina met een zijbalk met een vaste breedte, en een hoofdinhoud die de rest van de breedte inneemt:
+
+[source,html]
+----
+<div class="pagina">
+  <aside class="zijbalk">Zijbalk</aside>
+  <main class="inhoud">Hoofdinhoud</main>
+</div>
+----
+
+[source,css]
+----
+.pagina {
+  display: flex;
+  gap: 20px;
+}
+
+.zijbalk {
+  width: 200px; <1>
+}
+
+.inhoud {
+  flex: 1; <2>
+}
+----
+<1> De zijbalk is altijd 200px breed.
+<2> De hoofdinhoud krijgt alle vrije ruimte die overblijft. Bij de kolommen met `float` moest je de procenten zelf uitrekenen; hier is dat niet meer nodig.
+
+NOTE: `flex` is een korte schrijfwijze voor drie eigenschappen. Voor deze cursus volstaat `flex: 1`, maar je ziet ze soms apart staan.
+
+|===
+| Eigenschap | Betekenis | Standaard
+
+| `flex-grow` | hoeveel van de vrije ruimte het item mag opeisen | `0`
+| `flex-shrink` | hoeveel het item mag krimpen als er te weinig plaats is | `1`
+| `flex-basis` | de startbreedte van het item, voor de ruimte verdeeld wordt | `auto`
+|===
+
+`flex: 1` betekent `flex: 1 1 0%`: grow `1`, shrink `1` en basis `0%`.
+
+=== Flexbox in de praktijk
+
+==== Een navigatiebalk met flexbox
+
+In <<_horizontale_navigatiebalk,Horizontale navigatiebalk>> maakte je een balk met `float`. Met flexbox wordt dat korter, en de link "Aanmelden" helemaal rechts zetten is een stuk eenvoudiger.
+
+[source,html]
+----
+<nav>
+  <ul>
+    <li><a class="actief" href="index.html">Home</a></li>
+    <li><a href="nieuws.html">Nieuws</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li class="rechts"><a href="aanmelden.html">Aanmelden</a></li>
+  </ul>
+</nav>
+----
+
+[source,css]
+----
+nav ul {
+  display: flex; <1>
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+}
+
+nav li a {
+  display: block; <2>
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+nav li a:hover {
+  background-color: #111;
+}
+
+nav li a.actief {
+  background-color: #04aa6d;
+}
+
+.rechts {
+  margin-left: auto; <3>
+}
+----
+<1> De `li`-tags komen naast elkaar. Je hebt geen `float` en geen `overflow: hidden` meer nodig: de `ul` blijft vanzelf rond zijn items passen.
+<2> Zoals bij de versie met `float`: het hele vak is klikbaar en kan `padding` krijgen.
+<3> Een `margin-left: auto` op een flex item duwt het zo ver mogelijk naar rechts: alle vrije ruimte gaat naar die marge. Zo staat "Aanmelden" helemaal rechts, zonder `float: right`.
+
+==== Kaartjes die zich aanpassen
+
+Met `flex-wrap` en een slimme `flex` maak je kaartjes die zich aan de breedte van het scherm aanpassen, *zonder één media query*.
+
+[source,html]
+----
+<div class="kaarten">
+  <div class="kaart"><h3>Wiskunde</h3><p>Rekenen met getallen en vormen.</p></div>
+  <div class="kaart"><h3>Informatica</h3><p>Programmeren en webdesign.</p></div>
+  <div class="kaart"><h3>Frans</h3><p>Een tweede taal leren.</p></div>
+  <div class="kaart"><h3>Engels</h3><p>Lezen, schrijven en spreken.</p></div>
+</div>
+----
+
+[source,css]
+----
+.kaarten {
+  display: flex;
+  flex-wrap: wrap; <1>
+  gap: 16px; <2>
+}
+
+.kaart {
+  flex: 1 1 200px; <3>
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+}
+----
+<1> Kaartjes die niet meer naast de andere passen, gaan naar de volgende rij.
+<2> Ruimte tussen de kaartjes, zowel naast elkaar als onder elkaar.
+<3> Een kaartje wil `200px` breed zijn (`flex-basis`) en mag groeien om de rij op te vullen (`flex-grow`).
+
+Op een breed scherm staan de vier kaartjes naast elkaar. Maak je het venster smaller, dan springt eerst het laatste kaartje naar een nieuwe rij, en op een smartphone staan ze onder elkaar. De browser rekent zelf uit hoeveel kaartjes er op een rij passen.
+
+TIP: Staat er op de laatste rij maar één kaartje, dan groeit dat over de volledige breedte. Wil je dat niet? Geef de kaartjes een `max-width`, bijvoorbeeld `max-width: 300px;`.
+
+==== Flexbox en media queries
+
+In <<_queries_voor_kolommen,Queries voor kolommen>> maakte je kolommen met `float` en procenten. Met flexbox schakel je met één eigenschap tussen *onder elkaar* en *naast elkaar*. We werken weer <<_stap_3_mobile_first,mobile first>>: eerst de smartphone, dan een media query voor grotere schermen.
+
+[source,html]
+----
+<div class="pagina">
+  <main class="inhoud">Hoofdinhoud</main>
+  <aside class="zijbalk">Zijbalk</aside>
+</div>
+----
+
+[source,css]
+----
+.pagina {
+  display: flex;
+  flex-direction: column; <1>
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .pagina {
+    flex-direction: row; <2>
+  }
+
+  .inhoud {
+    flex: 1; <3>
+  }
+
+  .zijbalk {
+    width: 250px; <4>
+  }
+}
+----
+<1> Basis (smartphone): de tags staan onder elkaar.
+<2> Vanaf 768px staan ze naast elkaar.
+<3> De hoofdinhoud neemt alle vrije ruimte.
+<4> De zijbalk is 250px breed.
+
+Je gebruikt dezelfde HTML, maar de indeling past zich aan het scherm aan.
+
+=== Flexbox samengevat
+
+* Zet je `display: flex` op een tag, dan wordt die een *flex container* en worden de tags die er rechtstreeks in zitten *flex items*.
+* Een flex container heeft een *hoofdas* (standaard horizontaal) en een *kruisas* (standaard verticaal). Met `flex-direction` kies je de richting van de hoofdas.
+* `justify-content` verdeelt de items op de *hoofdas*, `align-items` lijnt ze uit op de *kruisas*.
+* Beide hebben pas effect als er vrije ruimte is: geef de container een hoogte als je verticaal wil verdelen of uitlijnen.
+* Met `gap` zet je ruimte tussen de items, met `flex-wrap: wrap` laat je items naar een volgende rij gaan.
+* Met `flex: 1` op een item laat je het de vrije ruimte opvullen.
+
+|===
+| Eigenschap | Zet je op | Wat doet ze?
+
+| `display: flex` | container | maakt van de tag een flex container
+| `flex-direction` | container | de richting van de hoofdas: `row`, `column`, ...
+| `justify-content` | container | verdeelt de items op de hoofdas
+| `align-items` | container | lijnt de items uit op de kruisas
+| `flex-wrap` | container | laat items naar een volgende rij gaan
+| `gap` | container | ruimte tussen de items
+| `flex` | item | laat het item groeien om de vrije ruimte op te vullen
+| `align-self` | item | lijnt één item anders uit dan de rest (met dezelfde waarden als `align-items`)
+| `order` | item | verandert de volgorde van de items
+|===
+
+|===
+| Wat wil je? | CSS
+
+| Tags naast elkaar zetten | `display: flex;` op de ouder
+| Tags onder elkaar, maar met flexbox | `flex-direction: column;`
+| Ruimte tussen de tags | `gap: 20px;`
+| Eerste tag links, laatste rechts | `justify-content: space-between;`
+| Een tag centreren | `display: flex; justify-content: center; align-items: center;` en een hoogte op de ouder
+| Tags naar een volgende rij laten gaan | `flex-wrap: wrap;`
+| Een tag de rest van de breedte geven | `flex: 1;`
+| Een tag naar rechts duwen | `margin-left: auto;`
+|===
+
+In het volgende hoofdstuk, over Bootstrap, kom je dezelfde ideeën terug als kant-en-klare classes: `d-flex` is `display: flex`, `justify-content-between` is `justify-content: space-between`, `align-items-center` is `align-items: center` en `gap-3` is een `gap`.
+
+Wil je oefenen? Het spel https://flexboxfroggy.com/[Flexbox Froggy^] laat je met flexbox-code kikkers naar hun waterlelie brengen. Een volledig overzicht van alle eigenschappen vind je in https://css-tricks.com/snippets/css/a-guide-to-flexbox/[A Complete Guide to Flexbox^] (Engels). Flexbox schikt tags in één richting; voor rijen *en* kolommen tegelijk, een raster, bestaat `grid`: https://www.w3schools.com/css/css_grid.asp[CSS grid op w3schools^].
 
 == Fouten opsporen
 

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 250" width="740" height="250" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="pijl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9AA1AD"/>
+    </marker>
+    <marker id="pijlinkt" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1F2A44"/>
+    </marker>
+  </defs>
+  <rect width="740" height="250" fill="#F5F7FA"/>
+  <text x="190" y="26" font-size="13" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" font-weight="700" text-anchor="middle">flex-wrap: nowrap<tspan dx="12" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#5B6270">standaard</tspan></text>
+  <rect x="30" y="44" width="320" height="56" rx="6" fill="#FFFFFF" stroke="#1F2A44" stroke-width="1.5"/>
+  <rect x="38" y="52" width="60.8" height="40" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="68.4" y="77" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">1</text>
+  <rect x="98.8" y="52" width="60.8" height="40" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="129.2" y="77" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">2</text>
+  <rect x="159.6" y="52" width="60.8" height="40" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="190" y="77" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">3</text>
+  <rect x="220.4" y="52" width="60.8" height="40" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="250.8" y="77" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">4</text>
+  <rect x="281.2" y="52" width="60.8" height="40" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="311.6" y="77" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">5</text>
+  <text x="190" y="124" font-size="13" fill="#5B6270" text-anchor="middle">alle items blijven op één rij</text>
+  <text x="190" y="144" font-size="13" fill="#5B6270" text-anchor="middle">en worden smaller</text>
+  <text x="550" y="26" font-size="13" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" font-weight="700" text-anchor="middle">flex-wrap: wrap</text>
+  <rect x="390" y="44" width="320" height="104" rx="6" fill="#FFFFFF" stroke="#1F2A44" stroke-width="1.5"/>
+  <rect x="398" y="52" width="90" height="40" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="443" y="77" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">1</text>
+  <rect x="494" y="52" width="90" height="40" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="539" y="77" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">2</text>
+  <rect x="590" y="52" width="90" height="40" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="635" y="77" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">3</text>
+  <rect x="398" y="100" width="90" height="40" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="443" y="125" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">4</text>
+  <rect x="494" y="100" width="90" height="40" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="539" y="125" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">5</text>
+  <text x="550" y="172" font-size="13" fill="#5B6270" text-anchor="middle">wat niet meer past,</text>
+  <text x="550" y="192" font-size="13" fill="#5B6270" text-anchor="middle">gaat naar de volgende rij</text>
+  <text x="370" y="232" font-size="12" fill="#5B6270" text-anchor="middle">elk item heeft hier width: 90px</text>
+</svg>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="generator" content="Asciidoctor 2.0.26">
 <title>Klassen</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -116,7 +116,6 @@ h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title str
 :not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
 pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
-pre>code{display:block}
 pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
 em em{font-style:normal}
 strong strong{font-weight:400}
@@ -140,7 +139,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #content::before{content:none}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
 #header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
-#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
 #header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
@@ -162,6 +161,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
 #toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
@@ -218,6 +218,7 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
 .listingblock>.content{position:relative}
+.listingblock pre>code{display:block}
 .listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
 .listingblock:hover code[data-lang]::before{display:block}
 .listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
@@ -327,7 +328,7 @@ a.image{text-decoration:none;display:inline-block}
 a.image object{pointer-events:none}
 sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
 sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
 #footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
 #footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
 #footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
@@ -433,184 +434,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-pre.rouge table td { padding: 5px; }
-pre.rouge table pre { margin: 0; }
-pre.rouge {
-  color: #faf6e4;
-  background-color: #122b3b;
-}
-pre.rouge .gl {
-  color: #dee5e7;
-  background-color: #4e5d62;
-}
-pre.rouge .gp {
-  color: #a8e1fe;
-  font-weight: bold;
-}
-pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
-  color: #6c8b9f;
-  font-style: italic;
-}
-pre.rouge .cp {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .err {
-  color: #fefeec;
-  background-color: #cc0000;
-}
-pre.rouge .gr {
-  color: #cc0000;
-  font-weight: bold;
-  font-style: italic;
-}
-pre.rouge .k, pre.rouge .kd, pre.rouge .kv {
-  color: #f6dd62;
-  font-weight: bold;
-}
-pre.rouge .o, pre.rouge .ow {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .p, pre.rouge .pi {
-  color: #4df4ff;
-}
-pre.rouge .gd {
-  color: #cc0000;
-}
-pre.rouge .gi {
-  color: #b2fd6d;
-}
-pre.rouge .ge {
-  font-style: italic;
-}
-pre.rouge .gs {
-  font-weight: bold;
-}
-pre.rouge .gt {
-  color: #dee5e7;
-  background-color: #4e5d62;
-}
-pre.rouge .kc {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .kn {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kp {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kr {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .gh {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .gu {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kt {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .no {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nc {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nd {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nn {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .bp {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .ne {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nl {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .nt {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .ld {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .ss {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .s, pre.rouge .sb, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .sh, pre.rouge .sx, pre.rouge .sr, pre.rouge .s1 {
-  color: #fff0a6;
-  font-weight: bold;
-}
-pre.rouge .sa {
-  color: #f6dd62;
-  font-weight: bold;
-}
-pre.rouge .se {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .sc {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .si {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .nb {
-  font-weight: bold;
-}
-pre.rouge .ni {
-  color: #999999;
-  font-weight: bold;
-}
-pre.rouge .w {
-  color: #BBBBBB;
-}
-pre.rouge .go {
-  color: #BBBBBB;
-}
-pre.rouge .nf, pre.rouge .fm {
-  color: #a8e1fe;
-}
-pre.rouge .py {
-  color: #a8e1fe;
-}
-pre.rouge .na {
-  color: #a8e1fe;
-}
-pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
-  color: #a8e1fe;
-  font-weight: bold;
-}
-</style>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -700,17 +523,17 @@ Dit komt omdat er van deze ruiter klasse <strong>meerdere instanties</strong> we
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">class</span> <span class="nc">Ruiter</span><span class="p">:</span> <i class="conum" data-value="1"></i><b>(1)</b>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <i class="conum" data-value="2"></i><b>(2)</b>
-        <span class="bp">self</span><span class="p">.</span><span class="n">totalhitpoints</span> <span class="o">=</span> <span class="mi">200</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">health</span> <span class="o">=</span> <span class="mi">200</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">speed</span> <span class="o">=</span> <span class="mi">4</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">armour</span> <span class="o">=</span> <span class="mi">20</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">positionX</span> <span class="o">=</span> <span class="mi">485</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">positionY</span> <span class="o">=</span> <span class="mi">312</span>
+<pre class="rouge highlight"><code data-lang="python">class Ruiter: <i class="conum" data-value="1"></i><b>(1)</b>
+    def __init__(self): <i class="conum" data-value="2"></i><b>(2)</b>
+        self.totalhitpoints = 200
+        self.health = 200
+        self.speed = 4
+        self.armour = 20
+        self.positionX = 485
+        self.positionY = 312
 
-    <span class="k">def</span> <span class="nf">hit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <i class="conum" data-value="3"></i><b>(3)</b>
-        <span class="bp">self</span><span class="p">.</span><span class="n">health</span> <span class="o">-=</span> <span class="mi">10</span> <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+    def hit(self): <i class="conum" data-value="3"></i><b>(3)</b>
+        self.health -= 10 <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -800,7 +623,7 @@ Om het te gaan gebruiken zal je een instantie moeten maken (een echte auto van d
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">ruiter1</span> <span class="o">=</span> <span class="n">Ruiter</span><span class="p">()</span> <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="rouge highlight"><code data-lang="python">ruiter1 = Ruiter() <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -816,10 +639,10 @@ Om het te gaan gebruiken zal je een instantie moeten maken (een echte auto van d
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">ruiter2</span> <span class="o">=</span> <span class="n">Ruiter</span><span class="p">()</span>
-<span class="n">ruiter3</span> <span class="o">=</span> <span class="n">Ruiter</span><span class="p">()</span>
-<span class="n">ruiter4</span> <span class="o">=</span> <span class="n">Ruiter</span><span class="p">()</span>
-<span class="n">ruiter5</span> <span class="o">=</span> <span class="n">Ruiter</span><span class="p">()</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">ruiter2 = Ruiter()
+ruiter3 = Ruiter()
+ruiter4 = Ruiter()
+ruiter5 = Ruiter()</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -852,11 +675,11 @@ De hitpoints van de andere ruiters behouden hun eigen waarden.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">print</span><span class="p">(</span><span class="n">ruiter1</span><span class="p">.</span><span class="n">health</span><span class="p">)</span>  <span class="c1"># Geeft de gezondheid van 'ruiter1' weer (200)
-</span><span class="k">print</span><span class="p">(</span><span class="n">ruiter2</span><span class="p">.</span><span class="n">positionX</span><span class="p">)</span>  <span class="c1"># Geeft de X-positie van 'ruiter2' weer (485)
-</span>
-<span class="n">ruiter2</span><span class="p">.</span><span class="n">hit</span><span class="p">()</span>  <span class="c1"># Roept de 'hit' methode aan voor 'ruiter2', verlaagt de gezondheid met 10
-</span><span class="k">print</span><span class="p">(</span><span class="n">ruiter2</span><span class="p">.</span><span class="n">health</span><span class="p">)</span>  <span class="c1"># Geeft de bijgewerkte gezondheid van 'ruiter2' weer (190)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">print(ruiter1.health)  # Geeft de gezondheid van 'ruiter1' weer (200)
+print(ruiter2.positionX)  # Geeft de X-positie van 'ruiter2' weer (485)
+
+ruiter2.hit()  # Roept de 'hit' methode aan voor 'ruiter2', verlaagt de gezondheid met 10
+print(ruiter2.health)  # Geeft de bijgewerkte gezondheid van 'ruiter2' weer (190)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -867,9 +690,9 @@ De hitpoints van de andere ruiters behouden hun eigen waarden.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">ruiter3</span><span class="p">.</span><span class="n">hit</span><span class="p">()</span> <i class="conum" data-value="1"></i><b>(1)</b>
-<span class="k">print</span><span class="p">(</span><span class="n">ruiter2</span><span class="p">.</span><span class="n">health</span><span class="p">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
-<span class="k">print</span><span class="p">(</span><span class="n">ruiter3</span><span class="p">.</span><span class="n">health</span><span class="p">)</span> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+<pre class="rouge highlight"><code data-lang="python">ruiter3.hit() <i class="conum" data-value="1"></i><b>(1)</b>
+print(ruiter2.health) <i class="conum" data-value="2"></i><b>(2)</b>
+print(ruiter3.health) <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -897,7 +720,7 @@ Deze methods kunnen aangeroepen worden op de instantie van een klasse.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">ruiter3</span><span class="p">.</span><span class="n">hit</span><span class="p">()</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">ruiter3.hit()</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -905,8 +728,8 @@ Deze methods kunnen aangeroepen worden op de instantie van een klasse.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">def</span> <span class="nf">hit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">health</span> <span class="o">-=</span> <span class="mi">10</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">def hit(self):
+        self.health -= 10</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -914,11 +737,11 @@ Deze methods kunnen aangeroepen worden op de instantie van een klasse.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">def</span> <span class="nf">hit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">health</span> <span class="o">-=</span> <span class="mi">10</span>
+<pre class="rouge highlight"><code data-lang="python">def hit(self):
+        self.health -= 10
 
-<span class="k">def</span> <span class="nf">hit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">damage</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">health</span> <span class="o">-=</span> <span class="n">damage</span></code></pre>
+def hit(self, damage):
+        self.health -= damage</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -946,14 +769,14 @@ In talen zoals Java kan je wel meerdere methods met dezelfde naam maken, zolang 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">def</span> <span class="nf">hit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">damage</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">health</span> <span class="o">-=</span> <span class="n">damage</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">def hit(self, damage=10):
+        self.health -= damage</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">ruiter3</span><span class="p">.</span><span class="n">hit</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>   <span class="c1"># de health vermindert met 8
-</span><span class="n">ruiter3</span><span class="p">.</span><span class="n">hit</span><span class="p">()</span>    <span class="c1"># geen argument: de standaardwaarde 10 wordt gebruikt</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">ruiter3.hit(8)   # de health vermindert met 8
+ruiter3.hit()    # geen argument: de standaardwaarde 10 wordt gebruikt</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -972,27 +795,27 @@ Ruiter1, ruiter2, .. zijn instanties van het Ruiter datatype.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="c1"># Maak een lijst van Ruiter-instanties
-</span><span class="n">ruiters</span> <span class="o">=</span> <span class="p">[]</span>
+<pre class="rouge highlight"><code data-lang="python"># Maak een lijst van Ruiter-instanties
+ruiters = []
 
-<span class="c1"># Voeg instanties toe aan de lijst
-</span><span class="n">ruiters</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">Ruiter</span><span class="p">())</span>  <span class="c1"># Voeg een nieuwe Ruiter-instantie toe
-</span><span class="n">ruiters</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">Ruiter</span><span class="p">())</span>  <span class="c1"># Voeg nog een Ruiter-instantie toe
-</span>
-<span class="c1"># Je kunt zoveel instanties toevoegen als je nodig hebt
-</span><span class="n">ruiters</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">Ruiter</span><span class="p">())</span>  <span class="c1"># Voeg nog een Ruiter-instantie toe
-</span>
-<span class="c1"># Toegang tot individuele ruiters in de lijst
-</span><span class="n">eerste_ruiter</span> <span class="o">=</span> <span class="n">ruiters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">tweede_ruiter</span> <span class="o">=</span> <span class="n">ruiters</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+# Voeg instanties toe aan de lijst
+ruiters.append(Ruiter())  # Voeg een nieuwe Ruiter-instantie toe
+ruiters.append(Ruiter())  # Voeg nog een Ruiter-instantie toe
 
-<span class="c1"># Roep methoden aan voor individuele ruiters
-</span><span class="n">eerste_ruiter</span><span class="p">.</span><span class="n">hit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Pas schade toe op de eerste ruiter
-</span><span class="n">tweede_ruiter</span><span class="p">.</span><span class="n">hit</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>  <span class="c1"># Pas schade toe op de tweede ruiter
-</span>
-<span class="c1"># Controleer de gezondheid van individuele ruiters
-</span><span class="k">print</span><span class="p">(</span><span class="s">"Gezondheid van de eerste ruiter:"</span><span class="p">,</span> <span class="n">eerste_ruiter</span><span class="p">.</span><span class="n">health</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"Gezondheid van de tweede ruiter:"</span><span class="p">,</span> <span class="n">tweede_ruiter</span><span class="p">.</span><span class="n">health</span><span class="p">)</span></code></pre>
+# Je kunt zoveel instanties toevoegen als je nodig hebt
+ruiters.append(Ruiter())  # Voeg nog een Ruiter-instantie toe
+
+# Toegang tot individuele ruiters in de lijst
+eerste_ruiter = ruiters[0]
+tweede_ruiter = ruiters[1]
+
+# Roep methoden aan voor individuele ruiters
+eerste_ruiter.hit(10)  # Pas schade toe op de eerste ruiter
+tweede_ruiter.hit(15)  # Pas schade toe op de tweede ruiter
+
+# Controleer de gezondheid van individuele ruiters
+print("Gezondheid van de eerste ruiter:", eerste_ruiter.health)
+print("Gezondheid van de tweede ruiter:", tweede_ruiter.health)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1021,21 +844,21 @@ In het screenshot kan je zien dat enkele <em>units</em> meer schade hebben opgel
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">class</span> <span class="nc">Unit</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">health</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">hitpoints</span> <span class="o">=</span> <span class="mi">0</span>
+<pre class="rouge highlight"><code data-lang="python">class Unit:
+    def __init__(self):
+        self.health = 0
+        self.hitpoints = 0
 
-<span class="c1"># Een lijst met de geselecteerde Unit-objecten (hier nog leeg)
-</span><span class="n">selected</span> <span class="o">=</span> <span class="p">[]</span>
+# Een lijst met de geselecteerde Unit-objecten (hier nog leeg)
+selected = []
 
-<span class="c1"># Bereken het gezondheidspercentage van elke eenheid en druk dit af
-</span><span class="k">for</span> <span class="n">unit</span> <span class="ow">in</span> <span class="n">selected</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">unit</span><span class="p">.</span><span class="n">hitpoints</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">health_percentage</span> <span class="o">=</span> <span class="p">(</span><span class="n">unit</span><span class="p">.</span><span class="n">health</span> <span class="o">/</span> <span class="n">unit</span><span class="p">.</span><span class="n">hitpoints</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">health_percentage</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">"Deze eenheid heeft geen hitpoints, dus het gezondheidspercentage kan niet worden berekend."</span><span class="p">)</span></code></pre>
+# Bereken het gezondheidspercentage van elke eenheid en druk dit af
+for unit in selected:
+    if unit.hitpoints != 0:
+        health_percentage = (unit.health / unit.hitpoints) * 100
+        print(health_percentage)
+    else:
+        print("Deze eenheid heeft geen hitpoints, dus het gezondheidspercentage kan niet worden berekend.")</code></pre>
 </div>
 </div>
 </div>
@@ -1054,13 +877,13 @@ Deze bevat enkele constanten (onveranderbare variabelen), zoals het getal PI.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">import</span> <span class="nn">math</span>
+<pre class="rouge highlight"><code data-lang="python">import math
 
-<span class="c1"># Gebruik de math.pi constante om de waarde van pi te verkrijgen
-</span><span class="n">pi_value</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">pi</span>
+# Gebruik de math.pi constante om de waarde van pi te verkrijgen
+pi_value = math.pi
 
-<span class="c1"># Druk de waarde van pi af
-</span><span class="k">print</span><span class="p">(</span><span class="s">"De waarde van pi is:"</span><span class="p">,</span> <span class="n">pi_value</span><span class="p">)</span></code></pre>
+# Druk de waarde van pi af
+print("De waarde van pi is:", pi_value)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1076,13 +899,13 @@ Deze bevat enkele constanten (onveranderbare variabelen), zoals het getal PI.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">import</span> <span class="nn">random</span>
+<pre class="rouge highlight"><code data-lang="python">import random
 
-<span class="c1"># Genereer een willekeurig geheel getal tussen 1 en 10 (inclusief 1 en 10)
-</span><span class="n">random_number</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+# Genereer een willekeurig geheel getal tussen 1 en 10 (inclusief 1 en 10)
+random_number = random.randint(1, 10)
 
-<span class="c1"># Druk het willekeurige getal af
-</span><span class="k">print</span><span class="p">(</span><span class="s">"Willekeurig getal tussen 1 en 10:"</span><span class="p">,</span> <span class="n">random_number</span><span class="p">)</span></code></pre>
+# Druk het willekeurige getal af
+print("Willekeurig getal tussen 1 en 10:", random_number)</code></pre>
 </div>
 </div>
 <div class="olist arabic">

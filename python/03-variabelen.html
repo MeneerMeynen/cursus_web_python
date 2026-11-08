@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="generator" content="Asciidoctor 2.0.26">
 <title>Hoofdstuk 3: Gebruik van Variabelen</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -116,7 +116,6 @@ h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title str
 :not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
 pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
-pre>code{display:block}
 pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
 em em{font-style:normal}
 strong strong{font-weight:400}
@@ -140,7 +139,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #content::before{content:none}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
 #header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
-#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
 #header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
@@ -162,6 +161,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
 #toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
@@ -218,6 +218,7 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
 .listingblock>.content{position:relative}
+.listingblock pre>code{display:block}
 .listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
 .listingblock:hover code[data-lang]::before{display:block}
 .listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
@@ -327,7 +328,7 @@ a.image{text-decoration:none;display:inline-block}
 a.image object{pointer-events:none}
 sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
 sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
 #footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
 #footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
 #footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
@@ -432,184 +433,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
-<style>
-pre.rouge table td { padding: 5px; }
-pre.rouge table pre { margin: 0; }
-pre.rouge {
-  color: #faf6e4;
-  background-color: #122b3b;
-}
-pre.rouge .gl {
-  color: #dee5e7;
-  background-color: #4e5d62;
-}
-pre.rouge .gp {
-  color: #a8e1fe;
-  font-weight: bold;
-}
-pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
-  color: #6c8b9f;
-  font-style: italic;
-}
-pre.rouge .cp {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .err {
-  color: #fefeec;
-  background-color: #cc0000;
-}
-pre.rouge .gr {
-  color: #cc0000;
-  font-weight: bold;
-  font-style: italic;
-}
-pre.rouge .k, pre.rouge .kd, pre.rouge .kv {
-  color: #f6dd62;
-  font-weight: bold;
-}
-pre.rouge .o, pre.rouge .ow {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .p, pre.rouge .pi {
-  color: #4df4ff;
-}
-pre.rouge .gd {
-  color: #cc0000;
-}
-pre.rouge .gi {
-  color: #b2fd6d;
-}
-pre.rouge .ge {
-  font-style: italic;
-}
-pre.rouge .gs {
-  font-weight: bold;
-}
-pre.rouge .gt {
-  color: #dee5e7;
-  background-color: #4e5d62;
-}
-pre.rouge .kc {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .kn {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kp {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kr {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .gh {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .gu {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kt {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .no {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nc {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nd {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nn {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .bp {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .ne {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nl {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .nt {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .ld {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .ss {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .s, pre.rouge .sb, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .sh, pre.rouge .sx, pre.rouge .sr, pre.rouge .s1 {
-  color: #fff0a6;
-  font-weight: bold;
-}
-pre.rouge .sa {
-  color: #f6dd62;
-  font-weight: bold;
-}
-pre.rouge .se {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .sc {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .si {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .nb {
-  font-weight: bold;
-}
-pre.rouge .ni {
-  color: #999999;
-  font-weight: bold;
-}
-pre.rouge .w {
-  color: #BBBBBB;
-}
-pre.rouge .go {
-  color: #BBBBBB;
-}
-pre.rouge .nf, pre.rouge .fm {
-  color: #a8e1fe;
-}
-pre.rouge .py {
-  color: #a8e1fe;
-}
-pre.rouge .na {
-  color: #a8e1fe;
-}
-pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
-  color: #a8e1fe;
-  font-weight: bold;
-}
-</style>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -684,9 +507,9 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="c1"># Player health in Counter-Strike
-</span><span class="n">player_health</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"Huidige gezondheid:"</span><span class="p">,</span> <span class="n">player_health</span><span class="p">)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python"># Player health in Counter-Strike
+player_health = 100
+print("Huidige gezondheid:", player_health)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -740,7 +563,7 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">bullet_damage</span> <span class="o">=</span> <span class="mi">16</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">bullet_damage = 16</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -751,7 +574,7 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kt">int</span> <span class="n">bullet_damage</span> <span class="o">=</span> <span class="mi">16</span><span class="o">;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java">int bullet_damage = 16;</code></pre>
 </div>
 </div>
 <div class="sect2">
@@ -761,10 +584,10 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="c1"># Schade oplopen
-</span><span class="n">damage_taken</span> <span class="o">=</span> <span class="mi">25</span>
-<span class="n">player_health</span> <span class="o">-=</span> <span class="n">damage_taken</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"Nieuwe gezondheid na geraakt te zijn:"</span><span class="p">,</span> <span class="n">player_health</span><span class="p">)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python"># Schade oplopen
+damage_taken = 25
+player_health -= damage_taken
+print("Nieuwe gezondheid na geraakt te zijn:", player_health)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -781,20 +604,20 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">globale_variabele</span> <span class="o">=</span> <span class="mi">10</span>
+<pre class="rouge highlight"><code data-lang="python">globale_variabele = 10
 
-<span class="c1"># definitie van een functie
-</span><span class="k">def</span> <span class="nf">functie</span><span class="p">():</span>
-    <span class="n">lokale_variabele</span> <span class="o">=</span> <span class="mi">5</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Lokale variabele, binnen functie:"</span><span class="p">,</span> <span class="n">lokale_variabele</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Globale variabele, binnen functie:"</span><span class="p">,</span> <span class="n">globale_variabele</span><span class="p">)</span>
+# definitie van een functie
+def functie():
+    lokale_variabele = 5
+    print("Lokale variabele, binnen functie:", lokale_variabele)
+    print("Globale variabele, binnen functie:", globale_variabele)
 
-<span class="c1"># nu voeren we de functie uit
-</span><span class="n">functie</span><span class="p">()</span>
+# nu voeren we de functie uit
+functie()
 
-<span class="c1"># En we voeren enkele print statements uit
-</span><span class="k">print</span><span class="p">(</span><span class="s">"Globale variabele, buiten functie:"</span><span class="p">,</span> <span class="n">globale_variabele</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"Lokale variabele, buiten functie:"</span><span class="p">,</span> <span class="n">lokale_variabele</span><span class="p">)</span></code></pre>
+# En we voeren enkele print statements uit
+print("Globale variabele, buiten functie:", globale_variabele)
+print("Lokale variabele, buiten functie:", lokale_variabele)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -802,13 +625,13 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">Lokale</span> <span class="n">variabele</span><span class="p">,</span> <span class="n">binnen</span> <span class="n">functie</span><span class="p">:</span> <span class="mi">5</span> <b class="conum">(1)</b>
-<span class="n">Globale</span> <span class="n">variabele</span><span class="p">,</span> <span class="n">binnen</span> <span class="n">functie</span><span class="p">:</span> <span class="mi">10</span> <b class="conum">(2)</b>
-<span class="n">Globale</span> <span class="n">variabele</span><span class="p">,</span> <span class="n">buiten</span> <span class="n">functie</span><span class="p">:</span> <span class="mi">10</span> <b class="conum">(3)</b>
-<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span> <b class="conum">(4)</b>
-  <span class="n">File</span> <span class="s">"test.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">14</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Lokale variabele, buiten functie:"</span><span class="p">,</span> <span class="n">lokale_variabele</span><span class="p">)</span>
-<span class="nb">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s">'lokale_variabele'</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span><span class="p">.</span> <span class="n">Did</span> <span class="n">you</span> <span class="n">mean</span><span class="p">:</span> <span class="s">'globale_variabele'</span><span class="err">?</span> <b class="conum">(5)</b></code></pre>
+<pre class="rouge highlight"><code data-lang="python">Lokale variabele, binnen functie: 5 <b class="conum">(1)</b>
+Globale variabele, binnen functie: 10 <b class="conum">(2)</b>
+Globale variabele, buiten functie: 10 <b class="conum">(3)</b>
+Traceback (most recent call last): <b class="conum">(4)</b>
+  File "test.py", line 14, in &lt;module&gt;
+    print("Lokale variabele, buiten functie:", lokale_variabele)
+NameError: name 'lokale_variabele' is not defined. Did you mean: 'globale_variabele'? <b class="conum">(5)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -863,10 +686,10 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>          <span class="c1"># int
-</span><span class="n">b</span> <span class="o">=</span> <span class="mf">3.14</span>       <span class="c1"># float
-</span><span class="n">naam</span> <span class="o">=</span> <span class="s">"Alice"</span> <span class="c1"># str
-</span><span class="n">waar</span> <span class="o">=</span> <span class="bp">True</span>    <span class="c1"># bool</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">a = 5          # int
+b = 3.14       # float
+naam = "Alice" # str
+waar = True    # bool</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -891,9 +714,9 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">leeftijd</span> <span class="o">=</span> <span class="mi">16</span>
-<span class="n">temperatuur</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
-<span class="n">aantal_studenten</span> <span class="o">=</span> <span class="mi">30</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">leeftijd = 16
+temperatuur = -5
+aantal_studenten = 30</code></pre>
 </div>
 </div>
 </div>
@@ -907,9 +730,9 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">pi</span> <span class="o">=</span> <span class="mf">3.14159</span>
-<span class="n">geldbedrag</span> <span class="o">=</span> <span class="mf">123.45</span>
-<span class="n">hoogte</span> <span class="o">=</span> <span class="o">-</span><span class="mf">10.5</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">pi = 3.14159
+geldbedrag = 123.45
+hoogte = -10.5</code></pre>
 </div>
 </div>
 <div class="admonitionblock warning">
@@ -935,9 +758,9 @@ Een float is een <mark>benadering</mark>. De computer slaat kommagetallen binair
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">naam</span> <span class="o">=</span> <span class="s">"Alice"</span>
-<span class="n">bericht</span> <span class="o">=</span> <span class="s">'Hallo, wereld!'</span>
-<span class="n">label</span> <span class="o">=</span> <span class="s">"Productcode: 12345"</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">naam = "Alice"
+bericht = 'Hallo, wereld!'
+label = "Productcode: 12345"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -945,10 +768,10 @@ Een float is een <mark>benadering</mark>. De computer slaat kommagetallen binair
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">voornaam</span> <span class="o">=</span> <span class="s">"John"</span>
-<span class="n">achternaam</span> <span class="o">=</span> <span class="s">"Doe"</span>
-<span class="n">volledige_naam</span> <span class="o">=</span> <span class="n">voornaam</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">achternaam</span>
-<span class="k">print</span><span class="p">(</span><span class="n">volledige_naam</span><span class="p">)</span> <span class="c1"># Output: John Doe</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">voornaam = "John"
+achternaam = "Doe"
+volledige_naam = voornaam + " " + achternaam
+print(volledige_naam) # Output: John Doe</code></pre>
 </div>
 </div>
 </div>
@@ -962,9 +785,9 @@ Een float is een <mark>benadering</mark>. De computer slaat kommagetallen binair
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">is_student</span> <span class="o">=</span> <span class="bp">True</span>
-<span class="n">heeft_toegang</span> <span class="o">=</span> <span class="bp">False</span>
-<span class="n">is_regenachtig</span> <span class="o">=</span> <span class="bp">True</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">is_student = True
+heeft_toegang = False
+is_regenachtig = True</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -975,11 +798,11 @@ Een float is een <mark>benadering</mark>. De computer slaat kommagetallen binair
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">player_health</span> <span class="o">=</span> <span class="mi">75</span>
-<span class="n">minimum_health_required</span> <span class="o">=</span> <span class="mi">50</span>
+<pre class="rouge highlight"><code data-lang="python">player_health = 75
+minimum_health_required = 50
 
-<span class="n">is_healthy_enough</span> <span class="o">=</span> <span class="n">player_health</span> <span class="o">&gt;</span> <span class="n">minimum_health_required</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"Is de speler gezond genoeg?"</span><span class="p">,</span> <span class="n">is_healthy_enough</span><span class="p">)</span></code></pre>
+is_healthy_enough = player_health &gt; minimum_health_required
+print("Is de speler gezond genoeg?", is_healthy_enough)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1001,10 +824,10 @@ Een float is een <mark>benadering</mark>. De computer slaat kommagetallen binair
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>      <span class="c1"># &lt;class 'int'&gt;
-</span><span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mf">3.14</span><span class="p">))</span>     <span class="c1"># &lt;class 'float'&gt;
-</span><span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="s">"Alice"</span><span class="p">))</span>  <span class="c1"># &lt;class 'str'&gt;
-</span><span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">True</span><span class="p">))</span>     <span class="c1"># &lt;class 'bool'&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">print(type(100))      # &lt;class 'int'&gt;
+print(type(3.14))     # &lt;class 'float'&gt;
+print(type("Alice"))  # &lt;class 'str'&gt;
+print(type(True))     # &lt;class 'bool'&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -1015,14 +838,14 @@ Een float is een <mark>benadering</mark>. De computer slaat kommagetallen binair
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">leeftijd</span> <span class="o">=</span> <span class="mi">16</span>
-<span class="n">leeftijd_als_string</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">leeftijd</span><span class="p">)</span>   <span class="c1"># "16"
-</span>
-<span class="n">score_tekst</span> <span class="o">=</span> <span class="s">"250"</span>
-<span class="n">score</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">score_tekst</span><span class="p">)</span>              <span class="c1"># 250
-</span>
-<span class="n">prijs</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s">"4.99"</span><span class="p">)</span>                 <span class="c1"># 4.99
-</span><span class="n">afgerond</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">7.9</span><span class="p">)</span>                   <span class="c1"># 7 (het deel na de komma wordt weggeknipt)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">leeftijd = 16
+leeftijd_als_string = str(leeftijd)   # "16"
+
+score_tekst = "250"
+score = int(score_tekst)              # 250
+
+prijs = float("4.99")                 # 4.99
+afgerond = int(7.9)                   # 7 (het deel na de komma wordt weggeknipt)</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -1048,9 +871,9 @@ Type conversie heb je vaak nodig in expressies. Je kunt bijvoorbeeld geen tekst 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>        <span class="c1"># a is een int
-</span><span class="n">a</span> <span class="o">=</span> <span class="s">"Hallo"</span>  <span class="c1"># a is nu een str
-</span><span class="n">a</span> <span class="o">=</span> <span class="bp">True</span>     <span class="c1"># a is nu een bool</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">a = 5        # a is een int
+a = "Hallo"  # a is nu een str
+a = True     # a is nu een bool</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1075,10 +898,10 @@ Type conversie heb je vaak nodig in expressies. Je kunt bijvoorbeeld geen tekst 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="mi">100</span>                  <span class="c1"># een waarde op zich is al een expressie
-</span><span class="n">player_health</span>        <span class="c1"># een variabele is ook een expressie
-</span><span class="n">player_health</span> <span class="o">-</span> <span class="mi">25</span>   <span class="c1"># een berekening
-</span><span class="n">player_health</span> <span class="o">&gt;</span> <span class="mi">50</span>   <span class="c1"># een vergelijking</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">100                  # een waarde op zich is al een expressie
+player_health        # een variabele is ook een expressie
+player_health - 25   # een berekening
+player_health &gt; 50   # een vergelijking</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1086,9 +909,9 @@ Type conversie heb je vaak nodig in expressies. Je kunt bijvoorbeeld geen tekst 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">damage</span> <span class="o">=</span> <span class="mi">25</span>
-<span class="n">health</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">remaining_health</span> <span class="o">=</span> <span class="n">health</span> <span class="o">-</span> <span class="n">damage</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">damage = 25
+health = 100
+remaining_health = health - damage</code></pre>
 </div>
 </div>
 <div class="olist arabic">
@@ -1188,15 +1011,15 @@ Type conversie heb je vaak nodig in expressies. Je kunt bijvoorbeeld geen tekst 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">kills</span> <span class="o">=</span> <span class="mi">18</span>
-<span class="n">deaths</span> <span class="o">=</span> <span class="mi">8</span>
-<span class="n">rounds</span> <span class="o">=</span> <span class="mi">24</span>
-<span class="n">damage_total</span> <span class="o">=</span> <span class="mi">2150</span>
+<pre class="rouge highlight"><code data-lang="python">kills = 18
+deaths = 8
+rounds = 24
+damage_total = 2150
 
-<span class="n">kd_ratio</span> <span class="o">=</span> <span class="n">kills</span> <span class="o">/</span> <span class="n">deaths</span>             <span class="c1"># 2.25
-</span><span class="n">avg_damage</span> <span class="o">=</span> <span class="n">damage_total</span> <span class="o">/</span> <span class="n">rounds</span>    <span class="c1"># 89.58333333333333
-</span><span class="n">full_minutes</span> <span class="o">=</span> <span class="mi">250</span> <span class="o">//</span> <span class="mi">60</span>              <span class="c1"># 4 (volledige minuten in 250 seconden)
-</span><span class="n">rest_seconds</span> <span class="o">=</span> <span class="mi">250</span> <span class="o">%</span> <span class="mi">60</span>               <span class="c1"># 10 (overblijvende seconden)</span></code></pre>
+kd_ratio = kills / deaths             # 2.25
+avg_damage = damage_total / rounds    # 89.58333333333333
+full_minutes = 250 // 60              # 4 (volledige minuten in 250 seconden)
+rest_seconds = 250 % 60               # 10 (overblijvende seconden)</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -1244,8 +1067,8 @@ Type conversie heb je vaak nodig in expressies. Je kunt bijvoorbeeld geen tekst 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>     <span class="c1"># 14, want eerst 3 * 4
-</span><span class="k">print</span><span class="p">((</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>   <span class="c1"># 20, want eerst de haakjes</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">print(2 + 3 * 4)     # 14, want eerst 3 * 4
+print((2 + 3) * 4)   # 20, want eerst de haakjes</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -1268,11 +1091,11 @@ Twijfel je over de volgorde? Zet haakjes. Dat maakt je code ook leesbaarder.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">score</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">score</span> <span class="o">=</span> <span class="n">score</span> <span class="o">+</span> <span class="mi">10</span>   <span class="c1"># score wordt 110
-</span><span class="n">score</span> <span class="o">+=</span> <span class="mi">10</span>          <span class="c1"># hetzelfde, korter: score wordt 120
-</span><span class="n">score</span> <span class="o">-=</span> <span class="mi">5</span>           <span class="c1"># score wordt 115
-</span><span class="n">score</span> <span class="o">*=</span> <span class="mi">2</span>           <span class="c1"># score wordt 230</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">score = 100
+score = score + 10   # score wordt 110
+score += 10          # hetzelfde, korter: score wordt 120
+score -= 5           # score wordt 115
+score *= 2           # score wordt 230</code></pre>
 </div>
 </div>
 </div>
@@ -1283,10 +1106,10 @@ Twijfel je over de volgorde? Zet haakjes. Dat maakt je code ook leesbaarder.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">voornaam</span> <span class="o">=</span> <span class="s">"John"</span>
-<span class="n">achternaam</span> <span class="o">=</span> <span class="s">"Doe"</span>
-<span class="k">print</span><span class="p">(</span><span class="n">voornaam</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">achternaam</span><span class="p">)</span>   <span class="c1"># John Doe  (samenvoegen)
-</span><span class="k">print</span><span class="p">(</span><span class="s">"ha"</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>                      <span class="c1"># hahaha    (herhalen)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">voornaam = "John"
+achternaam = "Doe"
+print(voornaam + " " + achternaam)   # John Doe  (samenvoegen)
+print("ha" * 3)                      # hahaha    (herhalen)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1294,9 +1117,9 @@ Twijfel je over de volgorde? Zet haakjes. Dat maakt je code ook leesbaarder.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">kills</span> <span class="o">=</span> <span class="mi">18</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"Kills: "</span> <span class="o">+</span> <span class="n">kills</span><span class="p">)</span>        <span class="c1"># TypeError!
-</span><span class="k">print</span><span class="p">(</span><span class="s">"Kills: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">kills</span><span class="p">))</span>   <span class="c1"># Kills: 18</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">kills = 18
+print("Kills: " + kills)        # TypeError!
+print("Kills: " + str(kills))   # Kills: 18</code></pre>
 </div>
 </div>
 </div>
@@ -1364,12 +1187,12 @@ Twijfel je over de volgorde? Zet haakjes. Dat maakt je code ook leesbaarder.
 </table>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">player_health</span> <span class="o">=</span> <span class="mi">75</span>
-<span class="n">ammo</span> <span class="o">=</span> <span class="mi">0</span>
+<pre class="rouge highlight"><code data-lang="python">player_health = 75
+ammo = 0
 
-<span class="k">print</span><span class="p">(</span><span class="n">player_health</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">)</span>    <span class="c1"># True
-</span><span class="k">print</span><span class="p">(</span><span class="n">ammo</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>             <span class="c1"># True
-</span><span class="k">print</span><span class="p">(</span><span class="n">player_health</span> <span class="o">!=</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1"># True</span></code></pre>
+print(player_health &gt; 50)    # True
+print(ammo == 0)             # True
+print(player_health != 100)  # True</code></pre>
 </div>
 </div>
 <div class="admonitionblock warning">
@@ -1389,8 +1212,8 @@ Verwar <code>=</code> niet met <code>==</code>! Eén <code>=</code> is een <stro
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s">"Alice"</span> <span class="o">==</span> <span class="s">"Alice"</span><span class="p">)</span>   <span class="c1"># True
-</span><span class="k">print</span><span class="p">(</span><span class="s">"Alice"</span> <span class="o">==</span> <span class="s">"alice"</span><span class="p">)</span>   <span class="c1"># False</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">print("Alice" == "Alice")   # True
+print("Alice" == "alice")   # False</code></pre>
 </div>
 </div>
 </div>
@@ -1465,13 +1288,13 @@ Verwar <code>=</code> niet met <code>==</code>! Eén <code>=</code> is een <stro
 </table>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">player_health</span> <span class="o">=</span> <span class="mi">75</span>
-<span class="n">ammo</span> <span class="o">=</span> <span class="mi">12</span>
-<span class="n">has_key</span> <span class="o">=</span> <span class="bp">False</span>
+<pre class="rouge highlight"><code data-lang="python">player_health = 75
+ammo = 12
+has_key = False
 
-<span class="n">can_fight</span> <span class="o">=</span> <span class="n">player_health</span> <span class="o">&gt;</span> <span class="mi">50</span> <span class="ow">and</span> <span class="n">ammo</span> <span class="o">&gt;</span> <span class="mi">0</span>   <span class="c1"># True and True  -&gt; True
-</span><span class="n">can_open_door</span> <span class="o">=</span> <span class="n">has_key</span> <span class="ow">or</span> <span class="n">ammo</span> <span class="o">&gt;</span> <span class="mi">20</span>          <span class="c1"># False or False -&gt; False
-</span><span class="n">is_locked</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">has_key</span>                        <span class="c1"># not False      -&gt; True</span></code></pre>
+can_fight = player_health &gt; 50 and ammo &gt; 0   # True and True  -&gt; True
+can_open_door = has_key or ammo &gt; 20          # False or False -&gt; False
+is_locked = not has_key                        # not False      -&gt; True</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1485,11 +1308,11 @@ Verwar <code>=</code> niet met <code>==</code>! Eén <code>=</code> is een <stro
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">player_health</span> <span class="o">=</span> <span class="mi">60</span>
-<span class="n">damage</span> <span class="o">=</span> <span class="mi">25</span>
+<pre class="rouge highlight"><code data-lang="python">player_health = 60
+damage = 25
 
-<span class="n">survives</span> <span class="o">=</span> <span class="n">player_health</span> <span class="o">-</span> <span class="n">damage</span> <span class="o">&gt;</span> <span class="mi">0</span>   <span class="c1"># 35 &gt; 0 -&gt; True
-</span><span class="n">is_even</span> <span class="o">=</span> <span class="n">player_health</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>        <span class="c1"># 0 == 0 -&gt; True</span></code></pre>
+survives = player_health - damage &gt; 0   # 35 &gt; 0 -&gt; True
+is_even = player_health % 2 == 0        # 0 == 0 -&gt; True</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="generator" content="Asciidoctor 2.0.26">
 <title>SQLAlchemy</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -116,7 +116,6 @@ h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title str
 :not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
 pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
-pre>code{display:block}
 pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
 em em{font-style:normal}
 strong strong{font-weight:400}
@@ -140,7 +139,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #content::before{content:none}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
 #header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
-#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
 #header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
@@ -162,6 +161,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
 #toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
@@ -218,6 +218,7 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
 .listingblock>.content{position:relative}
+.listingblock pre>code{display:block}
 .listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
 .listingblock:hover code[data-lang]::before{display:block}
 .listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
@@ -327,7 +328,7 @@ a.image{text-decoration:none;display:inline-block}
 a.image object{pointer-events:none}
 sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
 sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
 #footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
 #footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
 #footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
@@ -433,184 +434,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-pre.rouge table td { padding: 5px; }
-pre.rouge table pre { margin: 0; }
-pre.rouge {
-  color: #faf6e4;
-  background-color: #122b3b;
-}
-pre.rouge .gl {
-  color: #dee5e7;
-  background-color: #4e5d62;
-}
-pre.rouge .gp {
-  color: #a8e1fe;
-  font-weight: bold;
-}
-pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
-  color: #6c8b9f;
-  font-style: italic;
-}
-pre.rouge .cp {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .err {
-  color: #fefeec;
-  background-color: #cc0000;
-}
-pre.rouge .gr {
-  color: #cc0000;
-  font-weight: bold;
-  font-style: italic;
-}
-pre.rouge .k, pre.rouge .kd, pre.rouge .kv {
-  color: #f6dd62;
-  font-weight: bold;
-}
-pre.rouge .o, pre.rouge .ow {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .p, pre.rouge .pi {
-  color: #4df4ff;
-}
-pre.rouge .gd {
-  color: #cc0000;
-}
-pre.rouge .gi {
-  color: #b2fd6d;
-}
-pre.rouge .ge {
-  font-style: italic;
-}
-pre.rouge .gs {
-  font-weight: bold;
-}
-pre.rouge .gt {
-  color: #dee5e7;
-  background-color: #4e5d62;
-}
-pre.rouge .kc {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .kn {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kp {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kr {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .gh {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .gu {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kt {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .no {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nc {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nd {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nn {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .bp {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .ne {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nl {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .nt {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .ld {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .ss {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .s, pre.rouge .sb, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .sh, pre.rouge .sx, pre.rouge .sr, pre.rouge .s1 {
-  color: #fff0a6;
-  font-weight: bold;
-}
-pre.rouge .sa {
-  color: #f6dd62;
-  font-weight: bold;
-}
-pre.rouge .se {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .sc {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .si {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .nb {
-  font-weight: bold;
-}
-pre.rouge .ni {
-  color: #999999;
-  font-weight: bold;
-}
-pre.rouge .w {
-  color: #BBBBBB;
-}
-pre.rouge .go {
-  color: #BBBBBB;
-}
-pre.rouge .nf, pre.rouge .fm {
-  color: #a8e1fe;
-}
-pre.rouge .py {
-  color: #a8e1fe;
-}
-pre.rouge .na {
-  color: #a8e1fe;
-}
-pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
-  color: #a8e1fe;
-  font-weight: bold;
-}
-</style>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -698,7 +521,7 @@ SQLAlchemy is nuttig omdat het een elegante manier biedt om databases te beheren
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">users</span> <span class="k">WHERE</span> <span class="n">username</span> <span class="o">=</span> <span class="s1">'johndoe'</span><span class="p">;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="sql">SELECT * FROM users WHERE username = 'johndoe';</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -706,7 +529,7 @@ SQLAlchemy is nuttig omdat het een elegante manier biedt om databases te beheren
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="sql"><span class="n">johndoe</span><span class="s1">' OR '</span><span class="mi">1</span><span class="s1">'='</span><span class="mi">1</span></code></pre>
+<pre class="rouge highlight"><code data-lang="sql">johndoe' OR '1'='1</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -714,7 +537,7 @@ SQLAlchemy is nuttig omdat het een elegante manier biedt om databases te beheren
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">users</span> <span class="k">WHERE</span> <span class="n">username</span> <span class="o">=</span> <span class="s1">'johndoe'</span> <span class="k">OR</span> <span class="s1">'1'</span><span class="o">=</span><span class="s1">'1'</span><span class="p">;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="sql">SELECT * FROM users WHERE username = 'johndoe' OR '1'='1';</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -732,7 +555,7 @@ Dit type aanval kan eenvoudig worden voorkomen met SQLAlchemy, omdat het automat
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="bash">pip <span class="nb">install </span>SQLAlchemy pymysql</code></pre>
+<pre class="rouge highlight"><code data-lang="bash">pip install SQLAlchemy pymysql</code></pre>
 </div>
 </div>
 </div>
@@ -750,17 +573,17 @@ Dit type aanval kan eenvoudig worden voorkomen met SQLAlchemy, omdat het automat
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+<pre class="rouge highlight"><code data-lang="python">from sqlalchemy import create_engine
 
-<span class="c1"># Replace with your own database credentials
-</span><span class="n">username</span> <span class="o">=</span> <span class="s">'root'</span>
-<span class="n">password</span> <span class="o">=</span> <span class="s">''</span>
-<span class="n">database_name</span> <span class="o">=</span> <span class="s">'sqlalchemydb'</span>
-<span class="n">host</span> <span class="o">=</span> <span class="s">'localhost'</span>
-<span class="n">port</span> <span class="o">=</span> <span class="mi">3306</span>
+# Replace with your own database credentials
+username = 'root'
+password = ''
+database_name = 'sqlalchemydb'
+host = 'localhost'
+port = 3306
 
-<span class="c1"># Create the engine using the connection string
-</span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="sa">f</span><span class="s">'mysql+pymysql://</span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s">:</span><span class="si">{</span><span class="n">password</span><span class="si">}</span><span class="s">@</span><span class="si">{</span><span class="n">host</span><span class="si">}</span><span class="s">:</span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">database_name</span><span class="si">}</span><span class="s">'</span><span class="p">)</span></code></pre>
+# Create the engine using the connection string
+engine = create_engine(f'mysql+pymysql://{username}:{password}@{host}:{port}/{database_name}')</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -774,32 +597,32 @@ Dit type aanval kan eenvoudig worden voorkomen met SQLAlchemy, omdat het automat
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span><span class="n">Table</span><span class="p">,</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">MetaData</span>
+<pre class="rouge highlight"><code data-lang="python">from sqlalchemy import create_engine,Table, Column, Integer, String, MetaData
 
-<span class="c1"># Replace with your own database credentials
-</span><span class="n">username</span> <span class="o">=</span> <span class="s">'root'</span>
-<span class="n">password</span> <span class="o">=</span> <span class="s">''</span>
-<span class="n">database_name</span> <span class="o">=</span> <span class="s">'sqlalchemydb'</span>
-<span class="n">host</span> <span class="o">=</span> <span class="s">'localhost'</span>
-<span class="n">port</span> <span class="o">=</span> <span class="mi">3306</span>
+# Replace with your own database credentials
+username = 'root'
+password = ''
+database_name = 'sqlalchemydb'
+host = 'localhost'
+port = 3306
 
-<span class="c1"># Create the engine using the connection string
-</span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="sa">f</span><span class="s">'mysql+pymysql://</span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s">:</span><span class="si">{</span><span class="n">password</span><span class="si">}</span><span class="s">@</span><span class="si">{</span><span class="n">host</span><span class="si">}</span><span class="s">:</span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">database_name</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+# Create the engine using the connection string
+engine = create_engine(f'mysql+pymysql://{username}:{password}@{host}:{port}/{database_name}')
 
-<span class="c1"># Connect to the database
-</span><span class="n">connection</span> <span class="o">=</span> <span class="n">engine</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span>
+# Connect to the database
+connection = engine.connect()
 
-<span class="c1"># Definieer metadata en een tabel
-</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
+# Definieer metadata en een tabel
+metadata = MetaData()
 
-<span class="n">users</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="s">'users'</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s">'id'</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s">'username'</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">)),</span>  <span class="c1"># Define maximum length for username
-</span>    <span class="n">Column</span><span class="p">(</span><span class="s">'email'</span><span class="p">,</span> <span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>     <span class="c1"># Define maximum length for email
-</span><span class="p">)</span>
+users = Table('users', metadata,
+    Column('id', Integer, primary_key=True),
+    Column('username', String(50)),  # Define maximum length for username
+    Column('email', String(100))     # Define maximum length for email
+)
 
-<span class="c1"># Maak de tabel aan in de database
-</span><span class="n">metadata</span><span class="p">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span></code></pre>
+# Maak de tabel aan in de database
+metadata.create_all(engine)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -816,14 +639,14 @@ Dit type aanval kan eenvoudig worden voorkomen met SQLAlchemy, omdat het automat
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">insert</span>
+<pre class="rouge highlight"><code data-lang="python">from sqlalchemy import insert
 
-<span class="c1"># Maak een verbinding met de database
-</span><span class="n">connection</span> <span class="o">=</span> <span class="n">engine</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span>
+# Maak een verbinding met de database
+connection = engine.connect()
 
-<span class="c1"># Voeg een nieuwe gebruiker toe
-</span><span class="n">stmt</span> <span class="o">=</span> <span class="n">insert</span><span class="p">(</span><span class="n">users</span><span class="p">).</span><span class="n">values</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">'johndoe'</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s">'johndoe@example.com'</span><span class="p">)</span>
-<span class="n">connection</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">stmt</span><span class="p">)</span></code></pre>
+# Voeg een nieuwe gebruiker toe
+stmt = insert(users).values(username='johndoe', email='johndoe@example.com')
+connection.execute(stmt)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -839,14 +662,14 @@ Dit type aanval kan eenvoudig worden voorkomen met SQLAlchemy, omdat het automat
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">select</span>
+<pre class="rouge highlight"><code data-lang="python">from sqlalchemy import select
 
-<span class="c1"># Selecteer alle gebruikers
-</span><span class="n">stmt</span> <span class="o">=</span> <span class="n">select</span><span class="p">([</span><span class="n">users</span><span class="p">])</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">stmt</span><span class="p">)</span>
+# Selecteer alle gebruikers
+stmt = select([users])
+result = connection.execute(stmt)
 
-<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span></code></pre>
+for row in result:
+    print(row)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -862,11 +685,11 @@ Dit type aanval kan eenvoudig worden voorkomen met SQLAlchemy, omdat het automat
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">update</span>
+<pre class="rouge highlight"><code data-lang="python">from sqlalchemy import update
 
-<span class="c1"># Update de e-mail van een gebruiker
-</span><span class="n">stmt</span> <span class="o">=</span> <span class="n">update</span><span class="p">(</span><span class="n">users</span><span class="p">).</span><span class="n">where</span><span class="p">(</span><span class="n">users</span><span class="p">.</span><span class="n">c</span><span class="p">.</span><span class="n">username</span> <span class="o">==</span> <span class="s">'johndoe'</span><span class="p">).</span><span class="n">values</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="s">'newemail@example.com'</span><span class="p">)</span>
-<span class="n">connection</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">stmt</span><span class="p">)</span></code></pre>
+# Update de e-mail van een gebruiker
+stmt = update(users).where(users.c.username == 'johndoe').values(email='newemail@example.com')
+connection.execute(stmt)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -882,11 +705,11 @@ Dit type aanval kan eenvoudig worden voorkomen met SQLAlchemy, omdat het automat
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">delete</span>
+<pre class="rouge highlight"><code data-lang="python">from sqlalchemy import delete
 
-<span class="c1"># Verwijder een gebruiker
-</span><span class="n">stmt</span> <span class="o">=</span> <span class="n">delete</span><span class="p">(</span><span class="n">users</span><span class="p">).</span><span class="n">where</span><span class="p">(</span><span class="n">users</span><span class="p">.</span><span class="n">c</span><span class="p">.</span><span class="n">username</span> <span class="o">==</span> <span class="s">'johndoe'</span><span class="p">)</span>
-<span class="n">connection</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">stmt</span><span class="p">)</span></code></pre>
+# Verwijder een gebruiker
+stmt = delete(users).where(users.c.username == 'johndoe')
+connection.execute(stmt)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -899,68 +722,68 @@ Dit type aanval kan eenvoudig worden voorkomen met SQLAlchemy, omdat het automat
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span><span class="n">Table</span><span class="p">,</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">MetaData</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">declarative_base</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
+<pre class="rouge highlight"><code data-lang="python">from sqlalchemy import create_engine,Table, Column, Integer, String, MetaData
+from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import sessionmaker
 
-<span class="c1"># Replace with your own database credentials
-</span><span class="n">username</span> <span class="o">=</span> <span class="s">'root'</span>
-<span class="n">password</span> <span class="o">=</span> <span class="s">''</span>
-<span class="n">database_name</span> <span class="o">=</span> <span class="s">'sqlalchemydb'</span>
-<span class="n">host</span> <span class="o">=</span> <span class="s">'localhost'</span>
-<span class="n">port</span> <span class="o">=</span> <span class="mi">3306</span>
+# Replace with your own database credentials
+username = 'root'
+password = ''
+database_name = 'sqlalchemydb'
+host = 'localhost'
+port = 3306
 
-<span class="c1"># Create the engine using the connection string
-</span><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="sa">f</span><span class="s">'mysql+pymysql://</span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s">:</span><span class="si">{</span><span class="n">password</span><span class="si">}</span><span class="s">@</span><span class="si">{</span><span class="n">host</span><span class="si">}</span><span class="s">:</span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">database_name</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+# Create the engine using the connection string
+engine = create_engine(f'mysql+pymysql://{username}:{password}@{host}:{port}/{database_name}')
 
-<span class="c1"># Connect to the database
-</span><span class="n">connection</span> <span class="o">=</span> <span class="n">engine</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span>
+# Connect to the database
+connection = engine.connect()
 
-<span class="c1"># Definieer metadata en een tabel
-</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
+# Definieer metadata en een tabel
+metadata = MetaData()
 
-<span class="c1"># Create the base class
-</span><span class="n">Base</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
+# Create the base class
+Base = declarative_base()
 
-<span class="c1"># Define the User class (mapping it to a "users" table)
-</span><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s">'users'</span>
+# Define the User class (mapping it to a "users" table)
+class User(Base):
+    __tablename__ = 'users'
 
-    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">username</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">email</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    id = Column(Integer, primary_key=True)
+    username = Column(String(50), nullable=False, unique=True)
+    email = Column(String(100), nullable=False, unique=True)
 
-    <span class="c1"># Optional: Add a constructor for easier object creation
-</span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span>
+    # Optional: Add a constructor for easier object creation
+    def __init__(self, username, email):
+        self.username = username
+        self.email = email
 
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s">"&lt;User(username='</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">username</span><span class="si">}</span><span class="s">', email='</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">email</span><span class="si">}</span><span class="s">')&gt;"</span>
-
-
-<span class="c1"># Create the users table in the database
-</span><span class="n">Base</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
-
-<span class="c1">#  Create a Session
-</span>
-<span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
-<span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
-
-<span class="c1">#  Insert a User
-</span>
-<span class="n">new_user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">'john_doe'</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s">'john.doe@example.com'</span><span class="p">)</span>
-<span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>  <span class="c1"># Add the new user to the session
-</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>  <span class="c1"># Commit the transaction to persist changes in the DB
-</span>
-<span class="c1">#  Query the Database
-</span>
-<span class="n">users</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="n">query</span><span class="p">(</span><span class="n">User</span><span class="p">).</span><span class="nb">all</span><span class="p">()</span>  <span class="c1"># Fetch all users
-</span><span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">users</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    def __repr__(self):
+        return f"&lt;User(username='{self.username}', email='{self.email}')&gt;"
 
 
-<span class="n">session</span><span class="p">.</span><span class="n">close</span><span class="p">()</span></code></pre>
+# Create the users table in the database
+Base.metadata.create_all(engine)
+
+#  Create a Session
+
+Session = sessionmaker(bind=engine)
+session = Session()
+
+#  Insert a User
+
+new_user = User(username='john_doe', email='john.doe@example.com')
+session.add(new_user)  # Add the new user to the session
+session.commit()  # Commit the transaction to persist changes in the DB
+
+#  Query the Database
+
+users = session.query(User).all()  # Fetch all users
+for user in users:
+    print(user)
+
+
+session.close()</code></pre>
 </div>
 </div>
 </div>
@@ -975,16 +798,16 @@ Dit type aanval kan eenvoudig worden voorkomen met SQLAlchemy, omdat het automat
 <h3 id="_voorbeeld_van_een_één_op_veel_relatie">11.1. Voorbeeld van een één-op-veel relatie</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">ForeignKey</span>
+<pre class="rouge highlight"><code data-lang="python">from sqlalchemy import ForeignKey
 
-<span class="n">posts</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="s">'posts'</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s">'id'</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s">'title'</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
-    <span class="n">Column</span><span class="p">(</span><span class="s">'user_id'</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s">'users.id'</span><span class="p">))</span>
-<span class="p">)</span>
+posts = Table('posts', metadata,
+    Column('id', Integer, primary_key=True),
+    Column('title', String),
+    Column('user_id', Integer, ForeignKey('users.id'))
+)
 
-<span class="c1"># Maak de posts-tabel aan
-</span><span class="n">metadata</span><span class="p">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span></code></pre>
+# Maak de posts-tabel aan
+metadata.create_all(engine)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1003,9 +826,9 @@ Dit type aanval kan eenvoudig worden voorkomen met SQLAlchemy, omdat het automat
 <h3 id="_voorbeeld_van_een_transactie">12.1. Voorbeeld van een transactie</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">with</span> <span class="n">engine</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
-    <span class="n">connection</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">insert</span><span class="p">(</span><span class="n">users</span><span class="p">).</span><span class="n">values</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">'janedoe'</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s">'janedoe@example.com'</span><span class="p">))</span>
-    <span class="n">connection</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">insert</span><span class="p">(</span><span class="n">users</span><span class="p">).</span><span class="n">values</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">'alexdoe'</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s">'alexdoe@example.com'</span><span class="p">))</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">with engine.begin() as connection:
+    connection.execute(insert(users).values(username='janedoe', email='janedoe@example.com'))
+    connection.execute(insert(users).values(username='alexdoe', email='alexdoe@example.com'))</code></pre>
 </div>
 </div>
 <div class="paragraph">

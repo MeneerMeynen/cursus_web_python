@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 290" width="740" height="290" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="pijl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9AA1AD"/>
+    </marker>
+    <marker id="pijlinkt" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1F2A44"/>
+    </marker>
+  </defs>
+  <rect width="740" height="290" fill="#F5F7FA"/>
+  <text x="105" y="28" font-size="13" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" font-weight="700" text-anchor="middle">stretch<tspan dx="12" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#5B6270">standaard</tspan></text>
+  <rect x="30" y="44" width="150" height="150" rx="6" fill="#FFFFFF" stroke="#1F2A44" stroke-width="1.5"/>
+  <rect x="40" y="52" width="36" height="134" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="58" y="124" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">1</text>
+  <rect x="84" y="52" width="36" height="134" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="102" y="124" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">2</text>
+  <rect x="128" y="52" width="36" height="134" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="146" y="124" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">3</text>
+  <text x="105" y="224" font-size="12" fill="#5B6270" text-anchor="middle">tot de volle hoogte</text>
+  <text x="281.7" y="28" font-size="13" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" font-weight="700" text-anchor="middle">flex-start</text>
+  <rect x="206.7" y="44" width="150" height="150" rx="6" fill="#FFFFFF" stroke="#1F2A44" stroke-width="1.5"/>
+  <rect x="216.7" y="52" width="36" height="40" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="234.7" y="77" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">1</text>
+  <rect x="260.7" y="52" width="36" height="70" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="278.7" y="92" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">2</text>
+  <rect x="304.7" y="52" width="36" height="30" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="322.7" y="72" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">3</text>
+  <text x="281.7" y="224" font-size="12" fill="#5B6270" text-anchor="middle">bovenaan</text>
+  <text x="458.3" y="28" font-size="13" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" font-weight="700" text-anchor="middle">center</text>
+  <rect x="383.3" y="44" width="150" height="150" rx="6" fill="#FFFFFF" stroke="#1F2A44" stroke-width="1.5"/>
+  <rect x="393.3" y="99" width="36" height="40" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="411.3" y="124" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">1</text>
+  <rect x="437.3" y="84" width="36" height="70" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="455.3" y="124" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">2</text>
+  <rect x="481.3" y="104" width="36" height="30" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="499.3" y="124" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">3</text>
+  <text x="458.3" y="224" font-size="12" fill="#5B6270" text-anchor="middle">in het midden</text>
+  <text x="635" y="28" font-size="13" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" font-weight="700" text-anchor="middle">flex-end</text>
+  <rect x="560" y="44" width="150" height="150" rx="6" fill="#FFFFFF" stroke="#1F2A44" stroke-width="1.5"/>
+  <rect x="570" y="146" width="36" height="40" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="588" y="171" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">1</text>
+  <rect x="614" y="116" width="36" height="70" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="632" y="156" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">2</text>
+  <rect x="658" y="156" width="36" height="30" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="676" y="176" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">3</text>
+  <text x="635" y="224" font-size="12" fill="#5B6270" text-anchor="middle">onderaan</text>
+  <text x="370" y="262" font-size="12" fill="#5B6270" text-anchor="middle">de container heeft hier een vaste hoogte: height: 150px</text>
+</svg>

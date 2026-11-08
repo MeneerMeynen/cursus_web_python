@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="generator" content="Asciidoctor 2.0.26">
 <title>Flask: Een Web Framework voor Python</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -116,7 +116,6 @@ h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title str
 :not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
 pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
-pre>code{display:block}
 pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
 em em{font-style:normal}
 strong strong{font-weight:400}
@@ -140,7 +139,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #content::before{content:none}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
 #header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
-#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
 #header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
@@ -162,6 +161,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
 #toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
@@ -218,6 +218,7 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
 .listingblock>.content{position:relative}
+.listingblock pre>code{display:block}
 .listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
 .listingblock:hover code[data-lang]::before{display:block}
 .listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
@@ -327,7 +328,7 @@ a.image{text-decoration:none;display:inline-block}
 a.image object{pointer-events:none}
 sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
 sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
 #footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
 #footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
 #footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
@@ -433,184 +434,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-pre.rouge table td { padding: 5px; }
-pre.rouge table pre { margin: 0; }
-pre.rouge {
-  color: #faf6e4;
-  background-color: #122b3b;
-}
-pre.rouge .gl {
-  color: #dee5e7;
-  background-color: #4e5d62;
-}
-pre.rouge .gp {
-  color: #a8e1fe;
-  font-weight: bold;
-}
-pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
-  color: #6c8b9f;
-  font-style: italic;
-}
-pre.rouge .cp {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .err {
-  color: #fefeec;
-  background-color: #cc0000;
-}
-pre.rouge .gr {
-  color: #cc0000;
-  font-weight: bold;
-  font-style: italic;
-}
-pre.rouge .k, pre.rouge .kd, pre.rouge .kv {
-  color: #f6dd62;
-  font-weight: bold;
-}
-pre.rouge .o, pre.rouge .ow {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .p, pre.rouge .pi {
-  color: #4df4ff;
-}
-pre.rouge .gd {
-  color: #cc0000;
-}
-pre.rouge .gi {
-  color: #b2fd6d;
-}
-pre.rouge .ge {
-  font-style: italic;
-}
-pre.rouge .gs {
-  font-weight: bold;
-}
-pre.rouge .gt {
-  color: #dee5e7;
-  background-color: #4e5d62;
-}
-pre.rouge .kc {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .kn {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kp {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kr {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .gh {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .gu {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kt {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .no {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nc {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nd {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nn {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .bp {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .ne {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nl {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .nt {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .ld {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .ss {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .s, pre.rouge .sb, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .sh, pre.rouge .sx, pre.rouge .sr, pre.rouge .s1 {
-  color: #fff0a6;
-  font-weight: bold;
-}
-pre.rouge .sa {
-  color: #f6dd62;
-  font-weight: bold;
-}
-pre.rouge .se {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .sc {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .si {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .nb {
-  font-weight: bold;
-}
-pre.rouge .ni {
-  color: #999999;
-  font-weight: bold;
-}
-pre.rouge .w {
-  color: #BBBBBB;
-}
-pre.rouge .go {
-  color: #BBBBBB;
-}
-pre.rouge .nf, pre.rouge .fm {
-  color: #a8e1fe;
-}
-pre.rouge .py {
-  color: #a8e1fe;
-}
-pre.rouge .na {
-  color: #a8e1fe;
-}
-pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
-  color: #a8e1fe;
-  font-weight: bold;
-}
-</style>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -770,7 +593,7 @@ Dit kan eenvoudig via pip:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="bash">pip <span class="nb">install </span>Flask</code></pre>
+<pre class="rouge highlight"><code data-lang="bash">pip install Flask</code></pre>
 </div>
 </div>
 </div>
@@ -783,16 +606,16 @@ Dit kan eenvoudig via pip:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<pre class="rouge highlight"><code data-lang="python">from flask import Flask
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+app = Flask(__name__)
 
-<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
-    <span class="k">return</span> <span class="s">'Hello, World!'</span>
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
-    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">()</span></code></pre>
+if __name__ == '__main__':
+    app.run()</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -818,13 +641,13 @@ Hier is een voorbeeld met meerdere routes:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/about'</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">about</span><span class="p">():</span>
-    <span class="k">return</span> <span class="s">'About Page'</span>
+<pre class="rouge highlight"><code data-lang="python">@app.route('/about')
+def about():
+    return 'About Page'
 
-<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/user/&lt;username&gt;'</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">show_user_profile</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s">'User </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s">'</span></code></pre>
+@app.route('/user/&lt;username&gt;')
+def show_user_profile(username):
+    return f'User {username}'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -843,13 +666,13 @@ De <code>@app.route()</code> decorator kan worden uitgebreid om specifieke metho
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
-<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/login'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">,</span> <span class="s">'POST'</span><span class="p">])</span>
-<span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
-    <span class="k">if</span> <span class="n">request</span><span class="p">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">'POST'</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">'Processing Login'</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s">'Login Page'</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">from flask import Flask, request, jsonify
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        return 'Processing Login'
+    else:
+        return 'Login Page'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -876,16 +699,16 @@ Flask maakt gebruik van Jinja2, een krachtige template engine waarmee je HTML-pa
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-    <span class="nt">&lt;title&gt;</span>{{ title }}<span class="nt">&lt;/title&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-    <span class="nt">&lt;h1&gt;</span>{{ heading }}<span class="nt">&lt;/h1&gt;</span>
-    <span class="nt">&lt;p&gt;</span>{{ message }}<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;{{ title }}&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;{{ heading }}&lt;/h1&gt;
+    &lt;p&gt;{{ message }}&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -893,11 +716,11 @@ Flask maakt gebruik van Jinja2, een krachtige template engine waarmee je HTML-pa
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<pre class="rouge highlight"><code data-lang="python">from flask import render_template
 
-<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'index.html'</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">'Home'</span><span class="p">,</span> <span class="n">heading</span><span class="o">=</span><span class="s">'Welcome'</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s">'This is the home page'</span><span class="p">)</span></code></pre>
+@app.route('/')
+def index():
+    return render_template('index.html', title='Home', heading='Welcome', message='This is the home page')</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -934,16 +757,16 @@ Je kunt deze templates renderen in je routes met behulp van de <code>render_temp
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
+<pre class="rouge highlight"><code data-lang="python">from flask import Flask, render_template
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+app = Flask(__name__)
 
-<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'index.html'</span><span class="p">)</span>
+@app.route('/')
+def home():
+    return render_template('index.html')
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
-    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span></code></pre>
+if __name__ == '__main__':
+    app.run(debug=True)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -954,16 +777,16 @@ Je kunt deze templates renderen in je routes met behulp van de <code>render_temp
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;title&gt;</span>Welcome<span class="nt">&lt;/title&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-    <span class="nt">&lt;h1&gt;</span>Welkom op mijn Flask-applicatie!<span class="nt">&lt;/h1&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Welcome&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welkom op mijn Flask-applicatie!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -978,9 +801,9 @@ Je kunt deze templates renderen in je routes met behulp van de <code>render_temp
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/user/&lt;name&gt;'</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">user</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'user.html'</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">name</span><span class="p">)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">@app.route('/user/&lt;name&gt;')
+def user(name):
+    return render_template('user.html', username=name)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -988,16 +811,16 @@ Je kunt deze templates renderen in je routes met behulp van de <code>render_temp
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;title&gt;</span>User Page<span class="nt">&lt;/title&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-    <span class="nt">&lt;h1&gt;</span>Welkom, {{ username }}!<span class="nt">&lt;/h1&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;User Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welkom, {{ username }}!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1013,10 +836,10 @@ Je kunt deze templates renderen in je routes met behulp van de <code>render_temp
 <h4 id="_voorbeeld_lijsten_renderen">5.4.1. Voorbeeld: Lijsten renderen</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/items'</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">items</span><span class="p">():</span>
-    <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Zwaard'</span><span class="p">,</span> <span class="s">'Schild'</span><span class="p">,</span> <span class="s">'Helm'</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'items.html'</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="n">items</span><span class="p">)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">@app.route('/items')
+def items():
+    items = ['Zwaard', 'Schild', 'Helm']
+    return render_template('items.html', items=items)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1024,21 +847,21 @@ Je kunt deze templates renderen in je routes met behulp van de <code>render_temp
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;title&gt;</span>Items<span class="nt">&lt;/title&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-    <span class="nt">&lt;h1&gt;</span>Beschikbare Items:<span class="nt">&lt;/h1&gt;</span>
-    <span class="nt">&lt;ul&gt;</span>
+<pre class="rouge highlight"><code data-lang="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Items&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Beschikbare Items:&lt;/h1&gt;
+    &lt;ul&gt;
         {% for item in items %}
-            <span class="nt">&lt;li&gt;</span>{{ item }}<span class="nt">&lt;/li&gt;</span>
+            &lt;li&gt;{{ item }}&lt;/li&gt;
         {% endfor %}
-    <span class="nt">&lt;/ul&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span></code></pre>
+    &lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -1051,7 +874,7 @@ Je kunt deze templates renderen in je routes met behulp van de <code>render_temp
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="html">{% include 'header.html' %}
-<span class="nt">&lt;h1&gt;</span>Welkom op de hoofdpagina!<span class="nt">&lt;/h1&gt;</span>
+&lt;h1&gt;Welkom op de hoofdpagina!&lt;/h1&gt;
 {% include 'footer.html' %}</code></pre>
 </div>
 </div>
@@ -1068,26 +891,26 @@ Je kunt deze templates renderen in je routes met behulp van de <code>render_temp
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;title&gt;</span>{% block title %}Mijn Website{% endblock %}<span class="nt">&lt;/title&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-    <span class="nt">&lt;header&gt;</span>
-        <span class="nt">&lt;h1&gt;</span>Mijn Website<span class="nt">&lt;/h1&gt;</span>
-    <span class="nt">&lt;/header&gt;</span>
+<pre class="rouge highlight"><code data-lang="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;{% block title %}Mijn Website{% endblock %}&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Mijn Website&lt;/h1&gt;
+    &lt;/header&gt;
 
-    <span class="nt">&lt;main&gt;</span>
+    &lt;main&gt;
         {% block content %}{% endblock %}
-    <span class="nt">&lt;/main&gt;</span>
+    &lt;/main&gt;
 
-    <span class="nt">&lt;footer&gt;</span>
-        <span class="nt">&lt;p&gt;</span>Copyright 2024<span class="nt">&lt;/p&gt;</span>
-    <span class="nt">&lt;/footer&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span></code></pre>
+    &lt;footer&gt;
+        &lt;p&gt;Copyright 2024&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1100,8 +923,8 @@ Je kunt deze templates renderen in je routes met behulp van de <code>render_temp
 {% block title %}Over Ons{% endblock %}
 
 {% block content %}
-    <span class="nt">&lt;h2&gt;</span>Over Ons<span class="nt">&lt;/h2&gt;</span>
-    <span class="nt">&lt;p&gt;</span>Wij zijn een bedrijf dat zich specialiseert in softwareontwikkeling.<span class="nt">&lt;/p&gt;</span>
+    &lt;h2&gt;Over Ons&lt;/h2&gt;
+    &lt;p&gt;Wij zijn een bedrijf dat zich specialiseert in softwareontwikkeling.&lt;/p&gt;
 {% endblock %}</code></pre>
 </div>
 </div>
@@ -1118,10 +941,10 @@ Hier is een voorbeeld van een eenvoudig formulier met een POST-verzoek:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;form</span> <span class="na">method=</span><span class="s">"POST"</span> <span class="na">action=</span><span class="s">"/submit"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"name"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">value=</span><span class="s">"Submit"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/form&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;form method="POST" action="/submit"&gt;
+    &lt;input type="text" name="name"&gt;
+    &lt;input type="submit" value="Submit"&gt;
+&lt;/form&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1129,12 +952,12 @@ Hier is een voorbeeld van een eenvoudig formulier met een POST-verzoek:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">request</span>
+<pre class="rouge highlight"><code data-lang="python">from flask import request
 
-<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/submit'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
-<span class="k">def</span> <span class="nf">submit</span><span class="p">():</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">form</span><span class="p">[</span><span class="s">'name'</span><span class="p">]</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s">'Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">!'</span></code></pre>
+@app.route('/submit', methods=['POST'])
+def submit():
+    name = request.form['name']
+    return f'Hello, {name}!'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1165,26 +988,26 @@ Hier is een voorbeeld van een eenvoudig formulier met een POST-verzoek:</p>
 <h4 id="_stap_1_maak_het_html_formulier">6.1.1. Stap 1: Maak het HTML-formulier</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="c">&lt;!-- templates/form.html --&gt;</span>
-<span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"nl"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;title&gt;</span>Formulier Indienen<span class="nt">&lt;/title&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-    <span class="nt">&lt;h1&gt;</span>Vul je gegevens in<span class="nt">&lt;/h1&gt;</span>
-    <span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"/verzenden"</span> <span class="na">method=</span><span class="s">"POST"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"name"</span><span class="nt">&gt;</span>Naam:<span class="nt">&lt;/label&gt;</span>
-        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"name"</span> <span class="na">name=</span><span class="s">"name"</span><span class="nt">&gt;&lt;br&gt;&lt;br&gt;</span>
+<pre class="rouge highlight"><code data-lang="html">&lt;!-- templates/form.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="nl"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Formulier Indienen&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Vul je gegevens in&lt;/h1&gt;
+    &lt;form action="/verzenden" method="POST"&gt;
+        &lt;label for="name"&gt;Naam:&lt;/label&gt;
+        &lt;input type="text" id="name" name="name"&gt;&lt;br&gt;&lt;br&gt;
 
-        <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"email"</span><span class="nt">&gt;</span>E-mail:<span class="nt">&lt;/label&gt;</span>
-        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"email"</span> <span class="na">id=</span><span class="s">"email"</span> <span class="na">name=</span><span class="s">"email"</span><span class="nt">&gt;&lt;br&gt;&lt;br&gt;</span>
+        &lt;label for="email"&gt;E-mail:&lt;/label&gt;
+        &lt;input type="email" id="email" name="email"&gt;&lt;br&gt;&lt;br&gt;
 
-        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">value=</span><span class="s">"Verzenden"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/form&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span></code></pre>
+        &lt;input type="submit" value="Verzenden"&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1198,33 +1021,33 @@ Hier is een voorbeeld van een eenvoudig formulier met een POST-verzoek:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">url_for</span>
+<pre class="rouge highlight"><code data-lang="python">from flask import Flask, request, render_template, redirect, url_for
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+app = Flask(__name__)
 
-<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'form.html'</span><span class="p">)</span>
+@app.route('/')
+def index():
+    return render_template('form.html')
 
-<span class="c1"># Route om het formulier te verwerken
-</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/verzenden'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
-<span class="k">def</span> <span class="nf">verzend_formulier</span><span class="p">():</span>
-    <span class="n">naam</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">form</span><span class="p">[</span><span class="s">'name'</span><span class="p">]</span>
-    <span class="n">email</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">form</span><span class="p">[</span><span class="s">'email'</span><span class="p">]</span>
+# Route om het formulier te verwerken
+@app.route('/verzenden', methods=['POST'])
+def verzend_formulier():
+    naam = request.form['name']
+    email = request.form['email']
 
-    <span class="c1"># Doorverwijzen naar de weergavepagina met de verzonden gegevens
-</span>    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s">'toon_data'</span><span class="p">,</span> <span class="n">naam</span><span class="o">=</span><span class="n">naam</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">))</span>
+    # Doorverwijzen naar de weergavepagina met de verzonden gegevens
+    return redirect(url_for('toon_data', naam=naam, email=email))
 
-<span class="c1"># Route om de verzonden formuliergegevens weer te geven
-</span><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/weergeven'</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">toon_data</span><span class="p">():</span>
-    <span class="n">naam</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">args</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'naam'</span><span class="p">)</span>
-    <span class="n">email</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">args</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'email'</span><span class="p">)</span>
+# Route om de verzonden formuliergegevens weer te geven
+@app.route('/weergeven')
+def toon_data():
+    naam = request.args.get('naam')
+    email = request.args.get('email')
 
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">'display.html'</span><span class="p">,</span> <span class="n">naam</span><span class="o">=</span><span class="n">naam</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">)</span>
+    return render_template('display.html', naam=naam, email=email)
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
-    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span></code></pre>
+if __name__ == '__main__':
+    app.run(debug=True)</code></pre>
 </div>
 </div>
 </div>
@@ -1235,19 +1058,19 @@ Hier is een voorbeeld van een eenvoudig formulier met een POST-verzoek:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">templates</span><span class="o">/</span><span class="n">display</span><span class="p">.</span><span class="n">html</span> <span class="o">--&gt;</span>
-<span class="o">&lt;</span><span class="err">!</span><span class="n">DOCTYPE</span> <span class="n">html</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">html</span> <span class="n">lang</span><span class="o">=</span><span class="s">"nl"</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">meta</span> <span class="n">charset</span><span class="o">=</span><span class="s">"UTF-8"</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;</span><span class="n">Ingevoerde</span> <span class="n">Gegevens</span><span class="o">&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">Ingevoerde</span> <span class="n">Gegevens</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Naam</span><span class="p">:</span> <span class="p">{{</span> <span class="n">naam</span> <span class="p">}}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">E</span><span class="o">-</span><span class="n">mail</span><span class="p">:</span> <span class="p">{{</span> <span class="n">email</span> <span class="p">}}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">&lt;!-- templates/display.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="nl"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Ingevoerde Gegevens&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Ingevoerde Gegevens&lt;/h1&gt;
+    &lt;p&gt;Naam: {{ naam }}&lt;/p&gt;
+    &lt;p&gt;E-mail: {{ email }}&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -1357,7 +1180,7 @@ Deze restricties kunnen we uitschakelen voor development.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="bash">pip <span class="nb">install </span>flask-cors</code></pre>
+<pre class="rouge highlight"><code data-lang="bash">pip install flask-cors</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1365,7 +1188,7 @@ Deze restricties kunnen we uitschakelen voor development.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">from flask_cors import CORS</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1373,12 +1196,12 @@ Deze restricties kunnen we uitschakelen voor development.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">app</span> <span class="o">=</span> <span class="n">flask</span><span class="p">.</span><span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span> <span class="c1"># Bestaat al in je code (normaal gezien)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">app = flask.Flask(__name__) # Bestaat al in je code (normaal gezien)</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">cors</span> <span class="o">=</span> <span class="n">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">resources</span><span class="o">=</span><span class="p">{</span><span class="sa">r</span><span class="s">"/api/*"</span><span class="p">:</span> <span class="p">{</span><span class="s">"origins"</span><span class="p">:</span> <span class="s">"*"</span><span class="p">}})</span> <span class="c1"># Gebruik de app variabele van hierboven</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">cors = CORS(app, resources={r"/api/*": {"origins": "*"}}) # Gebruik de app variabele van hierboven</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -1388,21 +1211,21 @@ Deze restricties kunnen we uitschakelen voor development.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
-<span class="kn">from</span> <span class="nn">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
+<pre class="rouge highlight"><code data-lang="python">from flask import Flask
+from flask_cors import CORS
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+app = Flask(__name__)
 
-<span class="c1"># Schakel CORS in voor de hele app op alle routes
+# Schakel CORS in voor de hele app op alle routes
 # Dit staat requests toe vanaf ELKE oorsprong (handig voor dev)
-</span><span class="n">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+CORS(app)
 
-<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/api/data"</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">data</span><span class="p">():</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"Dit is nu bereikbaar vanaf je frontend!"</span><span class="p">}</span>
+@app.route("/api/data")
+def data():
+    return {"message": "Dit is nu bereikbaar vanaf je frontend!"}
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
-    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span></code></pre>
+if __name__ == "__main__":
+    app.run(debug=True)</code></pre>
 </div>
 </div>
 <div class="admonitionblock warning">
@@ -1432,12 +1255,12 @@ Je kunt eenvoudig JSON teruggeven als een API-reactie:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">jsonify</span>
+<pre class="rouge highlight"><code data-lang="python">from flask import jsonify
 
-<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/data'</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">get_data</span><span class="p">():</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">'name'</span><span class="p">:</span> <span class="s">'John'</span><span class="p">,</span> <span class="s">'age'</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
-    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></code></pre>
+@app.route('/api/data')
+def get_data():
+    data = {'name': 'John', 'age': 30}
+    return jsonify(data)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1454,9 +1277,9 @@ Je kunt aangepaste foutpagina&#8217;s maken voor veelvoorkomende HTTP-statuscode
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">errorhandler</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">page_not_found</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s">'Page not found'</span><span class="p">,</span> <span class="mi">404</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">@app.errorhandler(404)
+def page_not_found(e):
+    return 'Page not found', 404</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1471,31 +1294,31 @@ Je kunt aangepaste foutpagina&#8217;s maken voor veelvoorkomende HTTP-statuscode
 <h3 id="_flask_backend">10.1. Flask backend</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
-<span class="kn">from</span> <span class="nn">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
+<pre class="rouge highlight"><code data-lang="python">from flask import Flask, request, jsonify
+from flask_cors import CORS
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
-<span class="n">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>                                     <span class="c1"># zodat de browser mag praten
-</span>
-<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/data'</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">data</span><span class="p">():</span>
-    <span class="c1"># Lees alles wat achter ? in de URL staat
-</span>    <span class="n">categorie</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">args</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'cat'</span><span class="p">)</span>
-    <span class="n">prijs</span>     <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">args</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'prijs'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-    <span class="n">zoek</span>      <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">args</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'zoek'</span><span class="p">)</span>
+app = Flask(__name__)
+CORS(app)                                     # zodat de browser mag praten
 
-    <span class="c1"># Hier zou je normaal je filtering doen
-</span>    <span class="c1"># Voor nu sturen we gewoon terug wat we ontvangen hebben
-</span>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span>
-        <span class="s">"jij_vroeg"</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s">"cat"</span><span class="p">:</span> <span class="n">categorie</span><span class="p">,</span>
-            <span class="s">"prijs_max"</span><span class="p">:</span> <span class="n">prijs</span><span class="p">,</span>
-            <span class="s">"zoekterm"</span><span class="p">:</span> <span class="n">zoek</span>
-        <span class="p">},</span>
-        <span class="s">"bericht"</span><span class="p">:</span> <span class="s">"Filtering werkt!"</span>
-    <span class="p">})</span>
+@app.route('/api/data')
+def data():
+    # Lees alles wat achter ? in de URL staat
+    categorie = request.args.get('cat')
+    prijs     = request.args.get('prijs', type=int)
+    zoek      = request.args.get('zoek')
 
-<span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span></code></pre>
+    # Hier zou je normaal je filtering doen
+    # Voor nu sturen we gewoon terug wat we ontvangen hebben
+    return jsonify({
+        "jij_vroeg": {
+            "cat": categorie,
+            "prijs_max": prijs,
+            "zoekterm": zoek
+        },
+        "bericht": "Filtering werkt!"
+    })
+
+app.run(debug=True, port=5000)</code></pre>
 </div>
 </div>
 </div>
@@ -1503,21 +1326,21 @@ Je kunt aangepaste foutpagina&#8217;s maken voor veelvoorkomende HTTP-statuscode
 <h3 id="_javascript_met_fetch_api">10.2. JavaScript - met fetch api</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"haal()"</span><span class="nt">&gt;</span>Vraag data op<span class="nt">&lt;/button&gt;</span>
-<span class="nt">&lt;pre</span> <span class="na">id=</span><span class="s">"uit"</span><span class="nt">&gt;&lt;/pre&gt;</span>
+<pre class="rouge highlight"><code data-lang="html">&lt;button onclick="haal()"&gt;Vraag data op&lt;/button&gt;
+&lt;pre id="uit"&gt;&lt;/pre&gt;
 
-<span class="nt">&lt;script&gt;</span>
-<span class="k">async</span> <span class="kd">function</span> <span class="nx">haal</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">URL</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://localhost:5000/api/data</span><span class="dl">'</span><span class="p">);</span>
-    <span class="nx">url</span><span class="p">.</span><span class="nx">searchParams</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">'</span><span class="s1">cat</span><span class="dl">'</span><span class="p">,</span>   <span class="dl">'</span><span class="s1">boeken</span><span class="dl">'</span><span class="p">);</span>
-    <span class="nx">url</span><span class="p">.</span><span class="nx">searchParams</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">'</span><span class="s1">prijs</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">50</span><span class="dl">'</span><span class="p">);</span>
-    <span class="nx">url</span><span class="p">.</span><span class="nx">searchParams</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">'</span><span class="s1">zoek</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">python</span><span class="dl">'</span><span class="p">);</span>
+&lt;script&gt;
+async function haal() {
+    const url = new URL('http://localhost:5000/api/data');
+    url.searchParams.append('cat',   'boeken');
+    url.searchParams.append('prijs', '50');
+    url.searchParams.append('zoek', 'python');
 
-    <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
-    <span class="kd">const</span> <span class="nx">json</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
-    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">uit</span><span class="dl">'</span><span class="p">).</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">json</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="nt">&lt;/script&gt;</span></code></pre>
+    const res = await fetch(url);
+    const json = await res.json();
+    document.getElementById('uit').textContent = JSON.stringify(json, null, 2);
+}
+&lt;/script&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1525,10 +1348,10 @@ Je kunt aangepaste foutpagina&#8217;s maken voor veelvoorkomende HTTP-statuscode
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">URLSearchParams</span><span class="p">({</span><span class="na">cat</span><span class="p">:</span><span class="dl">'</span><span class="s1">boeken</span><span class="dl">'</span><span class="p">,</span> <span class="na">prijs</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span> <span class="na">zoek</span><span class="p">:</span><span class="dl">'</span><span class="s1">js</span><span class="dl">'</span><span class="p">});</span>
-<span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://localhost:5000/api/data?</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">params</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">r</span> <span class="o">=&gt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span></code></pre>
+<pre class="rouge highlight"><code data-lang="javascript">const params = new URLSearchParams({cat:'boeken', prijs:50, zoek:'js'});
+fetch('http://localhost:5000/api/data?' + params)
+    .then(r =&gt; r.json())
+    .then(data =&gt; console.log(data));</code></pre>
 </div>
 </div>
 </div>
@@ -1581,8 +1404,8 @@ Je kunt debugmodus inschakelen door <code>debug=True</code> aan de <code>app.run
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
-    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">if __name__ == '__main__':
+    app.run(debug=True)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1632,8 +1455,8 @@ Je kunt debugmodus inschakelen door <code>debug=True</code> aan de <code>app.run
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="bash">pip <span class="nb">install </span>Flask
-pip <span class="nb">install </span>Flask-Cors</code></pre>
+<pre class="rouge highlight"><code data-lang="bash">pip install Flask
+pip install Flask-Cors</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1641,19 +1464,19 @@ pip <span class="nb">install </span>Flask-Cors</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
-<span class="kn">from</span> <span class="nn">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
+<pre class="rouge highlight"><code data-lang="python">from flask import Flask, jsonify
+from flask_cors import CORS
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
-<span class="n">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">resources</span><span class="o">=</span><span class="p">{</span><span class="sa">r</span><span class="s">"/api/*"</span><span class="p">:</span> <span class="p">{</span><span class="s">"origins"</span><span class="p">:</span> <span class="s">"http://localhost:3000"</span><span class="p">}})</span>
+app = Flask(__name__)
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 
-<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/data'</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">get_data</span><span class="p">():</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">"message"</span><span class="p">:</span> <span class="s">"Hello from Flask!"</span><span class="p">}</span>
-    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+@app.route('/api/data')
+def get_data():
+    data = {"message": "Hello from Flask!"}
+    return jsonify(data)
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
-    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span></code></pre>
+if __name__ == '__main__':
+    app.run(debug=True)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1668,7 +1491,7 @@ pip <span class="nb">install </span>Flask-Cors</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash">npx create-react-app frontend
-<span class="nb">cd </span>frontend</code></pre>
+cd frontend</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1676,25 +1499,25 @@ pip <span class="nb">install </span>Flask-Cors</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useEffect</span><span class="p">,</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<pre class="rouge highlight"><code data-lang="javascript">import React, { useEffect, useState } from 'react';
 
-<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">[</span><span class="nx">data</span><span class="p">,</span> <span class="nx">setData</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">({</span> <span class="na">message</span><span class="p">:</span> <span class="dl">''</span> <span class="p">});</span>
+function App() {
+  const [data, setData] = useState({ message: '' });
 
-  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/data</span><span class="dl">'</span><span class="p">)</span>
-      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
-      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="nx">setData</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
-  <span class="p">},</span> <span class="p">[]);</span>
+  useEffect(() =&gt; {
+    fetch('/api/data')
+      .then(response =&gt; response.json())
+      .then(data =&gt; setData(data));
+  }, []);
 
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="dl">"</span><span class="s2">App</span><span class="dl">"</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">data</span><span class="p">.</span><span class="nx">message</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/h1</span><span class="err">&gt;
-</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span>  <span class="p">);</span>
-<span class="p">}</span>
+  return (
+    &lt;div className="App"&gt;
+      &lt;h1&gt;{data.message}&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+}
 
-<span class="k">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span></code></pre>
+export default App;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1708,9 +1531,9 @@ pip <span class="nb">install </span>Flask-Cors</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="json"><span class="w"> </span><span class="nl">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"proxy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:5000"</span><span class="w">
-  </span><span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="json"> "options": {
+    "proxy": "http://localhost:5000"
+  }</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1762,26 +1585,26 @@ pip <span class="nb">install </span>Flask-Cors</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
-<span class="kn">import</span> <span class="nn">sqlite3</span>
+<pre class="rouge highlight"><code data-lang="python">from flask import Flask, jsonify
+import sqlite3
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+app = Flask(__name__)
 
-<span class="k">def</span> <span class="nf">get_db_data</span><span class="p">():</span>
-    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s">'data.db'</span><span class="p">)</span>
-    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">cursor</span><span class="p">()</span>
-    <span class="n">cursor</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">'SELECT * FROM users'</span><span class="p">)</span>
-    <span class="n">users</span> <span class="o">=</span> <span class="n">cursor</span><span class="p">.</span><span class="n">fetchall</span><span class="p">()</span>
-    <span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">users</span>
+def get_db_data():
+    conn = sqlite3.connect('data.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM users')
+    users = cursor.fetchall()
+    conn.close()
+    return users
 
-<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/users'</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">get_users</span><span class="p">():</span>
-    <span class="n">users</span> <span class="o">=</span> <span class="n">get_db_data</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+@app.route('/api/users')
+def get_users():
+    users = get_db_data()
+    return jsonify(users)
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
-    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span></code></pre>
+if __name__ == '__main__':
+    app.run(debug=True)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1801,15 +1624,15 @@ pip <span class="nb">install </span>Flask-Cors</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">sendData</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/send</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
-    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
-    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-      <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">30</span> <span class="p">}),</span>
-  <span class="p">});</span>
-<span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="javascript">function sendData() {
+  fetch('/api/send', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ name: 'John', age: 30 }),
+  });
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1817,18 +1640,18 @@ pip <span class="nb">install </span>Flask-Cors</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+<pre class="rouge highlight"><code data-lang="python">from flask import Flask, request, jsonify
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+app = Flask(__name__)
 
-<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/send'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
-<span class="k">def</span> <span class="nf">receive_data</span><span class="p">():</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">get_json</span><span class="p">()</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># Verwerk de data zoals nodig
-</span>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">"status"</span><span class="p">:</span> <span class="s">"success"</span><span class="p">})</span>
+@app.route('/api/send', methods=['POST'])
+def receive_data():
+    data = request.get_json()
+    print(data)  # Verwerk de data zoals nodig
+    return jsonify({"status": "success"})
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
-    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span></code></pre>
+if __name__ == '__main__':
+    app.run(debug=True)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1879,7 +1702,7 @@ Flask integreert SQLAlchemy naadloos via de <code>Flask-SQLAlchemy</code> extens
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="bash">pip <span class="nb">install </span>Flask-SQLAlchemy</code></pre>
+<pre class="rouge highlight"><code data-lang="bash">pip install Flask-SQLAlchemy</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1896,17 +1719,17 @@ In Flask gebeurt dit door de <code>SQLALCHEMY_DATABASE_URI</code> configuratiepa
 <h4 id="_voorbeeld_van_een_basisconfiguratie">15.2.1. Voorbeeld van een basisconfiguratie</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
-<span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+<pre class="rouge highlight"><code data-lang="python">from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+app = Flask(__name__)
 
-<span class="c1"># Configuratie van de database
-</span><span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_DATABASE_URI'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'sqlite:///example.db'</span>
-<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">[</span><span class="s">'SQLALCHEMY_TRACK_MODIFICATIONS'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+# Configuratie van de database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///example.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-<span class="c1"># Initialiseer de SQLAlchemy database
-</span><span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span></code></pre>
+# Initialiseer de SQLAlchemy database
+db = SQLAlchemy(app)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1924,13 +1747,13 @@ Een <strong>model is een Python-klasse die een tabel in de database vertegenwoor
 <h4 id="_voorbeeld_van_een_modelklasse">15.3.1. Voorbeeld van een modelklasse</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
-    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">80</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-    <span class="n">email</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">120</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<pre class="rouge highlight"><code data-lang="python">class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
 
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s">'&lt;User </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">username</span><span class="si">}</span><span class="s">&gt;'</span></code></pre>
+    def __repr__(self):
+        return f'&lt;User {self.username}&gt;'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1950,8 +1773,8 @@ Een <strong>model is een Python-klasse die een tabel in de database vertegenwoor
 <h4 id="_voorbeeld_van_het_aanmaken_van_de_database">15.4.1. Voorbeeld van het aanmaken van de database</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">():</span>
-    <span class="n">db</span><span class="p">.</span><span class="n">create_all</span><span class="p">()</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">with app.app_context():
+    db.create_all()</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1968,9 +1791,9 @@ Een <strong>model is een Python-klasse die een tabel in de database vertegenwoor
 <h4 id="_voorbeeld_van_het_toevoegen_van_een_gebruiker">15.5.1. Voorbeeld van het toevoegen van een gebruiker</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">new_user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">'johndoe'</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s">'johndoe@example.com'</span><span class="p">)</span>
-<span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
-<span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">new_user = User(username='johndoe', email='johndoe@example.com')
+db.session.add(new_user)
+db.session.commit()</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1988,8 +1811,8 @@ De wijzigingen worden doorgevoerd met <code>db.session.commit()</code>.</p>
 <h4 id="_voorbeeld_van_het_opvragen_van_een_gebruiker">15.6.1. Voorbeeld van het opvragen van een gebruiker</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">'johndoe'</span><span class="p">).</span><span class="n">first</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">email</span><span class="p">)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">user = User.query.filter_by(username='johndoe').first()
+print(user.email)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2006,9 +1829,9 @@ De wijzigingen worden doorgevoerd met <code>db.session.commit()</code>.</p>
 <h4 id="_voorbeeld_van_het_updaten_van_een_gebruiker">15.7.1. Voorbeeld van het updaten van een gebruiker</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">'johndoe'</span><span class="p">).</span><span class="n">first</span><span class="p">()</span>
-<span class="n">user</span><span class="p">.</span><span class="n">email</span> <span class="o">=</span> <span class="s">'newemail@example.com'</span>
-<span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">user = User.query.filter_by(username='johndoe').first()
+user.email = 'newemail@example.com'
+db.session.commit()</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2026,9 +1849,9 @@ De wijzigingen worden doorgevoerd met <code>db.session.commit()</code>.</p>
 <h3 id="_voorbeeld_van_het_verwijderen_van_een_gebruiker">15.9. Voorbeeld van het verwijderen van een gebruiker</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">'johndoe'</span><span class="p">).</span><span class="n">first</span><span class="p">()</span>
-<span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
-<span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">user = User.query.filter_by(username='johndoe').first()
+db.session.delete(user)
+db.session.commit()</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2045,13 +1868,13 @@ Dit kan eenvoudig worden geïmplementeerd door gebruik te maken van de <code>db.
 <h4 id="_voorbeeld_van_een_één_op_veel_relatie">15.10.1. Voorbeeld van een één-op-veel relatie</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">class</span> <span class="nc">Post</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Model</span><span class="p">):</span>
-    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="mi">120</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-    <span class="n">body</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-    <span class="n">user_id</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="p">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">db</span><span class="p">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s">'user.id'</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<pre class="rouge highlight"><code data-lang="python">class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(120), nullable=False)
+    body = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
-    <span class="n">author</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="n">relationship</span><span class="p">(</span><span class="s">'User'</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="n">db</span><span class="p">.</span><span class="n">backref</span><span class="p">(</span><span class="s">'posts'</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span></code></pre>
+    author = db.relationship('User', backref=db.backref('posts', lazy=True))</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2070,7 +1893,7 @@ De relatie tussen gebruikers en berichten wordt vastgelegd via de <code>db.relat
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="bash">pip <span class="nb">install </span>Flask-Migrate</code></pre>
+<pre class="rouge highlight"><code data-lang="bash">pip install Flask-Migrate</code></pre>
 </div>
 </div>
 <div class="paragraph">

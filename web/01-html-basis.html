@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="generator" content="Asciidoctor 2.0.26">
 <title>HTML basis</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -116,7 +116,6 @@ h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title str
 :not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
 pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
-pre>code{display:block}
 pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
 em em{font-style:normal}
 strong strong{font-weight:400}
@@ -140,7 +139,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #content::before{content:none}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
 #header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
-#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
 #header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
@@ -162,6 +161,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
 #toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
@@ -218,6 +218,7 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
 .listingblock>.content{position:relative}
+.listingblock pre>code{display:block}
 .listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
 .listingblock:hover code[data-lang]::before{display:block}
 .listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
@@ -327,7 +328,7 @@ a.image{text-decoration:none;display:inline-block}
 a.image object{pointer-events:none}
 sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
 sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
 #footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
 #footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
 #footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
@@ -433,221 +434,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-pre.rouge table td { padding: 5px; }
-pre.rouge table pre { margin: 0; }
-pre.rouge .cm {
-  color: #999988;
-  font-style: italic;
-}
-pre.rouge .cp {
-  color: #999999;
-  font-weight: bold;
-}
-pre.rouge .c1 {
-  color: #999988;
-  font-style: italic;
-}
-pre.rouge .cs {
-  color: #999999;
-  font-weight: bold;
-  font-style: italic;
-}
-pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
-  color: #999988;
-  font-style: italic;
-}
-pre.rouge .err {
-  color: #a61717;
-  background-color: #e3d2d2;
-}
-pre.rouge .gd {
-  color: #000000;
-  background-color: #ffdddd;
-}
-pre.rouge .ge {
-  color: #000000;
-  font-style: italic;
-}
-pre.rouge .gr {
-  color: #aa0000;
-}
-pre.rouge .gh {
-  color: #999999;
-}
-pre.rouge .gi {
-  color: #000000;
-  background-color: #ddffdd;
-}
-pre.rouge .go {
-  color: #888888;
-}
-pre.rouge .gp {
-  color: #555555;
-}
-pre.rouge .gs {
-  font-weight: bold;
-}
-pre.rouge .gu {
-  color: #aaaaaa;
-}
-pre.rouge .gt {
-  color: #aa0000;
-}
-pre.rouge .kc {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kd {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kn {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kp {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kr {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kt {
-  color: #445588;
-  font-weight: bold;
-}
-pre.rouge .k, pre.rouge .kv {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .mf {
-  color: #009999;
-}
-pre.rouge .mh {
-  color: #009999;
-}
-pre.rouge .il {
-  color: #009999;
-}
-pre.rouge .mi {
-  color: #009999;
-}
-pre.rouge .mo {
-  color: #009999;
-}
-pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
-  color: #009999;
-}
-pre.rouge .sa {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .sb {
-  color: #d14;
-}
-pre.rouge .sc {
-  color: #d14;
-}
-pre.rouge .sd {
-  color: #d14;
-}
-pre.rouge .s2 {
-  color: #d14;
-}
-pre.rouge .se {
-  color: #d14;
-}
-pre.rouge .sh {
-  color: #d14;
-}
-pre.rouge .si {
-  color: #d14;
-}
-pre.rouge .sx {
-  color: #d14;
-}
-pre.rouge .sr {
-  color: #009926;
-}
-pre.rouge .s1 {
-  color: #d14;
-}
-pre.rouge .ss {
-  color: #990073;
-}
-pre.rouge .s, pre.rouge .dl {
-  color: #d14;
-}
-pre.rouge .na {
-  color: #008080;
-}
-pre.rouge .bp {
-  color: #999999;
-}
-pre.rouge .nb {
-  color: #0086B3;
-}
-pre.rouge .nc {
-  color: #445588;
-  font-weight: bold;
-}
-pre.rouge .no {
-  color: #008080;
-}
-pre.rouge .nd {
-  color: #3c5d5d;
-  font-weight: bold;
-}
-pre.rouge .ni {
-  color: #800080;
-}
-pre.rouge .ne {
-  color: #990000;
-  font-weight: bold;
-}
-pre.rouge .nf, pre.rouge .fm {
-  color: #990000;
-  font-weight: bold;
-}
-pre.rouge .nl {
-  color: #990000;
-  font-weight: bold;
-}
-pre.rouge .nn {
-  color: #555555;
-}
-pre.rouge .nt {
-  color: #000080;
-}
-pre.rouge .vc {
-  color: #008080;
-}
-pre.rouge .vg {
-  color: #008080;
-}
-pre.rouge .vi {
-  color: #008080;
-}
-pre.rouge .nv, pre.rouge .vm {
-  color: #008080;
-}
-pre.rouge .ow {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .o {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .w {
-  color: #bbbbbb;
-}
-pre.rouge {
-  background-color: #f8f8f8;
-}
-</style>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -822,7 +608,7 @@ De meeste tags komen in paren: een <strong>openingstag</strong> en een <strong>s
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;p&gt;</span>Dit is een paragraaf.<span class="nt">&lt;/p&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;p&gt;Dit is een paragraaf.&lt;/p&gt;</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -839,9 +625,9 @@ Op andere websites, zoals <a href="https://developer.mozilla.org/nl/">MDN</a>, l
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;h1&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="rouge highlight"><code data-lang="html">&lt;h1&gt; <i class="conum" data-value="1"></i><b>(1)</b>
   Grote titel <i class="conum" data-value="2"></i><b>(2)</b>
-<span class="nt">&lt;/h1&gt;</span> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+&lt;/h1&gt; <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -865,9 +651,9 @@ Op andere websites, zoals <a href="https://developer.mozilla.org/nl/">MDN</a>, l
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;br&gt;</span>
-<span class="nt">&lt;hr&gt;</span>
-<span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"kat.jpg"</span> <span class="na">alt=</span><span class="s">"Een slapende kat"</span><span class="nt">&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;br&gt;
+&lt;hr&gt;
+&lt;img src="kat.jpg" alt="Een slapende kat"&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -879,8 +665,8 @@ De binnenste tag moet altijd eerst gesloten worden.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;p&gt;</span>Dit is <span class="nt">&lt;strong&gt;</span>heel belangrijk<span class="nt">&lt;/strong&gt;</span>.<span class="nt">&lt;/p&gt;</span>     <span class="c">&lt;!-- juist --&gt;</span>
-<span class="nt">&lt;p&gt;</span>Dit is <span class="nt">&lt;strong&gt;</span>heel belangrijk<span class="nt">&lt;/p&gt;</span>.<span class="nt">&lt;/strong&gt;</span>     <span class="c">&lt;!-- fout! --&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;p&gt;Dit is &lt;strong&gt;heel belangrijk&lt;/strong&gt;.&lt;/p&gt;     &lt;!-- juist --&gt;
+&lt;p&gt;Dit is &lt;strong&gt;heel belangrijk&lt;/p&gt;.&lt;/strong&gt;     &lt;!-- fout! --&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -894,8 +680,8 @@ De binnenste tag moet altijd eerst gesloten worden.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://www.wikipedia.org"</span><span class="nt">&gt;</span>Naar Wikipedia<span class="nt">&lt;/a&gt;</span>
-<span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"f16.jpg"</span> <span class="na">alt=</span><span class="s">"Een F-16 in de lucht"</span> <span class="na">width=</span><span class="s">"300"</span><span class="nt">&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;a href="https://www.wikipedia.org"&gt;Naar Wikipedia&lt;/a&gt;
+&lt;img src="f16.jpg" alt="Een F-16 in de lucht" width="300"&gt;</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -925,7 +711,7 @@ De binnenste tag moet altijd eerst gesloten worden.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="c">&lt;!-- Dit is commentaar. De bezoeker ziet dit niet. --&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;!-- Dit is commentaar. De bezoeker ziet dit niet. --&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -939,18 +725,18 @@ De binnenste tag moet altijd eerst gesloten worden.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"nl"</span><span class="nt">&gt;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-  <span class="nt">&lt;head&gt;</span> <i class="conum" data-value="3"></i><b>(3)</b>
-    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span> <i class="conum" data-value="4"></i><b>(4)</b>
-    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span> <i class="conum" data-value="5"></i><b>(5)</b>
-    <span class="nt">&lt;title&gt;</span>Mijn eerste website<span class="nt">&lt;/title&gt;</span> <i class="conum" data-value="6"></i><b>(6)</b>
-  <span class="nt">&lt;/head&gt;</span>
-  <span class="nt">&lt;body&gt;</span> <i class="conum" data-value="7"></i><b>(7)</b>
-    <span class="nt">&lt;h1&gt;</span>Welkom!<span class="nt">&lt;/h1&gt;</span>
-    <span class="nt">&lt;p&gt;</span>Dit is mijn eerste webpagina.<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;!DOCTYPE html&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+&lt;html lang="nl"&gt; <i class="conum" data-value="2"></i><b>(2)</b>
+  &lt;head&gt; <i class="conum" data-value="3"></i><b>(3)</b>
+    &lt;meta charset="UTF-8"&gt; <i class="conum" data-value="4"></i><b>(4)</b>
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt; <i class="conum" data-value="5"></i><b>(5)</b>
+    &lt;title&gt;Mijn eerste website&lt;/title&gt; <i class="conum" data-value="6"></i><b>(6)</b>
+  &lt;/head&gt;
+  &lt;body&gt; <i class="conum" data-value="7"></i><b>(7)</b>
+    &lt;h1&gt;Welkom!&lt;/h1&gt;
+    &lt;p&gt;Dit is mijn eerste webpagina.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -997,9 +783,9 @@ De binnenste tag moet altijd eerst gesloten worden.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;h1&gt;</span>Titel van de pagina<span class="nt">&lt;/h1&gt;</span>
-<span class="nt">&lt;h2&gt;</span>Hoofdstuk<span class="nt">&lt;/h2&gt;</span>
-<span class="nt">&lt;h3&gt;</span>Onderdeel van een hoofdstuk<span class="nt">&lt;/h3&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;h1&gt;Titel van de pagina&lt;/h1&gt;
+&lt;h2&gt;Hoofdstuk&lt;/h2&gt;
+&lt;h3&gt;Onderdeel van een hoofdstuk&lt;/h3&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1011,10 +797,10 @@ Kies een titel op basis van zijn <strong>betekenis</strong>, niet op basis van z
 <h3 id="_paragrafen_en_regeleinden">4.2. Paragrafen en regeleinden</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;p&gt;</span>Dit is een paragraaf. Een paragraaf begint altijd op een nieuwe regel.<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;p&gt;</span>Dit is een tweede paragraaf.<span class="nt">&lt;br&gt;</span>Na de br-tag begint een nieuwe regel.<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;hr&gt;</span>
-<span class="nt">&lt;p&gt;</span>Boven deze paragraaf staat een horizontale lijn.<span class="nt">&lt;/p&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;p&gt;Dit is een paragraaf. Een paragraaf begint altijd op een nieuwe regel.&lt;/p&gt;
+&lt;p&gt;Dit is een tweede paragraaf.&lt;br&gt;Na de br-tag begint een nieuwe regel.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Boven deze paragraaf staat een horizontale lijn.&lt;/p&gt;</code></pre>
 </div>
 </div>
 <div class="admonitionblock warning">
@@ -1034,8 +820,8 @@ Extra spaties en enters in je HTML-code worden door de browser genegeerd. Tien s
 <h3 id="_tekst_benadrukken">4.3. Tekst benadrukken</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;p&gt;</span>Dit is <span class="nt">&lt;strong&gt;</span>belangrijk<span class="nt">&lt;/strong&gt;</span> en dit is <span class="nt">&lt;em&gt;</span>benadrukt<span class="nt">&lt;/em&gt;</span>.<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;p&gt;</span>H<span class="nt">&lt;sub&gt;</span>2<span class="nt">&lt;/sub&gt;</span>O en 10<span class="nt">&lt;sup&gt;</span>3<span class="nt">&lt;/sup&gt;&lt;/p&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;p&gt;Dit is &lt;strong&gt;belangrijk&lt;/strong&gt; en dit is &lt;em&gt;benadrukt&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;H&lt;sub&gt;2&lt;/sub&gt;O en 10&lt;sup&gt;3&lt;/sup&gt;&lt;/p&gt;</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -1085,23 +871,23 @@ Extra spaties en enters in je HTML-code worden door de browser genegeerd. Tien s
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="c">&lt;!-- Absolute link: een volledig webadres --&gt;</span>
-<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://www.vrt.be"</span><span class="nt">&gt;</span>Naar de VRT<span class="nt">&lt;/a&gt;</span>
+<pre class="rouge highlight"><code data-lang="html">&lt;!-- Absolute link: een volledig webadres --&gt;
+&lt;a href="https://www.vrt.be"&gt;Naar de VRT&lt;/a&gt;
 
-<span class="c">&lt;!-- Relatieve link: een ander bestand in je eigen website --&gt;</span>
-<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"contact.html"</span><span class="nt">&gt;</span>Contact<span class="nt">&lt;/a&gt;</span>
-<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"fotos/vakantie.html"</span><span class="nt">&gt;</span>Vakantiefoto's<span class="nt">&lt;/a&gt;</span>
+&lt;!-- Relatieve link: een ander bestand in je eigen website --&gt;
+&lt;a href="contact.html"&gt;Contact&lt;/a&gt;
+&lt;a href="fotos/vakantie.html"&gt;Vakantiefoto's&lt;/a&gt;
 
-<span class="c">&lt;!-- Openen in een nieuw tabblad --&gt;</span>
-<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://www.google.be"</span> <span class="na">target=</span><span class="s">"_blank"</span><span class="nt">&gt;</span>Google<span class="nt">&lt;/a&gt;</span>
+&lt;!-- Openen in een nieuw tabblad --&gt;
+&lt;a href="https://www.google.be" target="_blank"&gt;Google&lt;/a&gt;
 
-<span class="c">&lt;!-- Een e-mail versturen --&gt;</span>
-<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"mailto:info@school.be"</span><span class="nt">&gt;</span>Mail ons<span class="nt">&lt;/a&gt;</span>
+&lt;!-- Een e-mail versturen --&gt;
+&lt;a href="mailto:info@school.be"&gt;Mail ons&lt;/a&gt;
 
-<span class="c">&lt;!-- Naar een plaats op dezelfde pagina springen --&gt;</span>
-<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#contact"</span><span class="nt">&gt;</span>Ga naar contact<span class="nt">&lt;/a&gt;</span>
+&lt;!-- Naar een plaats op dezelfde pagina springen --&gt;
+&lt;a href="#contact"&gt;Ga naar contact&lt;/a&gt;
 ...
-<span class="nt">&lt;h2</span> <span class="na">id=</span><span class="s">"contact"</span><span class="nt">&gt;</span>Contact<span class="nt">&lt;/h2&gt;</span></code></pre>
+&lt;h2 id="contact"&gt;Contact&lt;/h2&gt;</code></pre>
 </div>
 </div>
 <div class="sect2">
@@ -1182,7 +968,7 @@ Gebruik in bestandsnamen geen spaties en geen hoofdletters. Schrijf <code>mijn-f
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"fotos/strand.jpg"</span> <span class="na">alt=</span><span class="s">"Een zonnig strand met parasols"</span> <span class="na">width=</span><span class="s">"400"</span><span class="nt">&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;img src="fotos/strand.jpg" alt="Een zonnig strand met parasols" width="400"&gt;</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -1206,9 +992,9 @@ Gebruik in bestandsnamen geen spaties en geen hoofdletters. Schrijf <code>mijn-f
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"index.html"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"logo.png"</span> <span class="na">alt=</span><span class="s">"Logo - terug naar de startpagina"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/a&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;a href="index.html"&gt;
+  &lt;img src="logo.png" alt="Logo - terug naar de startpagina"&gt;
+&lt;/a&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -1223,11 +1009,11 @@ Gebruik in bestandsnamen geen spaties en geen hoofdletters. Schrijf <code>mijn-f
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;ul&gt;</span>
-  <span class="nt">&lt;li&gt;</span>Melk<span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>Brood<span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>Kaas<span class="nt">&lt;/li&gt;</span>
-<span class="nt">&lt;/ul&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;ul&gt;
+  &lt;li&gt;Melk&lt;/li&gt;
+  &lt;li&gt;Brood&lt;/li&gt;
+  &lt;li&gt;Kaas&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -1238,11 +1024,11 @@ Gebruik in bestandsnamen geen spaties en geen hoofdletters. Schrijf <code>mijn-f
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;ol&gt;</span>
-  <span class="nt">&lt;li&gt;</span>Verwarm de oven voor.<span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>Meng de ingrediënten.<span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>Bak 25 minuten.<span class="nt">&lt;/li&gt;</span>
-<span class="nt">&lt;/ol&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;ol&gt;
+  &lt;li&gt;Verwarm de oven voor.&lt;/li&gt;
+  &lt;li&gt;Meng de ingrediënten.&lt;/li&gt;
+  &lt;li&gt;Bak 25 minuten.&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -1253,15 +1039,15 @@ Gebruik in bestandsnamen geen spaties en geen hoofdletters. Schrijf <code>mijn-f
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;ul&gt;</span>
-  <span class="nt">&lt;li&gt;</span>Fruit
-    <span class="nt">&lt;ul&gt;</span>
-      <span class="nt">&lt;li&gt;</span>Appel<span class="nt">&lt;/li&gt;</span>
-      <span class="nt">&lt;li&gt;</span>Peer<span class="nt">&lt;/li&gt;</span>
-    <span class="nt">&lt;/ul&gt;</span>
-  <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;li&gt;</span>Groenten<span class="nt">&lt;/li&gt;</span>
-<span class="nt">&lt;/ul&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;ul&gt;
+  &lt;li&gt;Fruit
+    &lt;ul&gt;
+      &lt;li&gt;Appel&lt;/li&gt;
+      &lt;li&gt;Peer&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Groenten&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -1275,27 +1061,27 @@ Gebruik in bestandsnamen geen spaties en geen hoofdletters. Schrijf <code>mijn-f
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;table&gt;</span>
-  <span class="nt">&lt;thead&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-    <span class="nt">&lt;tr&gt;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-      <span class="nt">&lt;th&gt;</span>Naam<span class="nt">&lt;/th&gt;</span> <i class="conum" data-value="3"></i><b>(3)</b>
-      <span class="nt">&lt;th&gt;</span>Klas<span class="nt">&lt;/th&gt;</span>
-      <span class="nt">&lt;th&gt;</span>Punten<span class="nt">&lt;/th&gt;</span>
-    <span class="nt">&lt;/tr&gt;</span>
-  <span class="nt">&lt;/thead&gt;</span>
-  <span class="nt">&lt;tbody&gt;</span> <i class="conum" data-value="4"></i><b>(4)</b>
-    <span class="nt">&lt;tr&gt;</span>
-      <span class="nt">&lt;td&gt;</span>Emma<span class="nt">&lt;/td&gt;</span> <i class="conum" data-value="5"></i><b>(5)</b>
-      <span class="nt">&lt;td&gt;</span>5A<span class="nt">&lt;/td&gt;</span>
-      <span class="nt">&lt;td&gt;</span>17<span class="nt">&lt;/td&gt;</span>
-    <span class="nt">&lt;/tr&gt;</span>
-    <span class="nt">&lt;tr&gt;</span>
-      <span class="nt">&lt;td&gt;</span>Noah<span class="nt">&lt;/td&gt;</span>
-      <span class="nt">&lt;td&gt;</span>5B<span class="nt">&lt;/td&gt;</span>
-      <span class="nt">&lt;td&gt;</span>15<span class="nt">&lt;/td&gt;</span>
-    <span class="nt">&lt;/tr&gt;</span>
-  <span class="nt">&lt;/tbody&gt;</span>
-<span class="nt">&lt;/table&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;table&gt;
+  &lt;thead&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+    &lt;tr&gt; <i class="conum" data-value="2"></i><b>(2)</b>
+      &lt;th&gt;Naam&lt;/th&gt; <i class="conum" data-value="3"></i><b>(3)</b>
+      &lt;th&gt;Klas&lt;/th&gt;
+      &lt;th&gt;Punten&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt; <i class="conum" data-value="4"></i><b>(4)</b>
+    &lt;tr&gt;
+      &lt;td&gt;Emma&lt;/td&gt; <i class="conum" data-value="5"></i><b>(5)</b>
+      &lt;td&gt;5A&lt;/td&gt;
+      &lt;td&gt;17&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Noah&lt;/td&gt;
+      &lt;td&gt;5B&lt;/td&gt;
+      &lt;td&gt;15&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1344,37 +1130,37 @@ Gebruik tabellen enkel voor <strong>gegevens</strong>, niet om je pagina in kolo
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"verzenden.php"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="rouge highlight"><code data-lang="html">&lt;form action="verzenden.php" method="post"&gt; <i class="conum" data-value="1"></i><b>(1)</b>
 
-  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"naam"</span><span class="nt">&gt;</span>Naam<span class="nt">&lt;/label&gt;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"naam"</span> <span class="na">name=</span><span class="s">"naam"</span> <span class="na">required</span><span class="nt">&gt;</span> <i class="conum" data-value="3"></i><b>(3)</b>
+  &lt;label for="naam"&gt;Naam&lt;/label&gt; <i class="conum" data-value="2"></i><b>(2)</b>
+  &lt;input type="text" id="naam" name="naam" required&gt; <i class="conum" data-value="3"></i><b>(3)</b>
 
-  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"email"</span><span class="nt">&gt;</span>E-mail<span class="nt">&lt;/label&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"email"</span> <span class="na">id=</span><span class="s">"email"</span> <span class="na">name=</span><span class="s">"email"</span><span class="nt">&gt;</span>
+  &lt;label for="email"&gt;E-mail&lt;/label&gt;
+  &lt;input type="email" id="email" name="email"&gt;
 
-  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"leeftijd"</span><span class="nt">&gt;</span>Leeftijd<span class="nt">&lt;/label&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"number"</span> <span class="na">id=</span><span class="s">"leeftijd"</span> <span class="na">name=</span><span class="s">"leeftijd"</span> <span class="na">min=</span><span class="s">"12"</span> <span class="na">max=</span><span class="s">"99"</span><span class="nt">&gt;</span>
+  &lt;label for="leeftijd"&gt;Leeftijd&lt;/label&gt;
+  &lt;input type="number" id="leeftijd" name="leeftijd" min="12" max="99"&gt;
 
-  <span class="nt">&lt;p&gt;</span>Richting:<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">id=</span><span class="s">"it"</span> <span class="na">name=</span><span class="s">"richting"</span> <span class="na">value=</span><span class="s">"it"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"it"</span><span class="nt">&gt;</span>IT<span class="nt">&lt;/label&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">id=</span><span class="s">"wet"</span> <span class="na">name=</span><span class="s">"richting"</span> <span class="na">value=</span><span class="s">"wetenschappen"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"wet"</span><span class="nt">&gt;</span>Wetenschappen<span class="nt">&lt;/label&gt;</span>
+  &lt;p&gt;Richting:&lt;/p&gt;
+  &lt;input type="radio" id="it" name="richting" value="it"&gt;
+  &lt;label for="it"&gt;IT&lt;/label&gt;
+  &lt;input type="radio" id="wet" name="richting" value="wetenschappen"&gt;
+  &lt;label for="wet"&gt;Wetenschappen&lt;/label&gt;
 
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">id=</span><span class="s">"nieuwsbrief"</span> <span class="na">name=</span><span class="s">"nieuwsbrief"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"nieuwsbrief"</span><span class="nt">&gt;</span>Ik wil de nieuwsbrief ontvangen<span class="nt">&lt;/label&gt;</span>
+  &lt;input type="checkbox" id="nieuwsbrief" name="nieuwsbrief"&gt;
+  &lt;label for="nieuwsbrief"&gt;Ik wil de nieuwsbrief ontvangen&lt;/label&gt;
 
-  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"klas"</span><span class="nt">&gt;</span>Klas<span class="nt">&lt;/label&gt;</span>
-  <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"klas"</span> <span class="na">name=</span><span class="s">"klas"</span><span class="nt">&gt;</span> <i class="conum" data-value="4"></i><b>(4)</b>
-    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"5a"</span><span class="nt">&gt;</span>5A<span class="nt">&lt;/option&gt;</span>
-    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"5b"</span><span class="nt">&gt;</span>5B<span class="nt">&lt;/option&gt;</span>
-  <span class="nt">&lt;/select&gt;</span>
+  &lt;label for="klas"&gt;Klas&lt;/label&gt;
+  &lt;select id="klas" name="klas"&gt; <i class="conum" data-value="4"></i><b>(4)</b>
+    &lt;option value="5a"&gt;5A&lt;/option&gt;
+    &lt;option value="5b"&gt;5B&lt;/option&gt;
+  &lt;/select&gt;
 
-  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"bericht"</span><span class="nt">&gt;</span>Bericht<span class="nt">&lt;/label&gt;</span>
-  <span class="nt">&lt;textarea</span> <span class="na">id=</span><span class="s">"bericht"</span> <span class="na">name=</span><span class="s">"bericht"</span> <span class="na">rows=</span><span class="s">"4"</span><span class="nt">&gt;&lt;/textarea&gt;</span>
+  &lt;label for="bericht"&gt;Bericht&lt;/label&gt;
+  &lt;textarea id="bericht" name="bericht" rows="4"&gt;&lt;/textarea&gt;
 
-  <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Verzenden<span class="nt">&lt;/button&gt;</span>
-<span class="nt">&lt;/form&gt;</span></code></pre>
+  &lt;button type="submit"&gt;Verzenden&lt;/button&gt;
+&lt;/form&gt;</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1468,9 +1254,9 @@ Gebruik tabellen enkel voor <strong>gegevens</strong>, niet om je pagina in kolo
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;div&gt;</span>
-  <span class="nt">&lt;p&gt;</span>Een paragraaf met een <span class="nt">&lt;span&gt;</span>speciaal woord<span class="nt">&lt;/span&gt;</span> erin.<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;/div&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;div&gt;
+  &lt;p&gt;Een paragraaf met een &lt;span&gt;speciaal woord&lt;/span&gt; erin.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -1481,30 +1267,30 @@ Gebruik tabellen enkel voor <strong>gegevens</strong>, niet om je pagina in kolo
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;body&gt;</span>
-  <span class="nt">&lt;header&gt;</span>
-    <span class="nt">&lt;h1&gt;</span>Bakkerij De Gouden Korst<span class="nt">&lt;/h1&gt;</span>
-    <span class="nt">&lt;nav&gt;</span>
-      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"index.html"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;</span>
-      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"producten.html"</span><span class="nt">&gt;</span>Producten<span class="nt">&lt;/a&gt;</span>
-      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"contact.html"</span><span class="nt">&gt;</span>Contact<span class="nt">&lt;/a&gt;</span>
-    <span class="nt">&lt;/nav&gt;</span>
-  <span class="nt">&lt;/header&gt;</span>
+<pre class="rouge highlight"><code data-lang="html">&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;Bakkerij De Gouden Korst&lt;/h1&gt;
+    &lt;nav&gt;
+      &lt;a href="index.html"&gt;Home&lt;/a&gt;
+      &lt;a href="producten.html"&gt;Producten&lt;/a&gt;
+      &lt;a href="contact.html"&gt;Contact&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
 
-  <span class="nt">&lt;main&gt;</span>
-    <span class="nt">&lt;section&gt;</span>
-      <span class="nt">&lt;h2&gt;</span>Ons aanbod<span class="nt">&lt;/h2&gt;</span>
-      <span class="nt">&lt;article&gt;</span>
-        <span class="nt">&lt;h3&gt;</span>Desembrood<span class="nt">&lt;/h3&gt;</span>
-        <span class="nt">&lt;p&gt;</span>Elke ochtend vers gebakken.<span class="nt">&lt;/p&gt;</span>
-      <span class="nt">&lt;/article&gt;</span>
-    <span class="nt">&lt;/section&gt;</span>
-  <span class="nt">&lt;/main&gt;</span>
+  &lt;main&gt;
+    &lt;section&gt;
+      &lt;h2&gt;Ons aanbod&lt;/h2&gt;
+      &lt;article&gt;
+        &lt;h3&gt;Desembrood&lt;/h3&gt;
+        &lt;p&gt;Elke ochtend vers gebakken.&lt;/p&gt;
+      &lt;/article&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
 
-  <span class="nt">&lt;footer&gt;</span>
-    <span class="nt">&lt;p&gt;</span><span class="ni">&amp;copy;</span> 2026 Bakkerij De Gouden Korst<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;/footer&gt;</span>
-<span class="nt">&lt;/body&gt;</span></code></pre>
+  &lt;footer&gt;
+    &lt;p&gt;&amp;copy; 2026 Bakkerij De Gouden Korst&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">

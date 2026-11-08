@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="generator" content="Asciidoctor 2.0.26">
 <title>Hoofdstuk 4: Beslissingsstructuren</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -116,7 +116,6 @@ h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title str
 :not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
 pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
-pre>code{display:block}
 pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
 em em{font-style:normal}
 strong strong{font-weight:400}
@@ -140,7 +139,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #content::before{content:none}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
 #header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
-#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
 #header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
@@ -162,6 +161,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
 #toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
@@ -218,6 +218,7 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
 .listingblock>.content{position:relative}
+.listingblock pre>code{display:block}
 .listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
 .listingblock:hover code[data-lang]::before{display:block}
 .listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
@@ -327,7 +328,7 @@ a.image{text-decoration:none;display:inline-block}
 a.image object{pointer-events:none}
 sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
 sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
 #footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
 #footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
 #footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
@@ -432,184 +433,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
-<style>
-pre.rouge table td { padding: 5px; }
-pre.rouge table pre { margin: 0; }
-pre.rouge {
-  color: #faf6e4;
-  background-color: #122b3b;
-}
-pre.rouge .gl {
-  color: #dee5e7;
-  background-color: #4e5d62;
-}
-pre.rouge .gp {
-  color: #a8e1fe;
-  font-weight: bold;
-}
-pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
-  color: #6c8b9f;
-  font-style: italic;
-}
-pre.rouge .cp {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .err {
-  color: #fefeec;
-  background-color: #cc0000;
-}
-pre.rouge .gr {
-  color: #cc0000;
-  font-weight: bold;
-  font-style: italic;
-}
-pre.rouge .k, pre.rouge .kd, pre.rouge .kv {
-  color: #f6dd62;
-  font-weight: bold;
-}
-pre.rouge .o, pre.rouge .ow {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .p, pre.rouge .pi {
-  color: #4df4ff;
-}
-pre.rouge .gd {
-  color: #cc0000;
-}
-pre.rouge .gi {
-  color: #b2fd6d;
-}
-pre.rouge .ge {
-  font-style: italic;
-}
-pre.rouge .gs {
-  font-weight: bold;
-}
-pre.rouge .gt {
-  color: #dee5e7;
-  background-color: #4e5d62;
-}
-pre.rouge .kc {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .kn {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kp {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kr {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .gh {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .gu {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kt {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .no {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nc {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nd {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nn {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .bp {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .ne {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nl {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .nt {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .ld {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .ss {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .s, pre.rouge .sb, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .sh, pre.rouge .sx, pre.rouge .sr, pre.rouge .s1 {
-  color: #fff0a6;
-  font-weight: bold;
-}
-pre.rouge .sa {
-  color: #f6dd62;
-  font-weight: bold;
-}
-pre.rouge .se {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .sc {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .si {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .nb {
-  font-weight: bold;
-}
-pre.rouge .ni {
-  color: #999999;
-  font-weight: bold;
-}
-pre.rouge .w {
-  color: #BBBBBB;
-}
-pre.rouge .go {
-  color: #BBBBBB;
-}
-pre.rouge .nf, pre.rouge .fm {
-  color: #a8e1fe;
-}
-pre.rouge .py {
-  color: #a8e1fe;
-}
-pre.rouge .na {
-  color: #a8e1fe;
-}
-pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
-  color: #a8e1fe;
-  font-weight: bold;
-}
-</style>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -665,13 +488,13 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s">"Je staat voor een deur. Wat wil je doen?"</span><span class="p">)</span>
-<span class="n">choice</span> <span class="o">=</span> <span class="s">"1"</span>  <span class="c1"># Stel dat de speler "1" invoert
-</span>
-<span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s">"1"</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Je opent de deur en vindt een oude sleutel."</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Je doorzoekt de kamer verder maar vindt niets van belang."</span><span class="p">)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">print("Je staat voor een deur. Wat wil je doen?")
+choice = "1"  # Stel dat de speler "1" invoert
+
+if choice == "1":
+    print("Je opent de deur en vindt een oude sleutel.")
+else:
+    print("Je doorzoekt de kamer verder maar vindt niets van belang.")</code></pre>
 </div>
 </div>
 </div>
@@ -695,13 +518,13 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">enemy_health</span> <span class="o">=</span> <span class="mi">30</span>
-<span class="n">player_damage</span> <span class="o">=</span> <span class="mi">25</span>
+<pre class="rouge highlight"><code data-lang="python">enemy_health = 30
+player_damage = 25
 
-<span class="k">if</span> <span class="n">player_damage</span> <span class="o">&gt;=</span> <span class="n">enemy_health</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Je hebt de vijand verslagen!"</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"De vijand heeft nog"</span><span class="p">,</span> <span class="n">enemy_health</span> <span class="o">-</span> <span class="n">player_damage</span><span class="p">,</span> <span class="s">"gezondheid over."</span><span class="p">)</span></code></pre>
+if player_damage &gt;= enemy_health:
+    print("Je hebt de vijand verslagen!")
+else:
+    print("De vijand heeft nog", enemy_health - player_damage, "gezondheid over.")</code></pre>
 </div>
 </div>
 </div>
@@ -725,16 +548,16 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">player_health</span> <span class="o">=</span> <span class="mi">75</span>
-<span class="n">player_strength</span> <span class="o">=</span> <span class="mi">8</span>
-<span class="n">player_agility</span> <span class="o">=</span> <span class="mi">6</span>
+<pre class="rouge highlight"><code data-lang="python">player_health = 75
+player_strength = 8
+player_agility = 6
 
-<span class="k">if</span> <span class="n">player_health</span> <span class="o">&gt;</span> <span class="mi">70</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Je bent in goede conditie."</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">player_health</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Je hebt wat herstel nodig."</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Je gezondheid is laag. Voorzichtig blijven!"</span><span class="p">)</span></code></pre>
+if player_health &gt; 70:
+    print("Je bent in goede conditie.")
+elif player_health &gt; 40:
+    print("Je hebt wat herstel nodig.")
+else:
+    print("Je gezondheid is laag. Voorzichtig blijven!")</code></pre>
 </div>
 </div>
 </div>
@@ -753,18 +576,18 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">print</span><span class="p">(</span><span class="s">"Je staat in een bos en ziet een splitsing."</span><span class="p">)</span>
-<span class="n">choice</span> <span class="o">=</span> <span class="s">"links"</span>  <span class="c1"># Stel dat de speler "links" invoert
-</span>
-<span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s">"links"</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Je volgt het pad en vindt een verborgen schat!"</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Je gaat een andere richting op en hoort vreemde geluiden."</span><span class="p">)</span>
-    <span class="n">second_choice</span> <span class="o">=</span> <span class="s">"doorgaan"</span>  <span class="c1"># Stel dat de speler "doorgaan" invoert
-</span>    <span class="k">if</span> <span class="n">second_choice</span> <span class="o">==</span> <span class="s">"doorgaan"</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">"Je ontdekt een verlaten huis."</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">"Je besluit om snel terug te keren en het enge gebied te verlaten."</span><span class="p">)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">print("Je staat in een bos en ziet een splitsing.")
+choice = "links"  # Stel dat de speler "links" invoert
+
+if choice == "links":
+    print("Je volgt het pad en vindt een verborgen schat!")
+else:
+    print("Je gaat een andere richting op en hoort vreemde geluiden.")
+    second_choice = "doorgaan"  # Stel dat de speler "doorgaan" invoert
+    if second_choice == "doorgaan":
+        print("Je ontdekt een verlaten huis.")
+    else:
+        print("Je besluit om snel terug te keren en het enge gebied te verlaten.")</code></pre>
 </div>
 </div>
 </div>
@@ -785,10 +608,10 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Geweldig werk!"</span><span class="p">)</span>
-    <span class="n">player_level</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Je bent nu level"</span><span class="p">,</span> <span class="n">player_level</span><span class="p">)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">if score &gt; 100:
+    print("Geweldig werk!")
+    player_level += 1
+    print("Je bent nu level", player_level)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -796,9 +619,9 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Geweldig werk!"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"Je bent nu level"</span><span class="p">,</span> <span class="n">player_level</span><span class="p">)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">if score &gt; 100:
+    print("Geweldig werk!")
+print("Je bent nu level", player_level)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -827,10 +650,10 @@ In tegenstelling tot sommige andere programmeertalen maakt een <code>if</code>- 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Dit is een iteratie van de loop."</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"De loop is voltooid."</span><span class="p">)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">for i in range(5):
+    print(i)
+    print("Dit is een iteratie van de loop.")
+print("De loop is voltooid.")</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -838,10 +661,10 @@ In tegenstelling tot sommige andere programmeertalen maakt een <code>if</code>- 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"Dit is een iteratie van de loop."</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"De loop is voltooid."</span><span class="p">)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">for i in range(5):
+    print(i)
+print("Dit is een iteratie van de loop.")
+print("De loop is voltooid.")</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -858,8 +681,8 @@ In tegenstelling tot sommige andere programmeertalen maakt een <code>if</code>- 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="k">if</span> <span class="n">health</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"Je leeft nog!"</span><span class="p">)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python">if health &gt; 0:
+print("Je leeft nog!")</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -890,11 +713,11 @@ In tegenstelling tot sommige andere programmeertalen maakt een <code>if</code>- 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">player_health</span> <span class="o">=</span> <span class="mi">70</span>
-<span class="n">weapon_available</span> <span class="o">=</span> <span class="bp">True</span>
+<pre class="rouge highlight"><code data-lang="python">player_health = 70
+weapon_available = True
 
-<span class="k">if</span> <span class="n">player_health</span> <span class="o">&gt;</span> <span class="mi">50</span> <span class="ow">and</span> <span class="n">weapon_available</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Je hebt genoeg gezondheid en een wapen om de strijd aan te gaan!"</span><span class="p">)</span></code></pre>
+if player_health &gt; 50 and weapon_available:
+    print("Je hebt genoeg gezondheid en een wapen om de strijd aan te gaan!")</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -911,11 +734,11 @@ In tegenstelling tot sommige andere programmeertalen maakt een <code>if</code>- 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">has_key</span> <span class="o">=</span> <span class="bp">False</span>
-<span class="n">has_unlock_code</span> <span class="o">=</span> <span class="bp">True</span>
+<pre class="rouge highlight"><code data-lang="python">has_key = False
+has_unlock_code = True
 
-<span class="k">if</span> <span class="n">has_key</span> <span class="ow">or</span> <span class="n">has_unlock_code</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Je hebt toegang tot de geheime deur!"</span><span class="p">)</span></code></pre>
+if has_key or has_unlock_code:
+    print("Je hebt toegang tot de geheime deur!")</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -932,12 +755,12 @@ In tegenstelling tot sommige andere programmeertalen maakt een <code>if</code>- 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">player_health</span> <span class="o">=</span> <span class="mi">40</span>
-<span class="n">ammo_available</span> <span class="o">=</span> <span class="bp">True</span>
-<span class="n">player_armor</span> <span class="o">=</span> <span class="mi">20</span>
+<pre class="rouge highlight"><code data-lang="python">player_health = 40
+ammo_available = True
+player_armor = 20
 
-<span class="k">if</span> <span class="p">(</span><span class="n">player_health</span> <span class="o">&gt;</span> <span class="mi">30</span> <span class="ow">or</span> <span class="n">player_armor</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">ammo_available</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Je kunt veilig navigeren in de gevaarlijke zone!"</span><span class="p">)</span></code></pre>
+if (player_health &gt; 30 or player_armor &gt; 0) and ammo_available:
+    print("Je kunt veilig navigeren in de gevaarlijke zone!")</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -954,10 +777,10 @@ In tegenstelling tot sommige andere programmeertalen maakt een <code>if</code>- 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">player_hiding</span> <span class="o">=</span> <span class="bp">False</span>
+<pre class="rouge highlight"><code data-lang="python">player_hiding = False
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">player_hiding</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"De speler is niet aan het schuilen."</span><span class="p">)</span></code></pre>
+if not player_hiding:
+    print("De speler is niet aan het schuilen.")</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -968,10 +791,10 @@ In tegenstelling tot sommige andere programmeertalen maakt een <code>if</code>- 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">has_key</span> <span class="o">=</span> <span class="bp">False</span>
+<pre class="rouge highlight"><code data-lang="python">has_key = False
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">has_key</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Je hebt geen sleutel, je kunt het geblokkeerde gebied niet betreden."</span><span class="p">)</span></code></pre>
+if not has_key:
+    print("Je hebt geen sleutel, je kunt het geblokkeerde gebied niet betreden.")</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -988,11 +811,11 @@ In tegenstelling tot sommige andere programmeertalen maakt een <code>if</code>- 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">has_key</span> <span class="o">=</span> <span class="bp">True</span>
-<span class="n">door_unlocked</span> <span class="o">=</span> <span class="bp">False</span>
+<pre class="rouge highlight"><code data-lang="python">has_key = True
+door_unlocked = False
 
-<span class="k">if</span> <span class="n">has_key</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">door_unlocked</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Je kunt de deur ontgrendelen met je sleutel."</span><span class="p">)</span></code></pre>
+if has_key and not door_unlocked:
+    print("Je kunt de deur ontgrendelen met je sleutel.")</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1014,11 +837,11 @@ In tegenstelling tot sommige andere programmeertalen maakt een <code>if</code>- 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="n">shield_available</span> <span class="o">=</span> <span class="bp">False</span>
-<span class="n">sword_available</span> <span class="o">=</span> <span class="bp">True</span>
+<pre class="rouge highlight"><code data-lang="python">shield_available = False
+sword_available = True
 
-<span class="k">if</span> <span class="p">(</span><span class="n">shield_available</span> <span class="ow">or</span> <span class="n">sword_available</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="n">shield_available</span> <span class="ow">and</span> <span class="n">sword_available</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Je hebt ofwel een schild, ofwel een zwaard, maar niet beide."</span><span class="p">)</span></code></pre>
+if (shield_available or sword_available) and not (shield_available and sword_available):
+    print("Je hebt ofwel een schild, ofwel een zwaard, maar niet beide.")</code></pre>
 </div>
 </div>
 <div class="paragraph">

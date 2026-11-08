@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 240" width="740" height="240" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="pijl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9AA1AD"/>
+    </marker>
+    <marker id="pijlinkt" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1F2A44"/>
+    </marker>
+  </defs>
+  <rect width="740" height="240" fill="#F5F7FA"/>
+  <text x="105" y="28" font-size="13" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" font-weight="700" text-anchor="middle">row<tspan dx="12" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#5B6270">standaard</tspan></text>
+  <rect x="30" y="44" width="150" height="64" rx="6" fill="#FFFFFF" stroke="#1F2A44" stroke-width="1.5"/>
+  <rect x="38" y="54" width="38" height="44" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="57" y="81" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">1</text>
+  <rect x="80" y="54" width="38" height="44" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="99" y="81" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">2</text>
+  <rect x="122" y="54" width="38" height="44" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="141" y="81" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">3</text>
+  <text x="105" y="132" font-size="12" fill="#5B6270" text-anchor="middle">van links naar rechts</text>
+  <text x="281.7" y="28" font-size="13" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" font-weight="700" text-anchor="middle">row-reverse</text>
+  <rect x="206.7" y="44" width="150" height="64" rx="6" fill="#FFFFFF" stroke="#1F2A44" stroke-width="1.5"/>
+  <rect x="310.7" y="54" width="38" height="44" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="329.7" y="81" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">1</text>
+  <rect x="268.7" y="54" width="38" height="44" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="287.7" y="81" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">2</text>
+  <rect x="226.7" y="54" width="38" height="44" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="245.7" y="81" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">3</text>
+  <text x="281.7" y="132" font-size="12" fill="#5B6270" text-anchor="middle">van rechts naar links</text>
+  <text x="458.3" y="28" font-size="13" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" font-weight="700" text-anchor="middle">column</text>
+  <rect x="383.3" y="44" width="150" height="160" rx="6" fill="#FFFFFF" stroke="#1F2A44" stroke-width="1.5"/>
+  <rect x="393.3" y="54" width="70" height="32" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="428.3" y="75" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">1</text>
+  <rect x="393.3" y="94" width="70" height="32" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="428.3" y="115" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">2</text>
+  <rect x="393.3" y="134" width="70" height="32" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="428.3" y="155" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">3</text>
+  <text x="458.3" y="228" font-size="12" fill="#5B6270" text-anchor="middle">van boven naar onder</text>
+  <text x="635" y="28" font-size="13" fill="#1F2A44" font-family="'JetBrains Mono', Consolas, 'Courier New', monospace" font-weight="700" text-anchor="middle">column-reverse</text>
+  <rect x="560" y="44" width="150" height="160" rx="6" fill="#FFFFFF" stroke="#1F2A44" stroke-width="1.5"/>
+  <rect x="570" y="162" width="70" height="32" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="605" y="183" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">1</text>
+  <rect x="570" y="122" width="70" height="32" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="605" y="143" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">2</text>
+  <rect x="570" y="82" width="70" height="32" rx="3" fill="#8CB6C0" stroke="#3F7A88" stroke-width="1.5"/>
+  <text x="605" y="103" font-size="14" fill="#1F2A44" font-weight="700" text-anchor="middle">3</text>
+  <text x="635" y="228" font-size="12" fill="#5B6270" text-anchor="middle">van onder naar boven</text>
+</svg>

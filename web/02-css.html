@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="generator" content="Asciidoctor 2.0.26">
 <title>CSS</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -116,7 +116,6 @@ h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title str
 :not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
 pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
-pre>code{display:block}
 pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
 em em{font-style:normal}
 strong strong{font-weight:400}
@@ -140,7 +139,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #content::before{content:none}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
 #header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
-#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
 #header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
@@ -162,6 +161,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
 #toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
@@ -218,6 +218,7 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
 .listingblock>.content{position:relative}
+.listingblock pre>code{display:block}
 .listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
 .listingblock:hover code[data-lang]::before{display:block}
 .listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
@@ -327,7 +328,7 @@ a.image{text-decoration:none;display:inline-block}
 a.image object{pointer-events:none}
 sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
 sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
 #footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
 #footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
 #footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
@@ -433,221 +434,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-pre.rouge table td { padding: 5px; }
-pre.rouge table pre { margin: 0; }
-pre.rouge .cm {
-  color: #999988;
-  font-style: italic;
-}
-pre.rouge .cp {
-  color: #999999;
-  font-weight: bold;
-}
-pre.rouge .c1 {
-  color: #999988;
-  font-style: italic;
-}
-pre.rouge .cs {
-  color: #999999;
-  font-weight: bold;
-  font-style: italic;
-}
-pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
-  color: #999988;
-  font-style: italic;
-}
-pre.rouge .err {
-  color: #a61717;
-  background-color: #e3d2d2;
-}
-pre.rouge .gd {
-  color: #000000;
-  background-color: #ffdddd;
-}
-pre.rouge .ge {
-  color: #000000;
-  font-style: italic;
-}
-pre.rouge .gr {
-  color: #aa0000;
-}
-pre.rouge .gh {
-  color: #999999;
-}
-pre.rouge .gi {
-  color: #000000;
-  background-color: #ddffdd;
-}
-pre.rouge .go {
-  color: #888888;
-}
-pre.rouge .gp {
-  color: #555555;
-}
-pre.rouge .gs {
-  font-weight: bold;
-}
-pre.rouge .gu {
-  color: #aaaaaa;
-}
-pre.rouge .gt {
-  color: #aa0000;
-}
-pre.rouge .kc {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kd {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kn {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kp {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kr {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .kt {
-  color: #445588;
-  font-weight: bold;
-}
-pre.rouge .k, pre.rouge .kv {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .mf {
-  color: #009999;
-}
-pre.rouge .mh {
-  color: #009999;
-}
-pre.rouge .il {
-  color: #009999;
-}
-pre.rouge .mi {
-  color: #009999;
-}
-pre.rouge .mo {
-  color: #009999;
-}
-pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
-  color: #009999;
-}
-pre.rouge .sa {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .sb {
-  color: #d14;
-}
-pre.rouge .sc {
-  color: #d14;
-}
-pre.rouge .sd {
-  color: #d14;
-}
-pre.rouge .s2 {
-  color: #d14;
-}
-pre.rouge .se {
-  color: #d14;
-}
-pre.rouge .sh {
-  color: #d14;
-}
-pre.rouge .si {
-  color: #d14;
-}
-pre.rouge .sx {
-  color: #d14;
-}
-pre.rouge .sr {
-  color: #009926;
-}
-pre.rouge .s1 {
-  color: #d14;
-}
-pre.rouge .ss {
-  color: #990073;
-}
-pre.rouge .s, pre.rouge .dl {
-  color: #d14;
-}
-pre.rouge .na {
-  color: #008080;
-}
-pre.rouge .bp {
-  color: #999999;
-}
-pre.rouge .nb {
-  color: #0086B3;
-}
-pre.rouge .nc {
-  color: #445588;
-  font-weight: bold;
-}
-pre.rouge .no {
-  color: #008080;
-}
-pre.rouge .nd {
-  color: #3c5d5d;
-  font-weight: bold;
-}
-pre.rouge .ni {
-  color: #800080;
-}
-pre.rouge .ne {
-  color: #990000;
-  font-weight: bold;
-}
-pre.rouge .nf, pre.rouge .fm {
-  color: #990000;
-  font-weight: bold;
-}
-pre.rouge .nl {
-  color: #990000;
-  font-weight: bold;
-}
-pre.rouge .nn {
-  color: #555555;
-}
-pre.rouge .nt {
-  color: #000080;
-}
-pre.rouge .vc {
-  color: #008080;
-}
-pre.rouge .vg {
-  color: #008080;
-}
-pre.rouge .vi {
-  color: #008080;
-}
-pre.rouge .nv, pre.rouge .vm {
-  color: #008080;
-}
-pre.rouge .ow {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .o {
-  color: #000000;
-  font-weight: bold;
-}
-pre.rouge .w {
-  color: #bbbbbb;
-}
-pre.rouge {
-  background-color: #f8f8f8;
-}
-</style>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -765,7 +551,28 @@ pre.rouge {
 <li><a href="#_media_queries_samengevat">9.6. Media queries samengevat</a></li>
 </ul>
 </li>
-<li><a href="#_fouten_opsporen">10. Fouten opsporen</a></li>
+<li><a href="#_flexbox">10. Flexbox</a>
+<ul class="sectlevel2">
+<li><a href="#_flex_container_en_flex_items">10.1. Flex container en flex items</a></li>
+<li><a href="#_de_twee_assen_hoofdas_en_kruisas">10.2. De twee assen: hoofdas en kruisas</a></li>
+<li><a href="#_flex_direction_de_richting_van_de_hoofdas">10.3. flex-direction: de richting van de hoofdas</a></li>
+<li><a href="#_justify_content_verdelen_op_de_hoofdas">10.4. justify-content: verdelen op de hoofdas</a></li>
+<li><a href="#_align_items_uitlijnen_op_de_kruisas">10.5. align-items: uitlijnen op de kruisas</a></li>
+<li><a href="#_een_tag_centreren">10.6. Een tag centreren</a></li>
+<li><a href="#_gap_ruimte_tussen_de_items">10.7. gap: ruimte tussen de items</a></li>
+<li><a href="#_flex_wrap_naar_de_volgende_rij">10.8. flex-wrap: naar de volgende rij</a></li>
+<li><a href="#_flex_items_laten_groeien">10.9. flex: items laten groeien</a></li>
+<li><a href="#_flexbox_in_de_praktijk">10.10. Flexbox in de praktijk</a>
+<ul class="sectlevel3">
+<li><a href="#_een_navigatiebalk_met_flexbox">10.10.1. Een navigatiebalk met flexbox</a></li>
+<li><a href="#_kaartjes_die_zich_aanpassen">10.10.2. Kaartjes die zich aanpassen</a></li>
+<li><a href="#_flexbox_en_media_queries">10.10.3. Flexbox en media queries</a></li>
+</ul>
+</li>
+<li><a href="#_flexbox_samengevat">10.11. Flexbox samengevat</a></li>
+</ul>
+</li>
+<li><a href="#_fouten_opsporen">11. Fouten opsporen</a></li>
 </ul>
 </div>
 </div>
@@ -816,7 +623,10 @@ Waar HTML de <strong>inhoud en structuur</strong> van een pagina bepaalt, bepaal
 <p>een navigatiebalk en een dropdown-menu maken;</p>
 </li>
 <li>
-<p>je website aanpassen aan elk scherm met media queries.</p>
+<p>je website aanpassen aan elk scherm met media queries;</p>
+</li>
+<li>
+<p>tags vlot schikken en uitlijnen met flexbox.</p>
 </li>
 </ul>
 </div>
@@ -835,7 +645,7 @@ Waar HTML de <strong>inhoud en structuur</strong> van een pagina bepaalt, bepaal
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;p</span> <span class="na">style=</span><span class="s">"color: red;"</span><span class="nt">&gt;</span>Deze tekst is rood.<span class="nt">&lt;/p&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;p style="color: red;"&gt;Deze tekst is rood.&lt;/p&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -849,13 +659,13 @@ Waar HTML de <strong>inhoud en structuur</strong> van een pagina bepaalt, bepaal
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;head&gt;</span>
-  <span class="nt">&lt;style&gt;</span>
-    <span class="nt">p</span> <span class="p">{</span>
-      <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
-    <span class="p">}</span>
-  <span class="nt">&lt;/style&gt;</span>
-<span class="nt">&lt;/head&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;head&gt;
+  &lt;style&gt;
+    p {
+      color: red;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -869,19 +679,19 @@ Waar HTML de <strong>inhoud en structuur</strong> van een pagina bepaalt, bepaal
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;head&gt;</span>
-  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;title&gt;</span>Mijn website<span class="nt">&lt;/title&gt;</span>
-  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"style.css"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/head&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Mijn website&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">style.css</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">p</span> <span class="p">{</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="css">p {
+  color: red;
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -895,10 +705,10 @@ Waar HTML de <strong>inhoud en structuur</strong> van een pagina bepaalt, bepaal
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">h1</span> <span class="p">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">navy</span><span class="p">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-  <span class="nl">font-size</span><span class="p">:</span> <span class="m">32px</span><span class="p">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
-<span class="p">}</span> <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+<pre class="rouge highlight"><code data-lang="css">h1 { <i class="conum" data-value="1"></i><b>(1)</b>
+  color: navy; <i class="conum" data-value="2"></i><b>(2)</b>
+  font-size: 32px; <i class="conum" data-value="3"></i><b>(3)</b>
+} <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -926,7 +736,7 @@ Waar HTML de <strong>inhoud en structuur</strong> van een pagina bepaalt, bepaal
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="c">/* Dit is commentaar in CSS */</span></code></pre>
+<pre class="rouge highlight"><code data-lang="css">/* Dit is commentaar in CSS */</code></pre>
 </div>
 </div>
 </div>
@@ -941,9 +751,9 @@ Waar HTML de <strong>inhoud en structuur</strong> van een pagina bepaalt, bepaal
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">p</span> <span class="p">{</span>
-  <span class="nl">line-height</span><span class="p">:</span> <span class="m">1.5</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="css">p {
+  line-height: 1.5;
+}</code></pre>
 </div>
 </div>
 </div>
@@ -955,19 +765,19 @@ Dezelfde class mag op veel tags staan, en één tag mag meerdere classes hebben.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"waarschuwing"</span><span class="nt">&gt;</span>Opgelet: de winkel is gesloten op maandag.<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"waarschuwing groot"</span><span class="nt">&gt;</span>Uitverkoop!<span class="nt">&lt;/p&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;p class="waarschuwing"&gt;Opgelet: de winkel is gesloten op maandag.&lt;/p&gt;
+&lt;p class="waarschuwing groot"&gt;Uitverkoop!&lt;/p&gt;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.waarschuwing</span> <span class="p">{</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">darkred</span><span class="p">;</span>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">.waarschuwing {
+  color: darkred;
+}
 
-<span class="nc">.groot</span> <span class="p">{</span>
-  <span class="nl">font-size</span><span class="p">:</span> <span class="m">24px</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+.groot {
+  font-size: 24px;
+}</code></pre>
 </div>
 </div>
 </div>
@@ -978,14 +788,14 @@ Dezelfde class mag op veel tags staan, en één tag mag meerdere classes hebben.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;header</span> <span class="na">id=</span><span class="s">"hoofding"</span><span class="nt">&gt;</span>...<span class="nt">&lt;/header&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;header id="hoofding"&gt;...&lt;/header&gt;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nf">#hoofding</span> <span class="p">{</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="no">black</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="css">#hoofding {
+  background-color: black;
+}</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -1005,20 +815,20 @@ Gebruik voor opmaak bijna altijd classes. Een <code>id</code> gebruik je vooral 
 <h3 id="_combinaties">3.4. Combinaties</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="c">/* Meerdere selectoren tegelijk (groeperen) */</span>
-<span class="nt">h1</span><span class="o">,</span> <span class="nt">h2</span><span class="o">,</span> <span class="nt">h3</span> <span class="p">{</span>
-  <span class="nl">font-family</span><span class="p">:</span> <span class="n">Georgia</span><span class="p">,</span> <span class="nb">serif</span><span class="p">;</span>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">/* Meerdere selectoren tegelijk (groeperen) */
+h1, h2, h3 {
+  font-family: Georgia, serif;
+}
 
-<span class="c">/* Alle a-tags die ergens in een nav staan */</span>
-<span class="nt">nav</span> <span class="nt">a</span> <span class="p">{</span>
-  <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
-<span class="p">}</span>
+/* Alle a-tags die ergens in een nav staan */
+nav a {
+  text-decoration: none;
+}
 
-<span class="c">/* Alle p-tags met class intro */</span>
-<span class="nt">p</span><span class="nc">.intro</span> <span class="p">{</span>
-  <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+/* Alle p-tags met class intro */
+p.intro {
+  font-weight: bold;
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1065,22 +875,22 @@ Gebruik voor opmaak bijna altijd classes. Een <code>id</code> gebruik je vooral 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"scores"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;tr&gt;&lt;th&gt;</span>Naam<span class="nt">&lt;/th&gt;&lt;th&gt;</span>Punten<span class="nt">&lt;/th&gt;&lt;/tr&gt;</span>
-  <span class="nt">&lt;tr&gt;&lt;td&gt;</span>Emma<span class="nt">&lt;/td&gt;&lt;td&gt;</span>17<span class="nt">&lt;/td&gt;&lt;/tr&gt;</span>
-<span class="nt">&lt;/table&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;table class="scores"&gt;
+  &lt;tr&gt;&lt;th&gt;Naam&lt;/th&gt;&lt;th&gt;Punten&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Emma&lt;/td&gt;&lt;td&gt;17&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.scores</span> <span class="nt">th</span> <span class="p">{</span>            <span class="c">/* alle th-tags in de tabel met class scores */</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="no">navy</span><span class="p">;</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">.scores th {            /* alle th-tags in de tabel met class scores */
+  background-color: navy;
+  color: white;
+}
 
-<span class="nc">.scores</span> <span class="nt">td</span> <span class="p">{</span>            <span class="c">/* alle td-tags in die tabel */</span>
-  <span class="nl">text-shadow</span><span class="p">:</span> <span class="m">1px</span> <span class="m">1px</span> <span class="m">2px</span> <span class="no">gray</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+.scores td {            /* alle td-tags in die tabel */
+  text-shadow: 1px 1px 2px gray;
+}</code></pre>
 </div>
 </div>
 </div>
@@ -1091,21 +901,21 @@ Gebruik voor opmaak bijna altijd classes. Een <code>id</code> gebruik je vooral 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span>            <span class="c">/* als de muis over de link gaat */</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">orange</span><span class="p">;</span>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">a:hover {            /* als de muis over de link gaat */
+  color: orange;
+}
 
-<span class="nt">input</span><span class="nd">:focus</span> <span class="p">{</span>        <span class="c">/* als het invoerveld geselecteerd is */</span>
-  <span class="nl">border-color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
-<span class="p">}</span>
+input:focus {        /* als het invoerveld geselecteerd is */
+  border-color: blue;
+}
 
-<span class="nt">li</span><span class="nd">:first-child</span> <span class="p">{</span>     <span class="c">/* de eerste li-tag */</span>
-  <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span>
-<span class="p">}</span>
+li:first-child {     /* de eerste li-tag */
+  font-weight: bold;
+}
 
-<span class="nt">tr</span><span class="nd">:nth-child</span><span class="o">(</span><span class="nt">even</span><span class="o">)</span> <span class="p">{</span> <span class="c">/* elke even rij van een tabel */</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#f2f2f2</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+tr:nth-child(even) { /* elke even rij van een tabel */
+  background-color: #f2f2f2;
+}</code></pre>
 </div>
 </div>
 </div>
@@ -1119,13 +929,13 @@ Gebruik voor opmaak bijna altijd classes. Een <code>id</code> gebruik je vooral 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">h1</span> <span class="p">{</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">tomato</span><span class="p">;</span>                        <span class="c">/* een kleurnaam */</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="m">#ff6347</span><span class="p">;</span>                       <span class="c">/* hexadecimaal: rood, groen, blauw */</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="m">255</span><span class="p">,</span> <span class="m">99</span><span class="p">,</span> <span class="m">71</span><span class="p">);</span>              <span class="c">/* rgb: elk kanaal van 0 tot 255 */</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">255</span><span class="p">,</span> <span class="m">99</span><span class="p">,</span> <span class="m">71</span><span class="p">,</span> <span class="m">0.5</span><span class="p">);</span>        <span class="c">/* met transparantie van 0 tot 1 */</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="n">hsl</span><span class="p">(</span><span class="m">9</span><span class="p">,</span> <span class="m">100%</span><span class="p">,</span> <span class="m">64%</span><span class="p">);</span>             <span class="c">/* tint, verzadiging, lichtheid */</span>
-<span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="css">h1 {
+  color: tomato;                        /* een kleurnaam */
+  color: #ff6347;                       /* hexadecimaal: rood, groen, blauw */
+  color: rgb(255, 99, 71);              /* rgb: elk kanaal van 0 tot 255 */
+  color: rgba(255, 99, 71, 0.5);        /* met transparantie van 0 tot 1 */
+  color: hsl(9, 100%, 64%);             /* tint, verzadiging, lichtheid */
+}</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -1160,23 +970,23 @@ In VS Code klik je op het gekleurde vierkantje naast een kleur om een kleurkieze
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">body</span> <span class="p">{</span>
-  <span class="nl">font-family</span><span class="p">:</span> <span class="s1">"Segoe UI"</span><span class="p">,</span> <span class="n">Arial</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-  <span class="nl">font-size</span><span class="p">:</span> <span class="m">16px</span><span class="p">;</span>
-  <span class="nl">line-height</span><span class="p">:</span> <span class="m">1.6</span><span class="p">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-  <span class="nl">color</span><span class="p">:</span> <span class="m">#333333</span><span class="p">;</span>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">body {
+  font-family: "Segoe UI", Arial, sans-serif; <i class="conum" data-value="1"></i><b>(1)</b>
+  font-size: 16px;
+  line-height: 1.6; <i class="conum" data-value="2"></i><b>(2)</b>
+  color: #333333;
+}
 
-<span class="nt">h1</span> <span class="p">{</span>
-  <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span><span class="p">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
-  <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span> <i class="conum" data-value="4"></i><b>(4)</b>
-  <span class="nl">text-transform</span><span class="p">:</span> <span class="nb">uppercase</span><span class="p">;</span> <i class="conum" data-value="5"></i><b>(5)</b>
-  <span class="nl">letter-spacing</span><span class="p">:</span> <span class="m">2px</span><span class="p">;</span>
-<span class="p">}</span>
+h1 {
+  font-weight: bold; <i class="conum" data-value="3"></i><b>(3)</b>
+  text-align: center; <i class="conum" data-value="4"></i><b>(4)</b>
+  text-transform: uppercase; <i class="conum" data-value="5"></i><b>(5)</b>
+  letter-spacing: 2px;
+}
 
-<span class="nt">a</span> <span class="p">{</span>
-  <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span> <i class="conum" data-value="6"></i><b>(6)</b>
-<span class="p">}</span></code></pre>
+a {
+  text-decoration: none; <i class="conum" data-value="6"></i><b>(6)</b>
+}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1215,17 +1025,17 @@ Kies een lettertype, klik op <em>Get font &#8594; Get embed code</em> en kopieer
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"preconnect"</span> <span class="na">href=</span><span class="s">"https://fonts.googleapis.com"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"preconnect"</span> <span class="na">href=</span><span class="s">"https://fonts.gstatic.com"</span> <span class="na">crossorigin</span><span class="nt">&gt;</span>
-<span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&amp;display=swap"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"style.css"</span><span class="nt">&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&amp;display=swap" rel="stylesheet"&gt;
+&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">body</span> <span class="p">{</span>
-  <span class="nl">font-family</span><span class="p">:</span> <span class="s1">"Poppins"</span><span class="p">,</span> <span class="nb">sans-serif</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="css">body {
+  font-family: "Poppins", sans-serif;
+}</code></pre>
 </div>
 </div>
 </div>
@@ -1414,11 +1224,11 @@ Je hoeft het dus nooit te schrijven. Een tag met <code>static</code> staat gewoo
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.vak</span> <span class="p">{</span>
-  <span class="nl">position</span><span class="p">:</span> <span class="nb">static</span><span class="p">;</span>   <span class="c">/* mag je weglaten: dit is de standaard */</span>
-  <span class="nl">top</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>          <span class="c">/* heeft GEEN effect bij static */</span>
-  <span class="nl">margin-top</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>   <span class="c">/* dit werkt wel: 50px extra ruimte boven het vak */</span>
-<span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="css">.vak {
+  position: static;   /* mag je weglaten: dit is de standaard */
+  top: 50px;          /* heeft GEEN effect bij static */
+  margin-top: 50px;   /* dit werkt wel: 50px extra ruimte boven het vak */
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1453,11 +1263,11 @@ De andere tags merken daar niets van: zijn <strong>oorspronkelijke plaats blijft
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.vak</span> <span class="p">{</span>
-  <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
-  <span class="nl">top</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>     <span class="c">/* 20px lager dan zijn normale plaats */</span>
-  <span class="nl">left</span><span class="p">:</span> <span class="m">40px</span><span class="p">;</span>    <span class="c">/* 40px meer naar rechts dan zijn normale plaats */</span>
-<span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="css">.vak {
+  position: relative;
+  top: 20px;     /* 20px lager dan zijn normale plaats */
+  left: 40px;    /* 40px meer naar rechts dan zijn normale plaats */
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1493,15 +1303,15 @@ Daarna wordt hij geplaatst ten opzichte van zijn referentiepunt. De browser zoek
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.kaart</span> <span class="p">{</span>
-  <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>   <span class="c">/* maakt van het kaartje het referentiepunt */</span>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">.kaart {
+  position: relative;   /* maakt van het kaartje het referentiepunt */
+}
 
-<span class="nc">.kaart</span> <span class="nc">.label</span> <span class="p">{</span>
-  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
-  <span class="nl">top</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
-  <span class="nl">right</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>          <span class="c">/* rechtsboven in het kaartje */</span>
-<span class="p">}</span></code></pre>
+.kaart .label {
+  position: absolute;
+  top: 10px;
+  right: 10px;          /* rechtsboven in het kaartje */
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1512,11 +1322,11 @@ Daarna wordt hij geplaatst ten opzichte van zijn referentiepunt. De browser zoek
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.zijbalk</span> <span class="p">{</span>
-  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
-  <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-  <span class="nl">right</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>       <span class="c">/* tegen de rechterrand van de pagina */</span>
-<span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="css">.zijbalk {
+  position: absolute;
+  top: 0;
+  right: 0;       /* tegen de rechterrand van de pagina */
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1532,11 +1342,11 @@ Zo maak je bijvoorbeeld een menu dat altijd zichtbaar blijft of een knop "Terug 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.terug-knop</span> <span class="p">{</span>
-  <span class="nl">position</span><span class="p">:</span> <span class="nb">fixed</span><span class="p">;</span>
-  <span class="nl">bottom</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
-  <span class="nl">right</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>    <span class="c">/* altijd rechtsonder in het venster */</span>
-<span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="css">.terug-knop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;    /* altijd rechtsonder in het venster */
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1550,10 +1360,10 @@ Zo maak je bijvoorbeeld een menu dat altijd zichtbaar blijft of een knop "Terug 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">nav</span> <span class="p">{</span>
-  <span class="nl">position</span><span class="p">:</span> <span class="n">sticky</span><span class="p">;</span>
-  <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>    <span class="c">/* plakt vast zodra hij de bovenkant van het venster raakt */</span>
-<span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="css">nav {
+  position: sticky;
+  top: 0;    /* plakt vast zodra hij de bovenkant van het venster raakt */
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1573,12 +1383,12 @@ Zo maak je bijvoorbeeld een menu dat altijd zichtbaar blijft of een knop "Terug 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.midden</span> <span class="p">{</span>
-  <span class="nl">position</span><span class="p">:</span> <span class="nb">fixed</span><span class="p">;</span>                     <span class="c">/* of absolute */</span>
-  <span class="nl">top</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-  <span class="nl">left</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
-  <span class="nl">transform</span><span class="p">:</span> <span class="n">translate</span><span class="p">(</span><span class="m">-50%</span><span class="p">,</span> <span class="m">-50%</span><span class="p">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
-<span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="css">.midden {
+  position: fixed;                     /* of absolute */
+  top: 50%; <i class="conum" data-value="1"></i><b>(1)</b>
+  left: 50%;
+  transform: translate(-50%, -50%); <i class="conum" data-value="2"></i><b>(2)</b>
+}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1617,15 +1427,15 @@ Zo maak je bijvoorbeeld een menu dat altijd zichtbaar blijft of een knop "Terug 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.popup</span> <span class="p">{</span>
-  <span class="nl">position</span><span class="p">:</span> <span class="nb">fixed</span><span class="p">;</span>
-  <span class="nl">z-index</span><span class="p">:</span> <span class="m">10</span><span class="p">;</span>     <span class="c">/* ligt boven .zijbalk */</span>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">.popup {
+  position: fixed;
+  z-index: 10;     /* ligt boven .zijbalk */
+}
 
-<span class="nc">.zijbalk</span> <span class="p">{</span>
-  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
-  <span class="nl">z-index</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+.zijbalk {
+  position: absolute;
+  z-index: 1;
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1699,14 +1509,14 @@ Een navigatiebalk is eigenlijk gewoon een <strong>lijst met links</strong>. Daar
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;nav&gt;</span>
-  <span class="nt">&lt;ul&gt;</span>
-    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">class=</span><span class="s">"actief"</span> <span class="na">href=</span><span class="s">"index.html"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"nieuws.html"</span><span class="nt">&gt;</span>Nieuws<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"contact.html"</span><span class="nt">&gt;</span>Contact<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"over.html"</span><span class="nt">&gt;</span>Over ons<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-  <span class="nt">&lt;/ul&gt;</span>
-<span class="nt">&lt;/nav&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;nav&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a class="actief" href="index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="nieuws.html"&gt;Nieuws&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="contact.html"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="over.html"&gt;Over ons&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -1728,11 +1538,11 @@ De tag <code>nav</code> heeft zelf geen opmaak. Hij vertelt de browser (en bijvo
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">nav</span> <span class="nt">ul</span> <span class="p">{</span>
-  <span class="nl">list-style-type</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>  <span class="c">/* geen bolletjes */</span>
-  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>              <span class="c">/* geen ruimte buiten de lijst */</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>             <span class="c">/* geen inspringing links */</span>
-<span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="css">nav ul {
+  list-style-type: none;  /* geen bolletjes */
+  margin: 0;              /* geen ruimte buiten de lijst */
+  padding: 0;             /* geen inspringing links */
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1746,30 +1556,30 @@ De tag <code>nav</code> heeft zelf geen opmaak. Hij vertelt de browser (en bijvo
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">nav</span> <span class="nt">ul</span> <span class="p">{</span>
-  <span class="nl">list-style-type</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
-  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>                 <span class="c">/* breedte van de zijbalk */</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#f1f1f1</span><span class="p">;</span>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;                 /* breedte van de zijbalk */
+  background-color: #f1f1f1;
+}
 
-<span class="nt">nav</span> <span class="nt">li</span> <span class="nt">a</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">black</span><span class="p">;</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">8px</span> <span class="m">16px</span><span class="p">;</span>
-  <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-<span class="p">}</span>
+nav li a {
+  display: block; <i class="conum" data-value="1"></i><b>(1)</b>
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none; <i class="conum" data-value="2"></i><b>(2)</b>
+}
 
-<span class="nt">nav</span> <span class="nt">li</span> <span class="nt">a</span><span class="nd">:hover:not</span><span class="o">(</span><span class="nc">.actief</span><span class="o">)</span> <span class="p">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#555</span><span class="p">;</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
-<span class="p">}</span>
+nav li a:hover:not(.actief) { <i class="conum" data-value="3"></i><b>(3)</b>
+  background-color: #555;
+  color: white;
+}
 
-<span class="nt">nav</span> <span class="nt">li</span> <span class="nt">a</span><span class="nc">.actief</span> <span class="p">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#04aa6d</span><span class="p">;</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+nav li a.actief { <i class="conum" data-value="4"></i><b>(4)</b>
+  background-color: #04aa6d;
+  color: white;
+}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1802,16 +1612,16 @@ De tag <code>nav</code> heeft zelf geen opmaak. Hij vertelt de browser (en bijvo
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">nav</span> <span class="nt">ul</span> <span class="p">{</span>
-  <span class="nl">position</span><span class="p">:</span> <span class="nb">fixed</span><span class="p">;</span>    <span class="c">/* blijft staan als je scrolt */</span>
-  <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>       <span class="c">/* volledige hoogte van het venster */</span>
-  <span class="nl">overflow</span><span class="p">:</span> <span class="nb">auto</span><span class="p">;</span>     <span class="c">/* scrolbalk als er te veel links zijn */</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">nav ul {
+  position: fixed;    /* blijft staan als je scrolt */
+  height: 100%;       /* volledige hoogte van het venster */
+  overflow: auto;     /* scrolbalk als er te veel links zijn */
+  width: 200px;
+}
 
-<span class="nt">main</span> <span class="p">{</span>
-  <span class="nl">margin-left</span><span class="p">:</span> <span class="m">200px</span><span class="p">;</span> <span class="c">/* anders schuift de inhoud onder de zijbalk */</span>
-<span class="p">}</span></code></pre>
+main {
+  margin-left: 200px; /* anders schuift de inhoud onder de zijbalk */
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1831,9 +1641,9 @@ De tag <code>nav</code> heeft zelf geen opmaak. Hij vertelt de browser (en bijvo
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">nav</span> <span class="nt">li</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="nb">inline</span><span class="p">;</span>   <span class="c">/* naast elkaar, zoals woorden in een zin */</span>
-<span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="css">nav li {
+  display: inline;   /* naast elkaar, zoals woorden in een zin */
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1847,33 +1657,33 @@ De tag <code>nav</code> heeft zelf geen opmaak. Hij vertelt de browser (en bijvo
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">nav</span> <span class="nt">ul</span> <span class="p">{</span>
-  <span class="nl">list-style-type</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
-  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-  <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#333</span><span class="p">;</span>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; <i class="conum" data-value="1"></i><b>(1)</b>
+  background-color: #333;
+}
 
-<span class="nt">nav</span> <span class="nt">li</span> <span class="p">{</span>
-  <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-<span class="p">}</span>
+nav li {
+  float: left; <i class="conum" data-value="2"></i><b>(2)</b>
+}
 
-<span class="nt">nav</span> <span class="nt">li</span> <span class="nt">a</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
-  <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">14px</span> <span class="m">16px</span><span class="p">;</span>
-  <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
-<span class="p">}</span>
+nav li a {
+  display: block; <i class="conum" data-value="3"></i><b>(3)</b>
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
 
-<span class="nt">nav</span> <span class="nt">li</span> <span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#111</span><span class="p">;</span>
-<span class="p">}</span>
+nav li a:hover {
+  background-color: #111;
+}
 
-<span class="nt">nav</span> <span class="nt">li</span> <span class="nt">a</span><span class="nc">.actief</span> <span class="p">{</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#04aa6d</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+nav li a.actief {
+  background-color: #04aa6d;
+}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1925,58 +1735,58 @@ Je hebt er niets nieuws voor nodig: het is een combinatie van <code>position</co
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"dropknop"</span><span class="nt">&gt;</span>Vakken<span class="nt">&lt;/button&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown-inhoud"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"wiskunde.html"</span><span class="nt">&gt;</span>Wiskunde<span class="nt">&lt;/a&gt;</span>
-    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"informatica.html"</span><span class="nt">&gt;</span>Informatica<span class="nt">&lt;/a&gt;</span>
-    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"frans.html"</span><span class="nt">&gt;</span>Frans<span class="nt">&lt;/a&gt;</span>
-  <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;div class="dropdown"&gt;
+  &lt;button class="dropknop"&gt;Vakken&lt;/button&gt;
+  &lt;div class="dropdown-inhoud"&gt;
+    &lt;a href="wiskunde.html"&gt;Wiskunde&lt;/a&gt;
+    &lt;a href="informatica.html"&gt;Informatica&lt;/a&gt;
+    &lt;a href="frans.html"&gt;Frans&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.dropdown</span> <span class="p">{</span>
-  <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-  <span class="nl">display</span><span class="p">:</span> <span class="n">inline-block</span><span class="p">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">.dropdown {
+  position: relative; <i class="conum" data-value="1"></i><b>(1)</b>
+  display: inline-block; <i class="conum" data-value="2"></i><b>(2)</b>
+}
 
-<span class="nc">.dropknop</span> <span class="p">{</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#04aa6d</span><span class="p">;</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">16px</span><span class="p">;</span>
-  <span class="nl">font-size</span><span class="p">:</span> <span class="m">16px</span><span class="p">;</span>
-  <span class="nl">border</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
-<span class="p">}</span>
+.dropknop {
+  background-color: #04aa6d;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
 
-<span class="nc">.dropdown-inhoud</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
-  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span> <i class="conum" data-value="4"></i><b>(4)</b>
-  <span class="nl">min-width</span><span class="p">:</span> <span class="m">160px</span><span class="p">;</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#f9f9f9</span><span class="p">;</span>
-  <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">0px</span> <span class="m">8px</span> <span class="m">16px</span> <span class="m">0px</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0.2</span><span class="p">);</span> <i class="conum" data-value="5"></i><b>(5)</b>
-  <span class="nl">z-index</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span> <i class="conum" data-value="6"></i><b>(6)</b>
-<span class="p">}</span>
+.dropdown-inhoud {
+  display: none; <i class="conum" data-value="3"></i><b>(3)</b>
+  position: absolute; <i class="conum" data-value="4"></i><b>(4)</b>
+  min-width: 160px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); <i class="conum" data-value="5"></i><b>(5)</b>
+  z-index: 1; <i class="conum" data-value="6"></i><b>(6)</b>
+}
 
-<span class="nc">.dropdown-inhoud</span> <span class="nt">a</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">black</span><span class="p">;</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">12px</span> <span class="m">16px</span><span class="p">;</span>
-  <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
-<span class="p">}</span>
+.dropdown-inhoud a {
+  display: block;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+}
 
-<span class="nc">.dropdown-inhoud</span> <span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#ddd</span><span class="p">;</span>
-<span class="p">}</span>
+.dropdown-inhoud a:hover {
+  background-color: #ddd;
+}
 
-<span class="nc">.dropdown</span><span class="nd">:hover</span> <span class="nc">.dropdown-inhoud</span> <span class="p">{</span> <i class="conum" data-value="7"></i><b>(7)</b>
-  <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
-<span class="p">}</span>
+.dropdown:hover .dropdown-inhoud { <i class="conum" data-value="7"></i><b>(7)</b>
+  display: block;
+}
 
-<span class="nc">.dropdown</span><span class="nd">:hover</span> <span class="nc">.dropknop</span> <span class="p">{</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#3e8e41</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+.dropdown:hover .dropknop {
+  background-color: #3e8e41;
+}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -2035,68 +1845,68 @@ Wil je het menu rechts uitlijnen onder de knop (handig voor een knop helemaal re
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;nav&gt;</span>
-  <span class="nt">&lt;ul&gt;</span>
-    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"index.html"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"nieuws.html"</span><span class="nt">&gt;</span>Nieuws<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"dropdown"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropknop"</span><span class="nt">&gt;</span>Vakken<span class="nt">&lt;/a&gt;</span>
-      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown-inhoud"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"wiskunde.html"</span><span class="nt">&gt;</span>Wiskunde<span class="nt">&lt;/a&gt;</span>
-        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"informatica.html"</span><span class="nt">&gt;</span>Informatica<span class="nt">&lt;/a&gt;</span>
-        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"frans.html"</span><span class="nt">&gt;</span>Frans<span class="nt">&lt;/a&gt;</span>
-      <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;/ul&gt;</span>
-<span class="nt">&lt;/nav&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;nav&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="nieuws.html"&gt;Nieuws&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="dropdown"&gt;
+      &lt;a href="#" class="dropknop"&gt;Vakken&lt;/a&gt;
+      &lt;div class="dropdown-inhoud"&gt;
+        &lt;a href="wiskunde.html"&gt;Wiskunde&lt;/a&gt;
+        &lt;a href="informatica.html"&gt;Informatica&lt;/a&gt;
+        &lt;a href="frans.html"&gt;Frans&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">nav</span> <span class="nt">ul</span> <span class="p">{</span>
-  <span class="nl">list-style-type</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
-  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#333</span><span class="p">;</span>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+}
 
-<span class="nt">nav</span> <span class="nt">li</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="n">inline-block</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-<span class="p">}</span>
+nav li {
+  display: inline-block; <i class="conum" data-value="1"></i><b>(1)</b>
+}
 
-<span class="nt">nav</span> <span class="nt">li</span> <span class="nt">a</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="n">inline-block</span><span class="p">;</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">14px</span> <span class="m">16px</span><span class="p">;</span>
-  <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
-<span class="p">}</span>
+nav li a {
+  display: inline-block;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+}
 
-<span class="nt">nav</span> <span class="nt">li</span> <span class="nt">a</span><span class="nd">:hover</span><span class="o">,</span>
-<span class="nc">.dropdown</span><span class="nd">:hover</span> <span class="nc">.dropknop</span> <span class="p">{</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
-<span class="p">}</span>
+nav li a:hover,
+.dropdown:hover .dropknop {
+  background-color: red;
+}
 
-<span class="nc">.dropdown-inhoud</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
-  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
-  <span class="nl">min-width</span><span class="p">:</span> <span class="m">160px</span><span class="p">;</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#f9f9f9</span><span class="p">;</span>
-  <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">0px</span> <span class="m">8px</span> <span class="m">16px</span> <span class="m">0px</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0.2</span><span class="p">);</span>
-  <span class="nl">z-index</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
-<span class="p">}</span>
+.dropdown-inhoud {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
 
-<span class="nc">.dropdown-inhoud</span> <span class="nt">a</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">black</span><span class="p">;</span>
-<span class="p">}</span>
+.dropdown-inhoud a {
+  display: block; <i class="conum" data-value="2"></i><b>(2)</b>
+  color: black;
+}
 
-<span class="nc">.dropdown-inhoud</span> <span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#f1f1f1</span><span class="p">;</span>
-<span class="p">}</span>
+.dropdown-inhoud a:hover {
+  background-color: #f1f1f1;
+}
 
-<span class="nc">.dropdown</span><span class="nd">:hover</span> <span class="nc">.dropdown-inhoud</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+.dropdown:hover .dropdown-inhoud {
+  display: block;
+}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -2193,21 +2003,21 @@ Die veranderingen gebeuren <strong>in één klap</strong>: de ene kleur springt 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"vak"</span><span class="nt">&gt;</span>Ga met je muis over mij<span class="nt">&lt;/div&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;div class="vak"&gt;Ga met je muis over mij&lt;/div&gt;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.vak</span> <span class="p">{</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
-  <span class="nl">height</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="no">tomato</span><span class="p">;</span>
-  <span class="nl">transition</span><span class="p">:</span> <span class="n">width</span> <span class="m">2s</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">.vak {
+  width: 100px;
+  height: 100px;
+  background-color: tomato;
+  transition: width 2s; <i class="conum" data-value="1"></i><b>(1)</b>
+}
 
-<span class="nc">.vak</span><span class="nd">:hover</span> <span class="p">{</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-<span class="p">}</span></code></pre>
+.vak:hover {
+  width: 300px; <i class="conum" data-value="2"></i><b>(2)</b>
+}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -2263,18 +2073,18 @@ Vergeet je de duur, dan is die <code>0s</code> en zie je dus geen transitie.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.vak</span> <span class="p">{</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
-  <span class="nl">height</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="no">tomato</span><span class="p">;</span>
-  <span class="nl">transition</span><span class="p">:</span> <span class="n">width</span> <span class="m">2s</span><span class="p">,</span> <span class="n">height</span> <span class="m">4s</span><span class="p">,</span> <span class="n">background-color</span> <span class="m">1s</span><span class="p">;</span>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">.vak {
+  width: 100px;
+  height: 100px;
+  background-color: tomato;
+  transition: width 2s, height 4s, background-color 1s;
+}
 
-<span class="nc">.vak</span><span class="nd">:hover</span> <span class="p">{</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
-  <span class="nl">height</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="no">royalblue</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+.vak:hover {
+  width: 300px;
+  height: 300px;
+  background-color: royalblue;
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2285,9 +2095,9 @@ Vergeet je de duur, dan is die <code>0s</code> en zie je dus geen transitie.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.vak</span> <span class="p">{</span>
-  <span class="nl">transition</span><span class="p">:</span> <span class="n">all</span> <span class="m">0.5s</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="css">.vak {
+  transition: all 0.5s;
+}</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -2356,11 +2166,11 @@ Vergeet je de duur, dan is die <code>0s</code> en zie je dus geen transitie.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nf">#vak1</span> <span class="p">{</span> <span class="nl">transition</span><span class="p">:</span> <span class="n">width</span> <span class="m">2s</span><span class="p">;</span> <span class="nl">transition-timing-function</span><span class="p">:</span> <span class="n">linear</span><span class="p">;</span> <span class="p">}</span>
-<span class="nf">#vak2</span> <span class="p">{</span> <span class="nl">transition</span><span class="p">:</span> <span class="n">width</span> <span class="m">2s</span><span class="p">;</span> <span class="nl">transition-timing-function</span><span class="p">:</span> <span class="n">ease</span><span class="p">;</span> <span class="p">}</span>
-<span class="nf">#vak3</span> <span class="p">{</span> <span class="nl">transition</span><span class="p">:</span> <span class="n">width</span> <span class="m">2s</span><span class="p">;</span> <span class="nl">transition-timing-function</span><span class="p">:</span> <span class="n">ease-in</span><span class="p">;</span> <span class="p">}</span>
-<span class="nf">#vak4</span> <span class="p">{</span> <span class="nl">transition</span><span class="p">:</span> <span class="n">width</span> <span class="m">2s</span><span class="p">;</span> <span class="nl">transition-timing-function</span><span class="p">:</span> <span class="n">ease-out</span><span class="p">;</span> <span class="p">}</span>
-<span class="nf">#vak5</span> <span class="p">{</span> <span class="nl">transition</span><span class="p">:</span> <span class="n">width</span> <span class="m">2s</span><span class="p">;</span> <span class="nl">transition-timing-function</span><span class="p">:</span> <span class="n">ease-in-out</span><span class="p">;</span> <span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="css">#vak1 { transition: width 2s; transition-timing-function: linear; }
+#vak2 { transition: width 2s; transition-timing-function: ease; }
+#vak3 { transition: width 2s; transition-timing-function: ease-in; }
+#vak4 { transition: width 2s; transition-timing-function: ease-out; }
+#vak5 { transition: width 2s; transition-timing-function: ease-in-out; }</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2389,15 +2199,15 @@ Voor de meeste effecten op een website (knoppen, menu&#8217;s) voelen <code>ease
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.vak</span> <span class="p">{</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
-  <span class="nl">transition</span><span class="p">:</span> <span class="n">width</span> <span class="m">3s</span><span class="p">;</span>
-  <span class="nl">transition-delay</span><span class="p">:</span> <span class="m">1s</span><span class="p">;</span>   <span class="c">/* wacht 1 seconde, en groei dan in 3 seconden */</span>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">.vak {
+  width: 100px;
+  transition: width 3s;
+  transition-delay: 1s;   /* wacht 1 seconde, en groei dan in 3 seconden */
+}
 
-<span class="nc">.vak</span><span class="nd">:hover</span> <span class="p">{</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+.vak:hover {
+  width: 300px;
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2453,12 +2263,12 @@ Voor de meeste effecten op een website (knoppen, menu&#8217;s) voelen <code>ease
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.vak</span> <span class="p">{</span>
-  <span class="nl">transition-property</span><span class="p">:</span> <span class="n">width</span><span class="p">;</span>
-  <span class="nl">transition-duration</span><span class="p">:</span> <span class="m">2s</span><span class="p">;</span>
-  <span class="nl">transition-timing-function</span><span class="p">:</span> <span class="n">linear</span><span class="p">;</span>
-  <span class="nl">transition-delay</span><span class="p">:</span> <span class="m">1s</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="css">.vak {
+  transition-property: width;
+  transition-duration: 2s;
+  transition-timing-function: linear;
+  transition-delay: 1s;
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2466,14 +2276,14 @@ Voor de meeste effecten op een website (knoppen, menu&#8217;s) voelen <code>ease
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.vak</span> <span class="p">{</span>
-  <span class="nl">transition</span><span class="p">:</span> <span class="n">width</span> <span class="m">2s</span> <span class="n">linear</span> <span class="m">1s</span><span class="p">;</span>
-  <span class="c">/*          |     |  |      |
+<pre class="rouge highlight"><code data-lang="css">.vak {
+  transition: width 2s linear 1s;
+  /*          |     |  |      |
               |     |  |      +-- delay
               |     |  +--------- timing-function
               |     +------------ duration
-              +------------------ property          */</span>
-<span class="p">}</span></code></pre>
+              +------------------ property          */
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2536,18 +2346,18 @@ Staan er twee tijden in de regel, dan is de <strong>eerste</strong> altijd de du
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.vak</span> <span class="p">{</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
-  <span class="nl">height</span><span class="p">:</span> <span class="m">100px</span><span class="p">;</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="no">tomato</span><span class="p">;</span>
-  <span class="nl">transition</span><span class="p">:</span> <span class="n">width</span> <span class="m">2s</span><span class="p">,</span> <span class="n">height</span> <span class="m">2s</span><span class="p">,</span> <span class="n">transform</span> <span class="m">2s</span><span class="p">;</span>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">.vak {
+  width: 100px;
+  height: 100px;
+  background-color: tomato;
+  transition: width 2s, height 2s, transform 2s;
+}
 
-<span class="nc">.vak</span><span class="nd">:hover</span> <span class="p">{</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
-  <span class="nl">height</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
-  <span class="nl">transform</span><span class="p">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">180deg</span><span class="p">);</span>   <span class="c">/* draait een halve toer terwijl hij groeit */</span>
-<span class="p">}</span></code></pre>
+.vak:hover {
+  width: 300px;
+  height: 300px;
+  transform: rotate(180deg);   /* draait een halve toer terwijl hij groeit */
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2555,19 +2365,19 @@ Staan er twee tijden in de regel, dan is de <strong>eerste</strong> altijd de du
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.knop</span> <span class="p">{</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#04aa6d</span><span class="p">;</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">12px</span> <span class="m">24px</span><span class="p">;</span>
-  <span class="nl">border</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
-  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">6px</span><span class="p">;</span>
-  <span class="nl">transition</span><span class="p">:</span> <span class="n">transform</span> <span class="m">0.2s</span> <span class="n">ease-out</span><span class="p">,</span> <span class="n">box-shadow</span> <span class="m">0.2s</span> <span class="n">ease-out</span><span class="p">;</span>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">.knop {
+  background-color: #04aa6d;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
 
-<span class="nc">.knop</span><span class="nd">:hover</span> <span class="p">{</span>
-  <span class="nl">transform</span><span class="p">:</span> <span class="n">translateY</span><span class="p">(</span><span class="m">-3px</span><span class="p">)</span> <span class="n">scale</span><span class="p">(</span><span class="m">1.05</span><span class="p">);</span>       <span class="c">/* 3px omhoog en iets groter */</span>
-  <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">0px</span> <span class="m">6px</span> <span class="m">12px</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0.3</span><span class="p">);</span>   <span class="c">/* schaduw: de knop lijkt te zweven */</span>
-<span class="p">}</span></code></pre>
+.knop:hover {
+  transform: translateY(-3px) scale(1.05);       /* 3px omhoog en iets groter */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);   /* schaduw: de knop lijkt te zweven */
+}</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -2593,20 +2403,20 @@ Wil je iets laten bewegen, gebruik dan liever <code>transform</code> dan <code>w
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;nav&gt;</span>
-  <span class="nt">&lt;ul&gt;</span>
-    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">class=</span><span class="s">"actief"</span> <span class="na">href=</span><span class="s">"index.html"</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"nieuws.html"</span><span class="nt">&gt;</span>Nieuws<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"dropdown"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"dropknop"</span><span class="nt">&gt;</span>Vakken<span class="nt">&lt;/a&gt;</span>
-      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown-inhoud"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"wiskunde.html"</span><span class="nt">&gt;</span>Wiskunde<span class="nt">&lt;/a&gt;</span>
-        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"informatica.html"</span><span class="nt">&gt;</span>Informatica<span class="nt">&lt;/a&gt;</span>
-        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"frans.html"</span><span class="nt">&gt;</span>Frans<span class="nt">&lt;/a&gt;</span>
-      <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;/ul&gt;</span>
-<span class="nt">&lt;/nav&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;nav&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a class="actief" href="index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="nieuws.html"&gt;Nieuws&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="dropdown"&gt;
+      &lt;a href="#" class="dropknop"&gt;Vakken&lt;/a&gt;
+      &lt;div class="dropdown-inhoud"&gt;
+        &lt;a href="wiskunde.html"&gt;Wiskunde&lt;/a&gt;
+        &lt;a href="informatica.html"&gt;Informatica&lt;/a&gt;
+        &lt;a href="frans.html"&gt;Frans&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -2616,17 +2426,17 @@ Wil je iets laten bewegen, gebruik dan liever <code>transform</code> dan <code>w
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">nav</span> <span class="nt">li</span> <span class="nt">a</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="n">inline-block</span><span class="p">;</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">14px</span> <span class="m">16px</span><span class="p">;</span>
-  <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
-  <span class="nl">transition</span><span class="p">:</span> <span class="n">background-color</span> <span class="m">0.3s</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">nav li a {
+  display: inline-block;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s; <i class="conum" data-value="1"></i><b>(1)</b>
+}
 
-<span class="nt">nav</span> <span class="nt">li</span> <span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#111</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+nav li a:hover {
+  background-color: #111;
+}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -2657,24 +2467,24 @@ Houd transities in een menu kort: tussen <code>0.2s</code> en <code>0.4s</code>.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">nav</span> <span class="nt">li</span> <span class="nt">a</span> <span class="p">{</span>
-  <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">nav li a {
+  position: relative; <i class="conum" data-value="1"></i><b>(1)</b>
+}
 
-<span class="nt">nav</span> <span class="nt">li</span> <span class="nt">a</span><span class="nd">::after</span> <span class="p">{</span>
-  <span class="nl">content</span><span class="p">:</span> <span class="s1">""</span><span class="p">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
-  <span class="nl">left</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-  <span class="nl">bottom</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span> <i class="conum" data-value="4"></i><b>(4)</b>
-  <span class="nl">height</span><span class="p">:</span> <span class="m">3px</span><span class="p">;</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#04aa6d</span><span class="p">;</span>
-  <span class="nl">transition</span><span class="p">:</span> <span class="n">width</span> <span class="m">0.3s</span> <span class="n">ease-out</span><span class="p">;</span>
-<span class="p">}</span>
+nav li a::after {
+  content: ""; <i class="conum" data-value="2"></i><b>(2)</b>
+  position: absolute; <i class="conum" data-value="3"></i><b>(3)</b>
+  left: 0;
+  bottom: 0;
+  width: 0; <i class="conum" data-value="4"></i><b>(4)</b>
+  height: 3px;
+  background-color: #04aa6d;
+  transition: width 0.3s ease-out;
+}
 
-<span class="nt">nav</span> <span class="nt">li</span> <span class="nt">a</span><span class="nd">:hover::after</span> <span class="p">{</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span> <i class="conum" data-value="5"></i><b>(5)</b>
-<span class="p">}</span></code></pre>
+nav li a:hover::after {
+  width: 100%; <i class="conum" data-value="5"></i><b>(5)</b>
+}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -2727,25 +2537,25 @@ Houd transities in een menu kort: tussen <code>0.2s</code> en <code>0.4s</code>.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.dropdown-inhoud</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>                   <span class="c">/* niet meer none */</span>
-  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
-  <span class="nl">min-width</span><span class="p">:</span> <span class="m">160px</span><span class="p">;</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#f9f9f9</span><span class="p">;</span>
-  <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">0px</span> <span class="m">8px</span> <span class="m">16px</span> <span class="m">0px</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0.2</span><span class="p">);</span>
-  <span class="nl">z-index</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+<pre class="rouge highlight"><code data-lang="css">.dropdown-inhoud {
+  display: block;                   /* niet meer none */
+  position: absolute;
+  min-width: 160px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 
-  <span class="nl">opacity</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-  <span class="nl">visibility</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
-  <span class="nl">transform</span><span class="p">:</span> <span class="n">translateY</span><span class="p">(</span><span class="m">-10px</span><span class="p">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
-  <span class="nl">transition</span><span class="p">:</span> <span class="n">opacity</span> <span class="m">0.3s</span><span class="p">,</span> <span class="n">transform</span> <span class="m">0.3s</span><span class="p">,</span> <span class="n">visibility</span> <span class="m">0.3s</span><span class="p">;</span>
-<span class="p">}</span>
+  opacity: 0; <i class="conum" data-value="1"></i><b>(1)</b>
+  visibility: hidden;
+  transform: translateY(-10px); <i class="conum" data-value="2"></i><b>(2)</b>
+  transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+}
 
-<span class="nc">.dropdown</span><span class="nd">:hover</span> <span class="nc">.dropdown-inhoud</span> <span class="p">{</span>
-  <span class="nl">opacity</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
-  <span class="nl">visibility</span><span class="p">:</span> <span class="nb">visible</span><span class="p">;</span>
-  <span class="nl">transform</span><span class="p">:</span> <span class="n">translateY</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
-<span class="p">}</span></code></pre>
+.dropdown:hover .dropdown-inhoud {
+  opacity: 1; <i class="conum" data-value="3"></i><b>(3)</b>
+  visibility: visible;
+  transform: translateY(0);
+}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -2785,11 +2595,11 @@ Wil je dat het menu niet meteen dichtklapt als je muis even van het menu glijdt?
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="k">@media</span> <span class="p">(</span><span class="n">prefers-reduced-motion</span><span class="p">:</span> <span class="n">reduce</span><span class="p">)</span> <span class="p">{</span>
-  <span class="o">*</span> <span class="p">{</span>
-    <span class="nl">transition</span><span class="p">:</span> <span class="nb">none</span> <span class="cp">!important</span><span class="p">;</span>   <span class="c">/* alle transities uitschakelen */</span>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="css">@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;   /* alle transities uitschakelen */
+  }
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2917,15 +2727,15 @@ Wil je dat het menu niet meteen dichtklapt als je muis even van het menu glijdt?
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">body</span> <span class="p">{</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">body {
+  background-color: white; <i class="conum" data-value="1"></i><b>(1)</b>
+}
 
-<span class="k">@media</span> <span class="n">screen</span> <span class="n">and</span> <span class="p">(</span><span class="n">max-width</span><span class="p">:</span> <span class="m">600px</span><span class="p">)</span> <span class="p">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
-  <span class="nt">body</span> <span class="p">{</span>
-    <span class="nl">background-color</span><span class="p">:</span> <span class="no">lightblue</span><span class="p">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
+@media screen and (max-width: 600px) { <i class="conum" data-value="2"></i><b>(2)</b>
+  body {
+    background-color: lightblue; <i class="conum" data-value="3"></i><b>(3)</b>
+  }
+}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -3051,9 +2861,9 @@ Een media query geeft een regel niet meer gewicht. Als twee regels even specifie
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"stijl.css"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"print.css"</span> <span class="na">media=</span><span class="s">"print"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"smal.css"</span> <span class="na">media=</span><span class="s">"(max-width: 600px)"</span><span class="nt">&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;link rel="stylesheet" href="stijl.css"&gt;
+&lt;link rel="stylesheet" href="print.css" media="print"&gt;
+&lt;link rel="stylesheet" href="smal.css" media="(max-width: 600px)"&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -3113,20 +2923,20 @@ Vroeger bestonden er nog meer media types, zoals <code>tv</code>, <code>handheld
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="k">@media</span> <span class="n">print</span> <span class="p">{</span>
-  <span class="nt">nav</span><span class="o">,</span> <span class="nt">footer</span><span class="o">,</span> <span class="nc">.reclame</span> <span class="p">{</span>
-    <span class="nl">display</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-  <span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">@media print {
+  nav, footer, .reclame {
+    display: none; <i class="conum" data-value="1"></i><b>(1)</b>
+  }
 
-  <span class="nt">body</span> <span class="p">{</span>
-    <span class="nl">color</span><span class="p">:</span> <span class="no">black</span><span class="p">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-    <span class="nl">background-color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
-  <span class="p">}</span>
+  body {
+    color: black; <i class="conum" data-value="2"></i><b>(2)</b>
+    background-color: white;
+  }
 
-  <span class="nt">a</span><span class="nd">::after</span> <span class="p">{</span>
-    <span class="nl">content</span><span class="p">:</span> <span class="s1">" ("</span> <span class="n">attr</span><span class="p">(</span><span class="n">href</span><span class="p">)</span> <span class="s1">")"</span><span class="p">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
+  a::after {
+    content: " (" attr(href) ")"; <i class="conum" data-value="3"></i><b>(3)</b>
+  }
+}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -3258,11 +3068,11 @@ In nieuwere voorbeelden zie je soms ook <code>@media (width &gt;= 600px)</code>.
 <h4 id="_orientation_staand_of_liggend">9.3.2. orientation: staand of liggend</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="k">@media</span> <span class="p">(</span><span class="n">orientation</span><span class="p">:</span> <span class="nb">landscape</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nt">header</span> <span class="p">{</span>
-    <span class="nl">height</span><span class="p">:</span> <span class="m">60px</span><span class="p">;</span>   <span class="c">/* liggend scherm: weinig hoogte, dus een lage header */</span>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="css">@media (orientation: landscape) {
+  header {
+    height: 60px;   /* liggend scherm: weinig hoogte, dus een lage header */
+  }
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3276,17 +3086,17 @@ In nieuwere voorbeelden zie je soms ook <code>@media (width &gt;= 600px)</code>.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">body</span> <span class="p">{</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="m">#222</span><span class="p">;</span>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">body {
+  background-color: white;
+  color: #222;
+}
 
-<span class="k">@media</span> <span class="p">(</span><span class="n">prefers-color-scheme</span><span class="p">:</span> <span class="n">dark</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nt">body</span> <span class="p">{</span>
-    <span class="nl">background-color</span><span class="p">:</span> <span class="m">#222</span><span class="p">;</span>
-    <span class="nl">color</span><span class="p">:</span> <span class="m">#eee</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #222;
+    color: #eee;
+  }
+}</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -3312,14 +3122,14 @@ Je hoeft je hele computer niet in donkere modus te zetten om dit te testen. In d
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="k">@media</span> <span class="p">(</span><span class="n">hover</span><span class="p">:</span> <span class="nb">none</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nc">.dropdown-inhoud</span> <span class="p">{</span>
-    <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>       <span class="c">/* geen muis: toon het menu altijd */</span>
-    <span class="nl">opacity</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>           <span class="c">/* ook als je de versie met transitie gebruikt */</span>
-    <span class="nl">visibility</span><span class="p">:</span> <span class="nb">visible</span><span class="p">;</span>
-    <span class="nl">position</span><span class="p">:</span> <span class="nb">static</span><span class="p">;</span>     <span class="c">/* gewoon in de flow, onder de knop */</span>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
+<pre class="rouge highlight"><code data-lang="css">@media (hover: none) {
+  .dropdown-inhoud {
+    display: block;       /* geen muis: toon het menu altijd */
+    opacity: 1;           /* ook als je de versie met transitie gebruikt */
+    visibility: visible;
+    position: static;     /* gewoon in de flow, onder de knop */
+  }
+}</code></pre>
 </div>
 </div>
 </div>
@@ -3359,12 +3169,12 @@ Je hoeft je hele computer niet in donkere modus te zetten om dit te testen. In d
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;head&gt;</span>
-  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-  <span class="nt">&lt;title&gt;</span>Mijn website<span class="nt">&lt;/title&gt;</span>
-  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"stijl.css"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/head&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+  &lt;title&gt;Mijn website&lt;/title&gt;
+  &lt;link rel="stylesheet" href="stijl.css"&gt;
+&lt;/head&gt;</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -3468,27 +3278,27 @@ Kies je breakpoints niet op basis van één bepaald toestel. Er bestaan honderde
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="c">/* basis: smartphone */</span>
-<span class="nt">body</span> <span class="p">{</span>
-  <span class="nl">font-size</span><span class="p">:</span> <span class="m">16px</span><span class="p">;</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">/* basis: smartphone */
+body {
+  font-size: 16px;
+  padding: 10px;
+}
 
-<span class="c">/* tablet en groter */</span>
-<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">768px</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nt">body</span> <span class="p">{</span>
-    <span class="nl">font-size</span><span class="p">:</span> <span class="m">17px</span><span class="p">;</span>
-    <span class="nl">padding</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+/* tablet en groter */
+@media (min-width: 768px) {
+  body {
+    font-size: 17px;
+    padding: 20px;
+  }
+}
 
-<span class="c">/* laptop en groter */</span>
-<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">992px</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nt">body</span> <span class="p">{</span>
-    <span class="nl">font-size</span><span class="p">:</span> <span class="m">18px</span><span class="p">;</span>
-    <span class="nl">padding</span><span class="p">:</span> <span class="m">20px</span> <span class="m">60px</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
+/* laptop en groter */
+@media (min-width: 992px) {
+  body {
+    font-size: 18px;
+    padding: 20px 60px;
+  }
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3527,26 +3337,26 @@ Let op de <strong>volgorde</strong>. Bij <code>min-width</code> zet je de media 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nt">nav</span> <span class="nt">ul</span> <span class="p">{</span>
-  <span class="nl">list-style-type</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
-  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-  <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#333</span><span class="p">;</span>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
 
-<span class="nt">nav</span> <span class="nt">li</span> <span class="nt">a</span> <span class="p">{</span>
-  <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
-  <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="p">;</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">14px</span> <span class="m">16px</span><span class="p">;</span>
-  <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-<span class="p">}</span>
+nav li a {
+  display: block;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none; <i class="conum" data-value="1"></i><b>(1)</b>
+}
 
-<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">768px</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nt">nav</span> <span class="nt">li</span> <span class="p">{</span>
-    <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
+@media (min-width: 768px) {
+  nav li {
+    float: left; <i class="conum" data-value="2"></i><b>(2)</b>
+  }
+}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -3590,41 +3400,41 @@ Je hoeft geen smartphone te gebruiken om te testen. Open de ontwikkelaarstools (
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"rij"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"kolom"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"kolom"</span><span class="nt">&gt;</span>2<span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"kolom"</span><span class="nt">&gt;</span>3<span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"kolom"</span><span class="nt">&gt;</span>4<span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;div class="rij"&gt;
+  &lt;div class="kolom"&gt;1&lt;/div&gt;
+  &lt;div class="kolom"&gt;2&lt;/div&gt;
+  &lt;div class="kolom"&gt;3&lt;/div&gt;
+  &lt;div class="kolom"&gt;4&lt;/div&gt;
+&lt;/div&gt;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="o">*</span> <span class="p">{</span>
-  <span class="nl">box-sizing</span><span class="p">:</span> <span class="n">border-box</span><span class="p">;</span> <i class="conum" data-value="1"></i><b>(1)</b>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">* {
+  box-sizing: border-box; <i class="conum" data-value="1"></i><b>(1)</b>
+}
 
-<span class="nc">.rij</span> <span class="p">{</span>
-  <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-<span class="p">}</span>
+.rij {
+  overflow: hidden; <i class="conum" data-value="2"></i><b>(2)</b>
+}
 
-<span class="nc">.kolom</span> <span class="p">{</span>
-  <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span> <i class="conum" data-value="3"></i><b>(3)</b>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span> <i class="conum" data-value="4"></i><b>(4)</b>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
-<span class="p">}</span>
+.kolom {
+  float: left; <i class="conum" data-value="3"></i><b>(3)</b>
+  width: 100%; <i class="conum" data-value="4"></i><b>(4)</b>
+  padding: 10px;
+}
 
-<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">768px</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nc">.kolom</span> <span class="p">{</span>
-    <span class="nl">width</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span> <i class="conum" data-value="5"></i><b>(5)</b>
-  <span class="p">}</span>
-<span class="p">}</span>
+@media (min-width: 768px) {
+  .kolom {
+    width: 50%; <i class="conum" data-value="5"></i><b>(5)</b>
+  }
+}
 
-<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">992px</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nc">.kolom</span> <span class="p">{</span>
-    <span class="nl">width</span><span class="p">:</span> <span class="m">25%</span><span class="p">;</span> <i class="conum" data-value="6"></i><b>(6)</b>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
+@media (min-width: 992px) {
+  .kolom {
+    width: 25%; <i class="conum" data-value="6"></i><b>(6)</b>
+  }
+}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -3674,30 +3484,30 @@ Zorg dat de breedtes van de kolommen op één rij samen precies 100% zijn: 4 × 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"rij"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;main</span> <span class="na">class=</span><span class="s">"inhoud"</span><span class="nt">&gt;</span>...<span class="nt">&lt;/main&gt;</span>
-  <span class="nt">&lt;aside</span> <span class="na">class=</span><span class="s">"zijbalk"</span><span class="nt">&gt;</span>...<span class="nt">&lt;/aside&gt;</span>
-<span class="nt">&lt;/div&gt;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="html">&lt;div class="rij"&gt;
+  &lt;main class="inhoud"&gt;...&lt;/main&gt;
+  &lt;aside class="zijbalk"&gt;...&lt;/aside&gt;
+&lt;/div&gt;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="css"><span class="nc">.inhoud</span><span class="o">,</span>
-<span class="nc">.zijbalk</span> <span class="p">{</span>
-  <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>   <span class="c">/* smartphone: onder elkaar */</span>
-  <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
-<span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="css">.inhoud,
+.zijbalk {
+  float: left;
+  width: 100%;   /* smartphone: onder elkaar */
+  padding: 10px;
+}
 
-<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">768px</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nc">.inhoud</span> <span class="p">{</span>
-    <span class="nl">width</span><span class="p">:</span> <span class="m">75%</span><span class="p">;</span>  <span class="c">/* samen 100% */</span>
-  <span class="p">}</span>
+@media (min-width: 768px) {
+  .inhoud {
+    width: 75%;  /* samen 100% */
+  }
 
-  <span class="nc">.zijbalk</span> <span class="p">{</span>
-    <span class="nl">width</span><span class="p">:</span> <span class="m">25%</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre>
+  .zijbalk {
+    width: 25%;
+  }
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3789,7 +3599,1000 @@ In het hoofdstuk Bootstrap ga je zien dat Bootstrap precies dit doet met zijn gr
 </div>
 </div>
 <div class="sect1">
-<h2 id="_fouten_opsporen">10. Fouten opsporen</h2>
+<h2 id="_flexbox">10. Flexbox</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In de vorige onderdelen zette je tags naast elkaar met <code>inline</code>, <code>inline-block</code> en <code>float</code>, en maakte je kolommen met breedtes in procent. Dat werkt, maar het blijft behelpen: je moet <code>overflow: hidden</code> toevoegen omdat de ouder-tag anders ineenkrimpt, je moet procenten optellen tot precies 100%, en een tag verticaal centreren was een kunstje met <code>position</code> en <code>transform</code>.</p>
+</div>
+<div class="paragraph">
+<p>Met <mark>flexbox</mark> (voluit: <em>Flexible Box Layout</em>) los je dat veel eenvoudiger op. Je zegt tegen een tag dat de tags erin <strong>flexibel</strong> moeten zijn, en daarna bepaal je met een paar eigenschappen hoe ze verdeeld en uitgelijnd worden: naast of onder elkaar, links, rechts of in het midden, even breed of net niet.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/css/flex-intro.svg" alt="Links: drie blok-tags staan onder elkaar. Rechts: dezelfde drie tags staan naast elkaar in een tag met display: flex" width="740">
+</div>
+</div>
+<div class="paragraph">
+<p>In dit deel leer je:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>wat een flex container en flex items zijn;</p>
+</li>
+<li>
+<p>wat de hoofdas en de kruisas zijn;</p>
+</li>
+<li>
+<p>in welke richting de items staan (<code>flex-direction</code>);</p>
+</li>
+<li>
+<p>hoe je items verdeelt (<code>justify-content</code>) en uitlijnt (<code>align-items</code>);</p>
+</li>
+<li>
+<p>hoe je een tag in twee regels centreert;</p>
+</li>
+<li>
+<p>hoe je ruimte tussen items zet (<code>gap</code>) en items naar een volgende rij laat gaan (<code>flex-wrap</code>);</p>
+</li>
+<li>
+<p>hoe je items laat groeien om de vrije ruimte op te vullen (<code>flex</code>);</p>
+</li>
+<li>
+<p>hoe je een navigatiebalk en kaartjes met flexbox maakt, en flexbox combineert met media queries.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Meer uitleg en voorbeelden: <a href="https://www.w3schools.com/css/css3_flexbox.asp" target="_blank" rel="noopener">CSS-flexbox op w3schools</a></p>
+</div>
+<div class="sect2">
+<h3 id="_flex_container_en_flex_items">10.1. Flex container en flex items</h3>
+<div class="paragraph">
+<p>Flexbox werkt altijd met <strong>twee niveaus</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>de <mark>flex container</mark>: de ouder-tag, waarop je <code>display: flex</code> zet;</p>
+</li>
+<li>
+<p>de <mark>flex items</mark>: de tags die <strong>rechtstreeks</strong> in de container zitten.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="html">&lt;div class="container"&gt;
+  &lt;div class="item"&gt;1&lt;/div&gt;
+  &lt;div class="item"&gt;2&lt;/div&gt;
+  &lt;div class="item"&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css">* {
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex; <i class="conum" data-value="1"></i><b>(1)</b>
+  background-color: white;
+  border: 2px solid #333;
+}
+
+.item {
+  background-color: #8cb6c0;
+  border: 2px solid #3f7a88;
+  padding: 20px;
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Eén regel is genoeg: de drie <code>div</code>-tags staan nu naast elkaar in plaats van onder elkaar.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Zonder <code>display: flex</code> zijn de drie <code>div</code>-tags blok-tags en staan ze onder elkaar (zie <a href="#_de_normale_flow">De normale flow</a>). Met <code>display: flex</code> verandert er een hele reeks dingen:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>de items komen <strong>naast elkaar</strong>, van links naar rechts;</p>
+</li>
+<li>
+<p>elk item is zo breed als zijn inhoud, ook al is het een blok-tag;</p>
+</li>
+<li>
+<p>alle items zijn even hoog: zo hoog als het hoogste item.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Alleen de tags die <strong>rechtstreeks</strong> in de container zitten, zijn flex items. Een tag die in een item zit, wordt niet beïnvloed. Wil je die ook flexibel schikken, dan zet je op dat item zelf weer <code>display: flex</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+De meeste flexbox-eigenschappen zet je op de <strong>container</strong>, niet op de items. Een veelgemaakte fout is <code>justify-content</code> op een item zetten: dat doet niets. In het overzicht op het einde van dit deel zie je welke eigenschap waar hoort.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+In de ontwikkelaarstools (<kbd>F12</kbd>) zie je naast een flex container het label <code>flex</code>. Klik erop en de browser tekent de container en zijn items. Handig om te zien wat er gebeurt.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_de_twee_assen_hoofdas_en_kruisas">10.2. De twee assen: hoofdas en kruisas</h3>
+<div class="paragraph">
+<p>Bij flexbox draait alles om twee richtingen:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>de <mark>hoofdas</mark> (<em>main axis</em>): de richting waarin de items achter elkaar staan;</p>
+</li>
+<li>
+<p>de <mark>kruisas</mark> (<em>cross axis</em>): de richting loodrecht op de hoofdas.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Standaard loopt de hoofdas horizontaal, van links naar rechts, en de kruisas verticaal, van boven naar onder. Verander je de richting van de hoofdas, dan verandert de kruisas mee.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/css/flex-assen.svg" alt="Bij flex-direction: row loopt de hoofdas horizontaal en de kruisas verticaal. Bij flex-direction: column loopt de hoofdas verticaal en de kruisas horizontaal" width="740">
+</div>
+</div>
+<div class="paragraph">
+<p>Je moet deze twee assen goed kennen, want bijna elke flexbox-eigenschap werkt op een van beide: <code>justify-content</code> op de hoofdas en <code>align-items</code> op de kruisas.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_flex_direction_de_richting_van_de_hoofdas">10.3. flex-direction: de richting van de hoofdas</h3>
+<div class="paragraph">
+<p>Met <code>flex-direction</code> (op de container) kies je de richting van de hoofdas:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Waarde</th>
+<th class="tableblock halign-left valign-top">Betekenis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>row</code> (standaard)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">de items staan naast elkaar, van links naar rechts</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>row-reverse</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">naast elkaar, van rechts naar links</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>column</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">onder elkaar, van boven naar onder</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>column-reverse</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">onder elkaar, van onder naar boven</p></td>
+</tr>
+</tbody>
+</table>
+<div class="imageblock">
+<div class="content">
+<img src="images/css/flex-direction.svg" alt="De vier waarden van flex-direction met drie genummerde items: row, row-reverse, column en column-reverse" width="740">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css">.container {
+  display: flex;
+  flex-direction: column;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Met <code>flex-direction: column</code> staan de items weer onder elkaar, net zoals zonder flexbox. Het verschil is dat je ze nu wel kan verdelen en uitlijnen met de eigenschappen hieronder.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Bij <code>row-reverse</code> en <code>column-reverse</code> verandert alleen wat je op het scherm ziet. De volgorde in de HTML blijft dezelfde, en dat is ook de volgorde waarin een schermlezer de tags voorleest en waarin je met <kbd>Tab</kbd> door de links springt. Gebruik de <code>reverse</code>-waarden dus spaarzaam.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_justify_content_verdelen_op_de_hoofdas">10.4. justify-content: verdelen op de hoofdas</h3>
+<div class="paragraph">
+<p>Zijn de items samen smaller dan de container, dan blijft er <mark>vrije ruimte</mark> over. Met <code>justify-content</code> (op de container) bepaal je <strong>wat er met die ruimte gebeurt</strong>, op de hoofdas.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Waarde</th>
+<th class="tableblock halign-left valign-top">Betekenis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>flex-start</code> (standaard)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">alle items vooraan, de vrije ruimte komt achteraan</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>flex-end</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">alle items achteraan, de vrije ruimte komt vooraan</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>center</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">alle items in het midden, de vrije ruimte is evenveel vooraan als achteraan</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>space-between</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">het eerste item vooraan, het laatste achteraan, de vrije ruimte komt <strong>tussen</strong> de items</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>space-around</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">elk item krijgt evenveel ruimte aan beide kanten: tussen twee items is dat dubbel zoveel als aan de uiteinden</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>space-evenly</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">de vrije ruimte is overal even groot: tussen de items en aan de uiteinden</p></td>
+</tr>
+</tbody>
+</table>
+<div class="imageblock">
+<div class="content">
+<img src="images/css/justify-content.svg" alt="De zes waarden van justify-content met drie items in een rij: flex-start, flex-end, center, space-between, space-around en space-evenly" width="740">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css">.container {
+  display: flex;
+  justify-content: space-between; <i class="conum" data-value="1"></i><b>(1)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Het eerste item staat links, het laatste rechts en de rest zit gelijk verdeeld tussenin.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<code>justify-content</code> doet pas iets als er <strong>vrije ruimte</strong> is. Bij <code>flex-direction: column</code> is de hoofdas verticaal, en de container is dan maar net zo hoog als zijn items: er is geen vrije ruimte. Geef de container in dat geval een hoogte, bijvoorbeeld <code>height: 300px;</code>, anders zie je geen verschil.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_align_items_uitlijnen_op_de_kruisas">10.5. align-items: uitlijnen op de kruisas</h3>
+<div class="paragraph">
+<p>Met <code>align-items</code> (op de container) bepaal je hoe de items staan op de <strong>kruisas</strong>. Bij een rij is dat dus de verticale richting.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Waarde</th>
+<th class="tableblock halign-left valign-top">Betekenis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>stretch</code> (standaard)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">de items worden zo hoog als de container</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>flex-start</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bovenaan</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>center</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">in het midden</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>flex-end</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">onderaan</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>baseline</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">de eerste tekstlijn van alle items staat op dezelfde hoogte</p></td>
+</tr>
+</tbody>
+</table>
+<div class="imageblock">
+<div class="content">
+<img src="images/css/align-items.svg" alt="De vier belangrijkste waarden van align-items bij een container van 150px hoog: stretch, flex-start, center en flex-end" width="740">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css">.container {
+  display: flex;
+  height: 200px; <i class="conum" data-value="1"></i><b>(1)</b>
+  align-items: center;
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>De container moet hoger zijn dan zijn items, anders is er op de kruisas niets te verdelen en zie je geen verschil.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Dat <code>stretch</code> de standaardwaarde is, verklaart waarom items in een rij altijd even hoog zijn, ook als het ene item veel meer tekst heeft dan het andere. Handig voor kaartjes die naast elkaar staan.</p>
+</div>
+<div class="paragraph">
+<p>Wat <code>justify-content</code> en <code>align-items</code> doen, hangt af van de richting van de hoofdas:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><code>flex-direction</code></th>
+<th class="tableblock halign-left valign-top"><code>justify-content</code> werkt</th>
+<th class="tableblock halign-left valign-top"><code>align-items</code> werkt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>row</code> (standaard)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">horizontaal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">verticaal</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>column</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">verticaal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">horizontaal</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Onthoud: <code>justify-content</code> is de <strong>hoofdas</strong>, <code>align-items</code> is de <strong>kruisas</strong>. Bij een rij is dat horizontaal en verticaal; bij een kolom is het omgekeerd.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_een_tag_centreren">10.6. Een tag centreren</h3>
+<div class="paragraph">
+<p>Bij het positioneren centreerde je een tag met <code>top</code>, <code>left</code> en <code>transform</code> (zie <a href="#_een_tag_centreren_met_positie">Een tag centreren met positie</a>). Met flexbox lukt dat met twee regels:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="html">&lt;div class="hero"&gt;
+  &lt;div class="tekst"&gt;Ik sta in het midden&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css">.hero {
+  display: flex;
+  justify-content: center; <i class="conum" data-value="1"></i><b>(1)</b>
+  align-items: center; <i class="conum" data-value="2"></i><b>(2)</b>
+  height: 300px; <i class="conum" data-value="3"></i><b>(3)</b>
+  background-color: #eee;
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Horizontaal centreren: op de hoofdas.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Verticaal centreren: op de kruisas.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Zonder hoogte is de container maar zo hoog als zijn inhoud, en is er niets om in te centreren.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Het centreren met flexbox is korter en je ziet meteen wat elke regel doet. Daarom gebruiken de meeste websites tegenwoordig flexbox om iets te centreren.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gap_ruimte_tussen_de_items">10.7. gap: ruimte tussen de items</h3>
+<div class="paragraph">
+<p>Zonder extra opmaak staan de items tegen elkaar. Vroeger gaf je elk item een <code>margin</code>. Met <code>gap</code> (op de container) zet je ruimte <strong>tussen</strong> de items:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css">.container {
+  display: flex;
+  gap: 20px;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Het grote verschil met <code>margin</code>: <code>gap</code> zet alleen ruimte <strong>tussen</strong> de items en niet aan de buitenkant. Je hebt dus geen last van een marge voor het eerste of na het laatste item.</p>
+</div>
+<div class="paragraph">
+<p>Wil je een andere ruimte tussen de rijen dan tussen de kolommen? Geef dan twee waarden: eerst de ruimte tussen de rijen, dan tussen de kolommen. <code>gap: 10px 30px;</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_flex_wrap_naar_de_volgende_rij">10.8. flex-wrap: naar de volgende rij</h3>
+<div class="paragraph">
+<p>Standaard blijven alle items op <strong>één rij</strong>, ook als ze er eigenlijk niet allemaal naast elkaar passen. Ze worden dan smaller gemaakt. Zijn ze nog te breed, dan loopt de rij uit de container.</p>
+</div>
+<div class="paragraph">
+<p>Met <code>flex-wrap</code> (op de container) kies je wat er gebeurt als er te weinig plaats is:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Waarde</th>
+<th class="tableblock halign-left valign-top">Betekenis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>nowrap</code> (standaard)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">alle items blijven op één rij en worden smaller</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>wrap</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">items die niet meer passen, gaan naar de volgende rij</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>wrap-reverse</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">idem, maar de nieuwe rij komt <strong>boven</strong> de vorige</p></td>
+</tr>
+</tbody>
+</table>
+<div class="imageblock">
+<div class="content">
+<img src="images/css/flex-wrap.svg" alt="Vijf items van 90px breed in een container van 320px. Bij nowrap blijven ze op één rij en worden ze smaller. Bij wrap staan er drie op de eerste rij en twee op de tweede" width="740">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css">.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.item {
+  width: 150px;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Maak je het venster smaller, dan springen de items die niet meer passen naar de volgende rij. Maak je het weer breder, dan komen ze terug naast de andere.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Met <code>flex-flow: row wrap;</code> zet je <code>flex-direction</code> en <code>flex-wrap</code> samen in één regel.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_flex_items_laten_groeien">10.9. flex: items laten groeien</h3>
+<div class="paragraph">
+<p>Een item is standaard zo breed als zijn inhoud, en de vrije ruimte blijft leeg. Met <code>flex</code> (nu op een <strong>item</strong>) laat je een item een deel van die vrije ruimte opeisen.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css">.item {
+  flex: 1;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Geef je <strong>alle</strong> items <code>flex: 1</code>, dan wordt de vrije ruimte gelijk verdeeld en zijn ze even breed. Het getal is een soort gewicht: een item met <code>flex: 2</code> krijgt twee keer zoveel van de vrije ruimte als een item met <code>flex: 1</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/css/flex-grow.svg" alt="Drie items in een rij: zonder flex blijft er vrije ruimte over, met flex: 1 zijn ze even breed, met flex: 1, flex: 2 en flex: 1 krijgt het middelste item dubbel zoveel ruimte" width="740">
+</div>
+</div>
+<div class="paragraph">
+<p>Een bekend gebruik is een pagina met een zijbalk met een vaste breedte, en een hoofdinhoud die de rest van de breedte inneemt:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="html">&lt;div class="pagina"&gt;
+  &lt;aside class="zijbalk"&gt;Zijbalk&lt;/aside&gt;
+  &lt;main class="inhoud"&gt;Hoofdinhoud&lt;/main&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css">.pagina {
+  display: flex;
+  gap: 20px;
+}
+
+.zijbalk {
+  width: 200px; <i class="conum" data-value="1"></i><b>(1)</b>
+}
+
+.inhoud {
+  flex: 1; <i class="conum" data-value="2"></i><b>(2)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>De zijbalk is altijd 200px breed.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>De hoofdinhoud krijgt alle vrije ruimte die overblijft. Bij de kolommen met <code>float</code> moest je de procenten zelf uitrekenen; hier is dat niet meer nodig.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>flex</code> is een korte schrijfwijze voor drie eigenschappen. Voor deze cursus volstaat <code>flex: 1</code>, maar je ziet ze soms apart staan.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Eigenschap</th>
+<th class="tableblock halign-left valign-top">Betekenis</th>
+<th class="tableblock halign-left valign-top">Standaard</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>flex-grow</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hoeveel van de vrije ruimte het item mag opeisen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>flex-shrink</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hoeveel het item mag krimpen als er te weinig plaats is</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>flex-basis</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">de startbreedte van het item, voor de ruimte verdeeld wordt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>auto</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><code>flex: 1</code> betekent <code>flex: 1 1 0%</code>: grow <code>1</code>, shrink <code>1</code> en basis <code>0%</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_flexbox_in_de_praktijk">10.10. Flexbox in de praktijk</h3>
+<div class="sect3">
+<h4 id="_een_navigatiebalk_met_flexbox">10.10.1. Een navigatiebalk met flexbox</h4>
+<div class="paragraph">
+<p>In <a href="#_horizontale_navigatiebalk">Horizontale navigatiebalk</a> maakte je een balk met <code>float</code>. Met flexbox wordt dat korter, en de link "Aanmelden" helemaal rechts zetten is een stuk eenvoudiger.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="html">&lt;nav&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a class="actief" href="index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="nieuws.html"&gt;Nieuws&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="contact.html"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="rechts"&gt;&lt;a href="aanmelden.html"&gt;Aanmelden&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css">nav ul {
+  display: flex; <i class="conum" data-value="1"></i><b>(1)</b>
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+}
+
+nav li a {
+  display: block; <i class="conum" data-value="2"></i><b>(2)</b>
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+nav li a:hover {
+  background-color: #111;
+}
+
+nav li a.actief {
+  background-color: #04aa6d;
+}
+
+.rechts {
+  margin-left: auto; <i class="conum" data-value="3"></i><b>(3)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>De <code>li</code>-tags komen naast elkaar. Je hebt geen <code>float</code> en geen <code>overflow: hidden</code> meer nodig: de <code>ul</code> blijft vanzelf rond zijn items passen.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Zoals bij de versie met <code>float</code>: het hele vak is klikbaar en kan <code>padding</code> krijgen.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Een <code>margin-left: auto</code> op een flex item duwt het zo ver mogelijk naar rechts: alle vrije ruimte gaat naar die marge. Zo staat "Aanmelden" helemaal rechts, zonder <code>float: right</code>.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_kaartjes_die_zich_aanpassen">10.10.2. Kaartjes die zich aanpassen</h4>
+<div class="paragraph">
+<p>Met <code>flex-wrap</code> en een slimme <code>flex</code> maak je kaartjes die zich aan de breedte van het scherm aanpassen, <strong>zonder één media query</strong>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="html">&lt;div class="kaarten"&gt;
+  &lt;div class="kaart"&gt;&lt;h3&gt;Wiskunde&lt;/h3&gt;&lt;p&gt;Rekenen met getallen en vormen.&lt;/p&gt;&lt;/div&gt;
+  &lt;div class="kaart"&gt;&lt;h3&gt;Informatica&lt;/h3&gt;&lt;p&gt;Programmeren en webdesign.&lt;/p&gt;&lt;/div&gt;
+  &lt;div class="kaart"&gt;&lt;h3&gt;Frans&lt;/h3&gt;&lt;p&gt;Een tweede taal leren.&lt;/p&gt;&lt;/div&gt;
+  &lt;div class="kaart"&gt;&lt;h3&gt;Engels&lt;/h3&gt;&lt;p&gt;Lezen, schrijven en spreken.&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css">.kaarten {
+  display: flex;
+  flex-wrap: wrap; <i class="conum" data-value="1"></i><b>(1)</b>
+  gap: 16px; <i class="conum" data-value="2"></i><b>(2)</b>
+}
+
+.kaart {
+  flex: 1 1 200px; <i class="conum" data-value="3"></i><b>(3)</b>
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Kaartjes die niet meer naast de andere passen, gaan naar de volgende rij.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Ruimte tussen de kaartjes, zowel naast elkaar als onder elkaar.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Een kaartje wil <code>200px</code> breed zijn (<code>flex-basis</code>) en mag groeien om de rij op te vullen (<code>flex-grow</code>).</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Op een breed scherm staan de vier kaartjes naast elkaar. Maak je het venster smaller, dan springt eerst het laatste kaartje naar een nieuwe rij, en op een smartphone staan ze onder elkaar. De browser rekent zelf uit hoeveel kaartjes er op een rij passen.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Staat er op de laatste rij maar één kaartje, dan groeit dat over de volledige breedte. Wil je dat niet? Geef de kaartjes een <code>max-width</code>, bijvoorbeeld <code>max-width: 300px;</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_flexbox_en_media_queries">10.10.3. Flexbox en media queries</h4>
+<div class="paragraph">
+<p>In <a href="#_queries_voor_kolommen">Queries voor kolommen</a> maakte je kolommen met <code>float</code> en procenten. Met flexbox schakel je met één eigenschap tussen <strong>onder elkaar</strong> en <strong>naast elkaar</strong>. We werken weer <a href="#_stap_3_mobile_first">mobile first</a>: eerst de smartphone, dan een media query voor grotere schermen.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="html">&lt;div class="pagina"&gt;
+  &lt;main class="inhoud"&gt;Hoofdinhoud&lt;/main&gt;
+  &lt;aside class="zijbalk"&gt;Zijbalk&lt;/aside&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="css">.pagina {
+  display: flex;
+  flex-direction: column; <i class="conum" data-value="1"></i><b>(1)</b>
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .pagina {
+    flex-direction: row; <i class="conum" data-value="2"></i><b>(2)</b>
+  }
+
+  .inhoud {
+    flex: 1; <i class="conum" data-value="3"></i><b>(3)</b>
+  }
+
+  .zijbalk {
+    width: 250px; <i class="conum" data-value="4"></i><b>(4)</b>
+  }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Basis (smartphone): de tags staan onder elkaar.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Vanaf 768px staan ze naast elkaar.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>De hoofdinhoud neemt alle vrije ruimte.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>De zijbalk is 250px breed.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Je gebruikt dezelfde HTML, maar de indeling past zich aan het scherm aan.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_flexbox_samengevat">10.11. Flexbox samengevat</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Zet je <code>display: flex</code> op een tag, dan wordt die een <strong>flex container</strong> en worden de tags die er rechtstreeks in zitten <strong>flex items</strong>.</p>
+</li>
+<li>
+<p>Een flex container heeft een <strong>hoofdas</strong> (standaard horizontaal) en een <strong>kruisas</strong> (standaard verticaal). Met <code>flex-direction</code> kies je de richting van de hoofdas.</p>
+</li>
+<li>
+<p><code>justify-content</code> verdeelt de items op de <strong>hoofdas</strong>, <code>align-items</code> lijnt ze uit op de <strong>kruisas</strong>.</p>
+</li>
+<li>
+<p>Beide hebben pas effect als er vrije ruimte is: geef de container een hoogte als je verticaal wil verdelen of uitlijnen.</p>
+</li>
+<li>
+<p>Met <code>gap</code> zet je ruimte tussen de items, met <code>flex-wrap: wrap</code> laat je items naar een volgende rij gaan.</p>
+</li>
+<li>
+<p>Met <code>flex: 1</code> op een item laat je het de vrije ruimte opvullen.</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Eigenschap</th>
+<th class="tableblock halign-left valign-top">Zet je op</th>
+<th class="tableblock halign-left valign-top">Wat doet ze?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>display: flex</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">container</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">maakt van de tag een flex container</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>flex-direction</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">container</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">de richting van de hoofdas: <code>row</code>, <code>column</code>, &#8230;&#8203;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>justify-content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">container</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">verdeelt de items op de hoofdas</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>align-items</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">container</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lijnt de items uit op de kruisas</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>flex-wrap</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">container</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">laat items naar een volgende rij gaan</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gap</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">container</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ruimte tussen de items</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>flex</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">item</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">laat het item groeien om de vrije ruimte op te vullen</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>align-self</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">item</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lijnt één item anders uit dan de rest (met dezelfde waarden als <code>align-items</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>order</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">item</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">verandert de volgorde van de items</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Wat wil je?</th>
+<th class="tableblock halign-left valign-top">CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tags naast elkaar zetten</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>display: flex;</code> op de ouder</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tags onder elkaar, maar met flexbox</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>flex-direction: column;</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ruimte tussen de tags</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gap: 20px;</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Eerste tag links, laatste rechts</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>justify-content: space-between;</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Een tag centreren</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>display: flex; justify-content: center; align-items: center;</code> en een hoogte op de ouder</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tags naar een volgende rij laten gaan</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>flex-wrap: wrap;</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Een tag de rest van de breedte geven</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>flex: 1;</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Een tag naar rechts duwen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>margin-left: auto;</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>In het volgende hoofdstuk, over Bootstrap, kom je dezelfde ideeën terug als kant-en-klare classes: <code>d-flex</code> is <code>display: flex</code>, <code>justify-content-between</code> is <code>justify-content: space-between</code>, <code>align-items-center</code> is <code>align-items: center</code> en <code>gap-3</code> is een <code>gap</code>.</p>
+</div>
+<div class="paragraph">
+<p>Wil je oefenen? Het spel <a href="https://flexboxfroggy.com/" target="_blank" rel="noopener">Flexbox Froggy</a> laat je met flexbox-code kikkers naar hun waterlelie brengen. Een volledig overzicht van alle eigenschappen vind je in <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener">A Complete Guide to Flexbox</a> (Engels). Flexbox schikt tags in één richting; voor rijen <strong>en</strong> kolommen tegelijk, een raster, bestaat <code>grid</code>: <a href="https://www.w3schools.com/css/css_grid.asp" target="_blank" rel="noopener">CSS grid op w3schools</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_fouten_opsporen">11. Fouten opsporen</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Open de ontwikkelaarstools (<kbd>F12</kbd>) en selecteer een tag. Rechts zie je:</p>

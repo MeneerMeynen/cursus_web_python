@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="generator" content="Asciidoctor 2.0.26">
 <title>Cartopy: Geografische Data Visualisatie in Python</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -116,7 +116,6 @@ h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title str
 :not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
 pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
-pre>code{display:block}
 pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
 em em{font-style:normal}
 strong strong{font-weight:400}
@@ -140,7 +139,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #content::before{content:none}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
 #header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
-#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
 #header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
@@ -162,6 +161,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
 #toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
@@ -218,6 +218,7 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
 .listingblock>.content{position:relative}
+.listingblock pre>code{display:block}
 .listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
 .listingblock:hover code[data-lang]::before{display:block}
 .listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
@@ -327,7 +328,7 @@ a.image{text-decoration:none;display:inline-block}
 a.image object{pointer-events:none}
 sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
 sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
 #footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
 #footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
 #footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
@@ -432,184 +433,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
-<style>
-pre.rouge table td { padding: 5px; }
-pre.rouge table pre { margin: 0; }
-pre.rouge {
-  color: #faf6e4;
-  background-color: #122b3b;
-}
-pre.rouge .gl {
-  color: #dee5e7;
-  background-color: #4e5d62;
-}
-pre.rouge .gp {
-  color: #a8e1fe;
-  font-weight: bold;
-}
-pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
-  color: #6c8b9f;
-  font-style: italic;
-}
-pre.rouge .cp {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .err {
-  color: #fefeec;
-  background-color: #cc0000;
-}
-pre.rouge .gr {
-  color: #cc0000;
-  font-weight: bold;
-  font-style: italic;
-}
-pre.rouge .k, pre.rouge .kd, pre.rouge .kv {
-  color: #f6dd62;
-  font-weight: bold;
-}
-pre.rouge .o, pre.rouge .ow {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .p, pre.rouge .pi {
-  color: #4df4ff;
-}
-pre.rouge .gd {
-  color: #cc0000;
-}
-pre.rouge .gi {
-  color: #b2fd6d;
-}
-pre.rouge .ge {
-  font-style: italic;
-}
-pre.rouge .gs {
-  font-weight: bold;
-}
-pre.rouge .gt {
-  color: #dee5e7;
-  background-color: #4e5d62;
-}
-pre.rouge .kc {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .kn {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kp {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kr {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .gh {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .gu {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kt {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .no {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nc {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nd {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nn {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .bp {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .ne {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nl {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .nt {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .ld {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .ss {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .s, pre.rouge .sb, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .sh, pre.rouge .sx, pre.rouge .sr, pre.rouge .s1 {
-  color: #fff0a6;
-  font-weight: bold;
-}
-pre.rouge .sa {
-  color: #f6dd62;
-  font-weight: bold;
-}
-pre.rouge .se {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .sc {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .si {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .nb {
-  font-weight: bold;
-}
-pre.rouge .ni {
-  color: #999999;
-  font-weight: bold;
-}
-pre.rouge .w {
-  color: #BBBBBB;
-}
-pre.rouge .go {
-  color: #BBBBBB;
-}
-pre.rouge .nf, pre.rouge .fm {
-  color: #a8e1fe;
-}
-pre.rouge .py {
-  color: #a8e1fe;
-}
-pre.rouge .na {
-  color: #a8e1fe;
-}
-pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
-  color: #a8e1fe;
-  font-weight: bold;
-}
-</style>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -648,7 +471,7 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="bash">pip <span class="nb">install </span>cartopy</code></pre>
+<pre class="rouge highlight"><code data-lang="bash">pip install cartopy</code></pre>
 </div>
 </div>
 </div>
@@ -685,25 +508,25 @@ pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">import</span> <span class="nn">cartopy</span>
-<span class="kn">from</span> <span class="nn">cartopy</span> <span class="kn">import</span> <span class="n">crs</span> <span class="k">as</span> <span class="n">ccrs</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<pre class="rouge highlight"><code data-lang="python">import cartopy
+from cartopy import crs as ccrs
+import matplotlib.pyplot as plt
 
-<span class="c1"># Maak een nieuwe kaartfiguur
-</span><span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="p">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+# Maak een nieuwe kaartfiguur
+plt.figure(figsize=(10, 5))
+ax = plt.axes(projection=ccrs.PlateCarree())
 
-<span class="c1"># Voeg landen toe aan de kaart
-</span><span class="n">ax</span><span class="p">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="p">.</span><span class="n">feature</span><span class="p">.</span><span class="n">LAND</span><span class="p">)</span>
+# Voeg landen toe aan de kaart
+ax.add_feature(cartopy.feature.LAND)
 
-<span class="c1"># Voeg kustlijnen toe aan de kaart
-</span><span class="n">ax</span><span class="p">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="p">.</span><span class="n">feature</span><span class="p">.</span><span class="n">COASTLINE</span><span class="p">)</span>
+# Voeg kustlijnen toe aan de kaart
+ax.add_feature(cartopy.feature.COASTLINE)
 
-<span class="c1"># Voeg een titel toe aan de kaart
-</span><span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Een Eenvoudige Kaart met Cartopy'</span><span class="p">)</span>
+# Voeg een titel toe aan de kaart
+plt.title('Een Eenvoudige Kaart met Cartopy')
 
-<span class="c1"># Toon de kaart
-</span><span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span></code></pre>
+# Toon de kaart
+plt.show()</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -722,35 +545,35 @@ Hiervoor moeten we de coördinaten van Brussel kennen, namelijk: 50.8503, 4.3517
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">import</span> <span class="nn">cartopy</span>
-<span class="kn">from</span> <span class="nn">cartopy</span> <span class="kn">import</span> <span class="n">crs</span> <span class="k">as</span> <span class="n">ccrs</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<pre class="rouge highlight"><code data-lang="python">import cartopy
+from cartopy import crs as ccrs
+import matplotlib.pyplot as plt
 
-<span class="c1"># Coördinaten van Brussel (latitude, longitude)
-</span><span class="n">brussels_coords</span> <span class="o">=</span> <span class="p">(</span><span class="mf">50.8503</span><span class="p">,</span> <span class="mf">4.3517</span><span class="p">)</span>
+# Coördinaten van Brussel (latitude, longitude)
+brussels_coords = (50.8503, 4.3517)
 
-<span class="c1"># Bepaal de extent voor de hele wereldkaart
-</span><span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">]</span>
+# Bepaal de extent voor de hele wereldkaart
+extent = [-180, 180, -90, 90]
 
-<span class="c1"># Maak een nieuwe kaartfiguur
-</span><span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="p">.</span><span class="n">PlateCarree</span><span class="p">())</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_extent</span><span class="p">(</span><span class="n">extent</span><span class="p">)</span>
+# Maak een nieuwe kaartfiguur
+plt.figure(figsize=(10, 5))
+ax = plt.axes(projection=ccrs.PlateCarree())
+ax.set_extent(extent)
 
-<span class="c1"># Voeg landen toe aan de kaart
-</span><span class="n">ax</span><span class="p">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="p">.</span><span class="n">feature</span><span class="p">.</span><span class="n">LAND</span><span class="p">)</span>
+# Voeg landen toe aan de kaart
+ax.add_feature(cartopy.feature.LAND)
 
-<span class="c1"># Voeg kustlijnen toe aan de kaart
-</span><span class="n">ax</span><span class="p">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="p">.</span><span class="n">feature</span><span class="p">.</span><span class="n">COASTLINE</span><span class="p">)</span>
+# Voeg kustlijnen toe aan de kaart
+ax.add_feature(cartopy.feature.COASTLINE)
 
-<span class="c1"># Voeg een rode bol toe voor Brussel
-</span><span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">brussels_coords</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">brussels_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s">'ro'</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="p">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+# Voeg een rode bol toe voor Brussel
+ax.plot(brussels_coords[1], brussels_coords[0], 'ro', markersize=10, transform=ccrs.PlateCarree())
 
-<span class="c1"># Voeg een titel toe aan de kaart
-</span><span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Een Eenvoudige Kaart met Brussel Gemarkeerd'</span><span class="p">)</span>
+# Voeg een titel toe aan de kaart
+plt.title('Een Eenvoudige Kaart met Brussel Gemarkeerd')
 
-<span class="c1"># Toon de kaart
-</span><span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span></code></pre>
+# Toon de kaart
+plt.show()</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -769,9 +592,9 @@ Hiervoor moeten we de coördinaten van Brussel kennen, namelijk: 50.8503, 4.3517
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="c1"># Bepaal de extent van de kaart op basis van de coördinaten van Brussel
-</span><span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="n">brussels_coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="n">brussels_coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span> <span class="n">brussels_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="n">brussels_coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">5</span><span class="p">]</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_extent</span><span class="p">(</span><span class="n">extent</span><span class="p">)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python"># Bepaal de extent van de kaart op basis van de coördinaten van Brussel
+extent = [brussels_coords[1]-10, brussels_coords[1]+10, brussels_coords[0]-5, brussels_coords[0]+5]
+ax.set_extent(extent)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -779,8 +602,8 @@ Hiervoor moeten we de coördinaten van Brussel kennen, namelijk: 50.8503, 4.3517
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="c1"># Bepaal de extent: enkel (West-)Europa
-</span><span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">60</span><span class="p">]</span></code></pre>
+<pre class="rouge highlight"><code data-lang="python"># Bepaal de extent: enkel (West-)Europa
+extent = [-10, 20, 30, 60]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -796,18 +619,18 @@ Hiervoor moeten we de coördinaten van Brussel kennen, namelijk: 50.8503, 4.3517
 <h3 id="_grenzen_en_provincies">4.3. Grenzen en provincies</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="c1"># Bepaal de extent: enkel België
-</span><span class="n">extent</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.8</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mf">49.4</span><span class="p">,</span> <span class="mi">52</span><span class="p">]</span>
+<pre class="rouge highlight"><code data-lang="python"># Bepaal de extent: enkel België
+extent = [1.8, 6.5, 49.4, 52]
 
-<span class="c1"># Maak een nieuwe kaartfiguur
-</span><span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="p">.</span><span class="n">Aitoff</span><span class="p">())</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">set_extent</span><span class="p">(</span><span class="n">extent</span><span class="p">)</span>
+# Maak een nieuwe kaartfiguur
+plt.figure(figsize=(10, 5))
+ax = plt.axes(projection=ccrs.Aitoff())
+ax.set_extent(extent)
 
-<span class="c1"># Voeg landen toe aan de kaart
-</span><span class="n">ax</span><span class="p">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="p">.</span><span class="n">feature</span><span class="p">.</span><span class="n">LAND</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="p">.</span><span class="n">feature</span><span class="p">.</span><span class="n">STATES</span><span class="p">.</span><span class="n">with_scale</span><span class="p">(</span><span class="s">'10m'</span><span class="p">),</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">'--'</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'blue'</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="p">.</span><span class="n">feature</span><span class="p">.</span><span class="n">BORDERS</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">':'</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'red'</span><span class="p">)</span></code></pre>
+# Voeg landen toe aan de kaart
+ax.add_feature(cartopy.feature.LAND)
+ax.add_feature(cartopy.feature.STATES.with_scale('10m'), linestyle='--', edgecolor='blue')
+ax.add_feature(cartopy.feature.BORDERS, linestyle=':', edgecolor='red')</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -829,33 +652,33 @@ Hiervoor moeten we de coördinaten van Brussel kennen, namelijk: 50.8503, 4.3517
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"><span class="kn">import</span> <span class="nn">cartopy</span>
-<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="n">ccrs</span>
-<span class="kn">import</span> <span class="nn">cartopy.io.shapereader</span> <span class="k">as</span> <span class="n">shpreader</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<pre class="rouge highlight"><code data-lang="python">import cartopy
+import cartopy.crs as ccrs
+import cartopy.io.shapereader as shpreader
+import matplotlib.pyplot as plt
 
-<span class="n">proj</span> <span class="o">=</span> <span class="n">ccrs</span><span class="p">.</span><span class="n">Orthographic</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">proj</span><span class="p">)</span>
+proj = ccrs.Orthographic(50, 30)
+ax = plt.axes(projection=proj)
 
-<span class="n">ax</span><span class="p">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="p">.</span><span class="n">feature</span><span class="p">.</span><span class="n">OCEAN</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="p">.</span><span class="n">feature</span><span class="p">.</span><span class="n">LAND</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'black'</span><span class="p">)</span>
+ax.add_feature(cartopy.feature.OCEAN, zorder=0)
+ax.add_feature(cartopy.feature.LAND, zorder=0, edgecolor='black')
 
-<span class="n">ax</span><span class="p">.</span><span class="n">set_global</span><span class="p">()</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">gridlines</span><span class="p">()</span>
-<span class="n">ax</span><span class="p">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="p">.</span><span class="n">feature</span><span class="p">.</span><span class="n">BORDERS</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">':'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+ax.set_global()
+ax.gridlines()
+ax.add_feature(cartopy.feature.BORDERS, linestyle=':', alpha=1)
 
-<span class="n">shpfilename</span> <span class="o">=</span> <span class="n">shpreader</span><span class="p">.</span><span class="n">natural_earth</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s">'110m'</span><span class="p">,</span>
-                                      <span class="n">category</span><span class="o">=</span><span class="s">'cultural'</span><span class="p">,</span>
-                                      <span class="n">name</span><span class="o">=</span><span class="s">'admin_0_countries'</span><span class="p">)</span>
-<span class="n">reader</span> <span class="o">=</span> <span class="n">shpreader</span><span class="p">.</span><span class="n">Reader</span><span class="p">(</span><span class="n">shpfilename</span><span class="p">)</span>
-<span class="n">countries</span> <span class="o">=</span> <span class="n">reader</span><span class="p">.</span><span class="n">records</span><span class="p">()</span>
+shpfilename = shpreader.natural_earth(resolution='110m',
+                                      category='cultural',
+                                      name='admin_0_countries')
+reader = shpreader.Reader(shpfilename)
+countries = reader.records()
 
-<span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="n">countries</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">country</span><span class="p">.</span><span class="n">attributes</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">country</span><span class="p">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">'GEOUNIT'</span><span class="p">]</span> <span class="o">==</span> <span class="s">'China'</span><span class="p">:</span>
-        <span class="n">ax</span><span class="p">.</span><span class="n">add_geometries</span><span class="p">(</span><span class="n">country</span><span class="p">.</span><span class="n">geometry</span><span class="p">,</span> <span class="n">ccrs</span><span class="p">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">'red'</span><span class="p">)</span>
+for country in countries:
+    print(country.attributes)
+    if country.attributes['GEOUNIT'] == 'China':
+        ax.add_geometries(country.geometry, ccrs.PlateCarree(), facecolor='red')
 
-<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span></code></pre>
+plt.show()</code></pre>
 </div>
 </div>
 <div class="paragraph">

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="generator" content="Asciidoctor 2.0.26">
 <title>ReactJS</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -116,7 +116,6 @@ h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title str
 :not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
 pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
-pre>code{display:block}
 pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
 em em{font-style:normal}
 strong strong{font-weight:400}
@@ -140,7 +139,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #content::before{content:none}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
 #header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
-#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
 #header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
@@ -162,6 +161,7 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
 #toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
 #toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
@@ -218,6 +218,7 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
 .listingblock>.content{position:relative}
+.listingblock pre>code{display:block}
 .listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
 .listingblock:hover code[data-lang]::before{display:block}
 .listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
@@ -327,7 +328,7 @@ a.image{text-decoration:none;display:inline-block}
 a.image object{pointer-events:none}
 sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
 sup.footnote a,sup.footnoteref a{text-decoration:none}
-sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
 #footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
 #footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
 #footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
@@ -433,184 +434,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-pre.rouge table td { padding: 5px; }
-pre.rouge table pre { margin: 0; }
-pre.rouge {
-  color: #faf6e4;
-  background-color: #122b3b;
-}
-pre.rouge .gl {
-  color: #dee5e7;
-  background-color: #4e5d62;
-}
-pre.rouge .gp {
-  color: #a8e1fe;
-  font-weight: bold;
-}
-pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
-  color: #6c8b9f;
-  font-style: italic;
-}
-pre.rouge .cp {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .err {
-  color: #fefeec;
-  background-color: #cc0000;
-}
-pre.rouge .gr {
-  color: #cc0000;
-  font-weight: bold;
-  font-style: italic;
-}
-pre.rouge .k, pre.rouge .kd, pre.rouge .kv {
-  color: #f6dd62;
-  font-weight: bold;
-}
-pre.rouge .o, pre.rouge .ow {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .p, pre.rouge .pi {
-  color: #4df4ff;
-}
-pre.rouge .gd {
-  color: #cc0000;
-}
-pre.rouge .gi {
-  color: #b2fd6d;
-}
-pre.rouge .ge {
-  font-style: italic;
-}
-pre.rouge .gs {
-  font-weight: bold;
-}
-pre.rouge .gt {
-  color: #dee5e7;
-  background-color: #4e5d62;
-}
-pre.rouge .kc {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .kn {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kp {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kr {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .gh {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .gu {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .kt {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .no {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nc {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nd {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nn {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .bp {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .ne {
-  color: #b2fd6d;
-  font-weight: bold;
-}
-pre.rouge .nl {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .nt {
-  color: #ffb000;
-  font-weight: bold;
-}
-pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .ld {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .ss {
-  color: #f696db;
-  font-weight: bold;
-}
-pre.rouge .s, pre.rouge .sb, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .sh, pre.rouge .sx, pre.rouge .sr, pre.rouge .s1 {
-  color: #fff0a6;
-  font-weight: bold;
-}
-pre.rouge .sa {
-  color: #f6dd62;
-  font-weight: bold;
-}
-pre.rouge .se {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .sc {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .si {
-  color: #4df4ff;
-  font-weight: bold;
-}
-pre.rouge .nb {
-  font-weight: bold;
-}
-pre.rouge .ni {
-  color: #999999;
-  font-weight: bold;
-}
-pre.rouge .w {
-  color: #BBBBBB;
-}
-pre.rouge .go {
-  color: #BBBBBB;
-}
-pre.rouge .nf, pre.rouge .fm {
-  color: #a8e1fe;
-}
-pre.rouge .py {
-  color: #a8e1fe;
-}
-pre.rouge .na {
-  color: #a8e1fe;
-}
-pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
-  color: #a8e1fe;
-  font-weight: bold;
-}
-</style>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -748,8 +571,8 @@ nvm use lts</pre>
 <p>Controleer na de installatie of Node.js en NPM correct zijn geïnstalleerd door de volgende commando&#8217;s in je terminal of command prompt uit te voeren:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="bash">node <span class="nt">-v</span>
-npm <span class="nt">-v</span></code></pre>
+<pre class="rouge highlight"><code data-lang="bash">node -v
+npm -v</code></pre>
 </div>
 </div>
 </li>
@@ -787,7 +610,7 @@ npm <span class="nt">-v</span></code></pre>
 <p>Ga naar de nieuwe projectmap:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="bash"><span class="nb">cd </span>mijn-react-app</code></pre>
+<pre class="rouge highlight"><code data-lang="bash">cd mijn-react-app</code></pre>
 </div>
 </div>
 </li>
@@ -832,13 +655,13 @@ Volg de reactjs tutorial hier: <a href="https://react.dev/learn" class="bare">ht
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<pre class="rouge highlight"><code data-lang="javascript">import React from 'react';
 
-<span class="kd">function</span> <span class="nx">Welkom</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Welkom</span> <span class="nx">bij</span> <span class="nx">React</span><span class="o">!&lt;</span><span class="sr">/h1&gt;</span><span class="err">;
-</span><span class="p">}</span>
+function Welkom() {
+    return &lt;h1&gt;Welkom bij React!&lt;/h1&gt;;
+}
 
-<span class="k">export</span> <span class="k">default</span> <span class="nx">Welkom</span><span class="p">;</span></code></pre>
+export default Welkom;</code></pre>
 </div>
 </div>
 </div>
@@ -849,15 +672,15 @@ Volg de reactjs tutorial hier: <a href="https://react.dev/learn" class="bare">ht
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<pre class="rouge highlight"><code data-lang="javascript">import React, { Component } from 'react';
 
-<span class="kd">class</span> <span class="nx">Welkom</span> <span class="kd">extends</span> <span class="nx">Component</span> <span class="p">{</span>
-    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Welkom</span> <span class="nx">bij</span> <span class="nx">React</span><span class="o">!&lt;</span><span class="sr">/h1&gt;</span><span class="err">;
-</span>    <span class="p">}</span>
-<span class="p">}</span>
+class Welkom extends Component {
+    render() {
+        return &lt;h1&gt;Welkom bij React!&lt;/h1&gt;;
+    }
+}
 
-<span class="k">export</span> <span class="k">default</span> <span class="nx">Welkom</span><span class="p">;</span></code></pre>
+export default Welkom;</code></pre>
 </div>
 </div>
 </div>
@@ -871,7 +694,7 @@ Volg de reactjs tutorial hier: <a href="https://react.dev/learn" class="bare">ht
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">const</span> <span class="nx">element</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="p">,</span> <span class="nx">world</span><span class="o">!&lt;</span><span class="sr">/h1&gt;;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="javascript">const element = &lt;h1&gt;Hello, world!&lt;/h1&gt;;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -887,13 +710,13 @@ Volg de reactjs tutorial hier: <a href="https://react.dev/learn" class="bare">ht
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">Welkom</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Welkom</span><span class="p">,</span> <span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">naam</span><span class="p">}</span><span class="o">!&lt;</span><span class="sr">/h1&gt;</span><span class="err">;
-</span><span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="javascript">function Welkom(props) {
+    return &lt;h1&gt;Welkom, {props.naam}!&lt;/h1&gt;;
+}
 
-<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Welkom</span> <span class="nx">naam</span><span class="o">=</span><span class="dl">"</span><span class="s2">Alice</span><span class="dl">"</span> <span class="o">/&gt;</span><span class="p">;</span>
-<span class="p">}</span></code></pre>
+function App() {
+    return &lt;Welkom naam="Alice" /&gt;;
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -914,20 +737,20 @@ Volg de reactjs tutorial hier: <a href="https://react.dev/learn" class="bare">ht
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<pre class="rouge highlight"><code data-lang="javascript">import React, { useState } from 'react';
 
-<span class="kd">function</span> <span class="nx">Teller</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="p">[</span><span class="nx">teller</span><span class="p">,</span> <span class="nx">setTeller</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+function Teller() {
+    const [teller, setTeller] = useState(0);
 
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
-            <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Je</span> <span class="nx">hebt</span> <span class="p">{</span><span class="nx">teller</span><span class="p">}</span> <span class="nx">keer</span> <span class="nx">geklikt</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
-</span>            <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nx">setTeller</span><span class="p">(</span><span class="nx">teller</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)}</span><span class="o">&gt;</span>
-                <span class="nx">Klik</span> <span class="nx">mij</span>
-            <span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
-</span>        <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span>    <span class="p">);</span>
-<span class="p">}</span></code></pre>
+    return (
+        &lt;div&gt;
+            &lt;p&gt;Je hebt {teller} keer geklikt&lt;/p&gt;
+            &lt;button onClick={() =&gt; setTeller(teller + 1)}&gt;
+                Klik mij
+            &lt;/button&gt;
+        &lt;/div&gt;
+    );
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -941,23 +764,23 @@ Volg de reactjs tutorial hier: <a href="https://react.dev/learn" class="bare">ht
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">class</span> <span class="nx">Teller</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
-    <span class="kd">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span> <span class="na">teller</span><span class="p">:</span> <span class="mi">0</span> <span class="p">};</span>
-    <span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="javascript">class Teller extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { teller: 0 };
+    }
 
-    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="p">(</span>
-            <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
-                <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Je</span> <span class="nx">hebt</span> <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">teller</span><span class="p">}</span> <span class="nx">keer</span> <span class="nx">geklikt</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
-</span>                <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="na">teller</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">teller</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">})}</span><span class="o">&gt;</span>
-                    <span class="nx">Klik</span> <span class="nx">mij</span>
-                <span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
-</span>            <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span>        <span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre>
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;p&gt;Je hebt {this.state.teller} keer geklikt&lt;/p&gt;
+                &lt;button onClick={() =&gt; this.setState({ teller: this.state.teller + 1 })}&gt;
+                    Klik mij
+                &lt;/button&gt;
+            &lt;/div&gt;
+        );
+    }
+}</code></pre>
 </div>
 </div>
 </div>
@@ -971,17 +794,17 @@ Volg de reactjs tutorial hier: <a href="https://react.dev/learn" class="bare">ht
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">function</span> <span class="nx">handeKnopKlik</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">De knop is ingedrukt!</span><span class="dl">'</span><span class="p">);</span>
-    <span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="javascript">function App() {
+    function handeKnopKlik() {
+        alert('De knop is ingedrukt!');
+    }
 
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">handeKnopKlik</span><span class="p">}</span><span class="o">&gt;</span>
-            <span class="nx">Klik</span> <span class="nx">mij</span>
-        <span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
-</span>    <span class="p">);</span>
-<span class="p">}</span></code></pre>
+    return (
+        &lt;button onClick={handeKnopKlik}&gt;
+            Klik mij
+        &lt;/button&gt;
+    );
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -997,19 +820,19 @@ Volg de reactjs tutorial hier: <a href="https://react.dev/learn" class="bare">ht
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">NamenLijst</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">namen</span> <span class="o">=</span> <span class="nx">props</span><span class="p">.</span><span class="nx">namen</span><span class="p">;</span>
-    <span class="kd">const</span> <span class="nx">lijstItems</span> <span class="o">=</span> <span class="nx">namen</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">naam</span><span class="p">)</span> <span class="o">=&gt;</span>
-        <span class="o">&lt;</span><span class="nx">li</span> <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">naam</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">naam</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/li</span><span class="err">&gt;
-</span>    <span class="p">);</span>
-    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">lijstItems</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/ul&gt;</span><span class="err">;
-</span><span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="javascript">function NamenLijst(props) {
+    const namen = props.namen;
+    const lijstItems = namen.map((naam) =&gt;
+        &lt;li key={naam}&gt;{naam}&lt;/li&gt;
+    );
+    return &lt;ul&gt;{lijstItems}&lt;/ul&gt;;
+}
 
-<span class="kd">const</span> <span class="nx">namen</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">Alice</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Bob</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Charlie</span><span class="dl">'</span><span class="p">];</span>
-<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
-    <span class="o">&lt;</span><span class="nx">NamenLijst</span> <span class="nx">namen</span><span class="o">=</span><span class="p">{</span><span class="nx">namen</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="err">,
-</span>    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">root</span><span class="dl">'</span><span class="p">)</span>
-<span class="p">);</span></code></pre>
+const namen = ['Alice', 'Bob', 'Charlie'];
+ReactDOM.render(
+    &lt;NamenLijst namen={namen} /&gt;,
+    document.getElementById('root')
+);</code></pre>
 </div>
 </div>
 </div>
@@ -1022,40 +845,40 @@ Volg de reactjs tutorial hier: <a href="https://react.dev/learn" class="bare">ht
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">class</span> <span class="nx">Klok</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
-    <span class="kd">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span> <span class="na">tijd</span><span class="p">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="p">};</span>
-    <span class="p">}</span>
+<pre class="rouge highlight"><code data-lang="javascript">class Klok extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { tijd: new Date() };
+    }
 
-    <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">timerID</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span>
-            <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">tick</span><span class="p">(),</span>
-            <span class="mi">1000</span>
-        <span class="p">);</span>
-    <span class="p">}</span>
+    componentDidMount() {
+        this.timerID = setInterval(
+            () =&gt; this.tick(),
+            1000
+        );
+    }
 
-    <span class="nx">componentWillUnmount</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">clearInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">timerID</span><span class="p">);</span>
-    <span class="p">}</span>
+    componentWillUnmount() {
+        clearInterval(this.timerID);
+    }
 
-    <span class="nx">tick</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
-            <span class="na">tijd</span><span class="p">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
-        <span class="p">});</span>
-    <span class="p">}</span>
+    tick() {
+        this.setState({
+            tijd: new Date()
+        });
+    }
 
-    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="p">(</span>
-            <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
-                <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hallo</span><span class="p">,</span> <span class="nx">wereld</span><span class="o">!&lt;</span><span class="sr">/h1</span><span class="err">&gt;
-</span>                <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">Het</span> <span class="nx">is</span> <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">tijd</span><span class="p">.</span><span class="nx">toLocaleTimeString</span><span class="p">()}.</span><span class="o">&lt;</span><span class="sr">/h2</span><span class="err">&gt;
-</span>            <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
-</span>        <span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+    render() {
+        return (
+            &lt;div&gt;
+                &lt;h1&gt;Hallo, wereld!&lt;/h1&gt;
+                &lt;h2&gt;Het is {this.state.tijd.toLocaleTimeString()}.&lt;/h2&gt;
+            &lt;/div&gt;
+        );
+    }
+}
 
-<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">Klok</span> <span class="o">/&gt;</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">root</span><span class="dl">'</span><span class="p">));</span></code></pre>
+ReactDOM.render(&lt;Klok /&gt;, document.getElementById('root'));</code></pre>
 </div>
 </div>
 </div>
