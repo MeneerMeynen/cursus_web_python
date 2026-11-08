@@ -3971,14 +3971,15 @@ Bij <code>row-reverse</code> en <code>column-reverse</code> verandert alleen wat
 </table>
 <div class="imageblock">
 <div class="content">
-<img src="images/css/align-items.svg" alt="De vier belangrijkste waarden van align-items bij een container van 150px hoog: stretch, flex-start, center en flex-end" width="740">
+<img src="images/css/align-items.svg" alt="De vier belangrijkste waarden van align-items bij flex-direction: row en een container van 150px hoog, met de hoofdas horizontaal en de kruisas verticaal: stretch, flex-start, center en flex-end" width="740">
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="css">.container {
   display: flex;
-  height: 200px; <i class="conum" data-value="1"></i><b>(1)</b>
+  flex-direction: row; <i class="conum" data-value="1"></i><b>(1)</b>
+  height: 200px; <i class="conum" data-value="2"></i><b>(2)</b>
   align-items: center;
 }</code></pre>
 </div>
@@ -3987,6 +3988,10 @@ Bij <code>row-reverse</code> en <code>column-reverse</code> verandert alleen wat
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>De hoofdas loopt horizontaal. Dit is de standaardwaarde, je mag ze dus weglaten. Zo is de kruisas verticaal en lijnt <code>align-items</code> de items verticaal uit.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>De container moet hoger zijn dan zijn items, anders is er op de kruisas niets te verdelen en zie je geen verschil.</td>
 </tr>
 </table>
