@@ -78,8 +78,8 @@
       background: #f8f9fa; border: 2px dashed #b8c2d0; border-radius: 8px; padding: 10px;
     }
     #veld1 { display: block; }
-    #veld1 .item { margin-bottom: 8px; }
-    #veld1 .item:last-child { margin-bottom: 0; }
+    #veld1.blok .item { margin-bottom: 8px; } /* alleen bij block: bij flex zou de marge de hoogtes scheeftrekken */
+    #veld1.blok .item:last-child { margin-bottom: 0; }
     #veld2 { display: flex; height: 360px; }
     .scroll { overflow-x: auto; }
 
@@ -119,7 +119,7 @@
       <button id="k1-block" class="actief">display: block</button>
       <button id="k1-flex">display: flex</button>
     </div>
-    <div class="veld" id="veld1">
+    <div class="veld blok" id="veld1">
       <div class="item i1">1</div>
       <div class="item i2">2</div>
       <div class="item i3">3</div>
@@ -219,6 +219,7 @@
   /* ---------- Kaart 1 ---------- */
   function zetKaart1(modus) {
     $('veld1').style.display = modus;
+    $('veld1').classList.toggle('blok', modus === 'block');
     $('k1-block').classList.toggle('actief', modus === 'block');
     $('k1-flex').classList.toggle('actief', modus === 'flex');
     $('code1').innerHTML =
