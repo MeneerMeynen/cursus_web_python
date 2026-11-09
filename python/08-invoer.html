@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Hoofdstuk 8: Gegevensinvoer en Bestanden</title>
+<title>Hoofdstuk 8: Input en Files</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -433,30 +433,37 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Hoofdstuk 8: Gegevensinvoer en Bestanden</h1>
+<h1>Hoofdstuk 8: Input en Files</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_gegevensinvoer">1. Gegevensinvoer</a></li>
-<li><a href="#_rekenen_met_invoer">2. Rekenen met Invoer</a></li>
-<li><a href="#_interactie">3. Interactie</a></li>
-<li><a href="#_bestandsinvoer_en_uitvoer_in_python">4. Bestandsinvoer en -uitvoer in Python</a>
+<li><a href="#_input_van_de_gebruiker">1. Input van de gebruiker</a>
 <ul class="sectlevel2">
-<li><a href="#_bestanden_openen">4.1. Bestanden Openen</a></li>
-<li><a href="#_schrijven_naar_een_bestand">4.2. Schrijven naar een Bestand</a></li>
-<li><a href="#_schrijven_zonder_te_wissen">4.3. Schrijven zonder te wissen</a></li>
-<li><a href="#_sluiten_van_een_bestand">4.4. Sluiten van een Bestand</a></li>
-<li><a href="#_lezen_van_een_bestand">4.5. Lezen van een Bestand</a></li>
-<li><a href="#_itereren_door_een_bestand">4.6. Itereren door een Bestand</a></li>
-<li><a href="#_met_een_bestand_werken_via_een_with_verklaring">4.7. Met een Bestand Werken via een 'with'-verklaring</a>
-<ul class="sectlevel3">
-<li><a href="#_bestanden_maken_en_schrijven">4.7.1. Bestanden Maken en Schrijven</a></li>
+<li><a href="#_tekst_vragen_met_input">1.1. Tekst vragen met input()</a></li>
+<li><a href="#_een_keuze_laten_maken">1.2. Een keuze laten maken</a></li>
 </ul>
 </li>
-<li><a href="#_handige_bestandsbewerkingen">4.8. Handige Bestandsbewerkingen</a></li>
+<li><a href="#_rekenen_met_input">2. Rekenen met input</a>
+<ul class="sectlevel2">
+<li><a href="#_gevechtsberekening">2.1. Gevechtsberekening</a></li>
+<li><a href="#_attributen_van_een_personage">2.2. Attributen van een personage</a></li>
+</ul>
+</li>
+<li><a href="#_input_en_if_combineren">3. Input en if combineren</a></li>
+<li><a href="#_files">4. Files</a>
+<ul class="sectlevel2">
+<li><a href="#_een_file_openen">4.1. Een file openen</a></li>
+<li><a href="#_schrijven_naar_een_file">4.2. Schrijven naar een file</a></li>
+<li><a href="#_schrijven_zonder_te_wissen">4.3. Schrijven zonder te wissen</a></li>
+<li><a href="#_een_file_sluiten">4.4. Een file sluiten</a></li>
+<li><a href="#_een_file_lezen">4.5. Een file lezen</a></li>
+<li><a href="#_regel_per_regel_lezen">4.6. Regel per regel lezen</a></li>
+<li><a href="#_veilig_werken_met_with">4.7. Veilig werken met with</a></li>
+<li><a href="#_handige_bewerkingen_op_files">4.8. Handige bewerkingen op files</a></li>
 </ul>
 </li>
 </ul>
@@ -466,32 +473,78 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In dit hoofdstuk gaan we in op gegevensinvoer: invoer van de gebruiker via het toetsenbord, en het lezen en schrijven van bestanden. We combineren de invoer met de expressies uit hoofdstuk 3.</p>
+<p>Een programma wordt pas echt interessant als het iets met de buitenwereld doet. Het kan vragen stellen aan de gebruiker en het kan gegevens bewaren, ook nadat het programma is afgesloten.</p>
+</div>
+<div class="paragraph">
+<p>In dit hoofdstuk leer je:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>hoe je met <code>input()</code> gegevens van de gebruiker vraagt;</p>
+</li>
+<li>
+<p>hoe je die input omzet naar een getal en ermee rekent;</p>
+</li>
+<li>
+<p>hoe je input en <code>if</code>-structuren combineert in een kleine game;</p>
+</li>
+<li>
+<p>hoe je een <mark>file</mark> (een bestand) opent, leest, schrijft en sluit;</p>
+</li>
+<li>
+<p>hoe je met <code>with</code> veilig met files werkt.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Voor de berekeningen gebruiken we de expressies uit hoofdstuk 3.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_gegevensinvoer">1. Gegevensinvoer</h2>
+<h2 id="_input_van_de_gebruiker">1. Input van de gebruiker</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Het vragen van gegevens van spelers of gebruikers is essentieel om je programma interactief te maken. Python biedt de input()-functie, die je in staat stelt om tekstuele invoer van spelers te verzamelen. Met deze functie kun je vragen stellen, keuzes aanbieden en spelers de mogelijkheid geven om direct met je game of programma te communiceren.</p>
+<p>Een game of programma wordt interactief als het vragen kan stellen aan de speler. De <mark>input</mark> (de invoer) vraag je met de functie <code>input()</code>. Het programma wacht tot de speler iets typt en op <kbd>Enter</kbd> drukt.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/pythoninput.png" alt="pythoninput">
+<img src="images/pythoninput.png" alt="Een gebruiker typt tekst in een terminal en het programma leest die input">
 </div>
 </div>
-<div class="paragraph">
-<p>Tekstinvoer Verzamelen:</p>
-</div>
+<div class="sect2">
+<h3 id="_tekst_vragen_met_input">1.1. Tekst vragen met input()</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python">player_name = input("Voer je naam in: ")
-print("Welkom, " + player_name + "!")</code></pre>
+<pre class="rouge highlight"><code data-lang="python">player_name = input("Voer je naam in: ") <i class="conum" data-value="1"></i><b>(1)</b>
+print("Welkom, " + player_name + "!") <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Tussen de haakjes staat de vraag die op het scherm verschijnt. Wat de speler typt, komt in de variabele <code>player_name</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>We plakken de naam van de speler in een welkomstbericht.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Uitvoer (de speler typt Sam)</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="plaintext">Voer je naam in: Sam
+Welkom, Sam!</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_een_keuze_laten_maken">1.2. Een keuze laten maken</h3>
 <div class="paragraph">
-<p>Met dit voorbeeld vragen we de speler om hun naam in te voeren en gebruiken we deze input om een persoonlijk welkomstbericht te genereren.</p>
+<p>Met input kan een speler een keuze maken. De <mark>output</mark> (de uitvoer) past zich aan op wat de speler typt.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -499,28 +552,29 @@ print("Welkom, " + player_name + "!")</code></pre>
 print("Je hebt gekozen om naar " + choice + " te gaan.")</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Hiermee kunnen spelers eenvoudige keuzes maken binnen je game en wordt de uitvoer aangepast op basis van hun invoer.</p>
+<div class="listingblock">
+<div class="title">Uitvoer (de speler typt links)</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="plaintext">Wil je naar links of rechts gaan? links
+Je hebt gekozen om naar links te gaan.</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_rekenen_met_invoer">2. Rekenen met Invoer</h2>
+<h2 id="_rekenen_met_input">2. Rekenen met input</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Het vermogen om expressies en berekeningen te gebruiken, opent een wereld van mogelijkheden in game-ontwikkeling. Hiermee kun je wiskundige en logische bewerkingen uitvoeren op basis van variabele waarden, invoer van spelers of gamegebeurtenissen.</p>
+<p>Met expressies kan je berekeningen doen met de input van een speler. In een RPG-game richten spelers bijvoorbeeld schade aan bij vijanden.</p>
 </div>
-<div class="paragraph">
-<p>Gevechtsberekening:</p>
-</div>
-<div class="paragraph">
-<p>Stel je een RPG-game voor waarin spelers vijanden schade toebrengen. Hier is een voorbeeld van hoe je dit kunt aanpakken:</p>
-</div>
+<div class="sect2">
+<h3 id="_gevechtsberekening">2.1. Gevechtsberekening</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python">player_damage = int(input("Voer je schade in: ")) <b class="conum">(1)</b>
+<pre class="rouge highlight"><code data-lang="python">player_damage = int(input("Voer je schade in: ")) <i class="conum" data-value="1"></i><b>(1)</b>
 enemy_health = 100
-remaining_health = enemy_health - player_damage
+remaining_health = enemy_health - player_damage <i class="conum" data-value="2"></i><b>(2)</b>
 
 if remaining_health &lt;= 0:
     print("De vijand is verslagen!")
@@ -529,27 +583,48 @@ else:
 </div>
 </div>
 <div class="colist arabic">
-<ol>
-<li>
-<p><code>input()</code> geeft altijd een string (<code>str</code>) terug, ook als de gebruiker een getal intypt. Daarom zetten we de invoer hier om naar een integer met <code>int()</code>. Zo kan ermee gerekend worden, met een <code>str</code> zou dat niet kunnen.</p>
-</li>
-</ol>
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>input()</code> geeft altijd een string (<code>str</code>) terug, ook als de speler een getal typt. Met <code>int()</code> zetten we die string om naar een integer, zodat we ermee kunnen rekenen.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>De resterende gezondheid is de gezondheid van de vijand min de schade van de speler.</td>
+</tr>
+</table>
 </div>
-<div class="paragraph">
-<p>Deze code gebruikt de invoer van de speler om de resterende gezondheid van een vijand na het toebrengen van schade te berekenen.</p>
+<div class="listingblock">
+<div class="title">Uitvoer (de speler typt 30)</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="plaintext">Voer je schade in: 30
+De vijand heeft nog 70 gezondheid over.</code></pre>
 </div>
-<div class="paragraph">
-<p>Attribuutberekening:</p>
 </div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Typt de speler geen getal, bijvoorbeeld <code>dertig</code>, dan stopt het programma met een foutmelding (<code>ValueError</code>). Hoe je dat opvangt, leer je in een later hoofdstuk.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_attributen_van_een_personage">2.2. Attributen van een personage</h3>
 <div class="paragraph">
-<p>Stel je voor dat je een rollenspel maakt waarbij spelers de kracht en behendigheid van hun personage kunnen aanpassen:</p>
+<p>In een rollenspel past de speler de kracht en behendigheid van zijn personage aan.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python">player_name = input("Creëer je personage. Geef een naam: ")
 player_strength = int(input("Voer de krachtwaarde in (1-10): "))
 player_agility = int(input("Voer de behendigheidswaarde in (1-10): "))
-total_points = player_strength + player_agility
+total_points = player_strength + player_agility <i class="conum" data-value="1"></i><b>(1)</b>
 
 print(player_name + "'s attributen:")
 print("Kracht:", player_strength)
@@ -557,107 +632,215 @@ print("Behendigheid:", player_agility)
 print("Totaal punten:", total_points)</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Met dit voorbeeld verzamel je gegevens van spelers en gebruik je expressies om totaalpunten te berekenen op basis van kracht en behendigheid.</p>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Het totaal is een gewone berekening met de twee getallen die de speler heeft ingevoerd.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Uitvoer (de speler typt Aria, 7 en 5)</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="plaintext">Creëer je personage. Geef een naam: Aria
+Voer de krachtwaarde in (1-10): 7
+Voer de behendigheidswaarde in (1-10): 5
+Aria's attributen:
+Kracht: 7
+Behendigheid: 5
+Totaal punten: 12</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_interactie">3. Interactie</h2>
+<h2 id="_input_en_if_combineren">3. Input en if combineren</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Door de kracht van gegevensinvoer en berekeningen te combineren, kun je gameplay-ervaringen creëren. Stel je voor dat je een avonturenspel ontwikkelt waarin spelers een mysterie moeten oplossen:</p>
+<p>Als je input en <code>if</code>-structuren combineert, krijg je een spel dat anders verloopt naargelang de keuze van de speler. Stel dat je een avonturenspel maakt waarin de speler een mysterie moet oplossen:</p>
 </div>
 <div class="listingblock">
+<div class="title">landhuis.py</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python">player_name = input("Voer je naam in: ")
 print("Welkom, " + player_name + "!")
 print("Je staat voor een oud landhuis. Wat wil je onderzoeken?")
-choice = input("1. De voordeur 2. Het zijraam: ")
+choice = input("1. De voordeur 2. Het zijraam: ") <i class="conum" data-value="1"></i><b>(1)</b>
 
-if choice == "1":
+if choice == "1": <i class="conum" data-value="2"></i><b>(2)</b>
     print("Je betreedt het landhuis via de voordeur en voelt een koude windvlaag.")
 else:
     print("Je glijdt door het zijraam naar binnen en landt behendig op de vloer.")
 
-print("Je onderzoek begint...")</code></pre>
+print("Je onderzoek begint...") <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>We vergelijken hierna met een string. Hier is dus geen <code>int()</code> nodig.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Vergelijk met <code>"1"</code> (tussen aanhalingstekens), want <code>input()</code> geeft een string terug.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Deze regel staat niet in de <code>if</code>, dus hij wordt in beide gevallen uitgevoerd.</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_bestandsinvoer_en_uitvoer_in_python">4. Bestandsinvoer en -uitvoer in Python</h2>
+<h2 id="_files">4. Files</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In dit onderdeel zullen we bespreken hoe je gegevens van bestanden op de harde schijf kunt lezen en schrijven in Python.</p>
+<p>Een variabele verdwijnt zodra je programma stopt. Wil je gegevens bewaren, dan schrijf je ze naar een <mark>file</mark> (een bestand) op de harde schijf. Ook het omgekeerde kan: gegevens uit een file lezen in je programma.</p>
+</div>
+<div class="paragraph">
+<p>Het werkt altijd in drie stappen:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Je <strong>opent</strong> de file.</p>
+</li>
+<li>
+<p>Je <strong>leest</strong> uit de file of je <strong>schrijft</strong> naar de file.</p>
+</li>
+<li>
+<p>Je <strong>sluit</strong> de file.</p>
+</li>
+</ol>
 </div>
 <div class="sect2">
-<h3 id="_bestanden_openen">4.1. Bestanden Openen</h3>
+<h3 id="_een_file_openen">4.1. Een file openen</h3>
 <div class="paragraph">
-<p>Voordat je gegevens kunt lezen of schrijven naar een bestand, moet je het bestand openen met de ingebouwde <code>open()</code>-functie. Hier is een basisvoorbeeld:</p>
+<p>Je opent een file met de ingebouwde functie <code>open()</code>. Je geeft twee dingen mee: de naam van de file en de <mark>mode</mark> (de modus). De mode bepaalt wat je met de file mag doen.</p>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 28.5714%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Mode</th>
+<th class="tableblock halign-left valign-top">Naam</th>
+<th class="tableblock halign-left valign-top">Wat gebeurt er?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'r'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">read (lezen)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Je leest uit de file. De file moet al bestaan, anders krijg je een <code>FileNotFoundError</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'w'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">write (schrijven)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Je schrijft naar de file. Bestaat de file al, dan wordt <mark>alle inhoud gewist</mark>. Bestaat ze niet, dan wordt ze aangemaakt.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'a'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">append (toevoegen)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Je schrijft achteraan de file bij. De bestaande inhoud blijft behouden.</p></td>
+</tr>
+</tbody>
+</table>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"># Het bestand 'voorbeeld.txt' openen om te schrijven (wissen als het al bestaat)
-bestand = open('voorbeeld.txt', 'w')</code></pre>
+<pre class="rouge highlight"><code data-lang="python">bestand = open('voorbeeld.txt', 'w') <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>In dit voorbeeld wordt het bestand 'voorbeeld.txt' geopend <strong>om te schrijven ('w')</strong>. De 'w'-modus betekent dat het <mark>bestand wordt gewist als het al bestaat</mark>, en anders wordt het aangemaakt.</p>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>We openen <code>voorbeeld.txt</code> om naar te schrijven. De variabele <code>bestand</code> verwijst nu naar de geopende file.</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Geef bij het openen van tekstbestanden best ook de codering mee: <code>open('voorbeeld.txt', 'w', encoding='utf-8')</code>. Zonder <code>encoding</code> gebruikt Python de standaardcodering van je besturingssysteem. Op Windows kunnen letters zoals é, ë of ç dan verkeerd worden gelezen of weggeschreven.
+Geef bij tekstbestanden best ook de <mark>encoding</mark> (de tekencodering) mee: <code>open('voorbeeld.txt', 'w', encoding='utf-8')</code>. Zonder <code>encoding</code> gebruikt Python de standaard van je besturingssysteem. Op Windows kunnen letters zoals é, ë of ç dan verkeerd gelezen of weggeschreven worden.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_schrijven_naar_een_bestand">4.2. Schrijven naar een Bestand</h3>
+<h3 id="_schrijven_naar_een_file">4.2. Schrijven naar een file</h3>
 <div class="paragraph">
-<p>Nu we een bestand hebben geopend om te schrijven, kunnen we gegevens naar dat bestand schrijven met de <code>write()</code>-methode:</p>
+<p>Met de method <code>write()</code> schrijf je tekst naar een geopende file.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python">bestand.write('Dit is een voorbeeldzin.')
-bestand.write('Dit is een andere zin.')</code></pre>
+<pre class="rouge highlight"><code data-lang="python">bestand = open('voorbeeld.txt', 'w')
+bestand.write('Dit is een voorbeeldzin.\n') <i class="conum" data-value="1"></i><b>(1)</b>
+bestand.write('Dit is een andere zin.\n')
+bestand.close()</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Deze code schrijft twee zinnen naar het geopende bestand.</p>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>\n</code> staat voor een nieuwe regel. <code>write()</code> voegt dat niet zelf toe. Zonder <code>\n</code> komen beide zinnen op dezelfde regel te staan.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">voorbeeld.txt (na het uitvoeren)</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="plaintext">Dit is een voorbeeldzin.
+Dit is een andere zin.</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_schrijven_zonder_te_wissen">4.3. Schrijven zonder te wissen</h3>
 <div class="paragraph">
-<p>Om naar een bestand te schrijven zonder de bestaande inhoud te wissen, kun je het bestand openen in de <mark>'append'-modus ('a')</mark> in plaats van de 'write'-modus ('w'). Hier is hoe je dit doet:</p>
+<p>Met mode <code>'w'</code> wis je telkens de bestaande inhoud. Wil je iets bijschrijven, gebruik dan mode <code>'a'</code> (append).</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python"># Bestand openen in 'append'-modus ('a')
-bestand = open('bestaand_bestand.txt', 'a')
-
-# Schrijf nieuwe inhoud naar het bestand
-bestand.write('Dit is nieuwe inhoud die aan het bestand wordt toegevoegd.\n')</code></pre>
+<pre class="rouge highlight"><code data-lang="python">bestand = open('voorbeeld.txt', 'a') <i class="conum" data-value="1"></i><b>(1)</b>
+bestand.write('Dit is nieuwe inhoud die achteraan komt.\n')
+bestand.close()</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>In dit voorbeeld wordt het bestand 'bestaand_bestand.txt' geopend in de 'append'-modus. De 'append'-modus voegt nieuwe inhoud toe aan het einde van het bestand zonder de bestaande inhoud te overschrijven. De <code>\n</code> wordt gebruikt om een nieuwe regel toe te voegen, zodat elke toegevoegde regel op een nieuwe regel begint.</p>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Met <code>'a'</code> blijft de bestaande inhoud staan. De nieuwe tekst komt op het einde.</td>
+</tr>
+</table>
 </div>
-<div class="paragraph">
-<p>Als 'bestaand_bestand.txt' bijvoorbeeld al enkele regels tekst bevatte en je dit script uitvoerde, zou de nieuwe inhoud worden toegevoegd aan het einde van het bestand zonder de bestaande inhoud te wissen.</p>
+<div class="listingblock">
+<div class="title">voorbeeld.txt (na het uitvoeren)</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="plaintext">Dit is een voorbeeldzin.
+Dit is een andere zin.
+Dit is nieuwe inhoud die achteraan komt.</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_sluiten_van_een_bestand">4.4. Sluiten van een Bestand</h3>
+<h3 id="_een_file_sluiten">4.4. Een file sluiten</h3>
 <div class="paragraph">
-<p>Het is belangrijk om bestanden te sluiten nadat je klaar bent met lezen of schrijven. Dit kan worden gedaan met de <code>close()</code>-methode:</p>
+<p>Sluit een file altijd met de method <code>close()</code> als je klaar bent.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -665,93 +848,183 @@ bestand.write('Dit is nieuwe inhoud die aan het bestand wordt toegevoegd.\n')</c
 </div>
 </div>
 <div class="paragraph">
-<p>Het <mark>sluiten</mark> van een bestand is belangrijk omdat het <mark>resources vrijgeeft</mark> en eventuele <mark>wijzigingen</mark> die je hebt aangebracht in het bestand <mark>opslaat</mark>.</p>
+<p>Een file sluiten is belangrijk omdat:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>het <mark>resources vrijgeeft</mark> (het besturingssysteem kan de file weer gebruiken);</p>
+</li>
+<li>
+<p>het <mark>wijzigingen opslaat</mark> die nog niet naar de schijf geschreven waren.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_lezen_van_een_bestand">4.5. Lezen van een Bestand</h3>
+<h3 id="_een_file_lezen">4.5. Een file lezen</h3>
 <div class="paragraph">
-<p>Om gegevens uit een bestand te lezen, open je het bestand in de <strong>leesmodus ('r')</strong> en gebruik je de <code>read()</code>-methode:</p>
+<p>Om te lezen open je de file in mode <code>'r'</code>. Met de method <code>read()</code> krijg je de volledige inhoud als één string.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python">bestand = open('voorbeeld.txt', 'r')
-inhoud = bestand.read()
+inhoud = bestand.read() <i class="conum" data-value="1"></i><b>(1)</b>
 bestand.close()
 
 print(inhoud)</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Dit voorbeeld opent het bestand 'voorbeeld.txt', leest de inhoud ervan en slaat deze op in de variabele <code>inhoud</code>. Vervolgens wordt de inhoud afgedrukt.</p>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>De volledige inhoud van de file staat nu in de variabele <code>inhoud</code>.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Uitvoer</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="plaintext">Dit is een voorbeeldzin.
+Dit is een andere zin.
+Dit is nieuwe inhoud die achteraan komt.</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_itereren_door_een_bestand">4.6. Itereren door een Bestand</h3>
+<h3 id="_regel_per_regel_lezen">4.6. Regel per regel lezen</h3>
 <div class="paragraph">
-<p>Je kunt ook door een bestand itereren om het regel voor regel te lezen met een <code>for</code>-lus:</p>
+<p>Je kan een file ook regel per regel doorlopen met een <code>for</code>-lus.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python">bestand = open('voorbeeld.txt', 'r')
 
-for regel in bestand:
-    print(regel.strip())
+for regel in bestand: <i class="conum" data-value="1"></i><b>(1)</b>
+    print(regel.strip()) <i class="conum" data-value="2"></i><b>(2)</b>
 
 bestand.close()</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Hier wordt elke regel van het bestand afzonderlijk gelezen en afgedrukt. Elke gelezen regel eindigt met een <code>\n</code> (nieuwe regel), en <code>print()</code> voegt zelf ook een nieuwe regel toe. Zonder <code>.strip()</code> zou er dus telkens een lege regel tussen staan. <code>.strip()</code> verwijdert witruimte en <code>\n</code> aan het begin en einde van de regel.</p>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Bij elke ronde bevat <code>regel</code> één regel uit de file, inclusief de <code>\n</code> op het einde.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>print()</code> voegt zelf ook een nieuwe regel toe. Zonder <code>.strip()</code> zou er dus telkens een lege regel tussen staan. <code>.strip()</code> verwijdert de witruimte en de <code>\n</code> aan het begin en einde van de regel.</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_met_een_bestand_werken_via_een_with_verklaring">4.7. Met een Bestand Werken via een 'with'-verklaring</h3>
+<h3 id="_veilig_werken_met_with">4.7. Veilig werken met with</h3>
 <div class="paragraph">
-<p>Een handige manier om met bestanden te werken is met behulp van een 'with'-verklaring. <mark>Dit zorgt ervoor dat het bestand automatisch wordt gesloten wanneer je klaar bent met werken</mark>:</p>
+<p>Vergeet je <code>close()</code>, dan blijft de file open. Met een <mark>with statement</mark> (een with-blok) hoef je daar niet aan te denken: <mark>de file wordt automatisch gesloten</mark> zodra het blok afgelopen is.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="python">with open('voorbeeld.txt', 'r') as bestand:
-    inhoud = bestand.read()
-    # Voer hier bewerkingen uit op de inhoud
+<pre class="rouge highlight"><code data-lang="python">with open('voorbeeld.txt', 'r') as bestand: <i class="conum" data-value="1"></i><b>(1)</b>
+    inhoud = bestand.read() <i class="conum" data-value="2"></i><b>(2)</b>
+    print(inhoud)
 
-# Het bestand is nu automatisch gesloten buiten de 'with'-verklaring</code></pre>
+print("Hier is de file al gesloten.") <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_bestanden_maken_en_schrijven">4.7.1. Bestanden Maken en Schrijven</h4>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>De file wordt geopend en krijgt de naam <code>bestand</code>, net zoals hiervoor.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Alles wat met de file moet gebeuren, staat ingesprongen onder <code>with</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Deze regel staat niet meer ingesprongen. Python heeft de file hier al voor je gesloten.</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>Om een nieuw bestand te maken en gegevens naar dat bestand te schrijven, open je het bestand in de schrijfmodus ('w'). Als het bestand al bestaat, wordt het gewist en opnieuw aangemaakt.</p>
+<p>Ook schrijven kan met <code>with</code>. Zo maak je een nieuwe file aan:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="python">with open('nieuw_bestand.txt', 'w') as bestand:
-    bestand.write('Dit is een nieuw bestand.')</code></pre>
+    bestand.write('Dit is een nieuw bestand.\n')</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Dit voorbeeld maakt een nieuw bestand genaamd 'nieuw_bestand.txt' en schrijft de opgegeven tekst erin.</p>
-</div>
+<p>Gebruik <code>with</code> voortaan als standaardmanier om met files te werken.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_handige_bestandsbewerkingen">4.8. Handige Bestandsbewerkingen</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Bestand hernoemen:</strong> Gebruik de <code>os.rename()</code>-functie.</p>
-</li>
-<li>
-<p><strong>Bestand verplaatsen:</strong> Gebruik de <code>shutil.move()</code>-functie uit de <code>shutil</code>-module.</p>
-</li>
-<li>
-<p><strong>Bestand kopiëren:</strong> Gebruik de <code>shutil.copy()</code>-functie uit de <code>shutil</code>-module. (De <code>os</code>-module heeft geen functie om bestanden te kopiëren.)</p>
-</li>
-<li>
-<p><strong>Bestand verwijderen:</strong> Gebruik de <code>os.remove()</code>-functie om een bestand te verwijderen.</p>
-</li>
-</ul>
+<h3 id="_handige_bewerkingen_op_files">4.8. Handige bewerkingen op files</h3>
+<div class="paragraph">
+<p>Naast lezen en schrijven wil je een file soms hernoemen, verplaatsen, kopiëren of verwijderen. Daarvoor heb je de modules <code>os</code> en <code>shutil</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="python">import os
+import shutil
+
+os.rename('oud.txt', 'nieuw.txt')
+shutil.copy('nieuw.txt', 'kopie.txt')
+os.remove('kopie.txt')</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 37.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Doel</th>
+<th class="tableblock halign-left valign-top">Functie</th>
+<th class="tableblock halign-left valign-top">Module</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Een file hernoemen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>os.rename()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>os</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Een file verplaatsen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shutil.move()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shutil</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Een file kopiëren</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shutil.copy()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shutil</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Een file verwijderen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>os.remove()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>os</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+De module <code>os</code> heeft geen functie om een file te kopiëren. Daarvoor gebruik je <code>shutil.copy()</code>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
