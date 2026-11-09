@@ -1,29 +1,50 @@
+:experimental:
+:icons: font
 :source-highlighter: rouge
-:rouge-style: thankful_eyes
 :toc: left
 :toclevels: 5
 :sectnums:
-//:stylesheet: dark.css
 
-= Hoofdstuk 8: Gegevensinvoer en Bestanden
+= Hoofdstuk 8: Input en Files
 
-In dit hoofdstuk gaan we in op gegevensinvoer: invoer van de gebruiker via het toetsenbord, en het lezen en schrijven van bestanden. We combineren de invoer met de expressies uit hoofdstuk 3.
+Een programma wordt pas echt interessant als het iets met de buitenwereld doet. Het kan vragen stellen aan de gebruiker en het kan gegevens bewaren, ook nadat het programma is afgesloten.
 
-== Gegevensinvoer
+In dit hoofdstuk leer je:
 
-Het vragen van gegevens van spelers of gebruikers is essentieel om je programma interactief te maken. Python biedt de input()-functie, die je in staat stelt om tekstuele invoer van spelers te verzamelen. Met deze functie kun je vragen stellen, keuzes aanbieden en spelers de mogelijkheid geven om direct met je game of programma te communiceren.
+* hoe je met `input()` gegevens van de gebruiker vraagt;
+* hoe je die input omzet naar een getal en ermee rekent;
+* hoe je input en `if`-structuren combineert in een kleine game;
+* hoe je een ##file## (een bestand) opent, leest, schrijft en sluit;
+* hoe je met `with` veilig met files werkt.
 
-image::images/pythoninput.png[]
+Voor de berekeningen gebruiken we de expressies uit hoofdstuk 3.
 
-Tekstinvoer Verzamelen:
+== Input van de gebruiker
+
+Een game of programma wordt interactief als het vragen kan stellen aan de speler. De ##input## (de invoer) vraag je met de functie `input()`. Het programma wacht tot de speler iets typt en op kbd:[Enter] drukt.
+
+image::images/pythoninput.png[Een gebruiker typt tekst in een terminal en het programma leest die input]
+
+=== Tekst vragen met input()
 
 [source,python]
 ----
-player_name = input("Voer je naam in: ")
-print("Welkom, " + player_name + "!")
+player_name = input("Voer je naam in: ") <1>
+print("Welkom, " + player_name + "!") <2>
+----
+<1> Tussen de haakjes staat de vraag die op het scherm verschijnt. Wat de speler typt, komt in de variabele `player_name`.
+<2> We plakken de naam van de speler in een welkomstbericht.
+
+.Uitvoer (de speler typt Sam)
+[source,plaintext]
+----
+Voer je naam in: Sam
+Welkom, Sam!
 ----
 
-Met dit voorbeeld vragen we de speler om hun naam in te voeren en gebruiken we deze input om een persoonlijk welkomstbericht te genereren.
+=== Een keuze laten maken
+
+Met input kan een speler een keuze maken. De ##output## (de uitvoer) past zich aan op wat de speler typt.
 
 [source,python]
 ----
@@ -31,188 +52,285 @@ choice = input("Wil je naar links of rechts gaan? ")
 print("Je hebt gekozen om naar " + choice + " te gaan.")
 ----
 
-Hiermee kunnen spelers eenvoudige keuzes maken binnen je game en wordt de uitvoer aangepast op basis van hun invoer.
+.Uitvoer (de speler typt links)
+[source,plaintext]
+----
+Wil je naar links of rechts gaan? links
+Je hebt gekozen om naar links te gaan.
+----
 
-== Rekenen met Invoer
+== Rekenen met input
 
-Het vermogen om expressies en berekeningen te gebruiken, opent een wereld van mogelijkheden in game-ontwikkeling. Hiermee kun je wiskundige en logische bewerkingen uitvoeren op basis van variabele waarden, invoer van spelers of gamegebeurtenissen.
+Met expressies kan je berekeningen doen met de input van een speler. In een RPG-game richten spelers bijvoorbeeld schade aan bij vijanden.
 
-Gevechtsberekening:
-
-Stel je een RPG-game voor waarin spelers vijanden schade toebrengen. Hier is een voorbeeld van hoe je dit kunt aanpakken:
+=== Gevechtsberekening
 
 [source,python]
 ----
 player_damage = int(input("Voer je schade in: ")) <1>
 enemy_health = 100
-remaining_health = enemy_health - player_damage
+remaining_health = enemy_health - player_damage <2>
 
 if remaining_health <= 0:
     print("De vijand is verslagen!")
 else:
     print("De vijand heeft nog", remaining_health, "gezondheid over.")
 ----
-<1> `input()` geeft altijd een string (`str`) terug, ook als de gebruiker een getal intypt. Daarom zetten we de invoer hier om naar een integer met `int()`. Zo kan ermee gerekend worden, met een `str` zou dat niet kunnen.
+<1> `input()` geeft altijd een string (`str`) terug, ook als de speler een getal typt. Met `int()` zetten we die string om naar een integer, zodat we ermee kunnen rekenen.
+<2> De resterende gezondheid is de gezondheid van de vijand min de schade van de speler.
 
-Deze code gebruikt de invoer van de speler om de resterende gezondheid van een vijand na het toebrengen van schade te berekenen.
+.Uitvoer (de speler typt 30)
+[source,plaintext]
+----
+Voer je schade in: 30
+De vijand heeft nog 70 gezondheid over.
+----
 
-Attribuutberekening:
+WARNING: Typt de speler geen getal, bijvoorbeeld `dertig`, dan stopt het programma met een foutmelding (`ValueError`). Hoe je dat opvangt, leer je in een later hoofdstuk.
 
-Stel je voor dat je een rollenspel maakt waarbij spelers de kracht en behendigheid van hun personage kunnen aanpassen:
+=== Attributen van een personage
+
+In een rollenspel past de speler de kracht en behendigheid van zijn personage aan.
 
 [source,python]
 ----
 player_name = input("Creëer je personage. Geef een naam: ")
 player_strength = int(input("Voer de krachtwaarde in (1-10): "))
 player_agility = int(input("Voer de behendigheidswaarde in (1-10): "))
-total_points = player_strength + player_agility
+total_points = player_strength + player_agility <1>
 
 print(player_name + "'s attributen:")
 print("Kracht:", player_strength)
 print("Behendigheid:", player_agility)
 print("Totaal punten:", total_points)
 ----
+<1> Het totaal is een gewone berekening met de twee getallen die de speler heeft ingevoerd.
 
-Met dit voorbeeld verzamel je gegevens van spelers en gebruik je expressies om totaalpunten te berekenen op basis van kracht en behendigheid.
+.Uitvoer (de speler typt Aria, 7 en 5)
+[source,plaintext]
+----
+Creëer je personage. Geef een naam: Aria
+Voer de krachtwaarde in (1-10): 7
+Voer de behendigheidswaarde in (1-10): 5
+Aria's attributen:
+Kracht: 7
+Behendigheid: 5
+Totaal punten: 12
+----
 
-== Interactie
+== Input en if combineren
 
-Door de kracht van gegevensinvoer en berekeningen te combineren, kun je gameplay-ervaringen creëren. Stel je voor dat je een avonturenspel ontwikkelt waarin spelers een mysterie moeten oplossen:
+Als je input en `if`-structuren combineert, krijg je een spel dat anders verloopt naargelang de keuze van de speler. Stel dat je een avonturenspel maakt waarin de speler een mysterie moet oplossen:
 
+.landhuis.py
 [source,python]
 ----
 player_name = input("Voer je naam in: ")
 print("Welkom, " + player_name + "!")
 print("Je staat voor een oud landhuis. Wat wil je onderzoeken?")
-choice = input("1. De voordeur 2. Het zijraam: ")
+choice = input("1. De voordeur 2. Het zijraam: ") <1>
 
-if choice == "1":
+if choice == "1": <2>
     print("Je betreedt het landhuis via de voordeur en voelt een koude windvlaag.")
 else:
     print("Je glijdt door het zijraam naar binnen en landt behendig op de vloer.")
 
-print("Je onderzoek begint...")
+print("Je onderzoek begint...") <3>
 ----
+<1> We vergelijken hierna met een string. Hier is dus geen `int()` nodig.
+<2> Vergelijk met `"1"` (tussen aanhalingstekens), want `input()` geeft een string terug.
+<3> Deze regel staat niet in de `if`, dus hij wordt in beide gevallen uitgevoerd.
 
+== Files
 
-== Bestandsinvoer en -uitvoer in Python
+Een variabele verdwijnt zodra je programma stopt. Wil je gegevens bewaren, dan schrijf je ze naar een ##file## (een bestand) op de harde schijf. Ook het omgekeerde kan: gegevens uit een file lezen in je programma.
 
-In dit onderdeel zullen we bespreken hoe je gegevens van bestanden op de harde schijf kunt lezen en schrijven in Python.
+Het werkt altijd in drie stappen:
 
-=== Bestanden Openen
+. Je *opent* de file.
+. Je *leest* uit de file of je *schrijft* naar de file.
+. Je *sluit* de file.
 
-Voordat je gegevens kunt lezen of schrijven naar een bestand, moet je het bestand openen met de ingebouwde `open()`-functie. Hier is een basisvoorbeeld:
+=== Een file openen
+
+Je opent een file met de ingebouwde functie `open()`. Je geeft twee dingen mee: de naam van de file en de ##mode## (de modus). De mode bepaalt wat je met de file mag doen.
+
+[cols="1,2,4"]
+|===
+|Mode |Naam |Wat gebeurt er?
+
+|`'r'`
+|read (lezen)
+|Je leest uit de file. De file moet al bestaan, anders krijg je een `FileNotFoundError`.
+
+|`'w'`
+|write (schrijven)
+|Je schrijft naar de file. Bestaat de file al, dan wordt ##alle inhoud gewist##. Bestaat ze niet, dan wordt ze aangemaakt.
+
+|`'a'`
+|append (toevoegen)
+|Je schrijft achteraan de file bij. De bestaande inhoud blijft behouden.
+|===
 
 [source,python]
 ----
-# Het bestand 'voorbeeld.txt' openen om te schrijven (wissen als het al bestaat)
+bestand = open('voorbeeld.txt', 'w') <1>
+----
+<1> We openen `voorbeeld.txt` om naar te schrijven. De variabele `bestand` verwijst nu naar de geopende file.
+
+TIP: Geef bij tekstbestanden best ook de ##encoding## (de tekencodering) mee: `open('voorbeeld.txt', 'w', encoding='utf-8')`. Zonder `encoding` gebruikt Python de standaard van je besturingssysteem. Op Windows kunnen letters zoals é, ë of ç dan verkeerd gelezen of weggeschreven worden.
+
+=== Schrijven naar een file
+
+Met de method `write()` schrijf je tekst naar een geopende file.
+
+[source,python]
+----
 bestand = open('voorbeeld.txt', 'w')
+bestand.write('Dit is een voorbeeldzin.\n') <1>
+bestand.write('Dit is een andere zin.\n')
+bestand.close()
 ----
+<1> `\n` staat voor een nieuwe regel. `write()` voegt dat niet zelf toe. Zonder `\n` komen beide zinnen op dezelfde regel te staan.
 
-In dit voorbeeld wordt het bestand 'voorbeeld.txt' geopend **om te schrijven ('w')**. De 'w'-modus betekent dat het ##bestand wordt gewist als het al bestaat##, en anders wordt het aangemaakt.
-
-TIP: Geef bij het openen van tekstbestanden best ook de codering mee: `open('voorbeeld.txt', 'w', encoding='utf-8')`. Zonder `encoding` gebruikt Python de standaardcodering van je besturingssysteem. Op Windows kunnen letters zoals é, ë of ç dan verkeerd worden gelezen of weggeschreven.
-
-=== Schrijven naar een Bestand
-
-Nu we een bestand hebben geopend om te schrijven, kunnen we gegevens naar dat bestand schrijven met de `write()`-methode:
-
-[source,python]
+.voorbeeld.txt (na het uitvoeren)
+[source,plaintext]
 ----
-bestand.write('Dit is een voorbeeldzin.')
-bestand.write('Dit is een andere zin.')
+Dit is een voorbeeldzin.
+Dit is een andere zin.
 ----
-
-Deze code schrijft twee zinnen naar het geopende bestand.
 
 === Schrijven zonder te wissen
 
-Om naar een bestand te schrijven zonder de bestaande inhoud te wissen, kun je het bestand openen in de ##'append'-modus ('a')## in plaats van de 'write'-modus ('w'). Hier is hoe je dit doet:
+Met mode `'w'` wis je telkens de bestaande inhoud. Wil je iets bijschrijven, gebruik dan mode `'a'` (append).
 
 [source,python]
 ----
-# Bestand openen in 'append'-modus ('a')
-bestand = open('bestaand_bestand.txt', 'a')
+bestand = open('voorbeeld.txt', 'a') <1>
+bestand.write('Dit is nieuwe inhoud die achteraan komt.\n')
+bestand.close()
+----
+<1> Met `'a'` blijft de bestaande inhoud staan. De nieuwe tekst komt op het einde.
 
-# Schrijf nieuwe inhoud naar het bestand
-bestand.write('Dit is nieuwe inhoud die aan het bestand wordt toegevoegd.\n')
+.voorbeeld.txt (na het uitvoeren)
+[source,plaintext]
+----
+Dit is een voorbeeldzin.
+Dit is een andere zin.
+Dit is nieuwe inhoud die achteraan komt.
 ----
 
-In dit voorbeeld wordt het bestand 'bestaand_bestand.txt' geopend in de 'append'-modus. De 'append'-modus voegt nieuwe inhoud toe aan het einde van het bestand zonder de bestaande inhoud te overschrijven. De `\n` wordt gebruikt om een nieuwe regel toe te voegen, zodat elke toegevoegde regel op een nieuwe regel begint.
+=== Een file sluiten
 
-Als 'bestaand_bestand.txt' bijvoorbeeld al enkele regels tekst bevatte en je dit script uitvoerde, zou de nieuwe inhoud worden toegevoegd aan het einde van het bestand zonder de bestaande inhoud te wissen.
-
-=== Sluiten van een Bestand
-
-Het is belangrijk om bestanden te sluiten nadat je klaar bent met lezen of schrijven. Dit kan worden gedaan met de `close()`-methode:
+Sluit een file altijd met de method `close()` als je klaar bent.
 
 [source,python]
 ----
 bestand.close()
 ----
 
-Het ##sluiten## van een bestand is belangrijk omdat het ##resources vrijgeeft## en eventuele ##wijzigingen## die je hebt aangebracht in het bestand ##opslaat##.
+Een file sluiten is belangrijk omdat:
 
-=== Lezen van een Bestand
+* het ##resources vrijgeeft## (het besturingssysteem kan de file weer gebruiken);
+* het ##wijzigingen opslaat## die nog niet naar de schijf geschreven waren.
 
-Om gegevens uit een bestand te lezen, open je het bestand in de **leesmodus ('r')** en gebruik je de `read()`-methode:
+=== Een file lezen
+
+Om te lezen open je de file in mode `'r'`. Met de method `read()` krijg je de volledige inhoud als één string.
 
 [source,python]
 ----
 bestand = open('voorbeeld.txt', 'r')
-inhoud = bestand.read()
+inhoud = bestand.read() <1>
 bestand.close()
 
 print(inhoud)
 ----
+<1> De volledige inhoud van de file staat nu in de variabele `inhoud`.
 
-Dit voorbeeld opent het bestand 'voorbeeld.txt', leest de inhoud ervan en slaat deze op in de variabele `inhoud`. Vervolgens wordt de inhoud afgedrukt.
+.Uitvoer
+[source,plaintext]
+----
+Dit is een voorbeeldzin.
+Dit is een andere zin.
+Dit is nieuwe inhoud die achteraan komt.
+----
 
-=== Itereren door een Bestand
+=== Regel per regel lezen
 
-Je kunt ook door een bestand itereren om het regel voor regel te lezen met een `for`-lus:
+Je kan een file ook regel per regel doorlopen met een `for`-lus.
 
 [source,python]
 ----
 bestand = open('voorbeeld.txt', 'r')
 
-for regel in bestand:
-    print(regel.strip())
+for regel in bestand: <1>
+    print(regel.strip()) <2>
 
 bestand.close()
 ----
+<1> Bij elke ronde bevat `regel` één regel uit de file, inclusief de `\n` op het einde.
+<2> `print()` voegt zelf ook een nieuwe regel toe. Zonder `.strip()` zou er dus telkens een lege regel tussen staan. `.strip()` verwijdert de witruimte en de `\n` aan het begin en einde van de regel.
 
-Hier wordt elke regel van het bestand afzonderlijk gelezen en afgedrukt. Elke gelezen regel eindigt met een `\n` (nieuwe regel), en `print()` voegt zelf ook een nieuwe regel toe. Zonder `.strip()` zou er dus telkens een lege regel tussen staan. `.strip()` verwijdert witruimte en `\n` aan het begin en einde van de regel.
+=== Veilig werken met with
 
-=== Met een Bestand Werken via een 'with'-verklaring
-
-Een handige manier om met bestanden te werken is met behulp van een 'with'-verklaring. ##Dit zorgt ervoor dat het bestand automatisch wordt gesloten wanneer je klaar bent met werken##:
+Vergeet je `close()`, dan blijft de file open. Met een ##with statement## (een with-blok) hoef je daar niet aan te denken: ##de file wordt automatisch gesloten## zodra het blok afgelopen is.
 
 [source,python]
 ----
-with open('voorbeeld.txt', 'r') as bestand:
-    inhoud = bestand.read()
-    # Voer hier bewerkingen uit op de inhoud
+with open('voorbeeld.txt', 'r') as bestand: <1>
+    inhoud = bestand.read() <2>
+    print(inhoud)
 
-# Het bestand is nu automatisch gesloten buiten de 'with'-verklaring
+print("Hier is de file al gesloten.") <3>
 ----
+<1> De file wordt geopend en krijgt de naam `bestand`, net zoals hiervoor.
+<2> Alles wat met de file moet gebeuren, staat ingesprongen onder `with`.
+<3> Deze regel staat niet meer ingesprongen. Python heeft de file hier al voor je gesloten.
 
-==== Bestanden Maken en Schrijven
-
-Om een nieuw bestand te maken en gegevens naar dat bestand te schrijven, open je het bestand in de schrijfmodus ('w'). Als het bestand al bestaat, wordt het gewist en opnieuw aangemaakt.
+Ook schrijven kan met `with`. Zo maak je een nieuwe file aan:
 
 [source,python]
 ----
 with open('nieuw_bestand.txt', 'w') as bestand:
-    bestand.write('Dit is een nieuw bestand.')
+    bestand.write('Dit is een nieuw bestand.\n')
 ----
 
-Dit voorbeeld maakt een nieuw bestand genaamd 'nieuw_bestand.txt' en schrijft de opgegeven tekst erin.
+Gebruik `with` voortaan als standaardmanier om met files te werken.
 
-=== Handige Bestandsbewerkingen
+=== Handige bewerkingen op files
 
-* **Bestand hernoemen:** Gebruik de `os.rename()`-functie.
-* **Bestand verplaatsen:** Gebruik de `shutil.move()`-functie uit de `shutil`-module.
-* **Bestand kopiëren:** Gebruik de `shutil.copy()`-functie uit de `shutil`-module. (De `os`-module heeft geen functie om bestanden te kopiëren.)
-* **Bestand verwijderen:** Gebruik de `os.remove()`-functie om een bestand te verwijderen.
+Naast lezen en schrijven wil je een file soms hernoemen, verplaatsen, kopiëren of verwijderen. Daarvoor heb je de modules `os` en `shutil`.
 
+[source,python]
+----
+import os
+import shutil
+
+os.rename('oud.txt', 'nieuw.txt')
+shutil.copy('nieuw.txt', 'kopie.txt')
+os.remove('kopie.txt')
+----
+
+[cols="2,3,3"]
+|===
+|Doel |Functie |Module
+
+|Een file hernoemen
+|`os.rename()`
+|`os`
+
+|Een file verplaatsen
+|`shutil.move()`
+|`shutil`
+
+|Een file kopiëren
+|`shutil.copy()`
+|`shutil`
+
+|Een file verwijderen
+|`os.remove()`
+|`os`
+|===
+
+NOTE: De module `os` heeft geen functie om een file te kopiëren. Daarvoor gebruik je `shutil.copy()`.
